@@ -535,6 +535,15 @@ if(MATPLOTLIB_FOUND)
   add_gudhi_py_test(test_persistence_graphical_tools)
 endif()
 
+# LieDetect
+if(PYNAMOPT_FOUND AND AUTOGRAD_FOUND)
+    add_gudhi_py_test(test_detect_so_2)
+    add_gudhi_py_test(test_detect_so_3)
+    add_gudhi_py_test(test_detect_t_2)
+    add_gudhi_py_test(test_orthonormalize)
+    add_gudhi_py_test(test_sample)
+endif()
+
 # Set missing or not modules
 set(GUDHI_MODULES ${GUDHI_MODULES} "python" CACHE INTERNAL "GUDHI_MODULES")
 

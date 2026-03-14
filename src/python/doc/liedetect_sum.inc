@@ -2,7 +2,7 @@
    :widths: 30 40 30
    :header-rows: 0
 
-   * - .. figure:: img/liedetect.png
+   * - .. figure:: img/liedetect_sum.png
         :figclass: align-center
 
      - LieDetect is an algorithm to estimate representation types of compact Lie groups from finite samples of their orbits. Currently implemented for :math:`SO(2)`, :math:`T^d`, :math:`SO(3)`, and :math:`SU(2)`.

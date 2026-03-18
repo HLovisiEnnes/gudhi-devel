@@ -428,8 +428,8 @@ The :doc:`LieDetect </liedetect_user>` module requires `autograd <https://pypi.o
 package for automatic differentiation for native Python and Numpy.
 
 
-Autograd
-----------
+Pymanopt
+--------
 
 The :doc:`LieDetect </liedetect_user>` module requires `Pymanopt <https://pymanopt.org/>`_, a
 Python toolbox for optimization on Riemannian manifolds.

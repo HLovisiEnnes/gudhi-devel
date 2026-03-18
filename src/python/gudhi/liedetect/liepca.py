@@ -1,18 +1,16 @@
 """
-This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is
-released under MIT.
-See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license
-details.
+This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is released under MIT.
+See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license details.
 
 Author(s):       Henrique Ennes & Raphaël Tinarrage
 
 Copyright (C) 2016 Inria
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 
-This module provides functions for dimension reduction and orthonormalization
-(Step 1 of LieDetect), as well as Lie PCA (Step 2).
+This module provides functions for dimension reduction and orthonormalization (Step 1 of LieDetect), as well as
+Lie PCA (Step 2).
 
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 
 Dimension reduction:
     get_covariance_matrix
@@ -26,7 +24,7 @@ Orthonormalization:
 Lie PCA:
     get_lie_pca_operator
 
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 """
 
 # Standard imports.
@@ -39,9 +37,9 @@ import sklearn
 
 
 """
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 Dimension reduction
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 """
 
 
@@ -56,14 +54,10 @@ def get_covariance_matrix(
 
     Args:
         pts (np.ndarray): Array representing the points.
-        center (bool, optional): If True, centers the points before computing
-            the covariance. Defaults to False.
-        normalize (bool, optional): If True, normalizes the covariance matrix
-            by its Frobenius norm and rescales by sqrt(orbit_dim). This
-            normalization makes it close to a projection matrix.
-            Defaults to False.
-        orbit_dim (int, optional): Dimension used for normalization.
-            Required if normalize is True.
+        center (bool, optional): If True, centers the points before computing the covariance. Defaults to False.
+        normalize (bool, optional): If True, normalizes the covariance matrix by its Frobenius norm and rescales by
+            sqrt(orbit_dim). This normalization makes it close to a projection matrix. Defaults to False.
+        orbit_dim (int, optional): Dimension used for normalization. Required if normalize is True.
 
     Returns:
         np.ndarray: The covariance matrix of the points.
@@ -103,13 +97,10 @@ def print_covariance_eigenvalues(pts) -> None:
     print("Covariance eigenvalues:", *[f"{v:.1e} " for v in eigenvalues])
 
 
-def project_on_minimal_subspace(
-    pts: np.ndarray, threshold_eigenvalue: float
-) -> np.ndarray:
+def project_on_minimal_subspace(pts: np.ndarray, threshold_eigenvalue: float) -> np.ndarray:
     """
-    Projects the points onto the minimal subspace they span, based on their
-    covariance matrix. The projection is done by removing components with
-    eigenvalues below a certain threshold, after normalization by L1 norm
+    Projects the points onto the minimal subspace they span, based on their covariance matrix. The projection
+    is done by removing components with eigenvalues below a certain threshold, after normalization by L1 norm
     of eigenvalues.
 
     Args:
@@ -140,16 +131,15 @@ def project_on_minimal_subspace(
 
 
 """
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 Orthonormalization
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 """
 
 
 def print_norms(pts: np.ndarray) -> None:
     """
-    Prints the mean and standard deviation of the norms of the points.
-    Useful to check normalization.
+    Prints the mean and standard deviation of the norms of the points. Useful to check normalization.
 
     Args:
         pts(np.ndarray): Point cloud.
@@ -164,13 +154,9 @@ def print_norms(pts: np.ndarray) -> None:
     print(f"Mean distance to origin: {mean_norm:.1e} ± {std_norm:.1e}")
 
 
-def batch_matrix_multiplication(
-        pts: np.ndarray,
-        matrix: np.ndarray
-        ) -> np.ndarray:
+def batch_matrix_multiplication(pts: np.ndarray, matrix: np.ndarray) -> np.ndarray:
     """
-    It will be used for simplifying some repeated operations
-    down the road (DRY).
+    It will be used for simplifying some repeated operations down the road (DRY).
 
     Args:
         pts(np.ndarray): Batch of vectors to be multiplied by the matrix.
@@ -184,17 +170,15 @@ def batch_matrix_multiplication(
 
 def orthonormalize(pts: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
-    Orthonormalizes a point cloud by centering, homogenizing
-    and normalizing it. This is Step 1 of LieDetect.
+    Orthonormalizes a point cloud by centering, homogenizing and normalizing it. This is Step 1 of LieDetect.
 
     Args:
         pts (np.ndarray): Point cloud.
 
     Returns:
         pts_orth (np.ndarray): Orthonormalized points.
-        orthonormal_transf (np.ndarray): The matrix for the linear
-        projection onto orthonormalization. Points are transformed by
-        left multiplication by it.
+        orthonormal_transf (np.ndarray): The matrix for the linear projection onto orthonormalization.
+            Points are transformed by left multiplication by it.
     """
     # Copies to not modify the original points
     pts_orth = pts.copy()
@@ -217,8 +201,7 @@ def orthonormalize(pts: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
 
 class Orthonormalize:
     """
-    Orthonormalizes a point cloud by centering, homogenizing and normalizing
-    it. This is Step 1 of LieDetect.
+    Orthonormalizes a point cloud by centering, homogenizing and normalizing it. This is Step 1 of LieDetect.
 
     Parameters:
         pts (np.ndarray): Point cloud.
@@ -227,28 +210,21 @@ class Orthonormalize:
         points (np.ndarray): (Training) point cloud.
         cov (np.ndarray): Covariance matrix of the (training) data points.
         mean (float): The mean of the (training) data points.
-        is_fitted (bool): Indicates whether 'fit' or 'fit_transform'
-            has been called.
-        orth_points (np.ndarray): The orthogonalized points.
+        is_fitted (bool): Indicates whether 'fit' or 'fit_transform' has been called.
+        orth_points (np.ndarray): The orthogonalized points. Only defined after running 'fit' or 'fit_transform'.
+        orthonormal_transf (np.ndarray): The matrix for the linear projection onto orthonormalization.
             Only defined after running 'fit' or 'fit_transform'.
-        orthonormal_transf (np.ndarray): The matrix for the linear projection
-            onto orthonormalization. Only defined after running 'fit' or
-            'fit_transform'.
     """
+
     def __init__(self, pts: np.ndarray) -> None:
         self.points = pts.copy()
-        self.cov = get_covariance_matrix(
-            self.points,
-            center=True,
-            normalize=False
-            )
+        self.cov = get_covariance_matrix(self.points, center=True, normalize=False)
         self.mean = np.mean(self.points, 0)
         self.is_fitted = False
 
     def print_norms(self) -> None:
         """
-        Prints the mean and standard deviation of the norms of the points.
-        Useful to check normalization.
+        Prints the mean and standard deviation of the norms of the points. Useful to check normalization.
 
         Args:
             None
@@ -281,8 +257,7 @@ class Orthonormalize:
 
     def fit(self) -> None:
         """
-        Only fits the orthonormalization to the points and creates new
-        attributes:
+        Only fits the orthonormalization to the points and creates new attributes:
             - orth_points (np.ndarray): Orthonormalized points.
             - orthonormal_transf (np.ndarray):  The matrix for the linear
                 projection onto orthonormalization.
@@ -297,9 +272,8 @@ class Orthonormalize:
 
     def transform(self, pts: np.ndarray) -> np.ndarray:
         """
-        Applies the same orthonormalization transformation to a new set
-        of points. Naturally assumes that either 'fit' or 'fit_transform'
-        has been previously called.
+        Applies the same orthonormalization transformation to a new set of points. Naturally assumes that either
+        'fit' or 'fit_transform' has been previously called.
 
         Args:
             pts (np.ndarray): Point cloud.
@@ -309,24 +283,18 @@ class Orthonormalize:
                 transformation.
         """
         if not self.is_fitted:
-            raise RuntimeError(
-                "'fit' or 'fit_transform' must be run before 'transform'."
-                )
+            raise RuntimeError("'fit' or 'fit_transform' must be run before 'transform'.")
 
         pts = pts.copy() - self.mean
 
         return batch_matrix_multiplication(pts, self.orthonormal_transf)
 
     def inverse_transform(
-            self,
-            pts: Optional[np.ndarray] = None,
-            add_mean: bool = True,
-            in_place: bool = False
-            ) -> np.ndarray:
+        self, pts: Optional[np.ndarray] = None, add_mean: bool = True, in_place: bool = False
+    ) -> np.ndarray:
         """
-        Inverses the orthonormalization.
-        Naturally assumes that either 'fit' or 'fit_transform' has been
-        previously called.
+        Inverses the orthonormalization. Naturally assumes that either 'fit' or 'fit_transform' has been previously
+        called.
 
         Args:
             pts (np.ndarray, optional): Point cloud to apply the inverse
@@ -341,9 +309,7 @@ class Orthonormalize:
             inversed_points (np.ndarray): Inversed transformed points.
         """
         if not self.is_fitted:
-            raise RuntimeError(
-                "'fit' or 'fit_transform' must be run before 'inverse'."
-                )
+            raise RuntimeError("'fit' or 'fit_transform' must be run before 'inverse'.")
 
         if pts is None:
             pts = self.points
@@ -358,9 +324,9 @@ class Orthonormalize:
 
 
 """
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 Lie PCA
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 """
 
 
@@ -373,44 +339,32 @@ def get_lie_pca_operator(
     verbose: bool = False,
 ) -> np.ndarray:
     """
-    Computes the Lie-PCA operator of a given point cloud. For the estimation
-    of normal spaces, two options are available:
+    Computes the Lie-PCA operator of a given point cloud. For the estimation of normal spaces, two options are
+    available:
             - 'covariance': uses local covariance matrices, correctly
                 normalized.
             - 'PCA': uses local PCA, i.e., takes the top eigenvectors
                 of previous estimation).
-    In addition, the parameter 'correction' can be set to True to ensure that
-    the operator is the identity on symmetric matrices (hence its kernel
-    contains only skew-symmetric matrices).
+    In addition, the parameter 'correction' can be set to True to ensure that the operator is the identity on symmetric
+    matrices (hence its kernel contains only skew-symmetric matrices).
 
     Args:
-        pts (np.ndarray): Array of shape (nb_points, ambient_dim) representing
-            the sampled points on the orbit.
-        nb_neighbors (int): Number of neighbors to use for tangent space
-            estimation.
+        pts (np.ndarray): Array of shape (nb_points, ambient_dim) representing the sampled points on the orbit.
+        nb_neighbors (int): Number of neighbors to use for tangent space estimation.
         orbit_dim (int): Dimension of the orbit for tangent space estimation.
-        method (str, optional): Method to estimate normal spaces, either
-            'covariance' or 'PCA'. Defaults to 'PCA'.
-        correction (bool, optional): If True, applies a correction to ensure
-            the operator is the identity on symmetric matrices.
-            Defaults to True.
-        verbose (bool, optional): If True, prints eigenvalues and eigengap
-            information. Defaults to False.
+        method (str, optional): Method to estimate normal spaces, either 'covariance' or 'PCA'. Defaults to 'PCA'.
+        correction (bool, optional): If True, applies a correction to ensure the operator is the identity on symmetric
+            matrices. Defaults to True.
+        verbose (bool, optional): If True, prints eigenvalues and eigengap information. Defaults to False.
 
     Returns:
-        np.ndarray: The Lie-PCA operator as a matrix of shape
-            (ambient_dim**2, ambient_dim**2).
+        np.ndarray: The Lie-PCA operator as a matrix of shape (ambient_dim**2, ambient_dim**2).
     """
     nb_points, ambient_dim = np.shape(pts)
 
     # Computes local covariance matrices.
-    kdt = sklearn.neighbors.KDTree(
-        pts, leaf_size=nb_neighbors + 1,
-        metric="euclidean"
-        )
-    neighbors_idx = kdt.query(
-        pts, nb_neighbors + 1,
-        return_distance=False)[:, 1::]
+    kdt = sklearn.neighbors.KDTree(pts, leaf_size=nb_neighbors + 1, metric="euclidean")
+    neighbors_idx = kdt.query(pts, nb_neighbors + 1, return_distance=False)[:, 1::]
     proj_tangent_spaces = [
         get_covariance_matrix(
             pts=pts[i] - pts[neighbors_idx[i, :]],
@@ -421,12 +375,9 @@ def get_lie_pca_operator(
         for i in range(nb_points)
     ]
 
-    # Computes projection on normal spaces via local covariance
-    # (take complementary of previous estimation)
+    # Computes projection on normal spaces via local covariance (take complementary of previous estimation)
     if method == "covariance":
-        proj_normal_spaces = [
-            np.eye(ambient_dim) - proj for proj in proj_tangent_spaces
-        ]
+        proj_normal_spaces = [np.eye(ambient_dim) - proj for proj in proj_tangent_spaces]
 
     # Computes projection on normal spaces via local PCA.
     elif method == "PCA":
@@ -435,8 +386,7 @@ def get_lie_pca_operator(
             # Gets the eigenvalues and eigenvectors of the covariance matrix
             eigenvalues, mat = scipy.linalg.eigh(proj_tangent)
 
-            # Gets top "orbit_dim" indices (largest eigenvalues)
-            # They represent the tangent space.
+            # Gets top "orbit_dim" indices (largest eigenvalues), they represent the tangent space.
             idx = np.argsort(eigenvalues)[-orbit_dim:]
 
             # Creates canonical projection matrix (zero out the tangent space)
@@ -448,10 +398,7 @@ def get_lie_pca_operator(
     else:
         raise ValueError(f"Method {method} not recognized.")
     # Compute projections on lines.
-    proj_lines = [
-        np.outer(pts[i, :], pts[i, :]) / np.dot(pts[i, :], pts[i, :])
-        for i in range(nb_points)
-    ]
+    proj_lines = [np.outer(pts[i, :], pts[i, :]) / np.dot(pts[i, :], pts[i, :]) for i in range(nb_points)]
     # Create basis of space of matrices.
     basis_matrices = []
     for i in range(ambient_dim):
@@ -463,21 +410,16 @@ def get_lie_pca_operator(
     lie_pca = np.zeros((ambient_dim**2, ambient_dim**2))
     for i in range(len(basis_matrices)):
         lie_pca[:, i] = np.sum(
-            [
-                proj_normal_spaces[j] @ basis_matrices[i] @ proj_lines[j]
-                for j in range(nb_points)
-            ],
+            [proj_normal_spaces[j] @ basis_matrices[i] @ proj_lines[j] for j in range(nb_points)],
             axis=0,
         ).flatten()
     lie_pca /= len(pts)
 
-    # Correction: set values of non-skew-symmetric matrices to zero
-    # To do so, we skew-symmetrize the basis.
+    # Correction: set values of non-skew-symmetric matrices to zero. To do so, we skew-symmetrize the basis.
     if correction:
         lie_pca_corrected = np.zeros((ambient_dim**2, ambient_dim**2))
         for k in range(len(basis_matrices)):
-            # Take basis element and decompose it into symmetric
-            # and skew-symmetric parts
+            # Take basis element and decompose it into symmetric and skew-symmetric parts
             mat = basis_matrices[k]
             mat_sym = (mat + mat.T) / 2
             mat_skew_sym = (mat - mat.T) / 2
@@ -485,10 +427,7 @@ def get_lie_pca_operator(
             # Computes the image via Lie PCA.
             # The image of the symmetric part is itself, so eigenvalue is 1
             mat_sym_image = mat_sym
-            mat_skew_sym_image = (lie_pca
-                                  @ (mat_skew_sym.reshape(-1))).reshape(
-                ambient_dim, ambient_dim
-            )
+            mat_skew_sym_image = (lie_pca @ (mat_skew_sym.reshape(-1))).reshape(ambient_dim, ambient_dim)
             mat_image = mat_sym_image + mat_skew_sym_image
 
             # Stores the image in the Lie PCA operator
@@ -500,9 +439,7 @@ def get_lie_pca_operator(
 
     if verbose:
         vals = np.sort(np.linalg.eigvals(lie_pca).real)
-        print("Lie PCA first eigenvalues:",
-              *[f"{v:.1e} " for v in vals[:4]],
-              end=" ")
+        print("Lie PCA first eigenvalues:", *[f"{v:.1e} " for v in vals[:4]], end=" ")
         print(
             f"""\x1b[34mEigengap #{orbit_dim}:
             {(vals[orbit_dim] / vals[orbit_dim - 1]):.1e}\x1b[0m."""

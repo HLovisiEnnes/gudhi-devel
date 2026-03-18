@@ -6,7 +6,7 @@
 Orthonomalizer reference manual
 ===============================
 
-.. autoclass:: gudhi.liedetect.Orthonomalize
+.. autoclass:: gudhi.liedetect.Orthonormalize
    :members:
    :inherited-members:
    :exclude-members: __new__

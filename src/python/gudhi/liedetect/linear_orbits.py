@@ -1,27 +1,22 @@
 """
-This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is
-released under MIT.
-See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license
-details.
+This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is released under MIT.
+See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license details.
 
 Author(s):       Henrique Ennes & Raphaël Tinarrage
 
 Copyright (C) 2016 Inria
+-----------------------------------------------------------------------------------------------------------------------
 
-------------------------------------------------------------------------------
 
-This module provides functions to sample points on orbits of representations,
-from their Lie algebra generators. Namely, the Lie algebras are stored through
-bases (tuples of skew-symmetric matrices), that we suppose to be isomorphic to
-the canonical pushforward algebras of the representations implemented in the
-module "algebra", through conjugation by an orthogonal matrix. This assumption
-it crucial since, combined with the representation type of the algebra, we are
-able to compute the periods of the basis elements (minimal t>0 such that
-exp(tA)=I), and hence be able to reconstruct the orbit entirely (and without
-repetition for the torus). Note that, given the algebra alone, we cannot
-compute the periods in a robust way.
+This module provides functions to sample points on orbits of representations, from their Lie algebra generators.
+Namely, the Lie algebras are stored through bases (tuples of skew-symmetric matrices), that we suppose to be isomorphic
+to the canonical pushforward algebras of the representations implemented in the module "algebra", through conjugation
+by an orthogonal matrix. This assumption it crucial since, combined with the representation type of the algebra, we are
+able to compute the periods of the basis elements (minimal t>0 such that exp(tA)=I), and hence be able to reconstruct
+the orbit entirely (and without repetition for the torus). Note that, given the algebra alone, we cannot compute the
+periods in a robust way.
 
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 
 Sample on orbits:
     print_hausdorff_distance
@@ -32,7 +27,7 @@ Sample on orbits:
     sample_orbit_from_rep
     sample_orbit_from_group
 
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 """
 
 # Standard imports.
@@ -54,16 +49,13 @@ from .algebra import (
 
 
 """-
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 Sample on orbits
-------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 """
 
 
-def print_hausdorff_distance(
-        pts1: np.ndarray,
-        pts2: np.ndarray,
-        verbose: bool = True) -> float:
+def print_hausdorff_distance(pts1: np.ndarray, pts2: np.ndarray, verbose: bool = True) -> float:
     """
     Prints the Hausdorff distance from first point cloud to second.
 
@@ -77,8 +69,10 @@ def print_hausdorff_distance(
     """
     hausdorff_dist = scipy.spatial.distance.directed_hausdorff(pts1, pts2)[0]
     if verbose:
-        print(f"""Non-symmetric \x1b[34mHausdorff distance:
-              {hausdorff_dist:.3e}\x1b[0m.""")
+        print(
+            f"""Non-symmetric \x1b[34mHausdorff distance:
+              {hausdorff_dist:.3e}\x1b[0m."""
+        )
     return hausdorff_dist
 
 
@@ -87,22 +81,19 @@ def get_periods_torus(
     algebra: List[np.ndarray],
 ) -> List[float]:
     """
-    Returns a list of minimal periods t>0 such that exp(tA)=I for each A in
-    the pushforward algebra. We suppose that the elements in "algebra" are
-    such that they generate a periodic 1-parameter subgroup. More precisely,
-    we suppose that the bijection between "algebra" and the canonical
-    algebra (implemented in get_canonical_pushforward_algebra) is a Lie
-    algebra isomorphism, induced by a conjugation. In particular, up to
-    normalization by the norm of the elements, the periods are identical.
+    Returns a list of minimal periods t>0 such that exp(tA)=I for each A in the pushforward algebra. We suppose that
+    the elements in "algebra" are such that they generate a periodic 1-parameter subgroup. More precisely, we suppose
+    that the bijection between "algebra" and the canonical algebra (implemented in get_canonical_pushforward_algebra)
+    is a Lie algebra isomorphism, induced by a conjugation. In particular, up to normalization by the norm of the
+    elements, the periods are identical.
 
     Case of SO(2):
-        The period of the integer matrix A* representing the pushforward
-            algebra of SO(2) via the rep (a1, ..., am) is
+        The period of the integer matrix A* representing the pushforward algebra of SO(2) via the rep (a1, ..., am) is
                 2 * pi / gcd(a1, ..., am).
         Its norm is
                 sqrt(2) * ||(a1, ..., am)||.
-        In particular, if A is a skew-symmetric matrix that is, up to
-            normalization, conjugate to A*, then its period is
+        In particular, if A is a skew-symmetric matrix that is, up to normalization, conjugate to A*, then its period
+            is
                 2 * pi / gcd(a1, ..., am) * 2 * ||(a1, ..., am)|| / ||A||.
 
     Case of T^d:
@@ -116,21 +107,14 @@ def get_periods_torus(
         return np.sqrt(2) * np.linalg.norm(weights)
 
     # Compute the periods
-    periods = [
-        period_so2(weights) * norm_so2(weights) / np.linalg.norm(mat)
-        for weights, mat in zip(rep_type, algebra)
-    ]
+    periods = [period_so2(weights) * norm_so2(weights) / np.linalg.norm(mat) for weights, mat in zip(rep_type, algebra)]
 
     # Sanity check: the exponentiated matrices should be the identity
     for period, mat in zip(periods, algebra):
-        if not np.isclose(
-            scipy.linalg.expm(period * mat), np.eye(len(mat))
-        ).all():
+        if not np.isclose(scipy.linalg.expm(period * mat), np.eye(len(mat))).all():
             print(
                 "Error! Incorrect period. Distance to identity:",
-                np.linalg.norm(
-                    scipy.linalg.expm(period * mat) - np.eye(len(mat))
-                    ),
+                np.linalg.norm(scipy.linalg.expm(period * mat) - np.eye(len(mat))),
             )
     return periods
 
@@ -157,15 +141,10 @@ def sample_orbit_from_algebra_torus(
     elif method == "uniform":
         # Get number of points (potentially too many, sparsify later).
         nb_points_circle = int(np.ceil(nb_points ** (1.0 / group_dim)))
-        grids = [
-            np.linspace(0.0, periods[i], nb_points_circle, endpoint=False)
-            for i in range(group_dim)
-            ]
+        grids = [np.linspace(0.0, periods[i], nb_points_circle, endpoint=False) for i in range(group_dim)]
         times = np.array(list(itertools.product(*grids)), dtype=float)
     else:
-        raise ValueError(
-            f"Method '{method}' not recognized. Use 'uniform' or 'random'."
-            )
+        raise ValueError(f"Method '{method}' not recognized. Use 'uniform' or 'random'.")
 
     # Generates orbit (linear combinations or algebra elements wrt times)
     orbit = np.empty((len(times), x.size), dtype=float)
@@ -176,9 +155,7 @@ def sample_orbit_from_algebra_torus(
         orbit[k] = scipy.linalg.expm(mat_alg) @ x
     # Sparsify if required.
     if len(orbit) > nb_points:
-        orbit = gudhi.subsampling.choose_n_farthest_points(
-            points=orbit, nb_points=nb_points
-            )
+        orbit = gudhi.subsampling.choose_n_farthest_points(points=orbit, nb_points=nb_points)
     return orbit
 
 
@@ -212,18 +189,20 @@ def sample_orbit_from_algebra_su2(
 
     # Random sample
     # alpha ~ Uniform[0, 2π)
-    alpha = np.random.rand(nb_points) * (2*np.pi)
+    alpha = np.random.rand(nb_points) * (2 * np.pi)
     # beta ~ arccos(Uniform[-1, 1])
-    beta = np.arccos(2*np.random.rand(nb_points) - 1.0)
+    beta = np.arccos(2 * np.random.rand(nb_points) - 1.0)
     # gamma ~ Uniform[0, 4π) or Uniform[0, 2π)
     period = max(period_irrep_su2(dim) for dim in rep_type)
     gamma = np.random.rand(nb_points) * period
 
     orbit = np.empty((nb_points, x.size), dtype=float)
     for i in range(nb_points):
-        g = (scipy.linalg.expm(alpha[i]*algebra_z)
-             @ scipy.linalg.expm(beta[i]*algebra_y)
-             @ scipy.linalg.expm(gamma[i]*algebra_z))
+        g = (
+            scipy.linalg.expm(alpha[i] * algebra_z)
+            @ scipy.linalg.expm(beta[i] * algebra_y)
+            @ scipy.linalg.expm(gamma[i] * algebra_z)
+        )
         orbit[i] = g @ x
     return orbit
 
@@ -238,38 +217,30 @@ def sample_orbit_from_algebra(
     verbose: bool = False,
 ) -> np.ndarray:
     """
-    Samples points on the orbit of a compact Lie group representation,
-    given its Lie algebra generators. We suppose that the algebra is
-    isomorphic to the canonical algebra indicated in rep_type. This allows
-    us to compute the periods, which are, otherwise, not stably computable
-    from the algebra alone.
+    Samples points on the orbit of a compact Lie group representation, given its Lie algebra generators. We suppose
+    that the algebra is isomorphic to the canonical algebra indicated in rep_type. This allows us to compute the
+    periods, which are, otherwise, not stably computable from the algebra alone.
 
     Args:
         group (str): The group type, e.g., 'torus' or 'SU(2)'.
-        rep_type (tuple): Representation type parameters
-            (e.g., weights or partition).
+        rep_type (tuple): Representation type parameters (e.g., weights or partition).
         algebra (List[np.ndarray]): List of Lie algebra generators as matrices.
         x (np.ndarray): Initial vector to act on.
         nb_points (int): Number of points to sample.
-        method (str): Sampling method, 'uniform' or 'random'.
-            Defaults to 'uniform'.
+        method (str): Sampling method, 'uniform' or 'random'. Defaults to 'uniform'.
         verbose (bool): Whether to print information about the sampled orbit.
 
     Returns:
         np.ndarray: Array of sampled points on the orbit.
     """
     if group == "torus":
-        orbit = sample_orbit_from_algebra_torus(rep_type=rep_type,
-                                                algebra=algebra,
-                                                x=x,
-                                                nb_points=nb_points,
-                                                method=method)
+        orbit = sample_orbit_from_algebra_torus(
+            rep_type=rep_type, algebra=algebra, x=x, nb_points=nb_points, method=method
+        )
     elif group in ["SU(2)", "SO(3)"]:
-        orbit = sample_orbit_from_algebra_su2(rep_type=rep_type,
-                                              algebra=algebra,
-                                              x=x,
-                                              nb_points=nb_points,
-                                              method=method)
+        orbit = sample_orbit_from_algebra_su2(
+            rep_type=rep_type, algebra=algebra, x=x, nb_points=nb_points, method=method
+        )
     else:
         raise ValueError(f"Group '{group}' not recognized.")
     if verbose:
@@ -291,30 +262,22 @@ def sample_orbit_from_rep(
     verbose: bool = False,
 ) -> np.ndarray:
     """
-    Samples points on the orbit of a compact Lie group representation, given
-    its representation type. We suppose that the algebra is isomorphic to
-    the canonical algebra indicated in rep_type. This allows us to compute
-    the periods, which are, otherwise, not stably computable from the algebra
-    alone.
+    Samples points on the orbit of a compact Lie group representation, given its representation type. We suppose that
+    the algebra is isomorphic to the canonical algebra indicated in rep_type. This allows us to compute the periods,
+    which are, otherwise, not stably computable from the algebra alone.
 
-    Note that the output orbit, in the uniform case, may not contain exactly
-    nb_points points (this only happens if the parameter nb_points is a
-    perfect power of the group dimension). In the random case, it will c
-    ontain exactly nb_points points.
+    Note that the output orbit, in the uniform case, may not contain exactly nb_points points (this only happens if
+    the parameter nb_points is a perfect power of the group dimension). In the random case, it will contain exactly
+    nb_points points.
 
     Args:
         group (str): The group type, e.g., 'torus' or 'SU(2)'.
-        rep_type (tuple): Representation type parameters
-            (e.g., weights or partition).
+        rep_type (tuple): Representation type parameters (e.g., weights or partition).
         nb_points (int): Number of points to sample.
-        conjugate_algebra (bool): Whether to conjugate the algebra by a random
-            orthogonal matrix.
-        right_multiply_algebra (bool): Whether to right-multiply the algebra
-            by a random orthogonal matrix.
-        translate_orbit (bool): Whether to translate the sampled orbit by a
-            random orthogonal transformation.
-        method (str): Sampling method, 'uniform' or 'random'.
-            Defaults to 'uniform'.
+        conjugate_algebra (bool): Whether to conjugate the algebra by a random orthogonal matrix.
+        right_multiply_algebra (bool): Whether to right-multiply the algebra by a random orthogonal matrix.
+        translate_orbit (bool): Whether to translate the sampled orbit by a random orthogonal transformation.
+        method (str): Sampling method, 'uniform' or 'random'. Defaults to 'uniform'.
         verbose (bool): Whether to print information about the sampled orbit.
 
     Returns:
@@ -335,17 +298,9 @@ def sample_orbit_from_rep(
     # Right-multiply algebra if needed.
     if right_multiply_algebra:
         if group == "torus":
-            raise NotImplementedError(
-                "Right-multiply not implemented for torus representations."
-            )
+            raise NotImplementedError("Right-multiply not implemented for torus representations.")
         orth = scipy.stats.special_ortho_group.rvs(3)
-        algebra = [
-            np.sum(
-                [algebra[j] * orth[j, i] for j in range(len(algebra))],
-                axis=0
-                )
-            for i in range(len(algebra))
-        ]
+        algebra = [np.sum([algebra[j] * orth[j, i] for j in range(len(algebra))], axis=0) for i in range(len(algebra))]
     # Sample orbit.
     orbit = sample_orbit_from_algebra(
         group=group,
@@ -413,8 +368,7 @@ def sample_orbit_from_group(
 
     elif group in ["SU(2)", "SO(3)"]:
         rep_type = get_random_constrained_partition(
-            group=group, ambient_dim=ambient_dim,
-            span_ambient_space=span_ambient_space
+            group=group, ambient_dim=ambient_dim, span_ambient_space=span_ambient_space
         )
 
     else:

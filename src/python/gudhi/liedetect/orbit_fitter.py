@@ -12,7 +12,7 @@ Implementation of the main class of the LieDetect module, OrbitFitter.
 -----------------------------------------------------------------------------------------------------------------------
 """
 # Standard imports.
-from typing import Optional, List
+from typing import Optional, List, Literal
 
 # Third-party imports.
 import numpy as np
@@ -72,10 +72,11 @@ class OrbitFitter:
     """
 
     def lie_pca(
-        self, nb_neighbors: int, orbit_dim: int, method: str = "PCA", correction: bool = True, verbose: bool = False
+        self, nb_neighbors: int, orbit_dim: int, method: Literal["PCA", "covariance"] = "PCA", correction: bool = True, verbose: bool = False
     ) -> np.ndarray:
         """
         Computes the LiePCA operator from the input point cloud.
+    
         Args:
             nb_neighbors (int): Number of neighbors to consider for the Lie-PCA operator.
             orbit_dim (int): Dimension of the orbit to detect.
@@ -130,7 +131,7 @@ class OrbitFitter:
         frequency_max: Optional[int] = None,
         reps_to_test: Optional[list] = None,
         span_ambient_space: bool = True,
-        method: str = "bottom_lie_pca",
+        method: Literal["bottom_lie_pca", "full_lie_pca", "abelian"] = "bottom_lie_pca",
         verbose: bool = False,
         verbose_top_scores: bool = False,
     ) -> tuple[tuple, List[np.ndarray]]:
@@ -180,7 +181,7 @@ class OrbitFitter:
     def sample_orbit(
         self,
         nb_points: int,
-        method: str = "uniform",
+        method: Literal["uniform", "random"] = "uniform",
         verbose: bool = False,
         x: Optional[np.ndarray] = None,
     ) -> np.ndarray:

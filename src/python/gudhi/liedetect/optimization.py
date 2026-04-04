@@ -37,7 +37,7 @@ Closest Lie algebra - Abelian case:
 """
 
 # Standard imports
-from typing import Optional, List
+from typing import Optional, List, Literal
 import itertools
 import time
 import datetime
@@ -106,7 +106,7 @@ def find_closest_algebra(
     frequency_max: Optional[int] = None,
     reps_to_test=None,
     span_ambient_space: bool = True,
-    method="bottom_lie_pca",
+    method: Literal["bottom_lie_pca","full_lie_pca", "abelian"] = "bottom_lie_pca",
     verbose: bool = True,
     verbose_top_scores: bool = False,
 ) -> tuple[tuple, List[np.ndarray]]:
@@ -232,7 +232,7 @@ def optimization_bottom_lie_pca(
     group: str,
     lie_pca_proj: np.ndarray,
     rep_type: tuple,
-    determinant: str = "+1",
+    determinant: Literal["+1", "-1"] = "+1",
 ):
     """
     Given a representation type and an initial guess of pushforward algebra, this function optimizes over the special
@@ -285,7 +285,7 @@ def optimization_full_lie_pca(
     group: str,
     lie_pca: np.ndarray,
     rep_type: tuple,
-    determinant: str = "+1",
+    determinant: Literal["+1", "-1"] = "+1",
 ):
     """
     Given a representation type and the Lie PCA operator, this function optimizes over the special orthogonal matrices

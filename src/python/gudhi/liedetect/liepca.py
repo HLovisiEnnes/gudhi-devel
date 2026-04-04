@@ -28,7 +28,7 @@ Lie PCA:
 """
 
 # Standard imports.
-from typing import Optional
+from typing import Optional, Literal
 
 # Third-party imports.
 import numpy as np
@@ -83,9 +83,6 @@ def print_covariance_eigenvalues(pts) -> None:
 
     Args:
         pts(np.ndarray): Point cloud.
-
-    Returns:
-        None
     """
     # Computes covariance matrix
     cov = get_covariance_matrix(pts)
@@ -143,9 +140,6 @@ def print_norms(pts: np.ndarray) -> None:
 
     Args:
         pts(np.ndarray): Point cloud.
-
-    Returns:
-        None
     """
     norms = np.linalg.norm(pts, axis=1)
     mean_norm = np.mean(norms)
@@ -225,25 +219,16 @@ class Orthonormalize:
     def print_norms(self) -> None:
         """
         Prints the mean and standard deviation of the norms of the points. Useful to check normalization.
-
-        Args:
-            None
-
-        Returns:
-            None
         """
         print_norms(self.points)
 
     def fit_transform(self) -> np.ndarray:
         """
-        Fits the orthonormalization to the points, returns the
-        orthonormalized points, and creates new attributes:
-            - orth_points (np.ndarray): Orthonormalized points.
-            - orthonormal_transf (np.ndarray):  The matrix for the linear
-                projection onto orthonormalization.
+        Fits the orthonormalization to the points and returns the orthonormalized points.
 
-        Args:
-            None
+        Creates new attributes:
+            - orth_points: Orthonormalized points.
+            - orthonormal_transf: Matrix for the linear projection onto the orthonormal basis.
 
         Returns:
             pts_orth (np.ndarray): Orthonormalized points.
@@ -258,15 +243,9 @@ class Orthonormalize:
     def fit(self) -> None:
         """
         Only fits the orthonormalization to the points and creates new attributes:
-            - orth_points (np.ndarray): Orthonormalized points.
-            - orthonormal_transf (np.ndarray):  The matrix for the linear
+            - orth_points: Orthonormalized points.
+            - orthonormal_transf: The matrix for the linear
                 projection onto orthonormalization.
-
-        Args:
-            None
-
-        Returns:
-            None
         """
         _ = self.fit_transform()
 
@@ -334,7 +313,7 @@ def get_lie_pca_operator(
     pts: np.ndarray,
     nb_neighbors: int,
     orbit_dim: int,
-    method: str = "PCA",
+    method: Literal["PCA", "covariance"] = "PCA",
     correction: bool = True,
     verbose: bool = False,
 ) -> np.ndarray:

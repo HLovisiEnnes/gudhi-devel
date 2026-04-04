@@ -32,7 +32,7 @@ Sample on orbits:
 
 # Standard imports.
 import math
-from typing import Optional, List
+from typing import Optional, List, Literal
 import itertools
 
 # Third-party imports.
@@ -124,10 +124,21 @@ def sample_orbit_from_algebra_torus(
     algebra: List[np.ndarray],
     x: np.ndarray,
     nb_points: int,
-    method: str = "uniform",
+    method: Literal["uniform", "random"] = "uniform",
 ) -> np.ndarray:
     """
-    ...
+    Sample points on the orbit of a torus representation from its Lie algebra. We suppose that the algebra is 
+    the canonical algebra indicated in rep_type.
+
+    Args:
+    rep_type (tuple): Representation type parameters (e.g., weights).
+    algebra (List[np.ndarray]): List of Lie algebra generators as matrices.
+    x (np.ndarray): Initial vector to act on.
+    nb_points (int): Number of points to sample.
+    method (str): Sampling method, 'uniform' or 'random'. Defaults to 'uniform'.
+    
+    Returns:
+        np.ndarray: Array of sampled points on the orbit.
     """
     # Gets periods
     periods = np.asarray(get_periods_torus(rep_type, algebra), dtype=float)
@@ -164,17 +175,25 @@ def sample_orbit_from_algebra_su2(
     algebra: List[np.ndarray],
     x: np.ndarray,
     nb_points: int,
-    method: str = "uniform",
 ) -> np.ndarray:
     """
-    "uniform" not implemented, behaves as "random"
-
     Sample via Haar (uniform) measure. Euler angle factorization:
             g(alpha, b, c) = exp(alpha Az) x exp(beta Ay) x exp(gamma Az)
     where
         alpha ~ Uniform[0, 2π)
         beta ~ arccos(Uniform[-1, 1])
         gamma ~ Uniform[0, 4π) for SU(2) and Uniform[0, 2π) for SO(3)
+
+    Note: "uniform" not implemented, behaves as "random".
+
+    Args:
+        rep_type (tuple): Representation type parameters (e.g., weights or partition).
+        algebra (List[np.ndarray]): List of Lie algebra generators as matrices.
+        x (np.ndarray): Initial vector to act on.
+        nb_points (int): Number of points to sample.
+
+    Returns:
+        np.ndarray: Array of sampled points on the orbit.
     """
 
     def period_irrep_su2(dim: int) -> float:
@@ -213,7 +232,7 @@ def sample_orbit_from_algebra(
     algebra: List[np.ndarray],
     x: np.ndarray,
     nb_points: int,
-    method: str = "uniform",
+    method: Literal["uniform", "random"] = "uniform",
     verbose: bool = False,
 ) -> np.ndarray:
     """
@@ -258,7 +277,7 @@ def sample_orbit_from_rep(
     conjugate_algebra: bool = False,
     right_multiply_algebra: bool = False,
     translate_orbit: bool = False,
-    method: str = "random",
+    method: Literal["uniform", "random"] = "uniform",
     verbose: bool = False,
 ) -> np.ndarray:
     """
@@ -327,7 +346,7 @@ def sample_orbit_from_group(
     conjugate_algebra: bool = False,
     right_multiply_algebra: bool = False,
     translate_orbit: bool = False,
-    method: str = "random",
+    method:  Literal["uniform", "random"] = "uniform",
     span_ambient_space: bool = False,
     verbose: bool = False,
 ) -> tuple[np.ndarray, tuple]:

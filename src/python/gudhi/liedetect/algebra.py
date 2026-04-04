@@ -35,7 +35,7 @@ Canonical bases of representations:
 """
 
 # Standard imports.
-from typing import List
+from typing import List, Literal
 import random
 import itertools
 from math import gcd
@@ -124,7 +124,9 @@ def vect_to_skew_sym(vect: np.ndarray) -> np.ndarray:
     return mat
 
 
-def skew_sym_frame_to_projection(frame: List[np.ndarray], method: str = "QR") -> np.ndarray:
+def skew_sym_frame_to_projection(
+        frame: List[np.ndarray], method: Literal["QR", "differentiable"] = "QR"
+        )-> np.ndarray:
     """
     Given a list of d skew-symmetric matrices forming a frame (free family), returns the orthogonal projection matrix
     onto the subspace they span. This is an m x m matrix, where m is the dimension of S_n(R), i.e., m = n(n-1)/2.
@@ -164,7 +166,9 @@ def skew_sym_frame_to_projection(frame: List[np.ndarray], method: str = "QR") ->
     return projection
 
 
-def gram_schmidt_orthonormalization(frame: List[np.ndarray], method: str = "QR") -> List[np.ndarray]:
+def gram_schmidt_orthonormalization(
+        frame: List[np.ndarray], method: Literal["QR", "differentiable"] = "QR"
+        ) -> List[np.ndarray]:
     """
     Orthonormalizes a list of vectors or square matrices via the Gram-Schmidt process.
 
@@ -277,7 +281,7 @@ def get_random_lattice(
 
 def invariant_of_lattices(
     lattice: tuple[tuple[int, ...], ...],
-    method: str = "span-equivalence",
+    method: Literal["span-equivalence", "equivalence"] = "span-equivalence",
     decimals_accuracy: int = 5,
 ) -> tuple:
     """
@@ -319,7 +323,7 @@ def get_lattices(
     lattice_rank: int,
     ambient_rank: int,
     frequency_max: int,
-    method: str = "span-equivalence",
+    method: Literal["span-equivalence", "equivalence"] = "span-equivalence",
     span_ambient_space: bool = True,
     verbose: bool = False,
 ) -> List[tuple[tuple[int, ...], ...]]:

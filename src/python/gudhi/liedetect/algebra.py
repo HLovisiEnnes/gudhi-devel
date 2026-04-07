@@ -4,7 +4,7 @@ See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license det
 
 Author(s):       Henrique Ennes & Raphaël Tinarrage
 
-Copyright (C) 2016 Inria
+Copyright (C) 2016 Inria & Institute of Science and Technology Austria
 -----------------------------------------------------------------------------------------------------------------------
 
 This module provides a collection of tools for linear algebra, lattice and partition computations, and canonical bases

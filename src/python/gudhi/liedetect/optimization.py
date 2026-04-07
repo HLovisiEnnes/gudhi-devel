@@ -4,7 +4,7 @@ See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license det
 
 Author(s):       Henrique Ennes & Raphaël Tinarrage
 
-Copyright (C) 2016 Inria
+Copyright (C) 2016 Inria & Institute of Science and Technology Austria
 -----------------------------------------------------------------------------------------------------------------------
 
 Implementation of the optimization methods to find the closest Lie algebra to a given Lie PCA operator, according to

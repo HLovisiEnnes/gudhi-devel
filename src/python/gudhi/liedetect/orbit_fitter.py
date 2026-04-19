@@ -20,7 +20,8 @@ import numpy as np
 # Local imports.
 from .liepca import get_lie_pca_operator
 from .optimization import find_closest_algebra
-from .linear_orbits import sample_orbit_from_algebra, print_hausdorff_distance
+from .linear_orbits_utils import print_hausdorff_distance
+from gudhi.datasets.linear_orbits import sample_orbit_from_algebra
 
 
 class OrbitFitter:

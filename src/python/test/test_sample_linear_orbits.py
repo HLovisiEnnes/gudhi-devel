@@ -6,13 +6,12 @@
 """
 import numpy as np
 
-from gudhi.liedetect import (
+from gudhi.datasets.linear_orbits import (
     sample_orbit_from_algebra,
     sample_orbit_from_rep,
     sample_orbit_from_group
 )
-from gudhi import liedetect
-
+import gudhi.liedetect as liedetect
 
 def test_sample_from_algebra():
     group = 'torus'

@@ -132,6 +132,25 @@ BOOST_AUTO_TEST_CASE(graph_matching) {
   BOOST_CHECK(!m1.perfect());
 }
 
+BOOST_AUTO_TEST_CASE(exact_bottleneck_is_symmetric_with_reused_matching) {
+  std::vector<std::pair<double, double>> a = {
+      {0.8657832199712898, 1.1256902536912314},
+      {0.16921569257803723, 0.6031897594038342},
+      {-0.04675641745672246, 0.5202109447215970},
+  };
+  std::vector<std::pair<double, double>> b = {
+      {0.15043295756523575, 0.18414854990571342},
+      {0.15043295756523575, 0.18414854990571342},
+      {0.6796253715781101, 1.3001211960521455},
+  };
+
+  double ab = bottleneck_distance(a, b, 0.);
+  double ba = bottleneck_distance(b, a, 0.);
+
+  BOOST_CHECK_EQUAL(ab, ba);
+  BOOST_CHECK_CLOSE_FRACTION(ab, 0.28348368108915978, 1e-14);
+}
+
 BOOST_AUTO_TEST_CASE(global) {
   double delta_min = upper_bound / 1000.;
   double delta_max = upper_bound / 100.;

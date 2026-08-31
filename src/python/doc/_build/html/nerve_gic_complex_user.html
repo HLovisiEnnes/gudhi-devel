@@ -1,0 +1,952 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CoverComplex user manual &#8212; gudhi v3.11.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
+    <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nerve_gic_complex_user';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.11.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><code class="xref py py-class docutils literal notranslate"><span class="pre">CoverComplex</span></code> user manual</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="covercomplex-user-manual">
+<h1><a class="reference internal" href="nerve_gic_complex_ref.html#gudhi.CoverComplex" title="gudhi.CoverComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">CoverComplex</span></code></a> user manual<a class="headerlink" href="#covercomplex-user-manual" title="Link to this heading">#</a></h1>
+<p>In the following, we provide examples for the old <a class="reference internal" href="nerve_gic_complex_ref.html#gudhi.CoverComplex" title="gudhi.CoverComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">CoverComplex</span></code></a> class (see <a class="reference internal" href="cover_complex_sklearn_user.html"><span class="doc">Mapper/GIC/Nerve complexes user manual</span></a> for a general introduction and links to newer alternatives).</p>
+<section id="nerves">
+<h2>Nerves<a class="headerlink" href="#nerves" title="Link to this heading">#</a></h2>
+<section id="nerve-definition">
+<h3>Nerve definition<a class="headerlink" href="#nerve-definition" title="Link to this heading">#</a></h3>
+<p>Assume you are given a cover C of your point cloud P. Then, the Nerve of this cover
+is the simplicial complex that has one k-simplex per k-fold intersection of cover elements.
+See also <a class="reference external" href="https://en.wikipedia.org/wiki/Nerve_of_a_covering">Wikipedia</a>.</p>
+<figure class="align-center align-default" id="id5">
+<img alt="Nerve of a double torus" src="../../doc/Nerve_GIC/nerve.png" />
+<figcaption>
+<p><span class="caption-text">Nerve of a double torus</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>This example builds the Nerve of a point cloud sampled on a 3D human shape (human.off).
+The cover C comes from the preimages of intervals (10 intervals with gain 0.3)
+covering the height function (coordinate 2),
+which are then refined into their connected components using the triangulation of the .OFF file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span>
+<span class="n">nerve_complex</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">CoverComplex</span><span class="p">()</span>
+<span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_verbose</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">nerve_complex</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">gudhi</span><span class="o">.</span><span class="n">__root_source_dir__</span> <span class="o">+</span> \
+<span class="s1">'/data/points/human.off'</span><span class="p">)):</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="s1">'Nerve'</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_color_from_coordinate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_function_from_coordinate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_graph_from_OFF</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_resolution_with_interval_number</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_gain</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_cover_from_function</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">find_simplices</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">write_info</span><span class="p">()</span>
+    <span class="n">simplex_tree</span> <span class="o">=</span> <span class="n">nerve_complex</span><span class="o">.</span><span class="n">create_simplex_tree</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">compute_PD</span><span class="p">()</span>
+    <span class="n">result_str</span> <span class="o">=</span> <span class="s1">'Nerve is of dimension '</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">dimension</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' - '</span> <span class="o">+</span> \
+        <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">num_simplices</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' simplices - '</span> <span class="o">+</span> \
+        <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">num_vertices</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' vertices.'</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result_str</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">filtered_value</span> <span class="ow">in</span> <span class="n">simplex_tree</span><span class="o">.</span><span class="n">get_filtration</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">filtered_value</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>the program output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Min function value = -0.979672 and Max function value = 0.816414
+Interval 0 = [-0.979672, -0.761576]
+Interval 1 = [-0.838551, -0.581967]
+Interval 2 = [-0.658942, -0.402359]
+Interval 3 = [-0.479334, -0.22275]
+Interval 4 = [-0.299725, -0.0431414]
+Interval 5 = [-0.120117, 0.136467]
+Interval 6 = [0.059492, 0.316076]
+Interval 7 = [0.239101, 0.495684]
+Interval 8 = [0.418709, 0.675293]
+Interval 9 = [0.598318, 0.816414]
+Computing preimages...
+Computing connected components...
+5 interval(s) in dimension 0:
+  [-0.909111, 0.0081753]
+  [-0.171433, 0.367393]
+  [-0.171433, 0.367393]
+  [-0.909111, 0.745853]
+0 interval(s) in dimension 1:
+Nerve is of dimension 1 - 41 simplices - 21 vertices.
+[0]
+[1]
+[4]
+[1, 4]
+[2]
+[0, 2]
+[8]
+[2, 8]
+[5]
+[4, 5]
+[9]
+[8, 9]
+[13]
+[5, 13]
+[14]
+[9, 14]
+[19]
+[13, 19]
+[25]
+[32]
+[20]
+[20, 32]
+[33]
+[25, 33]
+[26]
+[14, 26]
+[19, 26]
+[42]
+[26, 42]
+[34]
+[33, 34]
+[27]
+[20, 27]
+[35]
+[27, 35]
+[34, 35]
+[35, 42]
+[44]
+[35, 44]
+[54]
+[44, 54]
+</pre></div>
+</div>
+<p>The program also writes a file ../../data/points/human.off_sc.txt. The first
+three lines in this file are the location of the input point cloud and the
+function used to compute the cover.
+The fourth line contains the number of vertices nv and edges ne of the Nerve.
+The next nv lines represent the vertices. Each line contains the vertex ID,
+the number of data points it contains, and their average color function value.
+Finally, the next ne lines represent the edges, characterized by the ID of
+their vertices.</p>
+<p>Using KeplerMapper, one can obtain the following visualization:</p>
+<figure class="align-center align-default" id="id6">
+<img alt="Visualization with KeplerMapper" src="../../doc/Nerve_GIC/nervevisu.jpg" />
+<figcaption>
+<p><span class="caption-text">Visualization with KeplerMapper</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="graph-induced-complexes-gic">
+<h2>Graph Induced Complexes (GIC)<a class="headerlink" href="#graph-induced-complexes-gic" title="Link to this heading">#</a></h2>
+<section id="gic-definition">
+<h3>GIC definition<a class="headerlink" href="#gic-definition" title="Link to this heading">#</a></h3>
+<p>Again, assume you are given a cover C of your point cloud P. Moreover, assume
+you are also given a graph G built on top of P. Then, for any clique in G
+whose nodes all belong to different elements of C, the GIC includes a
+corresponding simplex, whose dimension is the number of nodes in the clique
+minus one.
+See <span class="bibtex-citation" id="id1">[]</span> for more details.</p>
+<figure class="align-center align-default" id="id7">
+<img alt="GIC of a point cloud" src="../../doc/Nerve_GIC/GIC.jpg" />
+<figcaption>
+<p><span class="caption-text">GIC of a point cloud</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="example-with-cover-from-voronoi">
+<h3>Example with cover from Voronoï<a class="headerlink" href="#example-with-cover-from-voronoi" title="Link to this heading">#</a></h3>
+<p>This example builds the GIC of a point cloud sampled on a 3D human shape
+(human.off).
+We randomly subsampled 100 points in the point cloud, which act as seeds of
+a geodesic Voronoï diagram. Each cell of the diagram is then an element of C.
+The graph G (used to compute both the geodesics for Voronoï and the GIC)
+comes from the triangulation of the human shape. Note that the resulting
+simplicial complex is in dimension 3 in this example.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span>
+<span class="n">nerve_complex</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">CoverComplex</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">nerve_complex</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">gudhi</span><span class="o">.</span><span class="n">__root_source_dir__</span> <span class="o">+</span> \
+<span class="s1">'/data/points/human.off'</span><span class="p">)):</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="s1">'GIC'</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_color_from_coordinate</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_graph_from_OFF</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_cover_from_Voronoi</span><span class="p">(</span><span class="mi">700</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">find_simplices</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">plot_off</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>the program outputs SC.off. Using e.g.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>geomview ../../data/points/human.off_sc.off
+</pre></div>
+</div>
+<p>one can obtain the following visualization:</p>
+<figure class="align-center align-default" id="id8">
+<img alt="Visualization with Geomview" src="../../doc/Nerve_GIC/gicvoronoivisu.jpg" />
+<figcaption>
+<p><span class="caption-text">Visualization with Geomview</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="functional-gic">
+<h3>Functional GIC<a class="headerlink" href="#functional-gic" title="Link to this heading">#</a></h3>
+<p>If one restricts to the cliques in G whose nodes all belong to preimages of
+consecutive intervals (assuming the cover of the height function is minimal,
+i.e. no more than two intervals can intersect at a time), the GIC is of
+dimension one, i.e. a graph.
+We call this graph the functional GIC. See <span class="bibtex-citation" id="id2">[]</span> for more details.</p>
+</section>
+<section id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Functional GIC comes with automatic selection of the Rips threshold,
+the resolution and the gain of the function cover. See <span class="bibtex-citation" id="id4">[]</span> for
+more details. In this example, we compute the functional GIC of a Klein bottle
+embedded in R^5, where the graph G comes from a Rips complex with automatic
+threshold, and the cover C comes from the preimages of intervals covering the
+first coordinate, with automatic resolution and gain. Note that automatic
+threshold, resolution and gain can be computed as well for the Nerve.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span>
+<span class="n">nerve_complex</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">CoverComplex</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">nerve_complex</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">gudhi</span><span class="o">.</span><span class="n">__root_source_dir__</span> <span class="o">+</span> \
+<span class="s1">'/data/points/KleinBottle5D.off'</span><span class="p">)):</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="s1">'GIC'</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_color_from_coordinate</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_function_from_coordinate</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_graph_from_automatic_rips</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_automatic_resolution</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_gain</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_cover_from_function</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">find_simplices</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">plot_dot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>the program outputs SC.dot. Using e.g.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>neato ../../data/points/KleinBottle5D.off_sc.dot -Tpdf -o ../../data/points/KleinBottle5D.off_sc.pdf
+</pre></div>
+</div>
+<p>one can obtain the following visualization:</p>
+<figure class="align-center align-default" id="id9">
+<img alt="Visualization with neato" src="../../doc/Nerve_GIC/coordGICvisu2.jpg" />
+<figcaption>
+<p><span class="caption-text">Visualization with neato</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>where nodes are colored by the filter function values and, for each node, the
+first number is its ID and the second is the number of data points that its
+contain.</p>
+<p>We also provide an example on a set of 72 pictures taken around the same object
+(lucky_cat.off).
+The function is now the first eigenfunction given by PCA, whose values are
+written in a file (lucky_cat_PCA1). Threshold, resolution and gain are
+automatically selected as before.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span>
+<span class="n">nerve_complex</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">CoverComplex</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">nerve_complex</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="n">gudhi</span><span class="o">.</span><span class="n">__root_source_dir__</span> <span class="o">+</span> \
+<span class="s1">'/data/points/COIL_database/lucky_cat.off'</span><span class="p">)):</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="s1">'GIC'</span><span class="p">)</span>
+    <span class="n">pca_file</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">__root_source_dir__</span> <span class="o">+</span> \
+    <span class="s1">'/data/points/COIL_database/lucky_cat_PCA1'</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_color_from_file</span><span class="p">(</span><span class="n">pca_file</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_function_from_file</span><span class="p">(</span><span class="n">pca_file</span><span class="p">)</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_graph_from_automatic_rips</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_automatic_resolution</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_gain</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">set_cover_from_function</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">find_simplices</span><span class="p">()</span>
+    <span class="n">nerve_complex</span><span class="o">.</span><span class="n">plot_dot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>the program outputs again SC.dot which gives the following visualization after using neato:</p>
+<figure class="align-center align-default" id="id10">
+<img alt="Visualization with neato" src="../../doc/Nerve_GIC/funcGICvisu.jpg" />
+<figcaption>
+<p><span class="caption-text">Visualization with neato</span><a class="headerlink" href="#id10" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nerves">Nerves</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nerve-definition">Nerve definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph-induced-complexes-gic">Graph Induced Complexes (GIC)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gic-definition">GIC definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-cover-from-voronoi">Example with cover from Voronoï</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-gic">Functional GIC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

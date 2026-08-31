@@ -1,0 +1,900 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tangential complex user manual &#8212; gudhi v3.11.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
+    <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tangential_complex_user';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.11.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Tangential complex user manual</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="tangential-complex-user-manual">
+<h1>Tangential complex user manual<a class="headerlink" href="#tangential-complex-user-manual" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 40.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-center align-default">
+<img alt="../../doc/Tangential_complex/tc_examples.png" src="../../doc/Tangential_complex/tc_examples.png" />
+</figure>
+</td>
+<td><p>A Tangential Delaunay complex is a simplicial complex designed to
+reconstruct a <span class="math notranslate nohighlight">\(k\)</span>-dimensional manifold embedded in
+<span class="math notranslate nohighlight">\(d\)</span>-dimensional Euclidean space. The input is a point sample
+coming from an unknown manifold. The running time depends only linearly
+on the extrinsic dimension <span class="math notranslate nohighlight">\(d\)</span> and exponentially on the intrinsic
+dimension <span class="math notranslate nohighlight">\(k\)</span>.</p></td>
+<td><dl class="field-list simple">
+<dt class="field-odd">Author<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Clément Jamin</p>
+</dd>
+<dt class="field-even">Since<span class="colon">:</span></dt>
+<dd class="field-even"><p>GUDHI 2.0.0</p>
+</dd>
+<dt class="field-odd">License<span class="colon">:</span></dt>
+<dd class="field-odd"><p>MIT (<a class="reference external" href="/licensing/">GPL v3</a>)</p>
+</dd>
+<dt class="field-even">Requires<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="installation.html#eigen">Eigen</a> and <a class="reference external" href="installation.html#cgal">CGAL</a></p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li><p><a class="reference internal" href="#"><span class="doc">Tangential complex user manual</span></a></p></li>
+</ul>
+</td>
+<td colspan="2"><ul class="simple">
+<li><p><a class="reference internal" href="tangential_complex_ref.html"><span class="doc">Tangential complex reference manual</span></a></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="definition">
+<h2>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h2>
+<p>A Tangential Delaunay complex is a simplicial complex designed to reconstruct a
+<span class="math notranslate nohighlight">\(k\)</span>-dimensional smooth manifold embedded in <span class="math notranslate nohighlight">\(d\)</span>-dimensional
+Euclidean space. The input is a point sample coming from an unknown manifold,
+which means that the points lie close to a structure of “small” intrinsic
+dimension. The running time depends only linearly on the extrinsic dimension
+<span class="math notranslate nohighlight">\(d\)</span> and exponentially on the intrinsic dimension <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>An extensive description of the Tangential complex can be found in
+<span class="bibtex-citation" id="id1">[]</span>.</p>
+<section id="what-is-a-tangential-complex">
+<h3>What is a Tangential Complex?<a class="headerlink" href="#what-is-a-tangential-complex" title="Link to this heading">#</a></h3>
+<p>Let us start with the description of the Tangential complex of a simple
+example, with <span class="math notranslate nohighlight">\(k = 1\)</span> and <span class="math notranslate nohighlight">\(d = 2\)</span>. The point set
+<span class="math notranslate nohighlight">\(\mathscr P\)</span> is located on a closed curve embedded in 2D.
+Only 4 points will be displayed (more are required for PCA) to simplify the
+figures.</p>
+<figure class="align-center align-default" id="id3">
+<img alt="The input" src="../../doc/Tangential_complex/tc_example_01.png" />
+<figcaption>
+<p><span class="caption-text">The input</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>For each point <span class="math notranslate nohighlight">\(P\)</span>, estimate its tangent subspace <span class="math notranslate nohighlight">\(T_P\)</span> using PCA.</p>
+<figure class="align-center align-default" id="id4">
+<img alt="The estimated normals" src="../../doc/Tangential_complex/tc_example_02.png" />
+<figcaption>
+<p><span class="caption-text">The estimated normals</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Let us add the Voronoi diagram of the points in orange. For each point
+<span class="math notranslate nohighlight">\(P\)</span>, construct its star in the Delaunay triangulation of
+<span class="math notranslate nohighlight">\(\mathscr P\)</span> restricted to <span class="math notranslate nohighlight">\(T_P\)</span>.</p>
+<figure class="align-center align-default" id="id5">
+<img alt="The Voronoi diagram" src="../../doc/Tangential_complex/tc_example_03.png" />
+<figcaption>
+<p><span class="caption-text">The Voronoi diagram</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The Tangential Delaunay complex is the union of those stars.</p>
+<p>In practice, neither the ambient Voronoi diagram nor the ambient Delaunay
+triangulation is computed. Instead, local <span class="math notranslate nohighlight">\(k\)</span>-dimensional regular
+triangulations are computed with a limited number of points as we only need the
+star of each point. More details can be found in <span class="bibtex-citation" id="id2">[]</span>.</p>
+</section>
+<section id="inconsistencies">
+<h3>Inconsistencies<a class="headerlink" href="#inconsistencies" title="Link to this heading">#</a></h3>
+<p>Inconsistencies between the stars can occur. An inconsistency occurs when a
+simplex is not in the star of all its vertices.</p>
+<p>Let us take the same example.</p>
+<figure class="align-center align-default" id="id6">
+<img alt="Before" src="../../doc/Tangential_complex/tc_example_07_before.png" />
+<figcaption>
+<p><span class="caption-text">Before</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Let us slightly move the tangent subspace <span class="math notranslate nohighlight">\(T_Q\)</span></p>
+<figure class="align-center align-default" id="id7">
+<img alt="After" src="../../doc/Tangential_complex/tc_example_07_after.png" />
+<figcaption>
+<p><span class="caption-text">After</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Now, the star of <span class="math notranslate nohighlight">\(Q\)</span> contains <span class="math notranslate nohighlight">\(QP\)</span>, but the star of <span class="math notranslate nohighlight">\(P\)</span> does
+not contain <span class="math notranslate nohighlight">\(QP\)</span>. We have an inconsistency.</p>
+<figure class="align-center align-default" id="id8">
+<img alt="After" src="../../doc/Tangential_complex/tc_example_08.png" />
+<figcaption>
+<p><span class="caption-text">After</span><a class="headerlink" href="#id8" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>One way to solve inconsistencies is to randomly perturb the positions of the
+points involved in an inconsistency. In the current implementation, this
+perturbation is done in the tangent subspace of each point. The maximum
+perturbation radius is given as a parameter to the constructor.</p>
+<p>In most cases, we recommend to provide a point set where the minimum distance
+between any two points is not too small. This can be achieved using the
+functions provided by the Subsampling module. Then, a good value to start with
+for the maximum perturbation radius would be around half the minimum distance
+between any two points. The Example with perturbation below shows an example of
+such a process.</p>
+<p>In most cases, this process is able to dramatically reduce the number of
+inconsistencies, but is not guaranteed to succeed.</p>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading">#</a></h3>
+<p>The result of the computation is exported as a <a class="reference internal" href="simplex_tree_ref.html#gudhi.SimplexTree" title="gudhi.SimplexTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimplexTree</span></code></a>. It is the union of
+the stars of all the input points. A vertex in the Simplex Tree is the index of
+the point in the range provided by the user. The point corresponding to a
+vertex can also be obtained through the <a class="reference internal" href="tangential_complex_ref.html#gudhi.TangentialComplex.get_point" title="gudhi.TangentialComplex.get_point"><code class="xref py py-func docutils literal notranslate"><span class="pre">gudhi.TangentialComplex.get_point()</span></code></a> function.
+Note that even if the positions of the points are perturbed, their original
+positions are kept (e.g. <a class="reference internal" href="tangential_complex_ref.html#gudhi.TangentialComplex.get_point" title="gudhi.TangentialComplex.get_point"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_point()</span></code></a> returns the original
+position of the point).</p>
+<p>The result can be obtained after the computation of the Tangential complex
+itself and/or after the perturbation process.</p>
+</section>
+</section>
+<section id="simple-example">
+<h2>Simple example<a class="headerlink" href="#simple-example" title="Link to this heading">#</a></h2>
+<p>This example builds the Tangential complex of point set.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi</span><span class="w"> </span><span class="kn">import</span> <span class="n">TangentialComplex</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span> <span class="p">],</span>
+       <span class="p">[</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">0.</span> <span class="p">],</span>
+       <span class="p">[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">6.</span> <span class="p">],</span>
+       <span class="p">[</span><span class="mf">9.</span><span class="p">,</span> <span class="mf">6.</span> <span class="p">],</span>
+       <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">14.</span><span class="p">],</span>
+       <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">19.</span><span class="p">],</span>
+       <span class="p">[</span><span class="mf">9.</span><span class="p">,</span> <span class="mf">17.</span><span class="p">]]</span>
+<span class="n">tc</span> <span class="o">=</span> <span class="n">TangentialComplex</span><span class="p">(</span><span class="n">intrisic_dim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">points</span> <span class="o">=</span> <span class="n">pts</span><span class="p">)</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">compute_tangential_complex</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Tangential contains </span><span class="si">{</span><span class="n">tc</span><span class="o">.</span><span class="n">num_simplices</span><span class="p">()</span><span class="si">}</span><span class="s1"> simplices - </span><span class="si">{</span><span class="n">tc</span><span class="o">.</span><span class="n">num_vertices</span><span class="p">()</span><span class="si">}</span><span class="s1"> vertices.'</span><span class="p">)</span>
+
+<span class="n">st</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">create_simplex_tree</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Simplex tree is of dimension </span><span class="si">{</span><span class="n">st</span><span class="o">.</span><span class="n">dimension</span><span class="p">()</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">st</span><span class="o">.</span><span class="n">num_simplices</span><span class="p">()</span><span class="si">}</span><span class="s1"> simplices - </span><span class="si">{</span><span class="n">st</span><span class="o">.</span><span class="n">num_vertices</span><span class="p">()</span><span class="si">}</span><span class="s1"> vertices.'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">filtered_value</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">get_filtration</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">filtered_value</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Tangential contains 12 simplices - 7 vertices.
+Simplex tree is of dimension 1 - 15 simplices - 7 vertices.
+[0]
+[1]
+[0, 1]
+[2]
+[0, 2]
+[1, 2]
+[3]
+[1, 3]
+[4]
+[2, 4]
+[5]
+[4, 5]
+[6]
+[3, 6]
+[5, 6]
+</pre></div>
+</div>
+</section>
+<section id="example-with-perturbation">
+<h2>Example with perturbation<a class="headerlink" href="#example-with-perturbation" title="Link to this heading">#</a></h2>
+<p>This example builds the Tangential complex of a point set, then tries to solve
+inconsistencies by perturbing the positions of points involved in inconsistent
+simplices.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi</span><span class="w"> </span><span class="kn">import</span> <span class="n">TangentialComplex</span>
+<span class="n">tc</span> <span class="o">=</span> <span class="n">TangentialComplex</span><span class="p">(</span><span class="n">intrisic_dim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">points</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">compute_tangential_complex</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Tangential contains </span><span class="si">{</span><span class="n">tc</span><span class="o">.</span><span class="n">num_vertices</span><span class="p">()</span><span class="si">}</span><span class="s1"> vertices.'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">tc</span><span class="o">.</span><span class="n">num_inconsistent_simplices</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Tangential contains inconsistencies.'</span><span class="p">)</span>
+
+<span class="n">tc</span><span class="o">.</span><span class="n">fix_inconsistencies_using_perturbation</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">tc</span><span class="o">.</span><span class="n">num_inconsistent_simplices</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Inconsistencies have been fixed.'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Tangential contains 4 vertices.
+Inconsistencies have been fixed.
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-tangential-complex">What is a Tangential Complex?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inconsistencies">Inconsistencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example">Simple example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-perturbation">Example with perturbation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

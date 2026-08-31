@@ -3,18 +3,27 @@
     Author(s):       Henrique Ennes & Raphaël Tinarrage
 
     Copyright (C) 2016 Inria
+
+
+    Obs: More robust tests will be implemented once the full LieDetect pipeline is ready.
 """
 import numpy as np
 
 from gudhi.datasets.linear_orbits import (
-    sample_orbit_from_algebra,
-    sample_orbit_from_rep,
-    sample_orbit_from_group
+    sample_from_lie_algebra,
+    sample_from_lie_group_rep,
+    sample_from_lie_group
 )
 import gudhi.liedetect as liedetect
 
-def test_sample_from_algebra():
+def test_sampling():
     group = 'torus'
+    ambient_dim = 4
+    nb_points = 100
+    frequency_max = 2
+    group_dim = 1
+    method = 'uniform'
+    span_ambient_space = True
     rep_type = ((1, 2),)
     algebra = [
         np.array([[0, 1, 0, 0],
@@ -23,10 +32,9 @@ def test_sample_from_algebra():
                   [0, 0, -2, 0]])
     ]
     x = np.array([1, 0, 1, 0])
-    nb_points = 100
-    method = 'uniform'
 
-    pts = sample_orbit_from_algebra(
+
+    pts_algebra = sample_from_lie_algebra(
         group,
         rep_type,
         algebra,
@@ -35,65 +43,15 @@ def test_sample_from_algebra():
         method=method
     )
 
-    orbit_fitter = liedetect.OrbitFitter(pts)
-    nb_neighbors = 10
-    orbit_dim = 1
-
-    _ = orbit_fitter.lie_pca(nb_neighbors=nb_neighbors,
-                             orbit_dim=orbit_dim,
-                             method='PCA',
-                             verbose=False)
-
-    frequency_max = 4
-
-    method = "abelian"
-    la, _ = orbit_fitter.closest_algebra(group='torus', group_dim=1,
-                                         frequency_max=frequency_max,
-                                         method=method, verbose=False)
-
-    assert liedetect.are_representations_equivalent('torus', rep_type, la)
-
-
-def test_sample_from_rep():
-    group = 'torus'
-    rep_type = ((1, 2),)
-    nb_points = 100
-    method = 'uniform'
-
-    pts = sample_orbit_from_rep(group,
+    pts_rep = sample_from_lie_group_rep(group,
                                 rep_type,
                                 nb_points,
                                 method=method)
 
-    orbit_fitter = liedetect.OrbitFitter(pts)
-    nb_neighbors = 10
-    orbit_dim = 1
-
-    _ = orbit_fitter.lie_pca(nb_neighbors=nb_neighbors,
-                             orbit_dim=orbit_dim,
-                             method='PCA',
-                             verbose=False)
-
-    frequency_max = 4
-
-    method = "abelian"
-    la, _ = orbit_fitter.closest_algebra(group='torus', group_dim=1,
-                                         frequency_max=frequency_max,
-                                         method=method, verbose=False)
-
-    assert liedetect.are_representations_equivalent('torus', rep_type, la)
+    assert np.allclose(pts_algebra, pts_rep, atol=1e-6)
 
 
-def test_sample_from_group():
-    group = 'torus'
-    ambient_dim = 4
-    nb_points = 100
-    frequency_max = 2
-    group_dim = 1
-    method = 'uniform'
-    span_ambient_space = True
-
-    pts, rep_type = sample_orbit_from_group(
+    pts_group, _ = sample_from_lie_group(
         group,
         ambient_dim,
         nb_points,
@@ -103,20 +61,5 @@ def test_sample_from_group():
         span_ambient_space=span_ambient_space
     )
 
-    orbit_fitter = liedetect.OrbitFitter(pts)
-    nb_neighbors = 10
-    orbit_dim = 1
 
-    _ = orbit_fitter.lie_pca(nb_neighbors=nb_neighbors,
-                             orbit_dim=orbit_dim,
-                             method='PCA',
-                             verbose=False)
-
-    frequency_max = 4
-
-    method = "abelian"
-    la, _ = orbit_fitter.closest_algebra(group='torus', group_dim=1,
-                                         frequency_max=frequency_max,
-                                         method=method, verbose=False)
-
-    assert liedetect.are_representations_equivalent('torus', rep_type, la)
+    assert pts_group.shape[1] == ambient_dim

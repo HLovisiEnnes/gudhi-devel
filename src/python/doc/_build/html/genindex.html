@@ -1,0 +1,2064 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; gudhi v3.11.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
+    <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.11.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ | <a href="#Y"><strong>Y</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="point_cloud.html#gudhi.point_cloud.timedelay.TimeDelayEmbedding.__call__">__call__() (gudhi.point_cloud.timedelay.TimeDelayEmbedding method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.__eq__">__eq__() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.__getstate__">__getstate__() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex.__init__">__init__() (gudhi.AlphaComplex method)</a>
+
+      <ul>
+        <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.__init__">(gudhi.clustering.tomato.Tomato method)</a>
+</li>
+        <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.__init__">(gudhi.CoverComplex method)</a>
+</li>
+        <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.__init__">(gudhi.CubicalComplex method)</a>
+</li>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayCechComplex.__init__">(gudhi.DelaunayCechComplex method)</a>
+</li>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex.__init__">(gudhi.DelaunayComplex method)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.dtm_rips_complex.DTMRipsComplex.__init__">(gudhi.dtm_rips_complex.DTMRipsComplex method)</a>
+</li>
+        <li><a href="euclidean_strong_witness_complex_ref.html#gudhi.EuclideanStrongWitnessComplex.__init__">(gudhi.EuclideanStrongWitnessComplex method)</a>
+</li>
+        <li><a href="euclidean_witness_complex_ref.html#gudhi.EuclideanWitnessComplex.__init__">(gudhi.EuclideanWitnessComplex method)</a>
+</li>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.__init__">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DistanceToMeasure.__init__">(gudhi.point_cloud.dtm.DistanceToMeasure method)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.__init__">(gudhi.point_cloud.dtm.DTMDensity method)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.__init__">(gudhi.point_cloud.knn.KNearestNeighbors method)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.timedelay.TimeDelayEmbedding.__init__">(gudhi.point_cloud.timedelay.TimeDelayEmbedding method)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.RipsComplex.__init__">(gudhi.RipsComplex method)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.__init__">(gudhi.SimplexTree method)</a>
+</li>
+        <li><a href="strong_witness_complex_ref.html#gudhi.StrongWitnessComplex.__init__">(gudhi.StrongWitnessComplex method)</a>
+</li>
+        <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.__init__">(gudhi.TangentialComplex method)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.weighted_rips_complex.WeightedRipsComplex.__init__">(gudhi.weighted_rips_complex.WeightedRipsComplex method)</a>
+</li>
+        <li><a href="witness_complex_ref.html#gudhi.WitnessComplex.__init__">(gudhi.WitnessComplex method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="rips_complex_ref.html#gudhi.RipsComplex.__new__">__new__() (gudhi.RipsComplex class method)</a>
+
+      <ul>
+        <li><a href="strong_witness_complex_ref.html#gudhi.StrongWitnessComplex.__new__">(gudhi.StrongWitnessComplex class method)</a>
+</li>
+        <li><a href="witness_complex_ref.html#gudhi.WitnessComplex.__new__">(gudhi.WitnessComplex class method)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.__setstate__">__setstate__() (gudhi.SimplexTree method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="datasets.html#gudhi.datasets.remote.fetch_bunny.params.accept_license">accept_license (gudhi.datasets.remote.fetch_bunny parameter)</a>
+
+      <ul>
+        <li><a href="datasets.html#gudhi.datasets.remote.fetch_daily_activities.params.accept_license">(gudhi.datasets.remote.fetch_daily_activities parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.all_cells">all_cells() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.all_cells">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+      </ul></li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.compute_distance_from_confidence_level.params.alpha">alpha (gudhi.CoverComplex.compute_distance_from_confidence_level parameter)</a>
+
+      <ul>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_barcode.params.alpha">(gudhi.plot_persistence_barcode parameter)</a>
+</li>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram.params.alpha">(gudhi.plot_persistence_diagram parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex">AlphaComplex (class in gudhi)</a>
+</li>
+      <li><a href="datasets.html#gudhi.datasets.generators.points.sphere.params.ambient_dim">ambient_dim (gudhi.datasets.generators.points.sphere parameter)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.assign_filtration">assign_filtration() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_cover_from_range.params.assignments">assignments (gudhi.CoverComplex.set_cover_from_range parameter)</a>
+</li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_barcode.params.axes">axes (gudhi.plot_persistence_barcode parameter)</a>
+
+      <ul>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density.params.axes">(gudhi.plot_persistence_density parameter)</a>
+</li>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram.params.axes">(gudhi.plot_persistence_diagram parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram.params.band">band (gudhi.plot_persistence_diagram parameter)</a>
+</li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.betti_numbers">betti_numbers() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.betti_numbers">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.betti_numbers">(gudhi.SimplexTree method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.expansion_with_blocker.params.blocker_func">blocker_func (gudhi.SimplexTree.expansion_with_blocker parameter)</a>
+</li>
+      <li><a href="bottleneck_distance_user.html#gudhi.bottleneck_distance">bottleneck_distance() (in module gudhi)</a>
+
+      <ul>
+        <li><a href="bottleneck_distance_user.html#gudhi.hera.bottleneck_distance">(in module gudhi.hera)</a>
+</li>
+      </ul></li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density.params.bw_method">bw_method (gudhi.plot_persistence_density parameter)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.subcolor.params.c">c (gudhi.CoverComplex.subcolor parameter)</a>
+
+      <ul>
+        <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.subpopulation.params.c">(gudhi.CoverComplex.subpopulation parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.children_">children_ (gudhi.clustering.tomato.Tomato attribute)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.subsampling.choose_n_farthest_points">choose_n_farthest_points() (in module gudhi.subsampling)</a>
+</li>
+      <li><a href="datasets.html#gudhi.datasets.remote.clear_data_home">clear_data_home() (in module gudhi.datasets.remote)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_point_cloud_from_range.params.cloud">cloud (gudhi.CoverComplex.set_point_cloud_from_range parameter)</a>
+</li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density.params.cmap">cmap (gudhi.plot_persistence_density parameter)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.get_cofaces.params.codimension">codimension (gudhi.SimplexTree.get_cofaces parameter)</a>
+</li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.cofaces_of_persistence_pairs">cofaces_of_persistence_pairs() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.cofaces_of_persistence_pairs">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.collapse_edges">collapse_edges() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_color_from_range.params.color">color (gudhi.CoverComplex.set_color_from_range parameter)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_color_from_file.params.color_file_name">color_file_name (gudhi.CoverComplex.set_color_from_file parameter)</a>
+</li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_barcode.params.colormap">colormap (gudhi.plot_persistence_barcode parameter)</a>
+
+      <ul>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram.params.colormap">(gudhi.plot_persistence_diagram parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex.create_simplex_tree.params.compatibility.">compatibility. (gudhi.AlphaComplex.create_simplex_tree parameter)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.compute_confidence_level_from_distance">compute_confidence_level_from_distance() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.compute_distance_from_confidence_level">compute_distance_from_confidence_level() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.compute_distribution">compute_distribution() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.compute_p_value">compute_p_value() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.compute_PD">compute_PD() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.compute_persistence">compute_persistence() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.compute_persistence">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.compute_persistence">(gudhi.SimplexTree method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.compute_tangential_complex">compute_tangential_complex() (gudhi.TangentialComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_subsampling.params.constant">constant (gudhi.CoverComplex.set_subsampling parameter)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.copy">copy() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_cover_from_file.params.cover_file_name">cover_file_name (gudhi.CoverComplex.set_cover_from_file parameter)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex">CoverComplex (class in gudhi)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.create_from_array">create_from_array() (gudhi.SimplexTree static method)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex.create_simplex_tree">create_simplex_tree() (gudhi.AlphaComplex method)</a>
+
+      <ul>
+        <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.create_simplex_tree">(gudhi.CoverComplex method)</a>
+</li>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayCechComplex.create_simplex_tree">(gudhi.DelaunayCechComplex method)</a>
+</li>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex.create_simplex_tree">(gudhi.DelaunayComplex method)</a>
+</li>
+        <li><a href="euclidean_strong_witness_complex_ref.html#gudhi.EuclideanStrongWitnessComplex.create_simplex_tree">(gudhi.EuclideanStrongWitnessComplex method)</a>
+</li>
+        <li><a href="euclidean_witness_complex_ref.html#gudhi.EuclideanWitnessComplex.create_simplex_tree">(gudhi.EuclideanWitnessComplex method)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.RipsComplex.create_simplex_tree">(gudhi.RipsComplex method)</a>
+</li>
+        <li><a href="strong_witness_complex_ref.html#gudhi.StrongWitnessComplex.create_simplex_tree">(gudhi.StrongWitnessComplex method)</a>
+</li>
+        <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.create_simplex_tree">(gudhi.TangentialComplex method)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.weighted_rips_complex.WeightedRipsComplex.create_simplex_tree">(gudhi.weighted_rips_complex.WeightedRipsComplex method)</a>
+</li>
+        <li><a href="witness_complex_ref.html#gudhi.WitnessComplex.create_simplex_tree">(gudhi.WitnessComplex method)</a>
+</li>
+      </ul></li>
+      <li><a href="point_cloud.html#gudhi.read_lower_triangular_matrix_from_csv_file.params.csv_file">csv_file (gudhi.read_lower_triangular_matrix_from_csv_file parameter)</a>
+</li>
+      <li><a href="datasets.html#gudhi.datasets.generators.points.ctorus">ctorus() (in module gudhi.datasets.generators.points)</a>
+</li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex">CubicalComplex (class in gudhi)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="datasets.html#gudhi.datasets.remote.clear_data_home.params.data_home">data_home (gudhi.datasets.remote.clear_data_home parameter)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex.create_simplex_tree.params.default_filtration_value">default_filtration_value (gudhi.AlphaComplex.create_simplex_tree parameter)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.DelaunayCechComplex">DelaunayCechComplex (class in gudhi)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex">DelaunayComplex (class in gudhi)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.timedelay.TimeDelayEmbedding.params.delay">delay (gudhi.point_cloud.timedelay.TimeDelayEmbedding parameter)</a>
+</li>
+      <li><a href="bottleneck_distance_user.html#gudhi.hera.bottleneck_distance.params.delta">delta (gudhi.hera.bottleneck_distance parameter)</a>
+
+      <ul>
+        <li><a href="wasserstein_distance_user.html#gudhi.hera.wasserstein_distance.params.delta">(gudhi.hera.wasserstein_distance parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.density_type">density_type (gudhi.clustering.tomato.Tomato parameter)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.diagram_">diagram_ (gudhi.clustering.tomato.Tomato attribute)</a>
+</li>
+      <li><a href="bottleneck_distance_user.html#gudhi.bottleneck_distance.params.diagram_1">diagram_1 (gudhi.bottleneck_distance parameter)</a>
+</li>
+      <li><a href="bottleneck_distance_user.html#gudhi.bottleneck_distance.params.diagram_2">diagram_2 (gudhi.bottleneck_distance parameter)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.dim">dim (gudhi.clustering.tomato.Tomato parameter)</a>
+
+      <ul>
+        <li><a href="datasets.html#gudhi.datasets.generators.points.ctorus.params.dim">(gudhi.datasets.generators.points.ctorus parameter)</a>
+</li>
+        <li><a href="datasets.html#gudhi.datasets.generators.points.torus.params.dim">(gudhi.datasets.generators.points.torus parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.params.dim">(gudhi.point_cloud.dtm.DTMDensity parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.timedelay.TimeDelayEmbedding.params.dim">(gudhi.point_cloud.timedelay.TimeDelayEmbedding parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.persistence_intervals_in_dimension.params.dimension">dimension (gudhi.CubicalComplex.persistence_intervals_in_dimension parameter)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.persistence_intervals_in_dimension.params.dimension">(gudhi.PeriodicCubicalComplex.persistence_intervals_in_dimension parameter)</a>
+</li>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density.params.dimension">(gudhi.plot_persistence_density parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.get_skeleton.params.dimension">(gudhi.SimplexTree.get_skeleton parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.persistence_intervals_in_dimension.params.dimension">(gudhi.SimplexTree.persistence_intervals_in_dimension parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.prune_above_dimension.params.dimension">(gudhi.SimplexTree.prune_above_dimension parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.set_dimension.params.dimension">(gudhi.SimplexTree.set_dimension parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.dimension">dimension() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.dimension">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.dimension">(gudhi.SimplexTree method)</a>
+</li>
+      </ul></li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.params.dimensions">dimensions (gudhi.CubicalComplex parameter)</a>, <a href="cubical_complex_ref.html#gudhi.CubicalComplex.params.dimensions">[1]</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.params.dimensions">(gudhi.PeriodicCubicalComplex parameter)</a>, <a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.params.dimensions">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.compute_confidence_level_from_distance.params.distance">distance (gudhi.CoverComplex.compute_confidence_level_from_distance parameter)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_distances_from_range.params.distance_matrix">distance_matrix (gudhi.CoverComplex.set_distances_from_range parameter)</a>
+
+      <ul>
+        <li><a href="rips_complex_ref.html#gudhi.dtm_rips_complex.DTMRipsComplex.params.distance_matrix">(gudhi.dtm_rips_complex.DTMRipsComplex parameter)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.RipsComplex.params.distance_matrix">(gudhi.RipsComplex parameter)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.weighted_rips_complex.WeightedRipsComplex.params.distance_matrix">(gudhi.weighted_rips_complex.WeightedRipsComplex parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DistanceToMeasure">DistanceToMeasure (class in gudhi.point_cloud.dtm)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity">DTMDensity (class in gudhi.point_cloud.dtm)</a>
+</li>
+      <li><a href="rips_complex_ref.html#gudhi.dtm_rips_complex.DTMRipsComplex">DTMRipsComplex (class in gudhi.dtm_rips_complex)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="bottleneck_distance_user.html#gudhi.bottleneck_distance.params.e">e (gudhi.bottleneck_distance parameter)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.insert_edges_from_coo_matrix.params.edges">edges (gudhi.SimplexTree.insert_edges_from_coo_matrix parameter)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.params.enable_autodiff">enable_autodiff (gudhi.point_cloud.knn.KNearestNeighbors parameter)</a>
+
+      <ul>
+        <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.wasserstein_distance.params.enable_autodiff">(gudhi.wasserstein.wasserstein_distance parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.eps">eps (gudhi.clustering.tomato.Tomato parameter)</a>
+
+      <ul>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.params.eps">(gudhi.point_cloud.knn.KNearestNeighbors parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="euclidean_strong_witness_complex_ref.html#gudhi.EuclideanStrongWitnessComplex">EuclideanStrongWitnessComplex (class in gudhi)</a>
+</li>
+      <li><a href="euclidean_witness_complex_ref.html#gudhi.EuclideanWitnessComplex">EuclideanWitnessComplex (class in gudhi)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.expansion">expansion() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.expansion_with_blocker">expansion_with_blocker() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.extend_filtration">extend_filtration() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.extended_persistence">extended_persistence() (gudhi.SimplexTree method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="point_cloud.html#gudhi.subsampling.choose_n_farthest_points.params.fast">fast (gudhi.subsampling.choose_n_farthest_points parameter)</a>
+</li>
+      <li><a href="datasets.html#gudhi.datasets.remote.fetch_bunny">fetch_bunny() (in module gudhi.datasets.remote)</a>
+</li>
+      <li><a href="datasets.html#gudhi.datasets.remote.fetch_daily_activities">fetch_daily_activities() (in module gudhi.datasets.remote)</a>
+</li>
+      <li><a href="datasets.html#gudhi.datasets.remote.fetch_spiral_2d">fetch_spiral_2d() (in module gudhi.datasets.remote)</a>
+</li>
+      <li><a href="datasets.html#gudhi.datasets.remote.fetch_bunny.params.file_path">file_path (gudhi.datasets.remote.fetch_bunny parameter)</a>
+
+      <ul>
+        <li><a href="datasets.html#gudhi.datasets.remote.fetch_daily_activities.params.file_path">(gudhi.datasets.remote.fetch_daily_activities parameter)</a>
+</li>
+        <li><a href="datasets.html#gudhi.datasets.remote.fetch_spiral_2d.params.file_path">(gudhi.datasets.remote.fetch_spiral_2d parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex.create_simplex_tree.params.filtration">filtration (gudhi.DelaunayComplex.create_simplex_tree parameter)</a>
+
+      <ul>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.assign_filtration.params.filtration">(gudhi.SimplexTree.assign_filtration parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.insert.params.filtration">(gudhi.SimplexTree.insert parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.prune_above_filtration.params.filtration">(gudhi.SimplexTree.prune_above_filtration parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.reset_filtration.params.filtration">(gudhi.SimplexTree.reset_filtration parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.filtration">filtration() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.create_from_array.params.filtrations">filtrations (gudhi.SimplexTree.create_from_array parameter)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.find">find() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.find_simplices">find_simplices() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.fit">fit() (gudhi.clustering.tomato.Tomato method)</a>
+
+      <ul>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DistanceToMeasure.fit">(gudhi.point_cloud.dtm.DistanceToMeasure method)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.fit">(gudhi.point_cloud.dtm.DTMDensity method)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.fit">(gudhi.point_cloud.knn.KNearestNeighbors method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.fit_predict">fit_predict() (gudhi.clustering.tomato.Tomato method)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DistanceToMeasure.fit_transform">fit_transform() (gudhi.point_cloud.dtm.DistanceToMeasure method)</a>
+
+      <ul>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.fit_transform">(gudhi.point_cloud.dtm.DTMDensity method)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.fit_transform">(gudhi.point_cloud.knn.KNearestNeighbors method)</a>
+</li>
+      </ul></li>
+      <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.fix_inconsistencies_using_perturbation">fix_inconsistencies_using_perturbation() (gudhi.TangentialComplex method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.flag_persistence_generators">flag_persistence_generators() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.write_points_to_off_file.params.fname">fname (gudhi.write_points_to_off_file parameter)</a>
+</li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_barcode.params.fontsize">fontsize (gudhi.plot_persistence_barcode parameter)</a>
+
+      <ul>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density.params.fontsize">(gudhi.plot_persistence_density parameter)</a>
+</li>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram.params.fontsize">(gudhi.plot_persistence_diagram parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.persistent_betti_numbers.params.from_value">from_value (gudhi.CubicalComplex.persistent_betti_numbers parameter)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.persistent_betti_numbers.params.from_value">(gudhi.PeriodicCubicalComplex.persistent_betti_numbers parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.persistent_betti_numbers.params.from_value">(gudhi.SimplexTree.persistent_betti_numbers parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_function_from_file.params.func_file_name">func_file_name (gudhi.CoverComplex.set_function_from_file parameter)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_function_from_range.params.function">function (gudhi.CoverComplex.set_function_from_range parameter)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_gain.params.g">g (gudhi.CoverComplex.set_gain parameter)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.get_boundaries">get_boundaries() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.get_cofaces">get_cofaces() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.get_filtration">get_filtration() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex.get_float_relative_precision">get_float_relative_precision() (gudhi.DelaunayComplex static method)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex.get_point">get_point() (gudhi.AlphaComplex method)</a>
+
+      <ul>
+        <li><a href="euclidean_strong_witness_complex_ref.html#gudhi.EuclideanStrongWitnessComplex.get_point">(gudhi.EuclideanStrongWitnessComplex method)</a>
+</li>
+        <li><a href="euclidean_witness_complex_ref.html#gudhi.EuclideanWitnessComplex.get_point">(gudhi.EuclideanWitnessComplex method)</a>
+</li>
+        <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.get_point">(gudhi.TangentialComplex method)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.get_simplices">get_simplices() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.get_skeleton">get_skeleton() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.get_star">get_star() (gudhi.SimplexTree method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_graph_from_file.params.graph_file_name">graph_file_name (gudhi.CoverComplex.set_graph_from_file parameter)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.graph_type">graph_type (gudhi.clustering.tomato.Tomato parameter)</a>
+</li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density.params.greyblock">greyblock (gudhi.plot_persistence_density parameter)</a>
+
+      <ul>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram.params.greyblock">(gudhi.plot_persistence_diagram parameter)</a>
+</li>
+      </ul></li>
+      <li>
+    gudhi.flag_filtration.edge_collapse
+
+      <ul>
+        <li><a href="edge_collapse.html#module-gudhi.flag_filtration.edge_collapse">module</a>
+</li>
+      </ul></li>
+      <li>
+    gudhi.point_cloud.dtm
+
+      <ul>
+        <li><a href="point_cloud.html#module-gudhi.point_cloud.dtm">module</a>
+</li>
+      </ul></li>
+      <li>
+    gudhi.point_cloud.knn
+
+      <ul>
+        <li><a href="point_cloud.html#module-gudhi.point_cloud.knn">module</a>
+</li>
+      </ul></li>
+      <li>
+    gudhi.subsampling
+
+      <ul>
+        <li><a href="point_cloud.html#module-gudhi.subsampling">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.compute_persistence.params.homology_coeff_field">homology_coeff_field (gudhi.CubicalComplex.compute_persistence parameter)</a>
+
+      <ul>
+        <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.persistence.params.homology_coeff_field">(gudhi.CubicalComplex.persistence parameter)</a>
+</li>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.compute_persistence.params.homology_coeff_field">(gudhi.PeriodicCubicalComplex.compute_persistence parameter)</a>
+</li>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.persistence.params.homology_coeff_field">(gudhi.PeriodicCubicalComplex.persistence parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.compute_persistence.params.homology_coeff_field">(gudhi.SimplexTree.compute_persistence parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.extended_persistence.params.homology_coeff_field">(gudhi.SimplexTree.extended_persistence parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.persistence.params.homology_coeff_field">(gudhi.SimplexTree.persistence parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.params.implementation">implementation (gudhi.point_cloud.knn.KNearestNeighbors parameter)</a>
+</li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_barcode.params.inf_delta">inf_delta (gudhi.plot_persistence_barcode parameter)</a>
+
+      <ul>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram.params.inf_delta">(gudhi.plot_persistence_diagram parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.barycenter.lagrangian_barycenter.params.init">init (gudhi.wasserstein.barycenter.lagrangian_barycenter parameter)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.initialize_filtration">initialize_filtration() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="edge_collapse.html#gudhi.flag_filtration.edge_collapse.reduce_graph.params.input_edges">input_edges (gudhi.flag_filtration.edge_collapse.reduce_graph parameter)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.insert">insert() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.insert_batch">insert_batch (gudhi.SimplexTree attribute)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.insert_edges_from_coo_matrix">insert_edges_from_coo_matrix() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="wasserstein_distance_user.html#gudhi.hera.wasserstein_distance.params.internal_p">internal_p (gudhi.hera.wasserstein_distance parameter)</a>
+
+      <ul>
+        <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.wasserstein_distance.params.internal_p">(gudhi.wasserstein.wasserstein_distance parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.params.intrisic_dim">intrisic_dim (gudhi.TangentialComplex parameter)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.is_empty">is_empty() (gudhi.SimplexTree method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.k">k (gudhi.clustering.tomato.Tomato parameter)</a>
+
+      <ul>
+        <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_color_from_coordinate.params.k">(gudhi.CoverComplex.set_color_from_coordinate parameter)</a>
+</li>
+        <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_function_from_coordinate.params.k">(gudhi.CoverComplex.set_function_from_coordinate parameter)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.dtm_rips_complex.DTMRipsComplex.params.k">(gudhi.dtm_rips_complex.DTMRipsComplex parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DistanceToMeasure.params.k">(gudhi.point_cloud.dtm.DistanceToMeasure parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.params.k">(gudhi.point_cloud.dtm.DTMDensity parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.params.k">(gudhi.point_cloud.knn.KNearestNeighbors parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.k_DTM">k_DTM (gudhi.clustering.tomato.Tomato parameter)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.kde_params">kde_params (gudhi.clustering.tomato.Tomato parameter)</a>
+</li>
+      <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.wasserstein_distance.params.keep_essential_parts">keep_essential_parts (gudhi.wasserstein.wasserstein_distance parameter)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors">KNearestNeighbors (class in gudhi.point_cloud.knn)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DistanceToMeasure.params.kwargs">kwargs (gudhi.point_cloud.dtm.DistanceToMeasure parameter)</a>
+
+      <ul>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.params.kwargs">(gudhi.point_cloud.dtm.DTMDensity parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.params.kwargs">(gudhi.point_cloud.knn.KNearestNeighbors parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.labels_">labels_ (gudhi.clustering.tomato.Tomato attribute)</a>
+</li>
+      <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.barycenter.lagrangian_barycenter">lagrangian_barycenter() (in module gudhi.wasserstein.barycenter)</a>
+</li>
+      <li><a href="euclidean_strong_witness_complex_ref.html#gudhi.EuclideanStrongWitnessComplex.params.landmarks">landmarks (gudhi.EuclideanStrongWitnessComplex parameter)</a>
+
+      <ul>
+        <li><a href="euclidean_witness_complex_ref.html#gudhi.EuclideanWitnessComplex.params.landmarks">(gudhi.EuclideanWitnessComplex parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.leaf_labels_">leaf_labels_ (gudhi.clustering.tomato.Tomato attribute)</a>
+</li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_barcode.params.legend">legend (gudhi.plot_persistence_barcode parameter)</a>
+
+      <ul>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density.params.legend">(gudhi.plot_persistence_density parameter)</a>
+</li>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram.params.legend">(gudhi.plot_persistence_diagram parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.lower_star_persistence_generators">lower_star_persistence_generators() (gudhi.SimplexTree method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_cover_from_Voronoi.params.m">m (gudhi.CoverComplex.set_cover_from_Voronoi parameter)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.make_filtration_non_decreasing">make_filtration_non_decreasing() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="wasserstein_distance_user.html#gudhi.hera.wasserstein_distance.params.matching">matching (gudhi.hera.wasserstein_distance parameter)</a>
+
+      <ul>
+        <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.wasserstein_distance.params.matching">(gudhi.wasserstein.wasserstein_distance parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex.create_simplex_tree.params.max_alpha_square">max_alpha_square (gudhi.AlphaComplex.create_simplex_tree parameter)</a>
+
+      <ul>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayCechComplex.create_simplex_tree.params.max_alpha_square">(gudhi.DelaunayCechComplex.create_simplex_tree parameter)</a>
+</li>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex.create_simplex_tree.params.max_alpha_square">(gudhi.DelaunayComplex.create_simplex_tree parameter)</a>
+</li>
+        <li><a href="euclidean_strong_witness_complex_ref.html#gudhi.EuclideanStrongWitnessComplex.create_simplex_tree.params.max_alpha_square">(gudhi.EuclideanStrongWitnessComplex.create_simplex_tree parameter)</a>
+</li>
+        <li><a href="euclidean_witness_complex_ref.html#gudhi.EuclideanWitnessComplex.create_simplex_tree.params.max_alpha_square">(gudhi.EuclideanWitnessComplex.create_simplex_tree parameter)</a>
+</li>
+        <li><a href="strong_witness_complex_ref.html#gudhi.StrongWitnessComplex.create_simplex_tree.params.max_alpha_square">(gudhi.StrongWitnessComplex.create_simplex_tree parameter)</a>
+</li>
+        <li><a href="witness_complex_ref.html#gudhi.WitnessComplex.create_simplex_tree.params.max_alpha_square">(gudhi.WitnessComplex.create_simplex_tree parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.expansion_with_blocker.params.max_dim">max_dim (gudhi.SimplexTree.expansion_with_blocker parameter)</a>
+</li>
+      <li><a href="rips_complex_ref.html#gudhi.RipsComplex.create_simplex_tree.params.max_dimension">max_dimension (gudhi.RipsComplex.create_simplex_tree parameter)</a>
+
+      <ul>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.expansion.params.max_dimension">(gudhi.SimplexTree.expansion parameter)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.weighted_rips_complex.WeightedRipsComplex.create_simplex_tree.params.max_dimension">(gudhi.weighted_rips_complex.WeightedRipsComplex.create_simplex_tree parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="rips_complex_ref.html#gudhi.RipsComplex.params.max_edge_length">max_edge_length (gudhi.RipsComplex parameter)</a>
+</li>
+      <li><a href="rips_complex_ref.html#gudhi.dtm_rips_complex.DTMRipsComplex.params.max_filtration">max_filtration (gudhi.dtm_rips_complex.DTMRipsComplex parameter)</a>
+
+      <ul>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.create_from_array.params.max_filtration">(gudhi.SimplexTree.create_from_array parameter)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.weighted_rips_complex.WeightedRipsComplex.params.max_filtration">(gudhi.weighted_rips_complex.WeightedRipsComplex parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_barcode.params.max_intervals">max_intervals (gudhi.plot_persistence_barcode parameter)</a>
+
+      <ul>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density.params.max_intervals">(gudhi.plot_persistence_density parameter)</a>
+</li>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram.params.max_intervals">(gudhi.plot_persistence_diagram parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.fix_inconsistencies_using_perturbation.params.max_perturb">max_perturb (gudhi.TangentialComplex.fix_inconsistencies_using_perturbation parameter)</a>
+</li>
+      <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.set_max_squared_edge_length.params.max_squared_edge_length">max_squared_edge_length (gudhi.TangentialComplex.set_max_squared_edge_length parameter)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.max_weight_per_cc_">max_weight_per_cc_ (gudhi.clustering.tomato.Tomato attribute)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.merge_threshold">merge_threshold (gudhi.clustering.tomato.Tomato parameter)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.merge_threshold_">merge_threshold_ (gudhi.clustering.tomato.Tomato attribute)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.metric">metric (gudhi.clustering.tomato.Tomato parameter)</a>
+
+      <ul>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.params.metric">(gudhi.point_cloud.knn.KNearestNeighbors parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.reset_filtration.params.min_dim">min_dim (gudhi.SimplexTree.reset_filtration parameter)</a>
+</li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.compute_persistence.params.min_persistence">min_persistence (gudhi.CubicalComplex.compute_persistence parameter)</a>
+
+      <ul>
+        <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.persistence.params.min_persistence">(gudhi.CubicalComplex.persistence parameter)</a>
+</li>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.compute_persistence.params.min_persistence">(gudhi.PeriodicCubicalComplex.compute_persistence parameter)</a>
+</li>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.persistence.params.min_persistence">(gudhi.PeriodicCubicalComplex.persistence parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.compute_persistence.params.min_persistence">(gudhi.SimplexTree.compute_persistence parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.extended_persistence.params.min_persistence">(gudhi.SimplexTree.extended_persistence parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.persistence.params.min_persistence">(gudhi.SimplexTree.persistence parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="point_cloud.html#gudhi.subsampling.sparsify_point_set.params.min_squared_dist">min_squared_dist (gudhi.subsampling.sparsify_point_set parameter)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="edge_collapse.html#module-gudhi.flag_filtration.edge_collapse">gudhi.flag_filtration.edge_collapse</a>
+</li>
+        <li><a href="point_cloud.html#module-gudhi.point_cloud.dtm">gudhi.point_cloud.dtm</a>
+</li>
+        <li><a href="point_cloud.html#module-gudhi.point_cloud.knn">gudhi.point_cloud.knn</a>
+</li>
+        <li><a href="point_cloud.html#module-gudhi.subsampling">gudhi.subsampling</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.compute_distribution.params.N">N (gudhi.CoverComplex.compute_distribution parameter)</a>
+
+      <ul>
+        <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_graph_from_automatic_rips.params.N">(gudhi.CoverComplex.set_graph_from_automatic_rips parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.n_clusters">n_clusters (gudhi.clustering.tomato.Tomato parameter)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.n_clusters_">n_clusters_ (gudhi.clustering.tomato.Tomato attribute)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.n_jobs">n_jobs (gudhi.clustering.tomato.Tomato parameter)</a>
+
+      <ul>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.params.n_jobs">(gudhi.point_cloud.knn.KNearestNeighbors parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.n_leaves_">n_leaves_ (gudhi.clustering.tomato.Tomato attribute)</a>
+</li>
+      <li><a href="datasets.html#gudhi.datasets.generators.points.ctorus.params.n_samples">n_samples (gudhi.datasets.generators.points.ctorus parameter)</a>
+
+      <ul>
+        <li><a href="datasets.html#gudhi.datasets.generators.points.sphere.params.n_samples">(gudhi.datasets.generators.points.sphere parameter)</a>
+</li>
+        <li><a href="datasets.html#gudhi.datasets.generators.points.torus.params.n_samples">(gudhi.datasets.generators.points.torus parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.params.n_samples">(gudhi.point_cloud.dtm.DTMDensity parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="edge_collapse.html#gudhi.flag_filtration.edge_collapse.reduce_graph.params.nb_iterations">nb_iterations (gudhi.flag_filtration.edge_collapse.reduce_graph parameter)</a>
+
+      <ul>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.collapse_edges.params.nb_iterations">(gudhi.SimplexTree.collapse_edges parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="point_cloud.html#gudhi.subsampling.choose_n_farthest_points.params.nb_points">nb_points (gudhi.subsampling.choose_n_farthest_points parameter)</a>
+
+      <ul>
+        <li><a href="point_cloud.html#gudhi.subsampling.pick_n_random_points.params.nb_points">(gudhi.subsampling.pick_n_random_points parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density.params.nbins">nbins (gudhi.plot_persistence_density parameter)</a>
+</li>
+      <li><a href="strong_witness_complex_ref.html#gudhi.StrongWitnessComplex.params.nearest_landmark_table">nearest_landmark_table (gudhi.StrongWitnessComplex parameter)</a>
+
+      <ul>
+        <li><a href="witness_complex_ref.html#gudhi.WitnessComplex.params.nearest_landmark_table">(gudhi.WitnessComplex parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_mask.params.nodemask">nodemask (gudhi.CoverComplex.set_mask parameter)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.params.normalize">normalize (gudhi.point_cloud.dtm.DTMDensity parameter)</a>
+</li>
+      <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.num_inconsistent_simplices">num_inconsistent_simplices() (gudhi.TangentialComplex method)</a>
+</li>
+      <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.num_inconsistent_stars">num_inconsistent_stars() (gudhi.TangentialComplex method)</a>
+</li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.num_simplices">num_simplices() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.num_simplices">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.num_simplices">(gudhi.SimplexTree method)</a>
+</li>
+        <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.num_simplices">(gudhi.TangentialComplex method)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.num_vertices">num_vertices() (gudhi.SimplexTree method)</a>
+
+      <ul>
+        <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.num_vertices">(gudhi.TangentialComplex method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.read_point_cloud.params.off_file">off_file (gudhi.CoverComplex.read_point_cloud parameter)</a>
+
+      <ul>
+        <li><a href="point_cloud.html#gudhi.read_points_from_off_file.params.off_file">(gudhi.read_points_from_off_file parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.subsampling.choose_n_farthest_points.params.off_file">(gudhi.subsampling.choose_n_farthest_points parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.subsampling.pick_n_random_points.params.off_file">(gudhi.subsampling.pick_n_random_points parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.subsampling.sparsify_point_set.params.off_file">(gudhi.subsampling.sparsify_point_set parameter)</a>
+</li>
+        <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.params.off_file">(gudhi.TangentialComplex parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="diagram_readers_ref.html#gudhi.read_persistence_intervals_in_dimension.params.only_this_dim">only_this_dim (gudhi.read_persistence_intervals_in_dimension parameter)</a>
+</li>
+      <li><a href="wasserstein_distance_user.html#gudhi.hera.wasserstein_distance.params.order">order (gudhi.hera.wasserstein_distance parameter)</a>
+
+      <ul>
+        <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.wasserstein_distance.params.order">(gudhi.wasserstein.wasserstein_distance parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.params.other">other (gudhi.SimplexTree parameter)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex.create_simplex_tree.params.output_squared_values">output_squared_values (gudhi.AlphaComplex.create_simplex_tree parameter)</a>
+
+      <ul>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayCechComplex.create_simplex_tree.params.output_squared_values">(gudhi.DelaunayCechComplex.create_simplex_tree parameter)</a>
+</li>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex.create_simplex_tree.params.output_squared_values">(gudhi.DelaunayComplex.create_simplex_tree parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.p">p (gudhi.clustering.tomato.Tomato parameter)</a>
+
+      <ul>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.params.p">(gudhi.point_cloud.knn.KNearestNeighbors parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.params">params (gudhi.clustering.tomato.Tomato parameter)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params_">params_ (gudhi.clustering.tomato.Tomato attribute)</a>
+</li>
+      <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.barycenter.lagrangian_barycenter.params.pdiagset">pdiagset (gudhi.wasserstein.barycenter.lagrangian_barycenter parameter)</a>
+</li>
+      <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.params.periodic_dimensions">periodic_dimensions (gudhi.PeriodicCubicalComplex parameter)</a>, <a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.params.periodic_dimensions">[1]</a>, <a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.params.periodic_dimensions">[2]</a>, <a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.params.periodic_dimensions">[3]</a>
+</li>
+      <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex">PeriodicCubicalComplex (class in gudhi)</a>
+</li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.params.perseus_file">perseus_file (gudhi.CubicalComplex parameter)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.params.perseus_file">(gudhi.PeriodicCubicalComplex parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_barcode.params.persistence">persistence (gudhi.plot_persistence_barcode parameter)</a>
+
+      <ul>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density.params.persistence">(gudhi.plot_persistence_density parameter)</a>
+</li>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram.params.persistence">(gudhi.plot_persistence_diagram parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.persistence">persistence() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.persistence">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.persistence">(gudhi.SimplexTree method)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.compute_persistence.params.persistence_dim_max">persistence_dim_max (gudhi.SimplexTree.compute_persistence parameter)</a>
+
+      <ul>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.persistence.params.persistence_dim_max">(gudhi.SimplexTree.persistence parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_barcode.params.persistence_file">persistence_file (gudhi.plot_persistence_barcode parameter)</a>
+
+      <ul>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density.params.persistence_file">(gudhi.plot_persistence_density parameter)</a>
+</li>
+        <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram.params.persistence_file">(gudhi.plot_persistence_diagram parameter)</a>
+</li>
+        <li><a href="diagram_readers_ref.html#gudhi.read_persistence_intervals_grouped_by_dimension.params.persistence_file">(gudhi.read_persistence_intervals_grouped_by_dimension parameter)</a>
+</li>
+        <li><a href="diagram_readers_ref.html#gudhi.read_persistence_intervals_in_dimension.params.persistence_file">(gudhi.read_persistence_intervals_in_dimension parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.write_persistence_diagram.params.persistence_file">(gudhi.SimplexTree.write_persistence_diagram parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.persistence_intervals_in_dimension">persistence_intervals_in_dimension() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.persistence_intervals_in_dimension">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.persistence_intervals_in_dimension">(gudhi.SimplexTree method)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.persistence_pairs">persistence_pairs() (gudhi.SimplexTree method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.persistent_betti_numbers">persistent_betti_numbers() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.persistent_betti_numbers">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.persistent_betti_numbers">(gudhi.SimplexTree method)</a>
+</li>
+      </ul></li>
+      <li><a href="point_cloud.html#gudhi.subsampling.pick_n_random_points">pick_n_random_points() (in module gudhi.subsampling)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.plot_diagram">plot_diagram() (gudhi.clustering.tomato.Tomato method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.plot_dot">plot_dot() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.plot_off">plot_off() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_barcode">plot_persistence_barcode() (in module gudhi)</a>
+</li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_density">plot_persistence_density() (in module gudhi)</a>
+</li>
+      <li><a href="persistence_graphical_tools_ref.html#gudhi.plot_persistence_diagram">plot_persistence_diagram() (in module gudhi)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex.params.points">points (gudhi.AlphaComplex parameter)</a>
+
+      <ul>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayCechComplex.params.points">(gudhi.DelaunayCechComplex parameter)</a>
+</li>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex.params.points">(gudhi.DelaunayComplex parameter)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.dtm_rips_complex.DTMRipsComplex.params.points">(gudhi.dtm_rips_complex.DTMRipsComplex parameter)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.RipsComplex.params.points">(gudhi.RipsComplex parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.subsampling.choose_n_farthest_points.params.points">(gudhi.subsampling.choose_n_farthest_points parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.subsampling.pick_n_random_points.params.points">(gudhi.subsampling.pick_n_random_points parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.subsampling.sparsify_point_set.params.points">(gudhi.subsampling.sparsify_point_set parameter)</a>
+</li>
+        <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.params.points">(gudhi.TangentialComplex parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.write_points_to_off_file.params.points">(gudhi.write_points_to_off_file parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_subsampling.params.power">power (gudhi.CoverComplex.set_subsampling parameter)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex.params.precision">precision (gudhi.AlphaComplex parameter)</a>
+
+      <ul>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayCechComplex.params.precision">(gudhi.DelaunayCechComplex parameter)</a>
+</li>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex.params.precision">(gudhi.DelaunayComplex parameter)</a>
+</li>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex.set_float_relative_precision.params.precision">(gudhi.DelaunayComplex.set_float_relative_precision parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.prune_above_dimension">prune_above_dimension() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.prune_above_filtration">prune_above_filtration() (gudhi.SimplexTree method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.q">q (gudhi.clustering.tomato.Tomato parameter)</a>
+
+      <ul>
+        <li><a href="rips_complex_ref.html#gudhi.dtm_rips_complex.DTMRipsComplex.params.q">(gudhi.dtm_rips_complex.DTMRipsComplex parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DistanceToMeasure.params.q">(gudhi.point_cloud.dtm.DistanceToMeasure parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.params.q">(gudhi.point_cloud.dtm.DTMDensity parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.r">r (gudhi.clustering.tomato.Tomato parameter)</a>
+</li>
+      <li><a href="datasets.html#gudhi.datasets.generators.points.sphere.params.radius">radius (gudhi.datasets.generators.points.sphere parameter)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.read_lower_triangular_matrix_from_csv_file">read_lower_triangular_matrix_from_csv_file() (in module gudhi)</a>
+</li>
+      <li><a href="diagram_readers_ref.html#gudhi.read_persistence_intervals_grouped_by_dimension">read_persistence_intervals_grouped_by_dimension() (in module gudhi)</a>
+</li>
+      <li><a href="diagram_readers_ref.html#gudhi.read_persistence_intervals_in_dimension">read_persistence_intervals_in_dimension() (in module gudhi)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.read_point_cloud">read_point_cloud() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.read_points_from_off_file">read_points_from_off_file() (in module gudhi)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="edge_collapse.html#gudhi.flag_filtration.edge_collapse.reduce_graph">reduce_graph() (in module gudhi.flag_filtration.edge_collapse)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.remove_maximal_simplex">remove_maximal_simplex() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.reset_filtration">reset_filtration() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_resolution_with_interval_length.params.resolution">resolution (gudhi.CoverComplex.set_resolution_with_interval_length parameter)</a>
+
+      <ul>
+        <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_resolution_with_interval_number.params.resolution">(gudhi.CoverComplex.set_resolution_with_interval_number parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.params.return_distance">return_distance (gudhi.point_cloud.knn.KNearestNeighbors parameter)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.params.return_index">return_index (gudhi.point_cloud.knn.KNearestNeighbors parameter)</a>
+</li>
+      <li><a href="rips_complex_ref.html#gudhi.RipsComplex">RipsComplex (class in gudhi)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="datasets.html#gudhi.datasets.generators.points.ctorus.params.sample">sample (gudhi.datasets.generators.points.ctorus parameter)</a>
+
+      <ul>
+        <li><a href="datasets.html#gudhi.datasets.generators.points.sphere.params.sample">(gudhi.datasets.generators.points.sphere parameter)</a>
+</li>
+        <li><a href="datasets.html#gudhi.datasets.generators.points.torus.params.sample">(gudhi.datasets.generators.points.torus parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="point_cloud.html#gudhi.read_lower_triangular_matrix_from_csv_file.params.separator">separator (gudhi.read_lower_triangular_matrix_from_csv_file parameter)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_automatic_resolution">set_automatic_resolution() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_color_from_coordinate">set_color_from_coordinate() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_color_from_file">set_color_from_file() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_color_from_range">set_color_from_range() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_cover_from_file">set_cover_from_file() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_cover_from_function">set_cover_from_function() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_cover_from_range">set_cover_from_range() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_cover_from_Voronoi">set_cover_from_Voronoi() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.set_dimension">set_dimension() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_distances_from_range">set_distances_from_range() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex.set_float_relative_precision">set_float_relative_precision() (gudhi.DelaunayComplex static method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_function_from_coordinate">set_function_from_coordinate() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_function_from_file">set_function_from_file() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_function_from_range">set_function_from_range() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_gain">set_gain() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_graph_from_automatic_rips">set_graph_from_automatic_rips() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_graph_from_file">set_graph_from_file() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_graph_from_OFF">set_graph_from_OFF() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_graph_from_rips">set_graph_from_rips() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_mask">set_mask() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.set_max_squared_edge_length">set_max_squared_edge_length() (gudhi.TangentialComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_point_cloud_from_range">set_point_cloud_from_range() (gudhi.CoverComplex method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_resolution_with_interval_length">set_resolution_with_interval_length() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_resolution_with_interval_number">set_resolution_with_interval_number() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_subsampling">set_subsampling() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_type">set_type() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_verbose">set_verbose() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.assign_filtration.params.simplex">simplex (gudhi.SimplexTree.assign_filtration parameter)</a>
+
+      <ul>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.filtration.params.simplex">(gudhi.SimplexTree.filtration parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.find.params.simplex">(gudhi.SimplexTree.find parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.get_boundaries.params.simplex">(gudhi.SimplexTree.get_boundaries parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.get_cofaces.params.simplex">(gudhi.SimplexTree.get_cofaces parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.get_star.params.simplex">(gudhi.SimplexTree.get_star parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.insert.params.simplex">(gudhi.SimplexTree.insert parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.remove_maximal_simplex.params.simplex">(gudhi.SimplexTree.remove_maximal_simplex parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree">SimplexTree (class in gudhi)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.timedelay.TimeDelayEmbedding.params.skip">skip (gudhi.point_cloud.timedelay.TimeDelayEmbedding parameter)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.params.sort_results">sort_results (gudhi.point_cloud.knn.KNearestNeighbors parameter)</a>
+</li>
+      <li><a href="rips_complex_ref.html#gudhi.RipsComplex.params.sparse">sparse (gudhi.RipsComplex parameter)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.subsampling.sparsify_point_set">sparsify_point_set() (in module gudhi.subsampling)</a>
+</li>
+      <li><a href="datasets.html#gudhi.datasets.generators.points.sphere">sphere() (in module gudhi.datasets.generators.points)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.subsampling.choose_n_farthest_points.params.starting_point">starting_point (gudhi.subsampling.choose_n_farthest_points parameter)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.__setstate__.params.state">state (gudhi.SimplexTree.__setstate__ parameter)</a>
+</li>
+      <li><a href="strong_witness_complex_ref.html#gudhi.StrongWitnessComplex">StrongWitnessComplex (class in gudhi)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.subcolor">subcolor() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.subpopulation">subpopulation() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="datasets.html#gudhi.datasets.remote.fetch_daily_activities.params.subset">subset (gudhi.datasets.remote.fetch_daily_activities parameter)</a>
+</li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.params.symmetrize_graph">symmetrize_graph (gudhi.clustering.tomato.Tomato parameter)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex">TangentialComplex (class in gudhi)</a>
+</li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_graph_from_rips.params.threshold">threshold (gudhi.CoverComplex.set_graph_from_rips parameter)</a>
+</li>
+      <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.fix_inconsistencies_using_perturbation.params.time_limit">time_limit (gudhi.TangentialComplex.fix_inconsistencies_using_perturbation parameter)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.timedelay.TimeDelayEmbedding">TimeDelayEmbedding (class in gudhi.point_cloud.timedelay)</a>
+</li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.persistent_betti_numbers.params.to_value">to_value (gudhi.CubicalComplex.persistent_betti_numbers parameter)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.persistent_betti_numbers.params.to_value">(gudhi.PeriodicCubicalComplex.persistent_betti_numbers parameter)</a>
+</li>
+        <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.persistent_betti_numbers.params.to_value">(gudhi.SimplexTree.persistent_betti_numbers parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato">Tomato (class in gudhi.clustering.tomato)</a>
+</li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.params.top_dimensional_cells">top_dimensional_cells (gudhi.CubicalComplex parameter)</a>, <a href="cubical_complex_ref.html#gudhi.CubicalComplex.params.top_dimensional_cells">[1]</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.params.top_dimensional_cells">(gudhi.PeriodicCubicalComplex parameter)</a>, <a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.params.top_dimensional_cells">[1]</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.top_dimensional_cells">top_dimensional_cells() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.top_dimensional_cells">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+      </ul></li>
+      <li><a href="datasets.html#gudhi.datasets.generators.points.torus">torus() (in module gudhi.datasets.generators.points)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DistanceToMeasure.transform">transform() (gudhi.point_cloud.dtm.DistanceToMeasure method)</a>
+
+      <ul>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.transform">(gudhi.point_cloud.dtm.DTMDensity method)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.transform">(gudhi.point_cloud.knn.KNearestNeighbors method)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.timedelay.TimeDelayEmbedding.transform">(gudhi.point_cloud.timedelay.TimeDelayEmbedding method)</a>
+</li>
+      </ul></li>
+      <li><a href="point_cloud.html#gudhi.point_cloud.timedelay.TimeDelayEmbedding.__call__.params.ts">ts (gudhi.point_cloud.timedelay.TimeDelayEmbedding.__call__ parameter)</a>
+
+      <ul>
+        <li><a href="point_cloud.html#gudhi.point_cloud.timedelay.TimeDelayEmbedding.transform.params.ts">(gudhi.point_cloud.timedelay.TimeDelayEmbedding.transform parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_type.params.type">type (gudhi.CoverComplex.set_type parameter)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.upper_bound_dimension">upper_bound_dimension() (gudhi.SimplexTree method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.set_verbose.params.verbose">verbose (gudhi.CoverComplex.set_verbose parameter)</a>
+
+      <ul>
+        <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.barycenter.lagrangian_barycenter.params.verbose">(gudhi.wasserstein.barycenter.lagrangian_barycenter parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex.get_point.params.vertex">vertex (gudhi.AlphaComplex.get_point parameter)</a>
+
+      <ul>
+        <li><a href="euclidean_strong_witness_complex_ref.html#gudhi.EuclideanStrongWitnessComplex.get_point.params.vertex">(gudhi.EuclideanStrongWitnessComplex.get_point parameter)</a>
+</li>
+        <li><a href="euclidean_witness_complex_ref.html#gudhi.EuclideanWitnessComplex.get_point.params.vertex">(gudhi.EuclideanWitnessComplex.get_point parameter)</a>
+</li>
+        <li><a href="tangential_complex_ref.html#gudhi.TangentialComplex.get_point.params.vertex">(gudhi.TangentialComplex.get_point parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.params.vertices">vertices (gudhi.CubicalComplex parameter)</a>, <a href="cubical_complex_ref.html#gudhi.CubicalComplex.params.vertices">[1]</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.params.vertices">(gudhi.PeriodicCubicalComplex parameter)</a>, <a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.params.vertices">[1]</a>
+</li>
+      </ul></li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.vertices">vertices() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.vertices">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+      </ul></li>
+      <li><a href="cubical_complex_ref.html#gudhi.CubicalComplex.vertices_of_persistence_pairs">vertices_of_persistence_pairs() (gudhi.CubicalComplex method)</a>
+
+      <ul>
+        <li><a href="periodic_cubical_complex_ref.html#gudhi.PeriodicCubicalComplex.vertices_of_persistence_pairs">(gudhi.PeriodicCubicalComplex method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="wasserstein_distance_user.html#gudhi.hera.wasserstein_distance">wasserstein_distance() (in module gudhi.hera)</a>
+
+      <ul>
+        <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.wasserstein_distance">(in module gudhi.wasserstein)</a>
+</li>
+      </ul></li>
+      <li><a href="rips_complex_ref.html#gudhi.weighted_rips_complex.WeightedRipsComplex">WeightedRipsComplex (class in gudhi.weighted_rips_complex)</a>
+</li>
+      <li><a href="delaunay_complex_ref.html#gudhi.AlphaComplex.params.weights">weights (gudhi.AlphaComplex parameter)</a>
+
+      <ul>
+        <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.fit.params.weights">(gudhi.clustering.tomato.Tomato.fit parameter)</a>
+</li>
+        <li><a href="delaunay_complex_ref.html#gudhi.DelaunayComplex.params.weights">(gudhi.DelaunayComplex parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.params.weights">(gudhi.point_cloud.dtm.DTMDensity parameter)</a>
+</li>
+        <li><a href="rips_complex_ref.html#gudhi.weighted_rips_complex.WeightedRipsComplex.params.weights">(gudhi.weighted_rips_complex.WeightedRipsComplex parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.weights_">weights_ (gudhi.clustering.tomato.Tomato attribute)</a>
+</li>
+      <li><a href="witness_complex_ref.html#gudhi.WitnessComplex">WitnessComplex (class in gudhi)</a>
+</li>
+      <li><a href="euclidean_strong_witness_complex_ref.html#gudhi.EuclideanStrongWitnessComplex.params.witnesses">witnesses (gudhi.EuclideanStrongWitnessComplex parameter)</a>
+
+      <ul>
+        <li><a href="euclidean_witness_complex_ref.html#gudhi.EuclideanWitnessComplex.params.witnesses">(gudhi.EuclideanWitnessComplex parameter)</a>
+</li>
+      </ul></li>
+      <li><a href="nerve_gic_complex_ref.html#gudhi.CoverComplex.write_info">write_info() (gudhi.CoverComplex method)</a>
+</li>
+      <li><a href="simplex_tree_ref.html#gudhi.SimplexTree.write_persistence_diagram">write_persistence_diagram() (gudhi.SimplexTree method)</a>
+</li>
+      <li><a href="point_cloud.html#gudhi.write_points_to_off_file">write_points_to_off_file() (in module gudhi)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.fit.params.X">X (gudhi.clustering.tomato.Tomato.fit parameter)</a>
+
+      <ul>
+        <li><a href="bottleneck_distance_user.html#gudhi.hera.bottleneck_distance.params.X">(gudhi.hera.bottleneck_distance parameter)</a>
+</li>
+        <li><a href="wasserstein_distance_user.html#gudhi.hera.wasserstein_distance.params.X">(gudhi.hera.wasserstein_distance parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DistanceToMeasure.fit.params.X">(gudhi.point_cloud.dtm.DistanceToMeasure.fit parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DistanceToMeasure.transform.params.X">(gudhi.point_cloud.dtm.DistanceToMeasure.transform parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.fit.params.X">(gudhi.point_cloud.dtm.DTMDensity.fit parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.transform.params.X">(gudhi.point_cloud.dtm.DTMDensity.transform parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.fit.params.X">(gudhi.point_cloud.knn.KNearestNeighbors.fit parameter)</a>
+</li>
+        <li><a href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.transform.params.X">(gudhi.point_cloud.knn.KNearestNeighbors.transform parameter)</a>
+</li>
+        <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.wasserstein_distance.params.X">(gudhi.wasserstein.wasserstein_distance parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Y">Y</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="clustering.html#gudhi.clustering.tomato.Tomato.fit.params.y">y (gudhi.clustering.tomato.Tomato.fit parameter)</a>
+</li>
+      <li><a href="bottleneck_distance_user.html#gudhi.hera.bottleneck_distance.params.Y">Y (gudhi.hera.bottleneck_distance parameter)</a>
+
+      <ul>
+        <li><a href="wasserstein_distance_user.html#gudhi.hera.wasserstein_distance.params.Y">(gudhi.hera.wasserstein_distance parameter)</a>
+</li>
+        <li><a href="wasserstein_distance_user.html#gudhi.wasserstein.wasserstein_distance.params.Y">(gudhi.wasserstein.wasserstein_distance parameter)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1190 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Point cloud utilities manual &#8212; gudhi v3.11.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'point_cloud';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.11.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Point cloud utilities manual</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="point-cloud-utilities-manual">
+<h1>Point cloud utilities manual<a class="headerlink" href="#point-cloud-utilities-manual" title="Link to this heading">#</a></h1>
+<section id="file-readers">
+<h2>File Readers<a class="headerlink" href="#file-readers" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.read_points_from_off_file">
+<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">read_points_from_off_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">off_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.read_points_from_off_file" title="Link to this definition">#</a></dt>
+<dd><p>Read points from an <a class="reference external" href="fileformats.html#off-file-format">OFF file</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.read_points_from_off_file.params.off_file"></span><strong>off_file</strong><a class="paramlink headerlink reference internal" href="#gudhi.read_points_from_off_file.params.off_file">¶</a> (<em>string</em>) – An OFF file style name.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The point set.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function is using <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html">numpy.loadtxt</a>
+with <cite>comments=’#’</cite> as an argument. Empty and or comment lines between the points are only supported with numpy
+&amp;ge; 1.23.0.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.read_lower_triangular_matrix_from_csv_file">
+<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">read_lower_triangular_matrix_from_csv_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">';'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.read_lower_triangular_matrix_from_csv_file" title="Link to this definition">#</a></dt>
+<dd><p>Read lower triangular matrix from a CSV style file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.read_lower_triangular_matrix_from_csv_file.params.csv_file"></span><strong>csv_file</strong><a class="paramlink headerlink reference internal" href="#gudhi.read_lower_triangular_matrix_from_csv_file.params.csv_file">¶</a> (<em>string</em>) – A CSV file style name.</p></li>
+<li><p><span class="target" id="gudhi.read_lower_triangular_matrix_from_csv_file.params.separator"></span><strong>separator</strong><a class="paramlink headerlink reference internal" href="#gudhi.read_lower_triangular_matrix_from_csv_file.params.separator">¶</a> (<em>char</em>) – The value separator in the CSV file. Default value is ‘;’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The lower triangular matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[List[float]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="file-writers">
+<h2>File Writers<a class="headerlink" href="#file-writers" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.write_points_to_off_file">
+<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">write_points_to_off_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.write_points_to_off_file" title="Link to this definition">#</a></dt>
+<dd><p>Write points to an <a class="reference external" href="fileformats.html#off-file-format">OFF file</a>.</p>
+<p>A simple wrapper for <cite>numpy.savetxt</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.write_points_to_off_file.params.fname"></span><strong>fname</strong><a class="paramlink headerlink reference internal" href="#gudhi.write_points_to_off_file.params.fname">¶</a> (<em>str</em><em> or </em><em>file handle</em>) – Name of the OFF file.</p></li>
+<li><p><span class="target" id="gudhi.write_points_to_off_file.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.write_points_to_off_file.params.points">¶</a> (<em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>n</em><em>, </em><em>dim</em><em>)</em>) – Point coordinates.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-gudhi.subsampling">
+<span id="subsampling"></span><h2>Subsampling<a class="headerlink" href="#module-gudhi.subsampling" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.subsampling.choose_n_farthest_points">
+<span class="sig-prename descclassname"><span class="pre">gudhi.subsampling.</span></span><span class="sig-name descname"><span class="pre">choose_n_farthest_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">off_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">18446744073709551615</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">starting_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.subsampling.choose_n_farthest_points" title="Link to this definition">#</a></dt>
+<dd><p>Subsample by a greedy strategy of iteratively adding the farthest point
+from the current chosen point set to the subsampling.
+The iteration starts with the landmark <cite>starting point</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.subsampling.choose_n_farthest_points.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.subsampling.choose_n_farthest_points.params.points">¶</a> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – The input point set.</p>
+</dd>
+</dl>
+<p>Or</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.subsampling.choose_n_farthest_points.params.off_file"></span><strong>off_file</strong><a class="paramlink headerlink reference internal" href="#gudhi.subsampling.choose_n_farthest_points.params.off_file">¶</a> (<em>string</em>) – An OFF file style name.</p>
+</dd>
+</dl>
+<p>And in both cases</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.subsampling.choose_n_farthest_points.params.nb_points"></span><strong>nb_points</strong><a class="paramlink headerlink reference internal" href="#gudhi.subsampling.choose_n_farthest_points.params.nb_points">¶</a> (<em>int</em>) – Number of points of the subsample (the subsample may be
+smaller if there are fewer than nb_points distinct input points). Default: all of them.</p></li>
+<li><p><span class="target" id="gudhi.subsampling.choose_n_farthest_points.params.starting_point"></span><strong>starting_point</strong><a class="paramlink headerlink reference internal" href="#gudhi.subsampling.choose_n_farthest_points.params.starting_point">¶</a> (<em>int</em>) – The iteration starts with the landmark <cite>starting
+point</cite>, which is the index of the point to start with. If not set, this
+index is chosen randomly.</p></li>
+<li><p><span class="target" id="gudhi.subsampling.choose_n_farthest_points.params.fast"></span><strong>fast</strong><a class="paramlink headerlink reference internal" href="#gudhi.subsampling.choose_n_farthest_points.params.fast">¶</a> (<em>bool</em>) – If True (default), use an implementation that is efficient when the doubling dimension
+and spread are small, but slow otherwise. If False, use the standard quadratic algorithm.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The subsample point set, in the order they were selected by the greedy strategy.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[List[float]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.subsampling.pick_n_random_points">
+<span class="sig-prename descclassname"><span class="pre">gudhi.subsampling.</span></span><span class="sig-name descname"><span class="pre">pick_n_random_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">off_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.subsampling.pick_n_random_points" title="Link to this definition">#</a></dt>
+<dd><p>Subsample a point set by picking random vertices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.subsampling.pick_n_random_points.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.subsampling.pick_n_random_points.params.points">¶</a> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – The input point set.</p>
+</dd>
+</dl>
+<p>Or</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.subsampling.pick_n_random_points.params.off_file"></span><strong>off_file</strong><a class="paramlink headerlink reference internal" href="#gudhi.subsampling.pick_n_random_points.params.off_file">¶</a> (<em>string</em>) – An OFF file style name.</p>
+</dd>
+</dl>
+<p>And in both cases</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.subsampling.pick_n_random_points.params.nb_points"></span><strong>nb_points</strong><a class="paramlink headerlink reference internal" href="#gudhi.subsampling.pick_n_random_points.params.nb_points">¶</a> (<em>int</em>) – Number of points of the subsample.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The subsample point set.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[List[float]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.subsampling.sparsify_point_set">
+<span class="sig-prename descclassname"><span class="pre">gudhi.subsampling.</span></span><span class="sig-name descname"><span class="pre">sparsify_point_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">off_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_squared_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.subsampling.sparsify_point_set" title="Link to this definition">#</a></dt>
+<dd><p>Outputs a subset of the input points so that the squared distance
+between any two points is greater than min_squared_dist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.subsampling.sparsify_point_set.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.subsampling.sparsify_point_set.params.points">¶</a> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – The input point set.</p>
+</dd>
+</dl>
+<p>Or</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.subsampling.sparsify_point_set.params.off_file"></span><strong>off_file</strong><a class="paramlink headerlink reference internal" href="#gudhi.subsampling.sparsify_point_set.params.off_file">¶</a> (<em>string</em>) – An OFF file style name.</p>
+</dd>
+</dl>
+<p>And in both cases</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.subsampling.sparsify_point_set.params.min_squared_dist"></span><strong>min_squared_dist</strong><a class="paramlink headerlink reference internal" href="#gudhi.subsampling.sparsify_point_set.params.min_squared_dist">¶</a> (<em>float</em>) – Minimum squared distance separating the output     points.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The subsample point set.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[List[float]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="time-delay-embedding">
+<h2>Time Delay Embedding<a class="headerlink" href="#time-delay-embedding" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.point_cloud.timedelay.TimeDelayEmbedding">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.point_cloud.timedelay.</span></span><span class="sig-name descname"><span class="pre">TimeDelayEmbedding</span></span><a class="reference internal" href="_modules/gudhi/point_cloud/timedelay.html#TimeDelayEmbedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding" title="Link to this definition">#</a></dt>
+<dd><p>Point cloud transformation class. Embeds time-series data in the R^d according to
+<a class="reference external" href="https://en.wikipedia.org/wiki/Takens%27s_theorem">Takens’ Embedding Theorem</a> and obtains the
+coordinates of each point.</p>
+<p class="rubric">Example</p>
+<p>Given delay=3 and skip=2, a point cloud which is obtained by embedding
+a scalar time-series into R^3 is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time</span><span class="o">-</span><span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="n">point</span> <span class="n">cloud</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Given delay=1 and skip=1, a point cloud which is obtained by embedding
+a 2D vector time-series data into R^4 is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time</span><span class="o">-</span><span class="n">series</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
+<span class="n">point</span> <span class="n">cloud</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+               <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.timedelay.TimeDelayEmbedding.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/timedelay.html#TimeDelayEmbedding.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding.__call__" title="Link to this definition">#</a></dt>
+<dd><p>Transform method for single time-series data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.point_cloud.timedelay.TimeDelayEmbedding.__call__.params.ts"></span><strong>ts</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding.__call__.params.ts">¶</a> (<em>Iterable</em><em>[</em><em>float</em><em>] or </em><em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A single time-series data, with scalar or vector values.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>point cloud</strong> – Makes point cloud from a single time-series data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>n x dim numpy arrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.timedelay.TimeDelayEmbedding.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/timedelay.html#TimeDelayEmbedding.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Constructor for the TimeDelayEmbedding class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.point_cloud.timedelay.TimeDelayEmbedding.params.dim"></span><strong>dim</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding.params.dim">¶</a> (<em>int</em>) – <cite>d</cite> of R^d to be embedded. Optional (default=3).</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.timedelay.TimeDelayEmbedding.params.delay"></span><strong>delay</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding.params.delay">¶</a> (<em>int</em>) – Time-Delay embedding. Optional (default=1).</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.timedelay.TimeDelayEmbedding.params.skip"></span><strong>skip</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding.params.skip">¶</a> (<em>int</em>) – How often to skip embedded points. Optional (default=1).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.timedelay.TimeDelayEmbedding.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/timedelay.html#TimeDelayEmbedding.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding.transform" title="Link to this definition">#</a></dt>
+<dd><p>Transform method for multiple time-series data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.point_cloud.timedelay.TimeDelayEmbedding.transform.params.ts"></span><strong>ts</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding.transform.params.ts">¶</a> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>] or </em><em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em><em>]</em>) – Multiple time-series data, with scalar or vector values.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>point clouds</strong> – Makes point cloud from each time-series data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of n x dim numpy arrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-gudhi.point_cloud.knn">
+<span id="k-nearest-neighbors"></span><h2>K nearest neighbors<a class="headerlink" href="#module-gudhi.point_cloud.knn" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.point_cloud.knn.KNearestNeighbors">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.point_cloud.knn.</span></span><span class="sig-name descname"><span class="pre">KNearestNeighbors</span></span><a class="reference internal" href="_modules/gudhi/point_cloud/knn.html#KNearestNeighbors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.knn.KNearestNeighbors" title="Link to this definition">#</a></dt>
+<dd><p>Class wrapping several implementations for computing the k nearest neighbors in a point set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Requires<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="installation.html#pykeops">PyKeOps</a>, <a class="reference external" href="installation.html#scipy">SciPy</a>,
+<a class="reference external" href="installation.html#scikit-learn">Scikit-learn</a>, and/or <a class="reference external" href="installation.html#hnswlib">Hnswlib</a>
+in function of the selected <cite>implementation</cite>.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.knn.KNearestNeighbors.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'euclidean'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/knn.html#KNearestNeighbors.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.knn.KNearestNeighbors.__init__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.params.k"></span><strong>k</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.params.k">¶</a> (<em>int</em>) – number of neighbors (possibly including the point itself).</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.params.return_index"></span><strong>return_index</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.params.return_index">¶</a> (<em>bool</em>) – if True, return the index of each neighbor.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.params.return_distance"></span><strong>return_distance</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.params.return_distance">¶</a> (<em>bool</em>) – if True, return the distance to each neighbor.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.params.implementation"></span><strong>implementation</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.params.implementation">¶</a> (<em>str</em>) – <p>choice of the library that does the real work.</p>
+<ul>
+<li><p>’keops’ for a brute-force, CUDA implementation through pykeops. Useful when the dimension becomes
+large (10+) but the number of points remains low (less than a million). Only “minkowski” and its
+aliases are supported.</p></li>
+<li><p>’ckdtree’ for scipy’s cKDTree. Only “minkowski” and its aliases are supported.</p></li>
+<li><p>’sklearn’ for scikit-learn’s NearestNeighbors. Note that this provides in particular an option
+algorithm=”brute”.</p></li>
+<li><p>’hnsw’ for hnswlib.Index. It can be very fast but does not provide guarantees. Only supports
+“euclidean” for now.</p></li>
+<li><p>None will try to select a sensible one (scipy if possible, scikit-learn otherwise).</p></li>
+</ul>
+</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.params.metric"></span><strong>metric</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.params.metric">¶</a> (<em>str</em>) – see <cite>sklearn.neighbors.NearestNeighbors</cite>.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.params.eps"></span><strong>eps</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.params.eps">¶</a> (<em>float</em>) – relative error when computing nearest neighbors with the cKDTree.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.params.p"></span><strong>p</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.params.p">¶</a> (<em>float</em>) – norm L^p on input points (including numpy.inf) if metric is “minkowski”. Defaults to 2.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.params.n_jobs"></span><strong>n_jobs</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.params.n_jobs">¶</a> (<em>int</em>) – number of jobs to schedule for parallel processing of nearest neighbors on the CPU.
+If -1 is given all processors are used. Default: 1.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.params.sort_results"></span><strong>sort_results</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.params.sort_results">¶</a> (<em>bool</em>) – if True, then distances and indices of each point are
+sorted on return, so that the first column contains the closest points.
+Otherwise, neighbors are returned in an arbitrary order. Defaults to True.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.params.enable_autodiff"></span><strong>enable_autodiff</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.params.enable_autodiff">¶</a> (<em>bool</em>) – if the input is a torch.tensor or tensorflow.Tensor, this
+instructs the function to compute distances in a way that works with automatic differentiation.
+This is experimental, not supported for all metrics, and requires the package EagerPy.
+Defaults to False.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.params.kwargs"></span><strong>kwargs</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.params.kwargs">¶</a> – additional parameters are forwarded to the backends.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.knn.KNearestNeighbors.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/knn.html#KNearestNeighbors.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.knn.KNearestNeighbors.fit" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.fit.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.fit.params.X">¶</a> (<em>numpy.array</em>) – coordinates for reference points.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.knn.KNearestNeighbors.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/knn.html#KNearestNeighbors.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.knn.KNearestNeighbors.fit_transform" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.knn.KNearestNeighbors.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/knn.html#KNearestNeighbors.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.knn.KNearestNeighbors.transform" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.point_cloud.knn.KNearestNeighbors.transform.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.transform.params.X">¶</a> (<em>numpy.array</em>) – coordinates for query points, or distance matrix if metric is “precomputed”.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>if return_index, an array of shape (len(X), k) with the indices (in the argument
+of <a class="reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors.fit" title="gudhi.point_cloud.knn.KNearestNeighbors.fit"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit()</span></code></a>) of the k nearest neighbors to the points of X. If return_distance, an array of the
+same shape with the distances to those neighbors. If both, a tuple with the two arrays, in this order.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-gudhi.point_cloud.dtm">
+<span id="distance-to-measure"></span><h2>Distance to measure<a class="headerlink" href="#module-gudhi.point_cloud.dtm" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.point_cloud.dtm.DTMDensity">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.point_cloud.dtm.</span></span><span class="sig-name descname"><span class="pre">DTMDensity</span></span><a class="reference internal" href="_modules/gudhi/point_cloud/dtm.html#DTMDensity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.dtm.DTMDensity" title="Link to this definition">#</a></dt>
+<dd><p>Density estimator based on the distance to the empirical measure defined by a point set, as defined
+in <span class="bibtex-citation" id="id2">[]</span>. Note that this implementation only renormalizes when asked, and the renormalization
+only works for a Euclidean metric, so in other cases the total measure may not be 1.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the dimension is high, using it as an exponent can quickly lead to under- or overflows.
+We recommend using a small fixed value instead (for both dim and q) in those cases, even if it won’t
+have the same nice theoretical properties as the dimension.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.dtm.DTMDensity.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/dtm.html#DTMDensity.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.dtm.DTMDensity.__init__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.point_cloud.dtm.DTMDensity.params.k"></span><strong>k</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DTMDensity.params.k">¶</a> (<em>int</em>) – number of neighbors (possibly including the point itself). Optional if it can be guessed
+from weights or metric=”neighbors”.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.dtm.DTMDensity.params.weights"></span><strong>weights</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DTMDensity.params.weights">¶</a> (<em>numpy.array</em>) – weights of each of the k neighbors, optional. They are supposed to sum to 1.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.dtm.DTMDensity.params.q"></span><strong>q</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DTMDensity.params.q">¶</a> (<em>float</em>) – order used to compute the distance to measure. Defaults to dim.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.dtm.DTMDensity.params.dim"></span><strong>dim</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DTMDensity.params.dim">¶</a> (<em>float</em>) – final exponent representing the dimension. Defaults to the dimension, and must be specified
+when the dimension cannot be read from the input (metric is “neighbors” or “precomputed”).</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.dtm.DTMDensity.params.normalize"></span><strong>normalize</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DTMDensity.params.normalize">¶</a> (<em>bool</em>) – normalize the density so it corresponds to a probability measure on ℝᵈ.
+Only available for the Euclidean metric, defaults to False.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.dtm.DTMDensity.params.n_samples"></span><strong>n_samples</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DTMDensity.params.n_samples">¶</a> (<em>int</em>) – number of sample points used for fitting. Only needed if <cite>normalize</cite> is True and
+metric is “neighbors”.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.dtm.DTMDensity.params.kwargs"></span><strong>kwargs</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DTMDensity.params.kwargs">¶</a> – same parameters as <a class="reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors" title="gudhi.point_cloud.knn.KNearestNeighbors"><code class="xref py py-class docutils literal notranslate"><span class="pre">KNearestNeighbors</span></code></a>, except that
+metric=”neighbors” means that <a class="reference internal" href="#gudhi.point_cloud.dtm.DTMDensity.transform" title="gudhi.point_cloud.dtm.DTMDensity.transform"><code class="xref py py-func docutils literal notranslate"><span class="pre">transform()</span></code></a> expects an array with the distances to
+the k nearest neighbors.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.dtm.DTMDensity.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/dtm.html#DTMDensity.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.dtm.DTMDensity.fit" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.point_cloud.dtm.DTMDensity.fit.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DTMDensity.fit.params.X">¶</a> (<em>numpy.array</em>) – coordinates for mass points.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.dtm.DTMDensity.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/dtm.html#DTMDensity.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.dtm.DTMDensity.fit_transform" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.dtm.DTMDensity.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/dtm.html#DTMDensity.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.dtm.DTMDensity.transform" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.point_cloud.dtm.DTMDensity.transform.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DTMDensity.transform.params.X">¶</a> (<em>numpy.array</em>) – coordinates for query points, or distance matrix if metric is “precomputed”,
+or distances to the k nearest neighbors if metric is “neighbors” (if the array has more
+than k columns, the remaining ones are ignored).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.point_cloud.dtm.DistanceToMeasure">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.point_cloud.dtm.</span></span><span class="sig-name descname"><span class="pre">DistanceToMeasure</span></span><a class="reference internal" href="_modules/gudhi/point_cloud/dtm.html#DistanceToMeasure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.dtm.DistanceToMeasure" title="Link to this definition">#</a></dt>
+<dd><p>Class to compute the distance to the empirical measure defined by a point set,
+as introduced in <span class="bibtex-citation" id="id3">[]</span>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.dtm.DistanceToMeasure.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/dtm.html#DistanceToMeasure.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.dtm.DistanceToMeasure.__init__" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.point_cloud.dtm.DistanceToMeasure.params.k"></span><strong>k</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DistanceToMeasure.params.k">¶</a> (<em>int</em>) – number of neighbors (possibly including the point itself).</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.dtm.DistanceToMeasure.params.q"></span><strong>q</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DistanceToMeasure.params.q">¶</a> (<em>float</em>) – order used to compute the distance to measure. Defaults to 2.</p></li>
+<li><p><span class="target" id="gudhi.point_cloud.dtm.DistanceToMeasure.params.kwargs"></span><strong>kwargs</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DistanceToMeasure.params.kwargs">¶</a> – same parameters as <a class="reference internal" href="#gudhi.point_cloud.knn.KNearestNeighbors" title="gudhi.point_cloud.knn.KNearestNeighbors"><code class="xref py py-class docutils literal notranslate"><span class="pre">KNearestNeighbors</span></code></a>, except that
+metric=”neighbors” means that <a class="reference internal" href="#gudhi.point_cloud.dtm.DistanceToMeasure.transform" title="gudhi.point_cloud.dtm.DistanceToMeasure.transform"><code class="xref py py-func docutils literal notranslate"><span class="pre">transform()</span></code></a> expects an array with the distances
+to the k nearest neighbors.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.dtm.DistanceToMeasure.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/dtm.html#DistanceToMeasure.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.dtm.DistanceToMeasure.fit" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.point_cloud.dtm.DistanceToMeasure.fit.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DistanceToMeasure.fit.params.X">¶</a> (<em>numpy.array</em>) – coordinates for mass points.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.dtm.DistanceToMeasure.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/dtm.html#DistanceToMeasure.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.dtm.DistanceToMeasure.fit_transform" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.point_cloud.dtm.DistanceToMeasure.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/point_cloud/dtm.html#DistanceToMeasure.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.point_cloud.dtm.DistanceToMeasure.transform" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.point_cloud.dtm.DistanceToMeasure.transform.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.point_cloud.dtm.DistanceToMeasure.transform.params.X">¶</a> (<em>numpy.array</em>) – coordinates for query points, or distance matrix if metric is “precomputed”,
+or distances to the k nearest neighbors if metric is “neighbors” (if the array has more
+than k columns, the remaining ones are ignored).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a 1-d array with, for each point of X, its distance to the measure defined
+by the argument of <a class="reference internal" href="#gudhi.point_cloud.dtm.DistanceToMeasure.fit" title="gudhi.point_cloud.dtm.DistanceToMeasure.fit"><code class="xref py py-func docutils literal notranslate"><span class="pre">fit()</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-readers">File Readers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.read_points_from_off_file"><code class="docutils literal notranslate"><span class="pre">read_points_from_off_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.read_lower_triangular_matrix_from_csv_file"><code class="docutils literal notranslate"><span class="pre">read_lower_triangular_matrix_from_csv_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-writers">File Writers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.write_points_to_off_file"><code class="docutils literal notranslate"><span class="pre">write_points_to_off_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gudhi.subsampling">Subsampling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.subsampling.choose_n_farthest_points"><code class="docutils literal notranslate"><span class="pre">choose_n_farthest_points()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.subsampling.pick_n_random_points"><code class="docutils literal notranslate"><span class="pre">pick_n_random_points()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.subsampling.sparsify_point_set"><code class="docutils literal notranslate"><span class="pre">sparsify_point_set()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-delay-embedding">Time Delay Embedding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding"><code class="docutils literal notranslate"><span class="pre">TimeDelayEmbedding</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding.__call__"><code class="docutils literal notranslate"><span class="pre">TimeDelayEmbedding.__call__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding.__init__"><code class="docutils literal notranslate"><span class="pre">TimeDelayEmbedding.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.timedelay.TimeDelayEmbedding.transform"><code class="docutils literal notranslate"><span class="pre">TimeDelayEmbedding.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gudhi.point_cloud.knn">K nearest neighbors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.knn.KNearestNeighbors"><code class="docutils literal notranslate"><span class="pre">KNearestNeighbors</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.knn.KNearestNeighbors.__init__"><code class="docutils literal notranslate"><span class="pre">KNearestNeighbors.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.knn.KNearestNeighbors.fit"><code class="docutils literal notranslate"><span class="pre">KNearestNeighbors.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.knn.KNearestNeighbors.fit_transform"><code class="docutils literal notranslate"><span class="pre">KNearestNeighbors.fit_transform()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.knn.KNearestNeighbors.transform"><code class="docutils literal notranslate"><span class="pre">KNearestNeighbors.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-gudhi.point_cloud.dtm">Distance to measure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.dtm.DTMDensity"><code class="docutils literal notranslate"><span class="pre">DTMDensity</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.dtm.DTMDensity.__init__"><code class="docutils literal notranslate"><span class="pre">DTMDensity.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.dtm.DTMDensity.fit"><code class="docutils literal notranslate"><span class="pre">DTMDensity.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.dtm.DTMDensity.fit_transform"><code class="docutils literal notranslate"><span class="pre">DTMDensity.fit_transform()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.dtm.DTMDensity.transform"><code class="docutils literal notranslate"><span class="pre">DTMDensity.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.dtm.DistanceToMeasure"><code class="docutils literal notranslate"><span class="pre">DistanceToMeasure</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.dtm.DistanceToMeasure.__init__"><code class="docutils literal notranslate"><span class="pre">DistanceToMeasure.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.dtm.DistanceToMeasure.fit"><code class="docutils literal notranslate"><span class="pre">DistanceToMeasure.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.dtm.DistanceToMeasure.fit_transform"><code class="docutils literal notranslate"><span class="pre">DistanceToMeasure.fit_transform()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.point_cloud.dtm.DistanceToMeasure.transform"><code class="docutils literal notranslate"><span class="pre">DistanceToMeasure.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1072 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Rips complex user manual &#8212; gudhi v3.11.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
+    <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'rips_complex_user';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.11.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Rips complex user manual</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="rips-complex-user-manual">
+<h1>Rips complex user manual<a class="headerlink" href="#rips-complex-user-manual" title="Link to this heading">#</a></h1>
+<section id="definition">
+<h2>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 40.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-center align-default">
+<img alt="../../doc/Rips_complex/rips_complex_representation.png" src="../../doc/Rips_complex/rips_complex_representation.png" />
+</figure>
+</td>
+<td><p>The Vietoris-Rips complex is a simplicial complex built as the
+clique-complex of a proximity graph.</p>
+<p>We also provide sparse approximations, to speed-up the computation
+of persistent homology, and weighted versions, which are more robust
+to outliers.</p>
+</td>
+<td><dl class="field-list simple">
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Clément Maria, Pawel Dlotko, Vincent Rouvreau, Marc Glisse, Yuichi Ike</p>
+</dd>
+<dt class="field-even">Since<span class="colon">:</span></dt>
+<dd class="field-even"><p>GUDHI 2.0.0</p>
+</dd>
+<dt class="field-odd">License<span class="colon">:</span></dt>
+<dd class="field-odd"><p>MIT</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li><p><a class="reference internal" href="#"><span class="doc">Rips complex user manual</span></a></p></li>
+</ul>
+</td>
+<td colspan="2"><ul class="simple">
+<li><p><a class="reference internal" href="rips_complex_ref.html"><span class="doc">Rips complex reference manual</span></a></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference external image-reference" href="installation.html#tensorflow"><img alt="_images/tensorflow.png" height="30" src="_images/tensorflow.png" />
+</a>
+</td>
+<td colspan="2"><ul class="simple">
+<li><p><a class="reference internal" href="rips_complex_tflow_itf_ref.html"><span class="doc">TensorFlow layer for Vietoris-Rips persistence</span></a></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference external image-reference" href="installation.html#scikit-learn"><img alt="_images/sklearn.png" height="30" src="_images/sklearn.png" />
+</a>
+</td>
+<td colspan="2"><ul class="simple">
+<li><p><a class="reference internal" href="rips_complex_sklearn_itf_ref.html"><span class="doc">Rips complex persistence scikit-learn like interface</span></a></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Vietoris%E2%80%93Rips_complex">Rips complex</a> is a simplicial complex that
+generalizes proximity (<span class="math notranslate nohighlight">\(\varepsilon\)</span>-ball) graphs to higher dimensions. The vertices correspond to the input
+points, and a simplex is present if and only if its diameter is smaller than some parameter α.  Considering all
+parameters α defines a filtered simplicial complex, where the filtration value of a simplex is its diameter.
+The filtration can be restricted to values α smaller than some threshold, to reduce its size.  Beware that some
+people define the Rips complex using a bound of 2α instead of α, particularly when comparing it to an ambient
+Čech complex.  They end up with the same combinatorial object, but filtration values which are half of ours.</p>
+<p>The input discrete metric space can be provided as a point cloud plus a distance function, or as a distance matrix.</p>
+<p>When creating a simplicial complex from the graph, <a class="reference internal" href="rips_complex_ref.html"><span class="doc">RipsComplex</span></a> first builds the graph and
+inserts it into the data structure. It then expands the simplicial complex (adds the simplices corresponding to cliques)
+when required. The expansion can be stopped at dimension <cite>max_dimension</cite>, by default 1.</p>
+<p>A vertex name corresponds to the index of the point in the given range (aka. the point cloud).</p>
+<figure class="align-center" id="id7">
+<img alt="../../doc/Rips_complex/rips_complex_representation.png" src="../../doc/Rips_complex/rips_complex_representation.png" />
+<figcaption>
+<p><span class="caption-text">Rips-complex one skeleton graph representation</span><a class="headerlink" href="#id7" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>On this example, as edges (4,5), (4,6) and (5,6) are in the complex, simplex (4,5,6) is added with the filtration value
+set with <span class="math notranslate nohighlight">\(max(filtration(4,5), filtration(4,6), filtration(5,6))\)</span>. And so on for simplex (0,1,2,3).</p>
+<p>A Rips complex can easily become huge, even if we limit the length of the edges
+and the dimension of the simplices. One easy trick, before building a Rips
+complex on a point cloud, is to call <code class="xref py py-func docutils literal notranslate"><span class="pre">sparsify_point_set()</span></code> which removes points
+that are too close to each other. This does not change its persistence diagram
+by more than the length used to define “too close”.</p>
+<p>A more general technique is to use a sparse approximation of the Rips
+introduced by Don Sheehy <span class="bibtex-citation" id="id1">[]</span>. We are using the version
+described in <span class="bibtex-citation" id="id2">[]</span> (except that we multiply all filtration
+values by 2, to match the usual Rips complex). <span class="bibtex-citation" id="id3">[]</span> proves
+a <span class="math notranslate nohighlight">\(\frac{1}{1-\varepsilon}\)</span>-interleaving, although in practice the
+error is usually smaller.  A more intuitive presentation of the idea is
+available in <span class="bibtex-citation" id="id4">[]</span>, and in a video
+<span class="bibtex-citation" id="id5">[]</span>. Passing an extra argument <cite>sparse=0.3</cite> at the
+construction of a <a class="reference internal" href="rips_complex_ref.html#gudhi.RipsComplex" title="gudhi.RipsComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">RipsComplex</span></code></a> object asks it to build a sparse Rips with
+parameter <span class="math notranslate nohighlight">\(\varepsilon=0.3\)</span>, while the default <cite>sparse=None</cite> builds the
+regular Rips complex.</p>
+<p>Another option which is especially useful if you want to compute persistent homology in “high” dimension (2 or more,
+sometimes even 1), is to build the Rips complex only up to dimension 1 (a graph), then use
+<a class="reference internal" href="simplex_tree_ref.html#gudhi.SimplexTree.collapse_edges" title="gudhi.SimplexTree.collapse_edges"><code class="xref py py-func docutils literal notranslate"><span class="pre">collapse_edges()</span></code></a> to reduce the size of this graph, and finally call
+<a class="reference internal" href="simplex_tree_ref.html#gudhi.SimplexTree.expansion" title="gudhi.SimplexTree.expansion"><code class="xref py py-func docutils literal notranslate"><span class="pre">expansion()</span></code></a> to get a simplicial complex of a suitable dimension to compute its homology. This
+trick gives the same persistence diagram as one would get with a plain use of <cite>RipsComplex</cite>, with a complex that is
+often significantly smaller and thus faster to process.</p>
+<p>Finally, if you are only interested in the persistence diagram of a Rips complex, you should consider using
+<code class="xref py py-class docutils literal notranslate"><span class="pre">RipsPersistence</span></code> instead, which directly returns the diagram and can be faster
+than explicitly building the complex before computing its persistence.</p>
+</section>
+<section id="point-cloud">
+<h2>Point cloud<a class="headerlink" href="#point-cloud" title="Link to this heading">#</a></h2>
+<section id="example-from-a-point-cloud">
+<h3>Example from a point cloud<a class="headerlink" href="#example-from-a-point-cloud" title="Link to this heading">#</a></h3>
+<p>This example builds the neighborhood graph from the given points, up to max_edge_length.
+Then it creates a <a class="reference internal" href="simplex_tree_ref.html"><span class="doc">SimplexTree</span></a> with it.</p>
+<p>Finally, it is asked to display information about the simplicial complex.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span>
+<span class="n">rips_complex</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">RipsComplex</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">17</span><span class="p">]],</span>
+                                 <span class="n">max_edge_length</span><span class="o">=</span><span class="mf">12.0</span><span class="p">)</span>
+
+<span class="n">simplex_tree</span> <span class="o">=</span> <span class="n">rips_complex</span><span class="o">.</span><span class="n">create_simplex_tree</span><span class="p">(</span><span class="n">max_dimension</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">result_str</span> <span class="o">=</span> <span class="s1">'Rips complex is of dimension '</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">dimension</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' - '</span> <span class="o">+</span> \
+    <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">num_simplices</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' simplices - '</span> <span class="o">+</span> \
+    <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">num_vertices</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' vertices.'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_str</span><span class="p">)</span>
+<span class="n">fmt</span> <span class="o">=</span> <span class="s1">'</span><span class="si">%s</span><span class="s1"> -&gt; </span><span class="si">%.2f</span><span class="s1">'</span>
+<span class="k">for</span> <span class="n">filtered_value</span> <span class="ow">in</span> <span class="n">simplex_tree</span><span class="o">.</span><span class="n">get_filtration</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">filtered_value</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>When launching (Rips maximal distance between 2 points is 12.0, is expanded
+until dimension 1 - one skeleton graph in other words), the output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Rips complex is of dimension 1 - 18 simplices - 7 vertices.
+[0] -&gt; 0.00
+[1] -&gt; 0.00
+[2] -&gt; 0.00
+[3] -&gt; 0.00
+[4] -&gt; 0.00
+[5] -&gt; 0.00
+[6] -&gt; 0.00
+[2, 3] -&gt; 5.00
+[4, 5] -&gt; 5.39
+[0, 2] -&gt; 5.83
+[0, 1] -&gt; 6.08
+[1, 3] -&gt; 6.32
+[1, 2] -&gt; 6.71
+[5, 6] -&gt; 7.28
+[2, 4] -&gt; 8.94
+[0, 3] -&gt; 9.43
+[4, 6] -&gt; 9.49
+[3, 6] -&gt; 11.00
+</pre></div>
+</div>
+<p>Notice that if we use</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rips_complex</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">RipsComplex</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">17</span><span class="p">]],</span>
+                                 <span class="n">max_edge_length</span><span class="o">=</span><span class="mf">12.0</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>asking for a very sparse version (theory only gives some guarantee on the meaning of the output if <cite>sparse&lt;1</cite>),
+2 to 5 edges disappear, depending on the random vertex used to start the sparsification.</p>
+</section>
+<section id="example-step-by-step">
+<h3>Example step by step<a class="headerlink" href="#example-step-by-step" title="Link to this heading">#</a></h3>
+<p>While <a class="reference internal" href="rips_complex_ref.html"><span class="doc">RipsComplex</span></a> is convenient, for instance to build a simplicial complex in one line</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span>
+<span class="n">points</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">17</span><span class="p">]]</span>
+<span class="n">cplx</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">RipsComplex</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">points</span><span class="p">,</span> <span class="n">max_edge_length</span><span class="o">=</span><span class="mf">12.0</span><span class="p">)</span><span class="o">.</span><span class="n">create_simplex_tree</span><span class="p">(</span><span class="n">max_dimension</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>you can achieve the same result without this class for more flexibility</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">cdist</span>
+<span class="n">points</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">17</span><span class="p">]]</span>
+<span class="n">distance_matrix</span> <span class="o">=</span> <span class="n">cdist</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">points</span><span class="p">)</span>
+<span class="n">cplx</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">SimplexTree</span><span class="o">.</span><span class="n">create_from_array</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">max_filtration</span><span class="o">=</span><span class="mf">12.0</span><span class="p">)</span>
+<span class="n">cplx</span><span class="o">.</span><span class="n">expansion</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">cKDTree</span>
+<span class="n">points</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">17</span><span class="p">]]</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="n">cKDTree</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">sparse_distance_matrix</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">max_distance</span><span class="o">=</span><span class="mf">12.0</span><span class="p">,</span> <span class="n">output_type</span><span class="o">=</span><span class="s2">"coo_matrix"</span><span class="p">)</span>
+<span class="n">cplx</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">SimplexTree</span><span class="p">()</span>
+<span class="n">cplx</span><span class="o">.</span><span class="n">insert_edges_from_coo_matrix</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+<span class="n">cplx</span><span class="o">.</span><span class="n">expansion</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This way, you can easily add a call to <a class="reference internal" href="edge_collapse.html#gudhi.flag_filtration.edge_collapse.reduce_graph" title="gudhi.flag_filtration.edge_collapse.reduce_graph"><code class="xref py py-func docutils literal notranslate"><span class="pre">reduce_graph()</span></code></a> before the insertion,
+use a different metric to compute the matrix, or other variations.</p>
+</section>
+</section>
+<section id="distance-matrix">
+<h2>Distance matrix<a class="headerlink" href="#distance-matrix" title="Link to this heading">#</a></h2>
+<section id="example-from-a-distance-matrix">
+<h3>Example from a distance matrix<a class="headerlink" href="#example-from-a-distance-matrix" title="Link to this heading">#</a></h3>
+<p>This example builds the one skeleton graph from the given distance matrix, and max_edge_length value.
+Then it creates a <a class="reference internal" href="simplex_tree_ref.html"><span class="doc">SimplexTree</span></a> with it.</p>
+<p>Finally, it is asked to display information about the simplicial complex.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span>
+<span class="n">rips_complex</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">RipsComplex</span><span class="p">(</span><span class="n">distance_matrix</span><span class="o">=</span><span class="p">[[],</span>
+                                                  <span class="p">[</span><span class="mf">6.0827625303</span><span class="p">],</span>
+                                                  <span class="p">[</span><span class="mf">5.8309518948</span><span class="p">,</span> <span class="mf">6.7082039325</span><span class="p">],</span>
+                                                  <span class="p">[</span><span class="mf">9.4339811321</span><span class="p">,</span> <span class="mf">6.3245553203</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+                                                  <span class="p">[</span><span class="mf">13.0384048104</span><span class="p">,</span> <span class="mf">15.6524758425</span><span class="p">,</span> <span class="mf">8.94427191</span><span class="p">,</span> <span class="mf">12.0415945788</span><span class="p">],</span>
+                                                  <span class="p">[</span><span class="mf">18.0277563773</span><span class="p">,</span> <span class="mf">19.6468827044</span><span class="p">,</span> <span class="mf">13.152946438</span><span class="p">,</span> <span class="mf">14.7648230602</span><span class="p">,</span> <span class="mf">5.3851648071</span><span class="p">],</span>
+                                                  <span class="p">[</span><span class="mf">17.88854382</span><span class="p">,</span> <span class="mf">17.1172427686</span><span class="p">,</span> <span class="mf">12.0830459736</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mf">9.4868329805</span><span class="p">,</span> <span class="mf">7.2801098893</span><span class="p">]],</span>
+                                 <span class="n">max_edge_length</span><span class="o">=</span><span class="mf">12.0</span><span class="p">)</span>
+
+<span class="n">simplex_tree</span> <span class="o">=</span> <span class="n">rips_complex</span><span class="o">.</span><span class="n">create_simplex_tree</span><span class="p">(</span><span class="n">max_dimension</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">result_str</span> <span class="o">=</span> <span class="s1">'Rips complex is of dimension '</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">dimension</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' - '</span> <span class="o">+</span> \
+    <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">num_simplices</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' simplices - '</span> <span class="o">+</span> \
+    <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">num_vertices</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' vertices.'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_str</span><span class="p">)</span>
+<span class="n">fmt</span> <span class="o">=</span> <span class="s1">'</span><span class="si">%s</span><span class="s1"> -&gt; </span><span class="si">%.2f</span><span class="s1">'</span>
+<span class="k">for</span> <span class="n">filtered_value</span> <span class="ow">in</span> <span class="n">simplex_tree</span><span class="o">.</span><span class="n">get_filtration</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">filtered_value</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>When launching (Rips maximal distance between 2 points is 12.0, is expanded
+until dimension 1 - one skeleton graph in other words), the output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Rips complex is of dimension 1 - 18 simplices - 7 vertices.
+[0] -&gt; 0.00
+[1] -&gt; 0.00
+[2] -&gt; 0.00
+[3] -&gt; 0.00
+[4] -&gt; 0.00
+[5] -&gt; 0.00
+[6] -&gt; 0.00
+[2, 3] -&gt; 5.00
+[4, 5] -&gt; 5.39
+[0, 2] -&gt; 5.83
+[0, 1] -&gt; 6.08
+[1, 3] -&gt; 6.32
+[1, 2] -&gt; 6.71
+[5, 6] -&gt; 7.28
+[2, 4] -&gt; 8.94
+[0, 3] -&gt; 9.43
+[4, 6] -&gt; 9.49
+[3, 6] -&gt; 11.00
+</pre></div>
+</div>
+<p>In case this lower triangular matrix is stored in a CSV file, like <cite>data/distance_matrix/full_square_distance_matrix.csv</cite> in the Gudhi distribution, you can read it with <a class="reference internal" href="point_cloud.html#gudhi.read_lower_triangular_matrix_from_csv_file" title="gudhi.read_lower_triangular_matrix_from_csv_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_lower_triangular_matrix_from_csv_file()</span></code></a>.</p>
+</section>
+</section>
+<section id="correlation-matrix">
+<h2>Correlation matrix<a class="headerlink" href="#correlation-matrix" title="Link to this heading">#</a></h2>
+<section id="example-from-a-correlation-matrix">
+<h3>Example from  a correlation matrix<a class="headerlink" href="#example-from-a-correlation-matrix" title="Link to this heading">#</a></h3>
+<p>Analogously to the case of distance matrix, Rips complexes can be also constructed based on correlation matrix.
+Given a correlation matrix M, comportment-wise 1-M is a distance matrix.
+This example builds the one skeleton graph from the given corelation matrix and threshold value.
+Then it creates a <a class="reference internal" href="simplex_tree_ref.html"><span class="doc">SimplexTree</span></a> with it.</p>
+<p>Finally, it is asked to display information about the simplicial complex.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># User defined correlation matrix is:</span>
+<span class="c1"># |1     0.06    0.23    0.01    0.89|</span>
+<span class="c1"># |0.06  1       0.74    0.01    0.61|</span>
+<span class="c1"># |0.23  0.74    1       0.72    0.03|</span>
+<span class="c1"># |0.01  0.01    0.72    1       0.7 |</span>
+<span class="c1"># |0.89  0.61    0.03    0.7     1   |</span>
+<span class="n">correlation_matrix</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.06</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.89</span><span class="p">],</span>
+                            <span class="p">[</span><span class="mf">0.06</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.61</span><span class="p">],</span>
+                            <span class="p">[</span><span class="mf">0.23</span><span class="p">,</span> <span class="mf">0.74</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">],</span>
+                            <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.72</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span>
+                            <span class="p">[</span><span class="mf">0.89</span><span class="p">,</span> <span class="mf">0.61</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]],</span> <span class="nb">float</span><span class="p">)</span>
+
+<span class="n">distance_matrix</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">correlation_matrix</span>
+<span class="n">rips_complex</span> <span class="o">=</span> <span class="n">gudhi</span><span class="o">.</span><span class="n">RipsComplex</span><span class="p">(</span><span class="n">distance_matrix</span><span class="o">=</span><span class="n">distance_matrix</span><span class="p">,</span> <span class="n">max_edge_length</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">simplex_tree</span> <span class="o">=</span> <span class="n">rips_complex</span><span class="o">.</span><span class="n">create_simplex_tree</span><span class="p">(</span><span class="n">max_dimension</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">result_str</span> <span class="o">=</span> <span class="s1">'Rips complex is of dimension '</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">dimension</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' - '</span> <span class="o">+</span> \
+    <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">num_simplices</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' simplices - '</span> <span class="o">+</span> \
+    <span class="nb">repr</span><span class="p">(</span><span class="n">simplex_tree</span><span class="o">.</span><span class="n">num_vertices</span><span class="p">())</span> <span class="o">+</span> <span class="s1">' vertices.'</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_str</span><span class="p">)</span>
+<span class="n">fmt</span> <span class="o">=</span> <span class="s1">'</span><span class="si">%s</span><span class="s1"> -&gt; </span><span class="si">%.2f</span><span class="s1">'</span>
+<span class="k">for</span> <span class="n">filtered_value</span> <span class="ow">in</span> <span class="n">simplex_tree</span><span class="o">.</span><span class="n">get_filtration</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">filtered_value</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>When launching (Rips maximal distance between 2 points is 12.0, is expanded
+until dimension 1 - one skeleton graph in other words), the output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Rips complex is of dimension 1 - 15 simplices - 5 vertices.
+[0] -&gt; 0.00
+[1] -&gt; 0.00
+[2] -&gt; 0.00
+[3] -&gt; 0.00
+[4] -&gt; 0.00
+[0, 4] -&gt; 0.11
+[1, 2] -&gt; 0.26
+[2, 3] -&gt; 0.28
+[3, 4] -&gt; 0.30
+[1, 4] -&gt; 0.39
+[0, 2] -&gt; 0.77
+[0, 1] -&gt; 0.94
+[2, 4] -&gt; 0.97
+[0, 3] -&gt; 0.99
+[1, 3] -&gt; 0.99
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you compute the persistence diagram and convert distances back to correlation values,
+points in the persistence diagram will be under the diagonal, and
+bottleneck distance and persistence graphical tool will not work properly,
+this is a known issue.</p>
+</div>
+</section>
+</section>
+<section id="weighted-rips-complex">
+<h2>Weighted Rips Complex<a class="headerlink" href="#weighted-rips-complex" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="rips_complex_ref.html#weighted-rips-complex-reference-manual">WeightedRipsComplex</a> builds a simplicial complex from a distance matrix and weights on vertices.</p>
+<section id="example-from-a-distance-matrix-and-weights">
+<h3>Example from a distance matrix and weights<a class="headerlink" href="#example-from-a-distance-matrix-and-weights" title="Link to this heading">#</a></h3>
+<p>The following example computes the weighted Rips filtration associated with a distance matrix and weights on vertices.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.weighted_rips_complex</span><span class="w"> </span><span class="kn">import</span> <span class="n">WeightedRipsComplex</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">w_rips</span> <span class="o">=</span> <span class="n">WeightedRipsComplex</span><span class="p">(</span><span class="n">distance_matrix</span><span class="o">=</span><span class="n">dist</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">w_rips</span><span class="o">.</span><span class="n">create_simplex_tree</span><span class="p">(</span><span class="n">max_dimension</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">get_filtration</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>The output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[([0], 2.0), ([1], 200.0), ([0, 1], 200.0)]
+</pre></div>
+</div>
+</section>
+<section id="example-from-a-point-cloud-combined-with-distancetomeasure">
+<h3>Example from a point cloud combined with DistanceToMeasure<a class="headerlink" href="#example-from-a-point-cloud-combined-with-distancetomeasure" title="Link to this heading">#</a></h3>
+<p>Combining with DistanceToMeasure, one can compute the DTM-filtration of a point set, as in <a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/Tuto-GUDHI-DTM-filtrations.ipynb">this notebook</a>.
+Remark that <a class="reference external" href="rips_complex_user.html#dtm-rips-complex">DTMRipsComplex</a> class provides exactly this function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">cdist</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.point_cloud.dtm</span><span class="w"> </span><span class="kn">import</span> <span class="n">DistanceToMeasure</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.weighted_rips_complex</span><span class="w"> </span><span class="kn">import</span> <span class="n">WeightedRipsComplex</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">cdist</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span><span class="n">pts</span><span class="p">)</span>
+<span class="n">dtm</span> <span class="o">=</span> <span class="n">DistanceToMeasure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"precomputed"</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">dtm</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+<span class="n">w_rips</span> <span class="o">=</span> <span class="n">WeightedRipsComplex</span><span class="p">(</span><span class="n">distance_matrix</span><span class="o">=</span><span class="n">dist</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">r</span><span class="p">)</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">w_rips</span><span class="o">.</span><span class="n">create_simplex_tree</span><span class="p">(</span><span class="n">max_dimension</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">persistence</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>The output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[(0, (3.1622776601683795, inf)), (0, (3.1622776601683795, 5.39834563766817)), (0, (3.1622776601683795, 5.39834563766817))]
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dtm-rips-complex">
+<h2>DTM Rips Complex<a class="headerlink" href="#dtm-rips-complex" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="rips_complex_ref.html#gudhi.dtm_rips_complex.DTMRipsComplex" title="gudhi.dtm_rips_complex.DTMRipsComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DTMRipsComplex</span></code></a> builds a simplicial complex from a point set or a full distance matrix (in the form of ndarray), as described in the above example.
+This class constructs a weighted Rips complex giving larger weights to outliers, which reduces their impact on the persistence diagram. See <a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/Tuto-GUDHI-DTM-filtrations.ipynb">this notebook</a> for some experiments.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.dtm_rips_complex</span><span class="w"> </span><span class="kn">import</span> <span class="n">DTMRipsComplex</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>
+<span class="n">dtm_rips</span> <span class="o">=</span> <span class="n">DTMRipsComplex</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="n">pts</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">st</span> <span class="o">=</span> <span class="n">dtm_rips</span><span class="o">.</span><span class="n">create_simplex_tree</span><span class="p">(</span><span class="n">max_dimension</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">persistence</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>The output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[(0, (3.1622776601683795, inf)), (0, (3.1622776601683795, 5.39834563766817)), (0, (3.1622776601683795, 5.39834563766817))]
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#point-cloud">Point cloud</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-from-a-point-cloud">Example from a point cloud</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-step-by-step">Example step by step</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-matrix">Distance matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-from-a-distance-matrix">Example from a distance matrix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">Correlation matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-from-a-correlation-matrix">Example from  a correlation matrix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weighted-rips-complex">Weighted Rips Complex</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-from-a-distance-matrix-and-weights">Example from a distance matrix and weights</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-from-a-point-cloud-combined-with-distancetomeasure">Example from a point cloud combined with DistanceToMeasure</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtm-rips-complex">DTM Rips Complex</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

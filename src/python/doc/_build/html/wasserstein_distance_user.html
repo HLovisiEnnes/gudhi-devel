@@ -1,0 +1,1021 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Wasserstein distance user manual &#8212; gudhi v3.11.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
+    <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'wasserstein_distance_user';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.11.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Wasserstein distance user manual</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="wasserstein-distance-user-manual">
+<h1>Wasserstein distance user manual<a class="headerlink" href="#wasserstein-distance-user-manual" title="Link to this heading">#</a></h1>
+<section id="definition">
+<h2>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 40.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><figure class="align-center align-default">
+<img alt="../../doc/Bottleneck_distance/perturb_pd.png" src="../../doc/Bottleneck_distance/perturb_pd.png" />
+</figure>
+</td>
+<td><p>The q-Wasserstein distance measures the similarity between two
+persistence diagrams using the sum of all edges lengths (instead of
+the maximum). It allows to define sophisticated objects such as
+barycenters of a family of persistence diagrams.</p></td>
+<td><dl class="field-list simple">
+<dt class="field-odd">Authors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Theo Lacombe, Marc Glisse</p>
+</dd>
+<dt class="field-even">Since<span class="colon">:</span></dt>
+<dd class="field-even"><p>GUDHI 3.1.0</p>
+</dd>
+<dt class="field-odd">License<span class="colon">:</span></dt>
+<dd class="field-odd"><p>MIT (POT version), or BSD-3-Clause (Hera version)</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td colspan="3"><ul class="simple">
+<li><p><a class="reference internal" href="#"><span class="doc">Wasserstein distance user manual</span></a></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The q-Wasserstein distance is defined as the minimal value achieved
+by a perfect matching between the points of the two diagrams (+ all
+diagonal points), where the value of a matching is defined as the
+q-th root of the sum of all edge lengths to the power q. Edge lengths
+are measured in norm p, for <span class="math notranslate nohighlight">\(1 \leq p \leq \infty\)</span>.</p>
+</section>
+<section id="distance-functions">
+<h2>Distance Functions<a class="headerlink" href="#distance-functions" title="Link to this heading">#</a></h2>
+<section id="optimal-transport">
+<h3>Optimal Transport<a class="headerlink" href="#optimal-transport" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><dl class="field-list simple">
+<dt class="field-odd">Requires<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="installation.html#python-optimal-transport">Python Optimal Transport</a> (POT) <span class="math notranslate nohighlight">\(\geq\)</span> 0.5.1 and <a class="reference external" href="installation.html#scipy">SciPy</a></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This first implementation uses the <a class="reference external" href="installation.html#python-optimal-transport">Python Optimal Transport</a>
+library and is based on ideas from “Large Scale Computation of Means and Cluster for Persistence
+Diagrams via Optimal Transport” <span class="bibtex-citation" id="id2">[]</span>.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.wasserstein.wasserstein_distance">
+<span class="sig-prename descclassname"><span class="pre">gudhi.wasserstein.</span></span><span class="sig-name descname"><span class="pre">wasserstein_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_autodiff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_essential_parts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/wasserstein/wasserstein.html#wasserstein_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.wasserstein.wasserstein_distance" title="Link to this definition">#</a></dt>
+<dd><p>Compute the Wasserstein distance between persistence diagram using Python Optimal Transport backend.
+Diagrams can contain points with infinity coordinates (essential parts).
+Points with (-inf,-inf) and (+inf,+inf) coordinates are considered as belonging to the diagonal.
+If the distance between two diagrams is +inf (which happens if the cardinalities of essential
+parts differ) and optimal matching is required, it will be set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.X">¶</a> (<em>n x 2 numpy.array</em>) – The first diagram.</p></li>
+<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.Y"></span><strong>Y</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.Y">¶</a> (<em>m x 2 numpy.array</em>) – The second diagram.</p></li>
+<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.matching"></span><strong>matching</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.matching">¶</a> – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, computes and returns the optimal matching between X and Y, encoded as
+a (n x 2) np.array  […[i,j]…], meaning the i-th point in X is matched to
+the j-th point in Y, with the convention that (-1) represents the diagonal.</p></li>
+<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.order"></span><strong>order</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.order">¶</a> (<em>float</em>) – Wasserstein exponent q (1 &lt;= q &lt; infinity).</p></li>
+<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.internal_p"></span><strong>internal_p</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.internal_p">¶</a> (<em>float</em>) – Ground metric on the (upper-half) plane (i.e. norm L^p in R^2).</p></li>
+<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.enable_autodiff"></span><strong>enable_autodiff</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.enable_autodiff">¶</a> (<em>bool</em>) – <p>If X and Y are <code class="docutils literal notranslate"><span class="pre">torch.tensor</span></code> or <code class="docutils literal notranslate"><span class="pre">tensorflow.Tensor</span></code>, make the computation
+transparent to automatic differentiation. This requires the package EagerPy and is currently incompatible
+with <code class="docutils literal notranslate"><span class="pre">matching=True</span></code> and with <code class="docutils literal notranslate"><span class="pre">keep_essential_parts=True</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This considers the function defined on the coordinates of the off-diagonal finite points of X and Y
+and lets the various frameworks compute its gradient. It never pulls new points from the diagonal.</p>
+</div>
+</p></li>
+<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.keep_essential_parts"></span><strong>keep_essential_parts</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.keep_essential_parts">¶</a> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">False</span></code>, only considers the finite points in the diagrams.
+Otherwise, include essential parts in cost and matching computation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Wasserstein distance of order q (1 &lt;= q &lt; infinity) between persistence diagrams with
+respect to the internal_p-norm as ground metric.
+If matching is set to True, also returns the optimal matching between X and Y.
+If cost is +inf, any matching is optimal and thus it returns <cite>None</cite> instead.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="hera">
+<h3>Hera<a class="headerlink" href="#hera" title="Link to this heading">#</a></h3>
+<p>This other implementation comes from <a class="reference external" href="https://bitbucket.org/grey_narn/hera/src/master/">Hera</a> (BSD-3-Clause) which is
+based on “Geometry Helps to Compare Persistence Diagrams”
+<span class="bibtex-citation" id="id4">[]</span> by Michael Kerber, Dmitriy
+Morozov, and Arnur Nigmetov.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.hera.wasserstein_distance">
+<span class="sig-prename descclassname"><span class="pre">gudhi.hera.</span></span><span class="sig-name descname"><span class="pre">wasserstein_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="headerlink" href="#gudhi.hera.wasserstein_distance" title="Link to this definition">#</a></dt>
+<dd><p>Compute the Wasserstein distance between two diagrams.
+Points at infinity are supported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.hera.wasserstein_distance.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.hera.wasserstein_distance.params.X">¶</a> (<em>n x 2 numpy array</em>) – First diagram</p></li>
+<li><p><span class="target" id="gudhi.hera.wasserstein_distance.params.Y"></span><strong>Y</strong><a class="paramlink headerlink reference internal" href="#gudhi.hera.wasserstein_distance.params.Y">¶</a> (<em>n x 2 numpy array</em>) – Second diagram</p></li>
+<li><p><span class="target" id="gudhi.hera.wasserstein_distance.params.order"></span><strong>order</strong><a class="paramlink headerlink reference internal" href="#gudhi.hera.wasserstein_distance.params.order">¶</a> (<em>float</em>) – Wasserstein exponent W_q</p></li>
+<li><p><span class="target" id="gudhi.hera.wasserstein_distance.params.internal_p"></span><strong>internal_p</strong><a class="paramlink headerlink reference internal" href="#gudhi.hera.wasserstein_distance.params.internal_p">¶</a> (<em>float</em>) – Internal Minkowski norm L^p in R^2</p></li>
+<li><p><span class="target" id="gudhi.hera.wasserstein_distance.params.delta"></span><strong>delta</strong><a class="paramlink headerlink reference internal" href="#gudhi.hera.wasserstein_distance.params.delta">¶</a> (<em>float</em>) – Relative error 1+delta</p></li>
+<li><p><span class="target" id="gudhi.hera.wasserstein_distance.params.matching"></span><strong>matching</strong><a class="paramlink headerlink reference internal" href="#gudhi.hera.wasserstein_distance.params.matching">¶</a> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, computes and returns the optimal matching between X and Y, encoded as a (n x 2) np.array […[i,j]…], meaning the i-th point in X is matched to the j-th point in Y, with the convention that (-1) represents the diagonal. If the distance between two diagrams is +inf (which happens if the cardinalities of essential parts differ) and the matching is requested, it will be set to <code class="docutils literal notranslate"><span class="pre">None</span></code> (any matching is optimal).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Approximate Wasserstein distance W_q(X,Y), and optionally the corresponding matching</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float|Tuple[float,numpy.array|None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="basic-example">
+<h3>Basic example<a class="headerlink" href="#basic-example" title="Link to this heading">#</a></h3>
+<p>This example computes the 1-Wasserstein distance from 2 persistence diagrams with Euclidean ground metric.
+Note that persistence diagrams must be submitted as (n x 2) numpy arrays.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.wasserstein</span><span class="w"> </span><span class="kn">import</span> <span class="n">wasserstein_distance</span> <span class="c1"># Could also be: from gudhi.hera import wasserstein_distance</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">dgm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">],[</span><span class="mf">9.6</span><span class="p">,</span> <span class="mf">14.</span><span class="p">],[</span><span class="mf">34.2</span><span class="p">,</span> <span class="mf">34.974</span><span class="p">]])</span>
+<span class="n">dgm2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.8</span><span class="p">,</span> <span class="mf">4.45</span><span class="p">],[</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">14.1</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Wasserstein distance value = </span><span class="si">{</span><span class="n">wasserstein_distance</span><span class="p">(</span><span class="n">dgm1</span><span class="p">,</span><span class="w"> </span><span class="n">dgm2</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span><span class="w"> </span><span class="n">internal_p</span><span class="o">=</span><span class="mf">2.</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Wasserstein distance value = 1.45
+</pre></div>
+</div>
+<p>We can also have access to the optimal matching by letting <cite>matching=True</cite>.
+It is encoded as a list of indices (i,j), meaning that the i-th point in X
+is mapped to the j-th point in Y.
+An index of -1 represents the diagonal.
+It handles essential parts (points with infinite coordinates). However if the cardinalities of the essential parts differ,
+any matching has a cost +inf and thus can be considered to be optimal. In such a case, the function returns <cite>(np.inf, None)</cite>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.wasserstein</span><span class="w"> </span><span class="kn">import</span> <span class="n">wasserstein_distance</span> <span class="c1"># Could also be: from gudhi.hera import wasserstein_distance</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">dgm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.7</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">],[</span><span class="mf">9.6</span><span class="p">,</span> <span class="mf">14.</span><span class="p">],[</span><span class="mf">34.2</span><span class="p">,</span> <span class="mf">34.974</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]])</span>
+<span class="n">dgm2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.8</span><span class="p">,</span> <span class="mf">4.45</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mf">9.5</span><span class="p">,</span> <span class="mf">14.1</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]])</span>
+<span class="n">cost</span><span class="p">,</span> <span class="n">matchings</span> <span class="o">=</span> <span class="n">wasserstein_distance</span><span class="p">(</span><span class="n">dgm1</span><span class="p">,</span> <span class="n">dgm2</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">internal_p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Wasserstein distance value = </span><span class="si">{</span><span class="n">cost</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">dgm1_to_diagonal</span> <span class="o">=</span> <span class="n">matchings</span><span class="p">[</span><span class="n">matchings</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">dgm2_to_diagonal</span> <span class="o">=</span> <span class="n">matchings</span><span class="p">[</span><span class="n">matchings</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">off_diagonal_match</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">matchings</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">matchings</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">off_diagonal_match</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"point </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> in dgm1 is matched to point </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2"> in dgm2"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dgm1_to_diagonal</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"point </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> in dgm1 is matched to the diagonal"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">dgm2_to_diagonal</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"point </span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2"> in dgm2 is matched to the diagonal"</span><span class="p">)</span>
+
+<span class="c1"># An example where essential part cardinalities differ</span>
+<span class="n">dgm3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]])</span>
+<span class="n">dgm4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]])</span>
+<span class="n">cost</span><span class="p">,</span> <span class="n">matchings</span> <span class="o">=</span> <span class="n">wasserstein_distance</span><span class="p">(</span><span class="n">dgm3</span><span class="p">,</span> <span class="n">dgm4</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">internal_p</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Second example:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"cost: </span><span class="si">{</span><span class="n">cost</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"matchings: </span><span class="si">{</span><span class="n">matchings</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Wasserstein distance value = 3.15
+point 0 in dgm1 is matched to point 0 in dgm2
+point 1 in dgm1 is matched to point 2 in dgm2
+point 3 in dgm1 is matched to point 3 in dgm2
+point 2 in dgm1 is matched to the diagonal
+point 1 in dgm2 is matched to the diagonal
+
+Second example:
+cost: inf
+matchings: None
+</pre></div>
+</div>
+</section>
+</section>
+<section id="barycenters">
+<h2>Barycenters<a class="headerlink" href="#barycenters" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<tbody>
+<tr class="row-odd"><td><dl class="field-list simple">
+<dt class="field-odd">Requires<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="installation.html#python-optimal-transport">Python Optimal Transport</a> (POT) <span class="math notranslate nohighlight">\(\geq\)</span> 0.5.1 and <a class="reference external" href="installation.html#scipy">SciPy</a></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>A Frechet mean (or barycenter) is a generalization of the arithmetic
+mean in a non linear space such as the one of persistence diagrams.
+Given a set of persistence diagrams <span class="math notranslate nohighlight">\(\mu_1 \dots \mu_n\)</span>, it is
+defined as a minimizer of the variance functional, that is of
+<span class="math notranslate nohighlight">\(\mu \mapsto \sum_{i=1}^n d_2(\mu,\mu_i)^2\)</span>.
+where <span class="math notranslate nohighlight">\(d_2\)</span> denotes the Wasserstein-2 distance between
+persistence diagrams.
+It is known to exist and is generically unique. However, an exact
+computation is in general untractable. Current implementation
+available is based on (Turner et al., 2014),
+<span class="bibtex-citation" id="id7">[]</span>
+and uses an EM-scheme to
+provide a local minimum of the variance functional (somewhat similar
+to the Lloyd algorithm to estimate a solution to the k-means
+problem). The local minimum returned depends on the initialization of
+the barycenter.
+The combinatorial structure of the algorithm limits its
+performances on large scale problems (thousands of diagrams and of points
+per diagram).</p>
+<figure class="align-center align-default" id="id9">
+<img alt="_images/barycenter.png" src="_images/barycenter.png" />
+<figcaption>
+<p><span class="caption-text">Illustration of Frechet mean between persistence
+diagrams.</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.wasserstein.barycenter.lagrangian_barycenter">
+<span class="sig-prename descclassname"><span class="pre">gudhi.wasserstein.barycenter.</span></span><span class="sig-name descname"><span class="pre">lagrangian_barycenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdiagset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/wasserstein/barycenter.html#lagrangian_barycenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.wasserstein.barycenter.lagrangian_barycenter" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.wasserstein.barycenter.lagrangian_barycenter.params.pdiagset"></span><strong>pdiagset</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.barycenter.lagrangian_barycenter.params.pdiagset">¶</a> – a list of <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> of shape <cite>(n x 2)</cite> (<cite>n</cite> can variate), encoding a set of persistence
+diagrams with only finite coordinates.</p></li>
+<li><p><span class="target" id="gudhi.wasserstein.barycenter.lagrangian_barycenter.params.init"></span><strong>init</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.barycenter.lagrangian_barycenter.params.init">¶</a> (<code class="docutils literal notranslate"><span class="pre">int</span></code>, or (n x 2) <code class="docutils literal notranslate"><span class="pre">np.array</span></code>) – The initial value for barycenter estimate.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, init is made on a random diagram from the dataset.
+Otherwise, it can be an <code class="docutils literal notranslate"><span class="pre">int</span></code> (then initialization is made on <code class="docutils literal notranslate"><span class="pre">pdiagset[init]</span></code>)
+or a <cite>(n x 2)</cite> <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> encoding a persistence diagram with <cite>n</cite> points.</p></li>
+<li><p><span class="target" id="gudhi.wasserstein.barycenter.lagrangian_barycenter.params.verbose"></span><strong>verbose</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.barycenter.lagrangian_barycenter.params.verbose">¶</a> (<em>boolean</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, returns additional information about the barycenter.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>If not verbose (default), a <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> encoding the barycenter estimate of pdiagset
+(local minimum of the energy function).
+If <code class="docutils literal notranslate"><span class="pre">pdiagset</span></code> is empty, returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+If verbose, returns a couple <code class="docutils literal notranslate"><span class="pre">(Y,</span> <span class="pre">log)</span></code> where <code class="docutils literal notranslate"><span class="pre">Y</span></code> is the barycenter estimate,
+and <code class="docutils literal notranslate"><span class="pre">log</span></code> is a <code class="docutils literal notranslate"><span class="pre">dict</span></code> that contains additional information:</p>
+<ul class="simple">
+<li><p><cite>”groupings”</cite>, a list of list of pairs <code class="docutils literal notranslate"><span class="pre">(i,j)</span></code>. Namely, <code class="docutils literal notranslate"><span class="pre">G[k]</span> <span class="pre">=</span> <span class="pre">[...(i,</span> <span class="pre">j)...]</span></code>, where <code class="docutils literal notranslate"><span class="pre">(i,j)</span></code>
+indicates that <cite>pdiagset[k][i]</cite> is matched to <code class="docutils literal notranslate"><span class="pre">Y[j]</span></code> if <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">-1</span></code> or <code class="docutils literal notranslate"><span class="pre">j</span> <span class="pre">=</span> <span class="pre">-1</span></code>, it means they represent
+the diagonal.</p></li>
+<li><p><cite>”energy”</cite>, <code class="docutils literal notranslate"><span class="pre">float</span></code> representing the Frechet energy value obtained. It is the mean of squared distances of
+observations to the output.</p></li>
+<li><p><cite>”nb_iter”</cite>, <code class="docutils literal notranslate"><span class="pre">int</span></code> number of iterations performed before convergence of the algorithm.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="id8">
+<h3>Basic example<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>This example estimates the Frechet mean (aka Wasserstein barycenter) between
+four persistence diagrams.
+It is initialized on the 4th diagram.
+As the algorithm is not convex, its output depends on the initialization and
+is only a local minimum of the objective function.
+Initialization can be either given as an integer (in which case the i-th
+diagram of the list is used as initial estimate) or as a diagram.
+If None, it will randomly select one of the diagrams of the list
+as initial estimate.
+Note that persistence diagrams must be submitted as
+(n x 2) numpy arrays and must not contain inf values.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.wasserstein.barycenter</span><span class="w"> </span><span class="kn">import</span> <span class="n">lagrangian_barycenter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">dg1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+<span class="n">dg2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">]])</span>
+<span class="n">dg3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]])</span>
+<span class="n">dg4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+<span class="n">pdiagset</span> <span class="o">=</span> <span class="p">[</span><span class="n">dg1</span><span class="p">,</span> <span class="n">dg2</span><span class="p">,</span> <span class="n">dg3</span><span class="p">,</span> <span class="n">dg4</span><span class="p">]</span>
+<span class="n">bary</span> <span class="o">=</span> <span class="n">lagrangian_barycenter</span><span class="p">(</span><span class="n">pdiagset</span><span class="o">=</span><span class="n">pdiagset</span><span class="p">,</span><span class="n">init</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Wasserstein barycenter estimated:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bary</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output is:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Wasserstein barycenter estimated:
+[[0.27916667 0.55416667]
+ [0.7375     0.7625    ]
+ [0.2375     0.2625    ]]
+</pre></div>
+</div>
+</section>
+<section id="tutorial">
+<h3>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading">#</a></h3>
+<p>This
+<a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/Tuto-GUDHI-Barycenters-of-persistence-diagrams.ipynb">notebook</a>
+presents the concept of barycenter, or Fréchet mean, of a family of persistence diagrams.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-functions">Distance Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-transport">Optimal Transport</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.wasserstein.wasserstein_distance"><code class="docutils literal notranslate"><span class="pre">wasserstein_distance()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hera">Hera</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.hera.wasserstein_distance"><code class="docutils literal notranslate"><span class="pre">wasserstein_distance()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-example">Basic example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#barycenters">Barycenters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.wasserstein.barycenter.lagrangian_barycenter"><code class="docutils literal notranslate"><span class="pre">lagrangian_barycenter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Basic example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial">Tutorial</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

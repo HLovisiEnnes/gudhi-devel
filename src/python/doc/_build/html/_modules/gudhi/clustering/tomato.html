@@ -1,0 +1,1002 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gudhi.clustering.tomato &#8212; gudhi v3.11.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gudhi/clustering/tomato';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.11.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">gudhi.clustering.tomato</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for gudhi.clustering.tomato</h1><div class="highlight"><pre>
+<span></span><span class="c1"># This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is released under MIT.</span>
+<span class="c1"># See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license details.</span>
+<span class="c1"># Author(s):       Marc Glisse</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2020 Inria</span>
+<span class="c1">#</span>
+<span class="c1"># Modification(s):</span>
+<span class="c1">#   - YYYY/MM Author: Description of the modification</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..point_cloud.knn</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNearestNeighbors</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..point_cloud.dtm</span><span class="w"> </span><span class="kn">import</span> <span class="n">DTMDensity</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._tomato</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># The fit/predict interface is not so well suited...</span>
+
+
+<div class="viewcode-block" id="Tomato">
+<a class="viewcode-back" href="../../../clustering.html#gudhi.clustering.tomato.Tomato">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Tomato</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This clustering algorithm needs a neighborhood graph on the points, and an estimation of the density at each point.</span>
+<span class="sd">    A few possible graph constructions and density estimators are provided for convenience, but it is perfectly natural</span>
+<span class="sd">    to provide your own.</span>
+
+<span class="sd">    :Requires: `SciPy &lt;installation.html#scipy&gt;`_, `Scikit-learn &lt;installation.html#scikit-learn&gt;`_ or others</span>
+<span class="sd">        (see :class:`~gudhi.point_cloud.knn.KNearestNeighbors`) in function of the options.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n_clusters_: int</span>
+<span class="sd">        The number of clusters. Writing to it automatically adjusts `labels_`.</span>
+<span class="sd">    merge_threshold_: float</span>
+<span class="sd">        minimum prominence of a cluster so it doesn't get merged. Writing to it automatically adjusts `labels_`.</span>
+<span class="sd">    n_leaves_: int</span>
+<span class="sd">        number of leaves (unstable clusters) in the hierarchical tree</span>
+<span class="sd">    leaf_labels_: ndarray of shape (n_samples,)</span>
+<span class="sd">        cluster labels for each point, at the very bottom of the hierarchy</span>
+<span class="sd">    labels_: ndarray of shape (n_samples,)</span>
+<span class="sd">        cluster labels for each point, after merging</span>
+<span class="sd">    diagram_: ndarray of shape (`n_leaves_`, 2)</span>
+<span class="sd">        persistence diagram (only the finite points)</span>
+<span class="sd">    max_weight_per_cc_: ndarray of shape (n_connected_components,)</span>
+<span class="sd">        maximum of the density function on each connected component. This corresponds to the abscissa of infinite</span>
+<span class="sd">        points in the diagram</span>
+<span class="sd">    children_: ndarray of shape (`n_leaves_`-n_connected_components, 2)</span>
+<span class="sd">        The children of each non-leaf node. Values less than `n_leaves_` correspond to leaves of the tree.</span>
+<span class="sd">        A node i greater than or equal to `n_leaves_` is a non-leaf node and has children children_[i - `n_leaves_`].</span>
+<span class="sd">        Alternatively at the i-th iteration, children[i][0] and children[i][1] are merged to form node `n_leaves_` + i</span>
+<span class="sd">    weights_: ndarray of shape (n_samples,)</span>
+<span class="sd">        weights of the points, as computed by the density estimator or provided by the user</span>
+<span class="sd">    params_: dict</span>
+<span class="sd">        Parameters like metric, etc</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="Tomato.__init__">
+<a class="viewcode-back" href="../../../clustering.html#gudhi.clustering.tomato.Tomato.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">graph_type</span><span class="o">=</span><span class="s2">"knn"</span><span class="p">,</span>
+        <span class="n">density_type</span><span class="o">=</span><span class="s2">"logDTM"</span><span class="p">,</span>
+        <span class="n">n_clusters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">merge_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="c1">#       eliminate_threshold=None,</span>
+        <span class="c1">#           eliminate_threshold (float): minimum max weight of a cluster so it doesn't get eliminated</span>
+        <span class="o">**</span><span class="n">params</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Args:</span>
+<span class="sd">            graph_type (str): 'manual', 'knn' or 'radius'. Default is 'knn'.</span>
+<span class="sd">            density_type (str): 'manual', 'DTM', 'logDTM', 'KDE' or 'logKDE'. When you have many points,</span>
+<span class="sd">                'KDE' and 'logKDE' tend to be slower. Default is 'logDTM'.</span>
+<span class="sd">                The values computed for 'DTM' or 'KDE' are not normalized (this does not affect the clustering).</span>
+<span class="sd">            metric (str|Callable): metric used when calculating the distance between instances in a feature array.</span>
+<span class="sd">                Defaults to Minkowski of parameter p.</span>
+<span class="sd">            kde_params (dict): if density_type is 'KDE' or 'logKDE', additional parameters passed directly to</span>
+<span class="sd">                sklearn.neighbors.KernelDensity.</span>
+<span class="sd">            k (int): number of neighbors for a knn graph (including the vertex itself). Defaults to 10.</span>
+<span class="sd">            k_DTM (int): number of neighbors for the DTM density estimation (including the vertex itself).</span>
+<span class="sd">                Defaults to k.</span>
+<span class="sd">            r (float): size of a neighborhood if graph_type is 'radius'. Also used as default bandwidth in kde_params.</span>
+<span class="sd">            eps (float): (1+eps) approximation factor when computing distances (ignored in many cases).</span>
+<span class="sd">            n_clusters (int): number of clusters requested. Defaults to None, i.e. no merging occurs and we get</span>
+<span class="sd">                the maximal number of clusters.</span>
+<span class="sd">            merge_threshold (float): minimum prominence of a cluster so it doesn't get merged.</span>
+<span class="sd">            symmetrize_graph (bool): whether we should add edges to make the neighborhood graph symmetric.</span>
+<span class="sd">                This can be useful with k-NN for small k. Defaults to false.</span>
+<span class="sd">            p (float): norm L^p on input points. Defaults to 2.</span>
+<span class="sd">            q (float): order used to compute the distance to measure. Defaults to dim.</span>
+<span class="sd">            dim (float): final exponent in DTM density estimation, representing the dimension. Defaults to the</span>
+<span class="sd">                dimension, or 2 when the dimension cannot be read from the input (metric is "precomputed").</span>
+<span class="sd">                Beware that when the dimension is large, this can easily cause overflows, see</span>
+<span class="sd">                :class:`~gudhi.point_cloud.dtm.DTMDensity` for details</span>
+<span class="sd">            n_jobs (int): Number of jobs to schedule for parallel processing on the CPU.</span>
+<span class="sd">                If -1 is given all processors are used. Default: 1.</span>
+<span class="sd">            params: extra parameters are passed to :class:`~gudhi.point_cloud.knn.KNearestNeighbors` and</span>
+<span class="sd">                :class:`~gudhi.point_cloud.dtm.DTMDensity`.</span>
+<span class="sd">        """</span>
+        <span class="c1"># Should metric='precomputed' mean input_type='distance_matrix'?</span>
+        <span class="c1"># Should we be able to pass metric='minkowski' (what None does currently)?</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">graph_type_</span> <span class="o">=</span> <span class="n">graph_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">density_type_</span> <span class="o">=</span> <span class="n">density_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params_</span> <span class="o">=</span> <span class="n">params</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span> <span class="o">=</span> <span class="n">n_clusters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span> <span class="o">=</span> <span class="n">merge_threshold</span>
+        <span class="c1"># self.eliminate_threshold_ = eliminate_threshold</span>
+        <span class="k">if</span> <span class="n">n_clusters</span> <span class="ow">and</span> <span class="n">merge_threshold</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Cannot specify both a merge threshold and a number of clusters"</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Tomato.fit">
+<a class="viewcode-back" href="../../../clustering.html#gudhi.clustering.tomato.Tomato.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Args:</span>
+<span class="sd">            X ((n,d)-array of float|(n,n)-array of float|Sequence[Iterable[int]]): coordinates of the points,</span>
+<span class="sd">                or distance matrix (full, not just a triangle) if metric is "precomputed", or list of neighbors</span>
+<span class="sd">                for each point (points are represented by their index, starting from 0) if graph_type is "manual".</span>
+<span class="sd">                The number of points is currently limited to about 2 billion.</span>
+<span class="sd">            weights (ndarray of shape (n_samples)): if density_type is 'manual', a density estimate at each point</span>
+<span class="sd">            y: Not used, present here for API consistency with scikit-learn by convention.</span>
+<span class="sd">        """</span>
+        <span class="c1"># TODO: First detect if this is a new call with the same data (only threshold changed?)</span>
+        <span class="c1"># TODO: less code duplication (subroutines?), less spaghetti, but don't compute neighbors twice if not needed. Clear error message for missing or contradictory parameters.</span>
+        <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">density_type</span> <span class="o">=</span> <span class="s2">"manual"</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">density_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">density_type_</span>
+            <span class="k">if</span> <span class="n">density_type</span> <span class="o">==</span> <span class="s2">"manual"</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"If density_type is 'manual', you must provide weights to fit()"</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_type_</span> <span class="o">==</span> <span class="s2">"manual"</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span> <span class="o">=</span> <span class="n">X</span>
+            <span class="c1"># FIXME: uniformize "message 'option'" vs 'message "option"'</span>
+            <span class="k">assert</span> <span class="n">density_type</span> <span class="o">==</span> <span class="s2">"manual"</span><span class="p">,</span> <span class="s1">'If graph_type is "manual", density_type must be as well'</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"metric"</span><span class="p">,</span> <span class="s2">"minkowski"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">metric</span> <span class="o">!=</span> <span class="s2">"precomputed"</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">points_</span> <span class="o">=</span> <span class="n">X</span>
+
+        <span class="c1"># Slight complication to avoid computing knn twice.</span>
+        <span class="n">need_knn</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">need_knn_ngb</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">need_knn_dist</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_type_</span> <span class="o">==</span> <span class="s2">"knn"</span><span class="p">:</span>
+            <span class="n">k_graph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"k"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="c1"># If X has fewer than k points...</span>
+            <span class="k">if</span> <span class="n">k_graph</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="n">k_graph</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">need_knn</span> <span class="o">=</span> <span class="n">k_graph</span>
+            <span class="n">need_knn_ngb</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">density_type_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"DTM"</span><span class="p">,</span> <span class="s2">"logDTM"</span><span class="p">]:</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"k"</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="n">k_DTM</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"k_DTM"</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+            <span class="c1"># If X has fewer than k points...</span>
+            <span class="k">if</span> <span class="n">k_DTM</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+                <span class="n">k_DTM</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">need_knn</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">need_knn</span><span class="p">,</span> <span class="n">k_DTM</span><span class="p">)</span>
+            <span class="n">need_knn_dist</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="c1"># if we ask for more neighbors for the graph than the DTM, getting the distances is a slight waste,</span>
+            <span class="c1"># but it looks negligible</span>
+        <span class="k">if</span> <span class="n">need_knn</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">knn_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="p">)</span>
+            <span class="n">knn_args</span><span class="p">[</span><span class="s2">"k"</span><span class="p">]</span> <span class="o">=</span> <span class="n">need_knn</span>
+            <span class="n">knn</span> <span class="o">=</span> <span class="n">KNearestNeighbors</span><span class="p">(</span><span class="n">return_index</span><span class="o">=</span><span class="n">need_knn_ngb</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="n">need_knn_dist</span><span class="p">,</span> <span class="o">**</span><span class="n">knn_args</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span>
+                <span class="n">X</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">need_knn_ngb</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">need_knn_dist</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span> <span class="o">=</span> <span class="n">knn</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">k_graph</span><span class="p">]</span>
+                    <span class="n">knn_dist</span> <span class="o">=</span> <span class="n">knn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span> <span class="o">=</span> <span class="n">knn</span>
+            <span class="k">elif</span> <span class="n">need_knn_dist</span><span class="p">:</span>
+                <span class="n">knn_dist</span> <span class="o">=</span> <span class="n">knn</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">density_type_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"DTM"</span><span class="p">,</span> <span class="s2">"logDTM"</span><span class="p">]:</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"dim"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">metric</span> <span class="o">!=</span> <span class="s2">"precomputed"</span> <span class="k">else</span> <span class="mi">2</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"q"</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">DTMDensity</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k_DTM</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"neighbors"</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">knn_dist</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">density_type_</span> <span class="o">==</span> <span class="s2">"logDTM"</span><span class="p">:</span>
+                <span class="n">weights</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_type_</span> <span class="o">==</span> <span class="s2">"radius"</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">metric</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"minkowski"</span><span class="p">,</span> <span class="s2">"euclidean"</span><span class="p">,</span> <span class="s2">"manhattan"</span><span class="p">,</span> <span class="s2">"chebyshev"</span><span class="p">]:</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">cKDTree</span>
+
+                <span class="n">tree</span> <span class="o">=</span> <span class="n">cKDTree</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+                <span class="c1"># TODO: handle "l1" and "l2" aliases?</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"p"</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"euclidean"</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="n">p</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"p="</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" is not consistent with metric='euclidean'"</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span>
+                <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"manhattan"</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="n">p</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"p="</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" is not consistent with metric='manhattan'"</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"chebyshev"</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="n">p</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">==</span> <span class="n">numpy</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="s2">"p="</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" is not consistent with metric='chebyshev'"</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">inf</span>
+                <span class="k">elif</span> <span class="n">p</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># the default</span>
+                <span class="n">eps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"eps"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">query_ball_tree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="p">[</span><span class="s2">"r"</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">)</span>
+
+            <span class="c1"># TODO: sklearn's NearestNeighbors.radius_neighbors can handle more metrics efficiently via its BallTree</span>
+            <span class="c1"># (don't bother with the _graph variant, it just calls radius_neighbors).</span>
+            <span class="k">elif</span> <span class="n">metric</span> <span class="o">!=</span> <span class="s2">"precomputed"</span><span class="p">:</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise_distances</span>
+
+                <span class="n">X</span> <span class="o">=</span> <span class="n">pairwise_distances</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"n_jobs"</span><span class="p">))</span>
+                <span class="n">metric</span> <span class="o">=</span> <span class="s2">"precomputed"</span>
+
+            <span class="k">if</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"precomputed"</span><span class="p">:</span>
+                <span class="c1"># TODO: parallelize? May not be worth it.</span>
+                <span class="n">X</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="p">[</span><span class="s2">"r"</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span> <span class="o">=</span> <span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">density_type_</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"KDE"</span><span class="p">,</span> <span class="s2">"logKDE"</span><span class="p">}:</span>
+            <span class="c1"># Slow...</span>
+            <span class="k">assert</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">graph_type_</span> <span class="o">!=</span> <span class="s2">"manual"</span> <span class="ow">and</span> <span class="n">metric</span> <span class="o">!=</span> <span class="s2">"precomputed"</span>
+            <span class="p">),</span> <span class="s2">"Scikit-learn's KernelDensity requires point coordinates"</span>
+            <span class="n">kde_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"kde_params"</span><span class="p">,</span> <span class="nb">dict</span><span class="p">()))</span>
+            <span class="n">kde_params</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"metric"</span><span class="p">,</span> <span class="n">metric</span><span class="p">)</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"r"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">kde_params</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"bandwidth"</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+            <span class="c1"># Should we default rtol to eps?</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KernelDensity</span>
+
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">KernelDensity</span><span class="p">(</span><span class="o">**</span><span class="n">kde_params</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points_</span><span class="p">)</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points_</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">density_type_</span> <span class="o">==</span> <span class="s2">"KDE"</span><span class="p">:</span>
+                <span class="c1"># First rescale to avoid computing exp(-1000)</span>
+                <span class="n">weights</span> <span class="o">-=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+                <span class="n">weights</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+
+        <span class="c1"># TODO: do it at the C++ level and/or in parallel if this is too slow?</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"symmetrize_graph"</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span><span class="p">):</span>
+                <span class="n">line</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights_</span> <span class="o">=</span> <span class="n">weights</span>
+        <span class="c1"># This is where the main computation happens</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leaf_labels_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_leaves_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">leaf_labels_</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">)</span>
+        <span class="c1"># TODO: deduplicate this code with the setters below</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span>
+            <span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span><span class="p">:</span>
+            <span class="c1"># TODO: set corresponding merge_threshold?</span>
+            <span class="n">renaming</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_leaves_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">labels_</span> <span class="o">=</span> <span class="n">renaming</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">leaf_labels_</span><span class="p">]</span>
+            <span class="c1"># In case the user asked for something impossible.</span>
+            <span class="c1"># TODO: check for impossible situations before calling merge.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels_</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">labels_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leaf_labels_</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_leaves_</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Tomato.fit_predict">
+<a class="viewcode-back" href="../../../clustering.html#gudhi.clustering.tomato.Tomato.fit_predict">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Equivalent to fit(), and returns the `labels_`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">labels_</span></div>
+
+
+    <span class="c1"># TODO: add argument k or threshold? Have a version where you can click and it shows the line and the corresponding k?</span>
+<div class="viewcode-block" id="Tomato.plot_diagram">
+<a class="viewcode-back" href="../../../clustering.html#gudhi.clustering.tomato.Tomato.plot_diagram">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        """</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+        <span class="n">l</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">"o"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">l</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mf">0.9</span> <span class="o">*</span> <span class="n">l</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">r</span>
+            <span class="k">elif</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">l</span><span class="p">,</span> <span class="mf">0.9</span> <span class="o">*</span> <span class="n">r</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">],</span> <span class="p">[</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">l</span> <span class="o">-</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">r</span><span class="p">),</span> <span class="s2">"o"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"green"</span>
+        <span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+
+    <span class="c1"># Use set_params instead?</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_clusters_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span>
+
+    <span class="nd">@n_clusters_</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_clusters_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_clusters</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n_clusters</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span> <span class="o">=</span> <span class="n">n_clusters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"leaf_labels_"</span><span class="p">):</span>
+            <span class="n">renaming</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_leaves_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">labels_</span> <span class="o">=</span> <span class="n">renaming</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">leaf_labels_</span><span class="p">]</span>
+            <span class="c1"># In case the user asked for something impossible</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels_</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">merge_threshold_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span>
+
+    <span class="nd">@merge_threshold_</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">merge_threshold_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">merge_threshold</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">merge_threshold</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"leaf_labels_"</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_clusters_</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">merge_threshold</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span> <span class="o">=</span> <span class="n">merge_threshold</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

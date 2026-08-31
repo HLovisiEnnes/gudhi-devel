@@ -1,0 +1,1091 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Installation &#8212; gudhi v3.11.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'installation';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.11.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Installation</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h1>
+<section id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Link to this heading">#</a></h2>
+<p>The easiest way to install the Python version of GUDHI is using pre-built packages.
+We recommend <a class="reference external" href="https://gudhi.inria.fr/conda/">conda</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>gudhi
+</pre></div>
+</div>
+<p>Gudhi is also available on <a class="reference external" href="https://pypi.org/project/gudhi/">PyPI</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>gudhi
+</pre></div>
+</div>
+<p>Third party packages are also available, for instance on Debian or Ubuntu</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt<span class="w"> </span>install<span class="w"> </span>python3-gudhi
+</pre></div>
+</div>
+<p>In all cases, you may still want to install some of the optional <a class="reference internal" href="#run-time-dependencies">run time dependencies</a>.</p>
+</section>
+<section id="compiling">
+<h2>Compiling<a class="headerlink" href="#compiling" title="Link to this heading">#</a></h2>
+<p>These instructions are for people who want to compile gudhi from source, they are
+unnecessary if you installed a binary package of Gudhi as above. They assume that
+you have downloaded a <a class="reference external" href="https://github.com/GUDHI/gudhi-devel/releases">release</a>,
+with a name like <cite>gudhi.3.X.Y.tar.gz</cite>, then run <cite>tar xf gudhi.3.X.Y.tar.gz</cite>, which
+created a directory <cite>gudhi.3.X.Y</cite>, hereinafter referred to as <cite>/path-to-gudhi/</cite>.
+If you are instead using a git checkout, beware that the paths are a bit
+different, and in particular the <cite>python/</cite> subdirectory is actually <cite>src/python/</cite>
+there.</p>
+<p>The library uses c++17 and requires <a class="reference external" href="https://www.boost.org/">Boost</a> <span class="math notranslate nohighlight">\(\geq\)</span> 1.71.0,
+<a class="reference external" href="https://www.cmake.org/">CMake</a> <span class="math notranslate nohighlight">\(\geq\)</span> 3.15,
+Python <span class="math notranslate nohighlight">\(\geq\)</span> 3.9, <a class="reference external" href="http://numpy.org">NumPy</a> <span class="math notranslate nohighlight">\(\geq\)</span> 1.15.0,
+<a class="reference external" href="https://scikit-build-core.readthedocs.io">scikit-build-core</a> <span class="math notranslate nohighlight">\(\geq\)</span> 0.4.3
+<a class="reference external" href="https://nanobind.readthedocs.io">nanobind</a> <span class="math notranslate nohighlight">\(\geq\)</span> 1.3.2 to compile the GUDHI Python module.
+It is a multi-platform library and compiles on Linux, Mac OSX and Visual Studio 2017 or later.</p>
+<p>If you have several Python/python installed, you can force it by adding
+<code class="code docutils literal notranslate"><span class="pre">-DPython_EXECUTABLE=/custom/path/to/python3</span></code> to the cmake command (requires CMake <span class="math notranslate nohighlight">\(\geq\)</span> 3.16).</p>
+<section id="gudhi-python-module-compilation">
+<h3>GUDHI Python module compilation<a class="headerlink" href="#gudhi-python-module-compilation" title="Link to this heading">#</a></h3>
+<p>After making sure that the <a class="reference internal" href="#compilation-dependencies">Compilation dependencies</a> are properly installed, one can build the GUDHI Python module,
+by running the following commands in a terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path-to-gudhi/
+mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build/
+cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>..
+<span class="nb">cd</span><span class="w"> </span>python<span class="w"> </span><span class="c1"># Change directory to avoid to compile C++ stuff</span>
+<span class="c1"># Unnecessary C++ compilation can also be avoided with the following cmake command:</span>
+<span class="c1"># cmake -DCMAKE_BUILD_TYPE=Release -DWITH_GUDHI_GUDHUI=OFF -DWITH_GUDHI_TEST=OFF -DWITH_GUDHI_UTILITIES=OFF ..</span>
+make
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>In <a class="reference internal" href="#gudhi-python-module-installation">GUDHI Python module installation</a> section, the <cite>pip install</cite> part also compiles the Python module before installing it.</p>
+</div>
+</section>
+<section id="gudhi-python-module-installation">
+<h3>GUDHI Python module installation<a class="headerlink" href="#gudhi-python-module-installation" title="Link to this heading">#</a></h3>
+<p>Once the compilation succeeds, one can add the GUDHI Python module path to the
+PYTHONPATH:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For windows, you have to set PYTHONPATH environment variable</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="s1">'$PYTHONPATH:/path-to-gudhi/build/python'</span>
+</pre></div>
+</div>
+<p>Or install GUDHI in your Python packages folder with the
+<a class="reference external" href="https://scikit-build-core.readthedocs.io/en/latest/configuration/index.html#editable-installs">scikit-build-core editable mode</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path-to-gudhi/
+pip<span class="w"> </span>install<span class="w"> </span>--no-build-isolation<span class="w"> </span>--config-settings<span class="o">=</span>editable.rebuild<span class="o">=</span><span class="nb">true</span><span class="w"> </span>-Cbuild-dir<span class="o">=</span>build<span class="w"> </span>-ve.
+<span class="c1"># Note that this command will also recompile the C++ binded modules, when modified, required by the Python project</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It does not take into account <code class="code docutils literal notranslate"><span class="pre">CMAKE_INSTALL_PREFIX</span></code>.</p>
+</div>
+</section>
+<section id="test-suites">
+<h3>Test suites<a class="headerlink" href="#test-suites" title="Link to this heading">#</a></h3>
+<p>To test your build, <a class="reference external" href="http://doc.pytest.org">py.test</a> is required. Run the
+following <a class="reference external" href="https://cmake.org/cmake/help/latest/manual/ctest.1.html">Ctest</a>
+(CMake test driver program) command in a terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path-to-gudhi/build/python
+<span class="c1"># For windows, you have to set PYTHONPATH environment variable</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="s1">'$PYTHONPATH:/path-to-gudhi/build/python'</span>
+ctest
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One can use <code class="code docutils literal notranslate"><span class="pre">ctest</span></code> specific options in the python directory:</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Launch tests in parallel on 8 cores and set failing tests in verbose mode</span>
+ctest<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span><span class="w"> </span>--output-on-failure
+</pre></div>
+</div>
+</section>
+<section id="debugging-issues">
+<h3>Debugging issues<a class="headerlink" href="#debugging-issues" title="Link to this heading">#</a></h3>
+<p>If tests fail, please check your PYTHONPATH and try to <code class="code docutils literal notranslate"><span class="pre">import</span> <span class="pre">gudhi</span></code>
+and check the errors.
+The problem can come from a third-party library bad link or installation.</p>
+<p>If <code class="code docutils literal notranslate"><span class="pre">import</span> <span class="pre">gudhi</span></code> succeeds, please have a look to debug information:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gd</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gd</span><span class="o">.</span><span class="n">__debug_info__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"+ Installed modules are:"</span><span class="p">,</span> <span class="s2">"; "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gd</span><span class="o">.</span><span class="n">__all__</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>You shall have something like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Python version 3.11.14
+Nanobind version 2.9.2
+Numpy version 2.3.3
+Boost version 1.83.0
++ Installed modules are: CubicalComplex; PeriodicCubicalComplex; SimplexTree; RipsComplex; WitnessComplex;
+StrongWitnessComplex; CoverComplex; read_lower_triangular_matrix_from_csv_file;
+read_persistence_intervals_grouped_by_dimension; read_persistence_intervals_in_dimension;
+read_points_from_off_file; write_points_to_off_file; plot_persistence_barcode; plot_persistence_diagram;
+plot_persistence_density
+</pre></div>
+</div>
+<p>Here, you can see that the modules that need CGAL are missing, because CGAL is not installed.
+<a class="reference external" href="https://gudhi.inria.fr/python/latest/persistence_graphical_tools_ref.html">plot_persistence_* functions</a>
+will produce an error as matplotlib is not available.
+Unitary tests cannot be run as pytest is missing.</p>
+<p>A complete configuration would be :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Python version 3.10.0
+Nanobind version 2.6.1
+Numpy version 2.1.3
+Pytest version 8.3.5
+Matplotlib version 3.10.1
+Scipy version 1.15.2
+Scikit-learn version 1.6.1
+POT version 0.9.6.post1
+HNSWlib version 0.8.0
+PyTorch version 2.6.0
+PyKeOps version 2.2.3
+EagerPy version 0.30.0
+TensorFlow version 2.19.0
+Sphinx version 8.1.3
+Sphinx-paramlinks version 0.6.0
+pydata_sphinx_theme version 0.16.1
+sphinxcontrib-bibtex version 2.6.3
+sphinx-autodoc-typehints version 3.0.1
+NetworkX version 3.4.2
+Eigen3 version 3.4.0
+Boost version 1.84.0
+CGAL version 5.6.1
+GMP_LIBRARIES = /usr/lib/x86_64-linux-gnu/libgmp.so
+GMPXX_LIBRARIES = /usr/lib/x86_64-linux-gnu/libgmpxx.so
+MPFR_LIBRARIES = /usr/lib/x86_64-linux-gnu/libmpfr.so
+TBB version 2021.7.0 found and used
+TBB_LIBRARY = /usr/lib/x86_64-linux-gnu/libtbb.so.12.7
+TBB_MALLOC_LIBRARY = /usr/lib/x86_64-linux-gnu/libtbbmalloc.so.2.7
++ Installed modules are: CubicalComplex; PeriodicCubicalComplex; SimplexTree; RipsComplex; WitnessComplex;
+StrongWitnessComplex; CoverComplex; read_lower_triangular_matrix_from_csv_file;
+read_persistence_intervals_grouped_by_dimension; read_persistence_intervals_in_dimension;
+read_points_from_off_file; write_points_to_off_file; plot_persistence_barcode; plot_persistence_diagram;
+plot_persistence_density; bottleneck_distance; DelaunayComplex; AlphaComplex; DelaunayCechComplex;
+EuclideanStrongWitnessComplex; EuclideanWitnessComplex; TangentialComplex; choose_n_farthest_points;
+pick_n_random_points; sparsify_point_set
+</pre></div>
+</div>
+</section>
+<section id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h3>
+<p>To build the documentation, <a class="reference external" href="http://www.sphinx-doc.org">sphinx-doc</a>,
+<a class="reference external" href="https://sphinxcontrib-bibtex.readthedocs.io">sphinxcontrib-bibtex</a>,
+<a class="reference external" href="https://github.com/tox-dev/sphinx-autodoc-typehints">sphinx-autodoc-typehints</a>,
+<a class="reference external" href="https://github.com/sqlalchemyorg/sphinx-paramlinks">sphinxcontrib-paramlinks</a> and
+<a class="reference external" href="https://github.com/pydata/pydata-sphinx-theme">pydata-sphinx-theme</a> <span class="math notranslate nohighlight">\(\geq\)</span> 0.8.0 are
+required. As the documentation is auto-tested, <a href="#id22"><span class="problematic" id="id23">`CGAL`_</span></a>, <a href="#id24"><span class="problematic" id="id25">`Eigen`_</span></a>,
+<a href="#id26"><span class="problematic" id="id27">`Matplotlib`_</span></a>, <a class="reference external" href="http://numpy.org">NumPy</a>, <a class="reference external" href="https://pythonot.github.io/">POT</a>, <a href="#id28"><span class="problematic" id="id29">`Scikit-learn`_</span></a> and <a href="#id30"><span class="problematic" id="id31">`SciPy`_</span></a> are
+also mandatory to build the documentation.</p>
+<p>Run the following commands in a terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path-to-gudhi/build/python
+make<span class="w"> </span>sphinx
+</pre></div>
+</div>
+</section>
+</section>
+<section id="optional-third-party-library">
+<h2>Optional third-party library<a class="headerlink" href="#optional-third-party-library" title="Link to this heading">#</a></h2>
+<section id="compilation-dependencies">
+<h3>Compilation dependencies<a class="headerlink" href="#compilation-dependencies" title="Link to this heading">#</a></h3>
+<p>These third party dependencies are detected by <a class="reference external" href="https://www.cmake.org/">CMake</a>.
+They have to be installed before performing the <a class="reference internal" href="#gudhi-python-module-compilation">GUDHI Python module compilation</a>.</p>
+<section id="cgal">
+<h4>CGAL<a class="headerlink" href="#cgal" title="Link to this heading">#</a></h4>
+<p>Some GUDHI modules (cf. <a class="reference internal" href="index.html"><span class="doc">modules list</span></a>), and few examples
+require <a class="reference external" href="https://www.cgal.org/">CGAL</a> version <span class="math notranslate nohighlight">\(\geq\)</span> 5.1.0, a C++ library that provides easy
+access to efficient and reliable geometric algorithms.</p>
+<p>The procedure to install this library
+according to your operating system is detailed
+<a class="reference external" href="http://doc.cgal.org/latest/Manual/installation.html">here</a>.</p>
+<p>The following examples require CGAL:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="_downloads/f5123c45c5c6b27be33813c7f3fc6618/alpha_complex_diagram_persistence_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">alpha_complex_diagram_persistence_from_off_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/dfc9bf0db3676103eaed154db9a3c06c/alpha_complex_from_points_example.py"><code class="xref download docutils literal notranslate"><span class="pre">alpha_complex_from_points_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/e94ae74799a707e869e140c54086cb29/bottleneck_basic_example.py"><code class="xref download docutils literal notranslate"><span class="pre">bottleneck_basic_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/5fd3504fda813a6f55208a6677427d62/tangential_complex_plain_homology_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">tangential_complex_plain_homology_from_off_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/7023cb0ba4f617cb7433a9b0b7d9be65/euclidean_strong_witness_complex_diagram_persistence_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">euclidean_strong_witness_complex_diagram_persistence_from_off_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/53f48729c22afb689756f6179030ddb1/euclidean_witness_complex_diagram_persistence_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">euclidean_witness_complex_diagram_persistence_from_off_file_example.py</span></code></a></p></li>
+</ul>
+</section>
+<section id="eigen">
+<h4>Eigen<a class="headerlink" href="#eigen" title="Link to this heading">#</a></h4>
+<p>Some GUDHI modules (cf. <a class="reference internal" href="index.html"><span class="doc">modules list</span></a>), and few examples
+require <a class="reference external" href="http://eigen.tuxfamily.org/">Eigen</a> version <span class="math notranslate nohighlight">\(\geq\)</span> 3.3.0, a C++ template
+library for linear algebra: matrices, vectors, numerical solvers, and related
+algorithms.</p>
+<p>The following examples require <a class="reference external" href="http://eigen.tuxfamily.org/">Eigen</a>:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="_downloads/f5123c45c5c6b27be33813c7f3fc6618/alpha_complex_diagram_persistence_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">alpha_complex_diagram_persistence_from_off_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/dfc9bf0db3676103eaed154db9a3c06c/alpha_complex_from_points_example.py"><code class="xref download docutils literal notranslate"><span class="pre">alpha_complex_from_points_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/5fd3504fda813a6f55208a6677427d62/tangential_complex_plain_homology_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">tangential_complex_plain_homology_from_off_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/7023cb0ba4f617cb7433a9b0b7d9be65/euclidean_strong_witness_complex_diagram_persistence_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">euclidean_strong_witness_complex_diagram_persistence_from_off_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/53f48729c22afb689756f6179030ddb1/euclidean_witness_complex_diagram_persistence_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">euclidean_witness_complex_diagram_persistence_from_off_file_example.py</span></code></a></p></li>
+</ul>
+</section>
+<section id="oneapi-threading-building-blocks">
+<h4>oneAPI Threading Building Blocks<a class="headerlink" href="#oneapi-threading-building-blocks" title="Link to this heading">#</a></h4>
+<p><a class="reference external" href="https://github.com/oneapi-src/oneTBB">Intel® oneAPI TBB</a> lets you easily write parallel C++ programs that take
+full advantage of multicore performance, that are portable and composable, and that have future-proof scalability.</p>
+<p>Having Intel® oneAPI TBB  (version 20.19.7 or higher) installed is recommended to parallelize and accelerate some GUDHI
+computations.</p>
+</section>
+</section>
+<section id="run-time-dependencies">
+<h3>Run time dependencies<a class="headerlink" href="#run-time-dependencies" title="Link to this heading">#</a></h3>
+<p>These third party dependencies are detected by Python <cite>import</cite> mechanism at run time.
+They can be installed when required.</p>
+<section id="eagerpy">
+<h4>EagerPy<a class="headerlink" href="#eagerpy" title="Link to this heading">#</a></h4>
+<p>Some Python functions can handle automatic differentiation (possibly only when
+a flag <cite>enable_autodiff=True</cite> is used). In order to reduce code duplication, we
+use <a class="reference external" href="https://eagerpy.jonasrauber.de/">EagerPy</a> which wraps arrays from
+PyTorch, TensorFlow and JAX in a common interface.</p>
+</section>
+<section id="joblib">
+<h4>Joblib<a class="headerlink" href="#joblib" title="Link to this heading">#</a></h4>
+<p><a class="reference external" href="https://joblib.readthedocs.io/">Joblib</a> is used both as a dependency of
+<a href="#id32"><span class="problematic" id="id33">`Scikit-learn`_</span></a>, and directly for parallelism in some modules
+(<a class="reference internal" href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors" title="gudhi.point_cloud.knn.KNearestNeighbors"><code class="xref py py-class docutils literal notranslate"><span class="pre">KNearestNeighbors</span></code></a>,
+<code class="xref py py-func docutils literal notranslate"><span class="pre">pairwise_persistence_diagram_distances()</span></code>).</p>
+</section>
+<section id="hnswlib">
+<h4>Hnswlib<a class="headerlink" href="#hnswlib" title="Link to this heading">#</a></h4>
+<p><a class="reference internal" href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors" title="gudhi.point_cloud.knn.KNearestNeighbors"><code class="xref py py-class docutils literal notranslate"><span class="pre">KNearestNeighbors</span></code></a> can use the Python package
+<a class="reference external" href="https://github.com/nmslib/hnswlib">Hnswlib</a> as a backend if explicitly
+requested, to speed-up queries.</p>
+</section>
+<section id="latex">
+<h4>LaTeX<a class="headerlink" href="#latex" title="Link to this heading">#</a></h4>
+<p>If a sufficiently complete LaTeX toolchain is available (including dvipng and ghostscript), the LaTeX option of
+matplotlib is enabled for prettier captions (cf.
+<a class="reference external" href="https://matplotlib.org/3.3.0/tutorials/text/usetex.html">matplotlib text rendering with LaTeX</a>).
+It also requires <cite>type1cm</cite> LaTeX package (not detected by matplotlib).</p>
+<p>If you are facing issues with LaTeX rendering, like this one:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/matplotlib/texmanager.py", line 302, in _run_checked_subprocess
+    report = subprocess.check_output(command,
+...
+! LaTeX Error: File `type1cm.sty' not found.
+...
+</pre></div>
+</div>
+<p>This is because the LaTeX package is not installed on your system. On Ubuntu systems you can install texlive-full
+(for all LaTeX packages), or more specific packages like texlive-latex-extra, cm-super.</p>
+<p>You can still deactivate LaTeX rendering by saying:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gudhi</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gd</span>
+<span class="n">gd</span><span class="o">.</span><span class="n">persistence_graphical_tools</span><span class="o">.</span><span class="n">_gudhi_matplotlib_use_tex</span><span class="o">=</span><span class="kc">False</span>
+</pre></div>
+</div>
+</section>
+<section id="matplotlib">
+<h4>Matplotlib<a class="headerlink" href="#matplotlib" title="Link to this heading">#</a></h4>
+<p>The <a class="reference internal" href="persistence_graphical_tools_user.html"><span class="doc">persistence graphical tools</span></a>
+module requires <a class="reference external" href="http://matplotlib.org">Matplotlib</a>, a Python 2D plotting
+library which produces publication quality figures in a variety of hardcopy
+formats and interactive environments across platforms.</p>
+<p>The following examples require the <a class="reference external" href="http://matplotlib.org">Matplotlib</a>:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="_downloads/f5123c45c5c6b27be33813c7f3fc6618/alpha_complex_diagram_persistence_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">alpha_complex_diagram_persistence_from_off_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/a77b766398fdaf11a8add385f76f6435/gudhi_graphical_tools_example.py"><code class="xref download docutils literal notranslate"><span class="pre">gudhi_graphical_tools_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/c326bed42f8c60a8c2c60d562804afd0/periodic_cubical_complex_barcode_persistence_from_perseus_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">periodic_cubical_complex_barcode_persistence_from_perseus_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/2081ae96434c7006abb626ee78cb1f6d/rips_complex_diagram_persistence_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">rips_complex_diagram_persistence_from_off_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/356a3fab8481fc7f2842a218b6e46a29/rips_persistence_diagram.py"><code class="xref download docutils literal notranslate"><span class="pre">rips_persistence_diagram.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/136a5c530fe71ed205cbe585f9aea559/rips_complex_diagram_persistence_from_distance_matrix_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">rips_complex_diagram_persistence_from_distance_matrix_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/5fd3504fda813a6f55208a6677427d62/tangential_complex_plain_homology_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">tangential_complex_plain_homology_from_off_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/7023cb0ba4f617cb7433a9b0b7d9be65/euclidean_strong_witness_complex_diagram_persistence_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">euclidean_strong_witness_complex_diagram_persistence_from_off_file_example.py</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/53f48729c22afb689756f6179030ddb1/euclidean_witness_complex_diagram_persistence_from_off_file_example.py"><code class="xref download docutils literal notranslate"><span class="pre">euclidean_witness_complex_diagram_persistence_from_off_file_example.py</span></code></a></p></li>
+</ul>
+</section>
+<section id="networkx">
+<h4>NetworkX<a class="headerlink" href="#networkx" title="Link to this heading">#</a></h4>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">GraphInducedComplex</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MapperComplex</span></code> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">NerveComplex</span></code> <cite>get_networkx</cite> methods require <a class="reference external" href="https://networkx.org/">NetworkX</a>,
+a Python library for studying and visualizing graphs and networks.</p>
+</section>
+<section id="pandas">
+<h4>Pandas<a class="headerlink" href="#pandas" title="Link to this heading">#</a></h4>
+<p><a class="reference external" href="https://pandas.pydata.org/docs/">Pandas</a> is an optional Run time dependency of
+<a href="#id34"><span class="problematic" id="id35">`Scikit-learn`_</span></a>.
+For instance <cite>sklearn.datasets.fetch_openml</cite>, used in
+<a class="reference external" href="cubical_complex_sklearn_itf_ref.html">Cubical complex persistence scikit-learn like interface example</a>
+requires pandas with Scikit-learn <span class="math notranslate nohighlight">\(\geq\)</span> 1.5.0.</p>
+</section>
+<section id="pykeops">
+<h4>PyKeOps<a class="headerlink" href="#pykeops" title="Link to this heading">#</a></h4>
+<p><a class="reference internal" href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors" title="gudhi.point_cloud.knn.KNearestNeighbors"><code class="xref py py-class docutils literal notranslate"><span class="pre">KNearestNeighbors</span></code></a> can use the Python package
+<a class="reference external" href="https://www.kernel-operations.io/keops/python/">PyKeOps</a> as a backend if
+explicitly requested, to speed-up queries using a GPU.</p>
+</section>
+<section id="python-optimal-transport">
+<h4>Python Optimal Transport<a class="headerlink" href="#python-optimal-transport" title="Link to this heading">#</a></h4>
+<p>The <a class="reference internal" href="wasserstein_distance_user.html"><span class="doc">Wasserstein distance</span></a>
+module requires <a class="reference external" href="https://pythonot.github.io/">POT</a>, a library that provides
+several solvers for optimization problems related to Optimal Transport.</p>
+</section>
+<section id="pytorch">
+<h4>PyTorch<a class="headerlink" href="#pytorch" title="Link to this heading">#</a></h4>
+<p><a class="reference external" href="https://pytorch.org/">PyTorch</a> is currently only used as a dependency of
+<a href="#id36"><span class="problematic" id="id37">`PyKeOps`_</span></a>, and in some tests.</p>
+</section>
+<section id="scikit-learn">
+<h4>Scikit-learn<a class="headerlink" href="#scikit-learn" title="Link to this heading">#</a></h4>
+<p>The <a class="reference internal" href="representations.html"><span class="doc">persistence representations</span></a> module requires
+<a class="reference external" href="https://scikit-learn.org/">Scikit-learn</a>, a Python-based ecosystem of
+open-source software for machine learning.</p>
+<p>Some classes of the <a class="reference internal" href="cover_complex_sklearn_isk_ref.html"><span class="doc">cover complex</span></a> module
+also follow and require the <a class="reference external" href="https://scikit-learn.org/">Scikit-learn</a> interface.</p>
+<p><a class="reference internal" href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors" title="gudhi.point_cloud.knn.KNearestNeighbors"><code class="xref py py-class docutils literal notranslate"><span class="pre">KNearestNeighbors</span></code></a> can use the Python package
+<a class="reference external" href="https://scikit-learn.org/">Scikit-learn</a> as a backend if explicitly
+requested.</p>
+</section>
+<section id="scipy">
+<h4>SciPy<a class="headerlink" href="#scipy" title="Link to this heading">#</a></h4>
+<p>The <a class="reference internal" href="persistence_graphical_tools_user.html"><span class="doc">persistence graphical tools</span></a>,
+<a class="reference external" href="wasserstein_distance_user.html#optimal-transport">Wasserstein distance (POT version)</a> and
+<a class="reference external" href="wasserstein_distance_user.html#barycenters">Wasserstein barycenters</a> modules require <a class="reference external" href="http://scipy.org">SciPy</a>, a Python-based ecosystem of open-source software for
+mathematics, science, and engineering.</p>
+<p><a class="reference internal" href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors" title="gudhi.point_cloud.knn.KNearestNeighbors"><code class="xref py py-class docutils literal notranslate"><span class="pre">KNearestNeighbors</span></code></a> can use the Python package
+<a class="reference external" href="http://scipy.org">SciPy</a> <span class="math notranslate nohighlight">\(\geq\)</span> 1.6.0 as a backend if explicitly requested.</p>
+</section>
+<section id="tensorflow">
+<h4>TensorFlow<a class="headerlink" href="#tensorflow" title="Link to this heading">#</a></h4>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">Perslay</span></code> from the <a class="reference internal" href="representations.html"><span class="doc">persistence representations</span></a> module
+requires <a class="reference external" href="https://www.tensorflow.org/">TensorFlow</a>.
+The <a class="reference internal" href="cubical_complex_tflow_itf_ref.html"><span class="doc">cubical complex</span></a>, <a class="reference internal" href="ls_simplex_tree_tflow_itf_ref.html"><span class="doc">simplex tree</span></a>
+and <a class="reference internal" href="rips_complex_tflow_itf_ref.html"><span class="doc">Rips complex</span></a> modules require <a href="#id38"><span class="problematic" id="id39">`TensorFlow`_</span></a>
+for incorporating them in neural nets.</p>
+<p><a href="#id40"><span class="problematic" id="id41">`TensorFlow`_</span></a> is also used in some automatic differentiation tests.</p>
+</section>
+<section id="autograd">
+<h4>Autograd<a class="headerlink" href="#autograd" title="Link to this heading">#</a></h4>
+<p>The <a class="reference internal" href="liedetect_user.html"><span class="doc">LieDetect</span></a> module requires <a class="reference external" href="https://pypi.org/project/autograd/">autograd</a>, a
+package for automatic differentiation for native Python and Numpy.</p>
+</section>
+<section id="pymanopt">
+<h4>Pymanopt<a class="headerlink" href="#pymanopt" title="Link to this heading">#</a></h4>
+<p>The <a class="reference internal" href="liedetect_user.html"><span class="doc">LieDetect</span></a> module requires <a class="reference external" href="https://pymanopt.org/">Pymanopt</a>, a
+Python toolbox for optimization on Riemannian manifolds.</p>
+</section>
+</section>
+</section>
+<section id="bug-reports-and-contributions">
+<h2>Bug reports and contributions<a class="headerlink" href="#bug-reports-and-contributions" title="Link to this heading">#</a></h2>
+<p>Please help us improving the quality of the GUDHI library.
+You may <a class="reference external" href="https://github.com/GUDHI/gudhi-devel/issues">report bugs</a> or
+<a class="reference external" href="https://gudhi.inria.fr/contact/">contact us</a> for any suggestions.</p>
+<p>GUDHI is open to external contributions. If you want to join our development team, please take some time to read our
+<a class="reference external" href="https://github.com/GUDHI/gudhi-devel/blob/master/.github/CONTRIBUTING.md">contributing guide</a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#packages">Packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compiling">Compiling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi-python-module-compilation">GUDHI Python module compilation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi-python-module-installation">GUDHI Python module installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-suites">Test suites</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#debugging-issues">Debugging issues</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-third-party-library">Optional third-party library</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compilation-dependencies">Compilation dependencies</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cgal">CGAL</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eigen">Eigen</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#oneapi-threading-building-blocks">oneAPI Threading Building Blocks</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-time-dependencies">Run time dependencies</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#eagerpy">EagerPy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#joblib">Joblib</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hnswlib">Hnswlib</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#latex">LaTeX</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#matplotlib">Matplotlib</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#networkx">NetworkX</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">Pandas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pykeops">PyKeOps</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python-optimal-transport">Python Optimal Transport</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch">PyTorch</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scikit-learn">Scikit-learn</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy">SciPy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tensorflow">TensorFlow</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#autograd">Autograd</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pymanopt">Pymanopt</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bug-reports-and-contributions">Bug reports and contributions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

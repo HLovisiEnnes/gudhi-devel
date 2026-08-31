@@ -1,0 +1,797 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Persistence graphical tools reference manual &#8212; gudhi v3.11.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'persistence_graphical_tools_ref';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.11.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Persistence graphical tools reference manual</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="persistence-graphical-tools-reference-manual">
+<h1>Persistence graphical tools reference manual<a class="headerlink" href="#persistence-graphical-tools-reference-manual" title="Link to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.plot_persistence_barcode">
+<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">plot_persistence_barcode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">persistence_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_intervals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inf_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colormap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/persistence_graphical_tools.html#plot_persistence_barcode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.plot_persistence_barcode" title="Link to this definition">#</a></dt>
+<dd><p>This function plots the persistence bar code from persistence values list, a np.array of shape (N x 2)
+(representing a diagram in a single homology dimension), a list of np.array of shape (N x 2)
+(representing a diagram in a range of homology dimensions), or from a <a class="reference external" href="fileformats.html#persistence-diagram">persistence diagram</a> file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.plot_persistence_barcode.params.persistence"></span><strong>persistence</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_barcode.params.persistence">¶</a> (<em>an array</em><em> of </em><em>(</em><em>dimension</em><em>, </em><em>(</em><em>birth</em><em>, </em><em>death</em><em>)</em><em>)</em><em>, </em><em>an array</em><em> of </em><em>(</em><em>birth</em><em>, </em><em>death</em><em>) or </em><em>an array</em><em> of </em><em>array</em><em> of
+</em><em>(</em><em>birth</em><em>, </em><em>death</em><em>)</em>) – Persistence intervals values list. Can be grouped by dimension or not.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_barcode.params.persistence_file"></span><strong>persistence_file</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_barcode.params.persistence_file">¶</a> (<em>string</em>) – <p>A <a class="reference external" href="fileformats.html#persistence-diagram">persistence diagram</a> file style name
+(reset persistence if both are set).</p>
+</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_barcode.params.alpha"></span><strong>alpha</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_barcode.params.alpha">¶</a> (<em>float</em>) – barcode transparency value (0.0 transparent through 1.0 opaque - default is 0.6).</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_barcode.params.max_intervals"></span><strong>max_intervals</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_barcode.params.max_intervals">¶</a> (<em>int</em>) – maximal number of intervals to display. Selected intervals are those with the longest life
+time. Set it to 0 to see all. Default value is 20000.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_barcode.params.inf_delta"></span><strong>inf_delta</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_barcode.params.inf_delta">¶</a> (<em>float</em>) – Infinity is placed at <code class="code docutils literal notranslate"><span class="pre">((max_death</span> <span class="pre">-</span> <span class="pre">min_birth)</span> <span class="pre">x</span> <span class="pre">inf_delta)</span></code> above <code class="code docutils literal notranslate"><span class="pre">max_death</span></code>
+value. A reasonable value is between 0.05 and 0.5 - default is 0.1.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_barcode.params.legend"></span><strong>legend</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_barcode.params.legend">¶</a> (<em>boolean</em><em> or </em><em>None</em>) – Display the color legend. Default is None, meaning the legend is displayed if dimension is specified
+in the persistence argument or if persistence is a range over an array of (birth, death), and not displayed
+otherwise.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_barcode.params.colormap"></span><strong>colormap</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_barcode.params.colormap">¶</a> (<em>tuple</em><em> of </em><em>colors</em><em> (</em><em>3-tuple</em><em> of </em><em>float between 0. and 1.</em><em>)</em>) – A matplotlib-like qualitative colormaps. Default is None which means
+<code class="code docutils literal notranslate"><span class="pre">matplotlib.cm.Set1.colors</span></code>.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_barcode.params.axes"></span><strong>axes</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_barcode.params.axes">¶</a> (<cite>matplotlib.axes.Axes</cite>) – A matplotlib-like subplot axes. If None, the plot is drawn on a new set of axes.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_barcode.params.fontsize"></span><strong>fontsize</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_barcode.params.fontsize">¶</a> (<em>int</em>) – Fontsize to use in axis.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(<cite>matplotlib.axes.Axes</cite>): The axes on which the plot was drawn.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.plot_persistence_diagram">
+<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">plot_persistence_diagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">persistence_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">band</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_intervals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inf_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colormap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">greyblock</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/persistence_graphical_tools.html#plot_persistence_diagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.plot_persistence_diagram" title="Link to this definition">#</a></dt>
+<dd><p>This function plots the persistence diagram from persistence values list, a np.array of shape (N x 2)
+(representing a diagram in a single homology dimension), a list of np.array of shape (N x 2)
+(representing a diagram in a range of homology dimensions), or from a <a class="reference external" href="fileformats.html#persistence-diagram">persistence diagram</a> file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.plot_persistence_diagram.params.persistence"></span><strong>persistence</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_diagram.params.persistence">¶</a> (<em>an array</em><em> of </em><em>(</em><em>dimension</em><em>, </em><em>(</em><em>birth</em><em>, </em><em>death</em><em>)</em><em>)</em><em>, </em><em>an array</em><em> of </em><em>(</em><em>birth</em><em>, </em><em>death</em><em>) or </em><em>an array</em><em> of </em><em>array</em><em> of
+</em><em>(</em><em>birth</em><em>, </em><em>death</em><em>)</em>) – Persistence intervals values list. Can be grouped by dimension or not.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_diagram.params.persistence_file"></span><strong>persistence_file</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_diagram.params.persistence_file">¶</a> (<em>string</em>) – <p>A <a class="reference external" href="fileformats.html#persistence-diagram">persistence diagram</a> file style name
+(reset persistence if both are set).</p>
+</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_diagram.params.alpha"></span><strong>alpha</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_diagram.params.alpha">¶</a> (<em>float</em>) – plot transparency value (0.0 transparent through 1.0 opaque - default is 0.6).</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_diagram.params.band"></span><strong>band</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_diagram.params.band">¶</a> (<em>float</em>) – band (not displayed if <span class="math notranslate nohighlight">\(\leq\)</span> 0. - default is 0.)</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_diagram.params.max_intervals"></span><strong>max_intervals</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_diagram.params.max_intervals">¶</a> (<em>int</em>) – maximal number of intervals to display. Selected intervals are those with the longest life
+time. Set it to 0 to see all. Default value is 1000000.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_diagram.params.inf_delta"></span><strong>inf_delta</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_diagram.params.inf_delta">¶</a> (<em>float</em>) – Infinity is placed at <code class="code docutils literal notranslate"><span class="pre">((max_death</span> <span class="pre">-</span> <span class="pre">min_birth)</span> <span class="pre">x</span> <span class="pre">inf_delta)</span></code> above <code class="code docutils literal notranslate"><span class="pre">max_death</span></code>
+value. A reasonable value is between 0.05 and 0.5 - default is 0.1.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_diagram.params.legend"></span><strong>legend</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_diagram.params.legend">¶</a> (<em>boolean</em><em> or </em><em>None</em>) – Display the dimension color legend. Default is None, meaning the legend is displayed if dimension
+is specified in the persistence argument, and not displayed if dimension is not specified.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_diagram.params.colormap"></span><strong>colormap</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_diagram.params.colormap">¶</a> (<em>tuple</em><em> of </em><em>colors</em><em> (</em><em>3-tuple</em><em> of </em><em>float between 0. and 1.</em><em>)</em>) – A matplotlib-like qualitative colormaps. Default is None which means
+<code class="code docutils literal notranslate"><span class="pre">matplotlib.cm.Set1.colors</span></code>.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_diagram.params.axes"></span><strong>axes</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_diagram.params.axes">¶</a> (<cite>matplotlib.axes.Axes</cite>) – A matplotlib-like subplot axes. If None, the plot is drawn on a new set of axes.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_diagram.params.fontsize"></span><strong>fontsize</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_diagram.params.fontsize">¶</a> (<em>int</em>) – Fontsize to use in axis.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_diagram.params.greyblock"></span><strong>greyblock</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_diagram.params.greyblock">¶</a> (<em>boolean</em>) – if we want to plot a grey patch on the lower half plane for nicer rendering. Default True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(<cite>matplotlib.axes.Axes</cite>): The axes on which the plot was drawn.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.plot_persistence_density">
+<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">plot_persistence_density</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">persistence_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bw_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_intervals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">greyblock</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/persistence_graphical_tools.html#plot_persistence_density"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.plot_persistence_density" title="Link to this definition">#</a></dt>
+<dd><p>This function plots the persistence density from persistence values list, a np.array of shape (N x 2)
+(representing a diagram in a single homology dimension), a list of np.array of shape (N x 2)
+(representing a diagram in a range of homology dimensions), or from a <a class="reference external" href="fileformats.html#persistence-diagram">persistence diagram</a> file.
+Be aware that this function does not distinguish the dimension, it is up to you to select the required one.
+This function also does not handle degenerate data set (scipy correlation matrix inversion can fail).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Requires<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="installation.html#scipy">SciPy</a></p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span class="target" id="gudhi.plot_persistence_density.params.persistence"></span><strong>persistence</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_density.params.persistence">¶</a> (<em>an array</em><em> of </em><em>(</em><em>dimension</em><em>, </em><em>(</em><em>birth</em><em>, </em><em>death</em><em>)</em><em>)</em><em>, </em><em>an array</em><em> of </em><em>(</em><em>birth</em><em>, </em><em>death</em><em>) or </em><em>an array</em><em> of </em><em>array</em><em> of
+</em><em>(</em><em>birth</em><em>, </em><em>death</em><em>)</em>) – Persistence intervals values list. Can be grouped by dimension or not.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_density.params.persistence_file"></span><strong>persistence_file</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_density.params.persistence_file">¶</a> (<em>string</em>) – <p>A <a class="reference external" href="fileformats.html#persistence-diagram">persistence diagram</a> file style name (reset
+persistence if both are set).</p>
+</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_density.params.nbins"></span><strong>nbins</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_density.params.nbins">¶</a> (<em>int</em>) – Evaluate a gaussian kde on a regular grid of nbins x nbins over data extents (default is 300)</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_density.params.bw_method"></span><strong>bw_method</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_density.params.bw_method">¶</a> (<em>str</em><em>, </em><em>scalar</em><em> or </em><em>callable</em><em>, </em><em>optional</em>) – The method used to calculate the estimator bandwidth. This can be ‘scott’, ‘silverman’, a scalar
+constant or a callable. If a scalar, this will be used directly as kde.factor. If a callable, it should take a
+gaussian_kde instance as only parameter and return a scalar. If None (default), ‘scott’ is used. See
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.gaussian_kde.html">scipy.stats.gaussian_kde documentation</a>
+for more details.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_density.params.max_intervals"></span><strong>max_intervals</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_density.params.max_intervals">¶</a> (<em>int</em>) – maximal number of points used in the density estimation. Selected intervals are those with
+the longest life time. Set it to 0 to see all. Default value is 1000.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_density.params.dimension"></span><strong>dimension</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_density.params.dimension">¶</a> (<em>int</em>) – the dimension to be selected in the intervals (default is None to mix all dimensions).</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_density.params.cmap"></span><strong>cmap</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_density.params.cmap">¶</a> (<em>cf. matplotlib colormap</em>) – A matplotlib colormap (default is matplotlib.pyplot.cm.hot_r).</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_density.params.legend"></span><strong>legend</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_density.params.legend">¶</a> (<em>boolean</em>) – Display the color bar values (default is True).</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_density.params.axes"></span><strong>axes</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_density.params.axes">¶</a> (<cite>matplotlib.axes.Axes</cite>) – A matplotlib-like subplot axes. If None, the plot is drawn on a new set of axes.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_density.params.fontsize"></span><strong>fontsize</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_density.params.fontsize">¶</a> (<em>int</em>) – Fontsize to use in axis.</p></li>
+<li><p><span class="target" id="gudhi.plot_persistence_density.params.greyblock"></span><strong>greyblock</strong><a class="paramlink headerlink reference internal" href="#gudhi.plot_persistence_density.params.greyblock">¶</a> (<em>boolean</em>) – if we want to plot a grey patch on the lower half plane for nicer rendering. Default False.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<cite>matplotlib.axes.Axes</cite>): The axes on which the plot was drawn.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.plot_persistence_barcode"><code class="docutils literal notranslate"><span class="pre">plot_persistence_barcode()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.plot_persistence_diagram"><code class="docutils literal notranslate"><span class="pre">plot_persistence_diagram()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.plot_persistence_density"><code class="docutils literal notranslate"><span class="pre">plot_persistence_density()</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

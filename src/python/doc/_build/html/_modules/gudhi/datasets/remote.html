@@ -1,0 +1,1011 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gudhi.datasets.remote &#8212; gudhi v3.11.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gudhi/datasets/remote';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.11.0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">gudhi.datasets.remote</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for gudhi.datasets.remote</h1><div class="highlight"><pre>
+<span></span><span class="c1"># This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is released under MIT.</span>
+<span class="c1"># See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license details.</span>
+<span class="c1"># Author(s):       Hind Montassif</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2021 Inria</span>
+<span class="c1">#</span>
+<span class="c1"># Modification(s):</span>
+<span class="c1">#   - YYYY/MM Author: Description of the modification</span>
+<span class="c1">#   - 2022/09 Vincent Rouvreau: factorize _fetch_remote_license</span>
+<span class="c1">#                               fetch activities dataset</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">os.path</span><span class="w"> </span><span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">split</span><span class="p">,</span> <span class="n">exists</span><span class="p">,</span> <span class="n">expanduser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">makedirs</span><span class="p">,</span> <span class="n">remove</span><span class="p">,</span> <span class="n">environ</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">urllib.request</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlretrieve</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_data_home</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Return the path of the remote datasets directory.</span>
+<span class="sd">    This folder is used to store remotely fetched datasets.</span>
+<span class="sd">    By default the datasets directory is set to a folder named 'gudhi_data' in the user home folder.</span>
+<span class="sd">    Alternatively, it can be set by the 'GUDHI_DATA' environment variable.</span>
+<span class="sd">    The '~' symbol is expanded to the user home folder.</span>
+<span class="sd">    If the folder does not already exist, it is automatically created.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_home : string</span>
+<span class="sd">        The path to remote datasets directory.</span>
+<span class="sd">        Default is `None`, meaning that the data home directory will be set to "~/gudhi_data",</span>
+<span class="sd">        if the 'GUDHI_DATA' environment variable does not exist.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data_home: string</span>
+<span class="sd">        The path to remote datasets directory.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">data_home</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">data_home</span> <span class="o">=</span> <span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"GUDHI_DATA"</span><span class="p">,</span> <span class="n">join</span><span class="p">(</span><span class="s2">"~"</span><span class="p">,</span> <span class="s2">"gudhi_data"</span><span class="p">))</span>
+    <span class="n">data_home</span> <span class="o">=</span> <span class="n">expanduser</span><span class="p">(</span><span class="n">data_home</span><span class="p">)</span>
+    <span class="n">makedirs</span><span class="p">(</span><span class="n">data_home</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data_home</span>
+
+
+<div class="viewcode-block" id="clear_data_home">
+<a class="viewcode-back" href="../../../datasets.html#gudhi.datasets.remote.clear_data_home">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">clear_data_home</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Delete the data home cache directory and all its content.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_home : string, default is None.</span>
+<span class="sd">        The path to remote datasets directory.</span>
+<span class="sd">        If `None` and the 'GUDHI_DATA' environment variable does not exist,</span>
+<span class="sd">        the default directory to be removed is set to "~/gudhi_data".</span>
+<span class="sd">    """</span>
+    <span class="c1"># On windows, needs to clear cache before removing a file - no lazy file deletion</span>
+    <span class="n">_load_and_cache_activity</span><span class="o">.</span><span class="n">cache_clear</span><span class="p">()</span>
+    <span class="n">data_home</span> <span class="o">=</span> <span class="n">_get_data_home</span><span class="p">(</span><span class="n">data_home</span><span class="p">)</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">data_home</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_checksum_sha256</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute the file checksum using sha256.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_path: string</span>
+<span class="sd">        Full path of the created file including filename.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        The hex digest of file_path.</span>
+<span class="sd">    """</span>
+    <span class="n">sha256_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">()</span>
+    <span class="n">chunk_size</span> <span class="o">=</span> <span class="mi">4096</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="c1"># Read and update hash string value in blocks of 4K</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">buffer</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">buffer</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">sha256_hash</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sha256_hash</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fetch_remote</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">file_checksum</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fetch the wanted dataset from the given url and save it in file_path.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    url : string</span>
+<span class="sd">        The url to fetch the dataset from.</span>
+<span class="sd">    file_path : string</span>
+<span class="sd">        Full path of the downloaded file including filename.</span>
+<span class="sd">    file_checksum : string</span>
+<span class="sd">        The file checksum using sha256 to check against the one computed on the downloaded file.</span>
+<span class="sd">        Default is 'None', which means the checksum is not checked.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    OSError</span>
+<span class="sd">        If the computed SHA256 checksum of file does not match the one given by the user.</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># Get the file</span>
+    <span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">file_checksum</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">checksum</span> <span class="o">=</span> <span class="n">_checksum_sha256</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">file_checksum</span> <span class="o">!=</span> <span class="n">checksum</span><span class="p">:</span>
+            <span class="c1"># Remove file and raise error</span>
+            <span class="n">remove</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
+                <span class="s2">"</span><span class="si">{}</span><span class="s2"> has a SHA256 checksum : </span><span class="si">{}</span><span class="s2">, "</span>
+                <span class="s2">"different from expected : </span><span class="si">{}</span><span class="s2">."</span>
+                <span class="s2">"The file may be corrupted or the given url may be wrong !"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">checksum</span><span class="p">,</span> <span class="n">file_checksum</span><span class="p">)</span>
+            <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fetch_remote_license</span><span class="p">(</span><span class="n">license_url</span><span class="p">,</span> <span class="n">license_path</span><span class="p">,</span> <span class="n">license_checksum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">accept_license</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fetch the wanted license from the given url and save it in file_path.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    license_url : string</span>
+<span class="sd">        The url to fetch the license file from.</span>
+<span class="sd">    license_path : string</span>
+<span class="sd">        Full path of the downloaded file including filename.</span>
+<span class="sd">    license_checksum : string</span>
+<span class="sd">        The license file checksum using sha256 to check against the one computed on the downloaded file.</span>
+<span class="sd">        Default is 'None', which means the checksum is not checked.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    OSError</span>
+<span class="sd">        If the computed SHA256 checksum of file does not match the one given by the user.</span>
+<span class="sd">    """</span>
+    <span class="n">_fetch_remote</span><span class="p">(</span><span class="n">license_url</span><span class="p">,</span> <span class="n">license_path</span><span class="p">,</span> <span class="n">license_checksum</span><span class="p">)</span>
+    <span class="c1"># Print license terms unless accept_license is set to True</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">accept_license</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">exists</span><span class="p">(</span><span class="n">license_path</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">license_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_archive_path</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Get archive path based on file_path given by user and label.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_path: string</span>
+<span class="sd">        Full path of the file to get including filename, or None.</span>
+<span class="sd">    label: string</span>
+<span class="sd">        Label used along with 'data_home' to get archive path, in case 'file_path' is None.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        Full path of archive including filename.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">file_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">archive_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">_get_data_home</span><span class="p">(),</span> <span class="n">label</span><span class="p">)</span>
+        <span class="n">dirname</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">archive_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">makedirs</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">archive_path</span> <span class="o">=</span> <span class="n">file_path</span>
+        <span class="n">dirname</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">archive_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">makedirs</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">archive_path</span>
+
+
+<div class="viewcode-block" id="fetch_spiral_2d">
+<a class="viewcode-back" href="../../../datasets.html#gudhi.datasets.remote.fetch_spiral_2d">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch_spiral_2d</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Load the spiral_2d dataset.</span>
+
+<span class="sd">    Note that if the dataset already exists in the target location, it is not downloaded again,</span>
+<span class="sd">    and the corresponding array is returned from cache.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_path : string</span>
+<span class="sd">        Full path of the downloaded file including filename.</span>
+
+<span class="sd">        Default is None, meaning that it's set to "data_home/points/spiral_2d/spiral_2d.npy".</span>
+
+<span class="sd">        The "data_home" directory is set by default to "~/gudhi_data",</span>
+<span class="sd">        unless the 'GUDHI_DATA' environment variable is set.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    points: numpy array</span>
+<span class="sd">        Array of shape (114562, 2).</span>
+<span class="sd">    """</span>
+    <span class="n">file_url</span> <span class="o">=</span> <span class="s2">"https://raw.githubusercontent.com/GUDHI/gudhi-data/main/points/spiral_2d/spiral_2d.npy"</span>
+    <span class="n">file_checksum</span> <span class="o">=</span> <span class="s2">"2226024da76c073dd2f24b884baefbfd14928b52296df41ad2d9b9dc170f2401"</span>
+
+    <span class="n">archive_path</span> <span class="o">=</span> <span class="n">_get_archive_path</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">"points/spiral_2d/spiral_2d.npy"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">(</span><span class="n">archive_path</span><span class="p">):</span>
+        <span class="n">_fetch_remote</span><span class="p">(</span><span class="n">file_url</span><span class="p">,</span> <span class="n">archive_path</span><span class="p">,</span> <span class="n">file_checksum</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">archive_path</span><span class="p">,</span> <span class="n">mmap_mode</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="fetch_bunny">
+<a class="viewcode-back" href="../../../datasets.html#gudhi.datasets.remote.fetch_bunny">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch_bunny</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">accept_license</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Load the Stanford bunny dataset.</span>
+
+<span class="sd">    This dataset contains 35947 vertices.</span>
+
+<span class="sd">    Note that if the dataset already exists in the target location, it is not downloaded again,</span>
+<span class="sd">    and the corresponding array is returned from cache.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_path : string</span>
+<span class="sd">        Full path of the downloaded file including filename.</span>
+
+<span class="sd">        Default is None, meaning that it's set to "data_home/points/bunny/bunny.npy".</span>
+<span class="sd">        In this case, the LICENSE file would be downloaded as "data_home/points/bunny/bunny.LICENSE".</span>
+
+<span class="sd">        The "data_home" directory is set by default to "~/gudhi_data",</span>
+<span class="sd">        unless the 'GUDHI_DATA' environment variable is set.</span>
+
+<span class="sd">    accept_license : boolean</span>
+<span class="sd">        Flag to specify if user accepts the file LICENSE and prevents from printing the corresponding license terms.</span>
+
+<span class="sd">        Default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    points: numpy array</span>
+<span class="sd">        Array of shape (35947, 3).</span>
+<span class="sd">    """</span>
+
+    <span class="n">file_url</span> <span class="o">=</span> <span class="s2">"https://raw.githubusercontent.com/GUDHI/gudhi-data/main/points/bunny/bunny.npy"</span>
+    <span class="n">file_checksum</span> <span class="o">=</span> <span class="s2">"f382482fd89df8d6444152dc8fd454444fe597581b193fd139725a85af4a6c6e"</span>
+    <span class="n">license_url</span> <span class="o">=</span> <span class="s2">"https://raw.githubusercontent.com/GUDHI/gudhi-data/main/points/bunny/bunny.LICENSE"</span>
+    <span class="n">license_checksum</span> <span class="o">=</span> <span class="s2">"b763dbe1b2fc6015d05cbf7bcc686412a2eb100a1f2220296e3b4a644c69633a"</span>
+
+    <span class="n">archive_path</span> <span class="o">=</span> <span class="n">_get_archive_path</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">"points/bunny/bunny.npy"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">(</span><span class="n">archive_path</span><span class="p">):</span>
+        <span class="n">_fetch_remote</span><span class="p">(</span><span class="n">file_url</span><span class="p">,</span> <span class="n">archive_path</span><span class="p">,</span> <span class="n">file_checksum</span><span class="p">)</span>
+        <span class="n">license_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">split</span><span class="p">(</span><span class="n">archive_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">"bunny.LICENSE"</span><span class="p">)</span>
+        <span class="n">_fetch_remote_license</span><span class="p">(</span><span class="n">license_url</span><span class="p">,</span> <span class="n">license_path</span><span class="p">,</span> <span class="n">license_checksum</span><span class="p">,</span> <span class="n">accept_license</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">archive_path</span><span class="p">,</span> <span class="n">mmap_mode</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span></div>
+
+
+
+<span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_load_and_cache_activity</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">mmap_mode</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="fetch_daily_activities">
+<a class="viewcode-back" href="../../../datasets.html#gudhi.datasets.remote.fetch_daily_activities">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch_daily_activities</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">accept_license</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Load a subset of the Daily and Sports Activities dataset. This dataset comes from</span>
+<span class="sd">    https://archive.ics.uci.edu/ml/datasets/daily+and+sports+activities (CC BY 4.0 license).</span>
+
+<span class="sd">    Note that if the dataset already exists in the target location, it is not downloaded again,</span>
+<span class="sd">    and the corresponding dataset is read from cache.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_path : string</span>
+<span class="sd">        Full path of the downloaded file including filename.</span>
+
+<span class="sd">        Default is None, meaning that it's set to "data_home/points/activities/activities_p1_left_leg.npy".</span>
+<span class="sd">        In this case, the LICENSE file would be downloaded as "data_home/points/activities/activities.LICENSE".</span>
+
+<span class="sd">        The "data_home" directory is set by default to "~/gudhi_data",</span>
+<span class="sd">        unless the 'GUDHI_DATA' environment variable is set.</span>
+
+<span class="sd">    subset : string</span>
+<span class="sd">        This argument allows to download the following subsets:</span>
+<span class="sd">         * 'cross_training' Only left leg magnetometer of cross training activity performed by the person 1.</span>
+<span class="sd">           It contains 7.500 vertices in dimension 3.</span>
+<span class="sd">         * 'jumping' Only left leg magnetometer of jumping activity performed by the person 1.</span>
+<span class="sd">           It contains 7.500 vertices in dimension 3.</span>
+<span class="sd">         * 'stepper' Only left leg magnetometer of stepper activity performed by the person 1.</span>
+<span class="sd">           It contains 7.500 vertices in dimension 3.</span>
+<span class="sd">         * 'walking' Only left leg magnetometer of walking activity performed by the person 1.</span>
+<span class="sd">           It contains 7.500 vertices in dimension 3.</span>
+<span class="sd">         * None (default value) This dataset contains 30.000 vertices in dimension 3 + activity type column</span>
+<span class="sd">           (`14.` for 'cross_training', `18.` for 'jumping', `13.` for 'stepper', or `9.` for 'walking')</span>
+
+<span class="sd">    accept_license : boolean</span>
+<span class="sd">        Flag to specify if user accepts the file LICENSE and prevents from printing the corresponding license terms.</span>
+
+<span class="sd">        Default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    points: numpy array</span>
+<span class="sd">        Depending on subset value:</span>
+<span class="sd">         * Array of shape (7.500, 3, dtype = float).</span>
+
+<span class="sd">        Or</span>
+<span class="sd">         * Array of shape (30.000, 4, dtype = float) when `subset is None`.</span>
+<span class="sd">    """</span>
+    <span class="c1"># To avoid download when subset is not correct</span>
+    <span class="k">if</span> <span class="n">subset</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"walking"</span><span class="p">,</span> <span class="s2">"stepper"</span><span class="p">,</span> <span class="s2">"cross_training"</span><span class="p">,</span> <span class="s2">"jumping"</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Unknown subset value"</span><span class="p">)</span>
+
+    <span class="n">file_url</span> <span class="o">=</span> <span class="s2">"https://raw.githubusercontent.com/GUDHI/gudhi-data/main/points/activities/activities_p1_left_leg.npy"</span>
+    <span class="n">file_checksum</span> <span class="o">=</span> <span class="s2">"ff813f717dbd3c8f8a95e59a7d8496d0b43c440e85a4db1f2b338cbfa9c02f25"</span>
+    <span class="n">activities_license_url</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"https://raw.githubusercontent.com/GUDHI/gudhi-data/main/points/activities/activities.LICENSE"</span>
+    <span class="p">)</span>
+    <span class="n">activities_license_checksum</span> <span class="o">=</span> <span class="s2">"f5ce6749fa9d5359d7b0c4c37d0b61e5d9520f9494cd53be94295d3967ee4023"</span>
+    <span class="n">gudhi_data_set_path</span> <span class="o">=</span> <span class="s2">"points/activities/activities_p1_left_leg.npy"</span>
+
+    <span class="n">archive_path</span> <span class="o">=</span> <span class="n">_get_archive_path</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">gudhi_data_set_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">(</span><span class="n">archive_path</span><span class="p">):</span>
+        <span class="n">_fetch_remote</span><span class="p">(</span><span class="n">file_url</span><span class="p">,</span> <span class="n">archive_path</span><span class="p">,</span> <span class="n">file_checksum</span><span class="p">)</span>
+        <span class="n">license_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">split</span><span class="p">(</span><span class="n">archive_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">"activities.LICENSE"</span><span class="p">)</span>
+        <span class="n">_fetch_remote_license</span><span class="p">(</span><span class="n">activities_license_url</span><span class="p">,</span> <span class="n">license_path</span><span class="p">,</span> <span class="n">activities_license_checksum</span><span class="p">,</span> <span class="n">accept_license</span><span class="p">)</span>
+
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">_load_and_cache_activity</span><span class="p">(</span><span class="n">archive_path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">subset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">activity_pos</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"walking"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"stepper"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"cross_training"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"jumping"</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="n">per_activity</span> <span class="o">=</span> <span class="mi">7500</span>
+        <span class="n">start_pos</span> <span class="o">=</span> <span class="n">activity_pos</span><span class="p">[</span><span class="n">subset</span><span class="p">]</span> <span class="o">*</span> <span class="n">per_activity</span>
+        <span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">start_pos</span> <span class="p">:</span> <span class="p">(</span><span class="n">start_pos</span> <span class="o">+</span> <span class="n">per_activity</span><span class="p">),</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">ds</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

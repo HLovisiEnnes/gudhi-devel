@@ -14,15 +14,12 @@ of representations of the tori, SU(2), and SO(3). It includes utilities for mani
 
 Linear algebra:
     skew_sym_to_vect
-    vect_to_skew_sym
-    skew_sym_frame_to_projection
     gram_schmidt_orthonormalization
 
 Lattices and partitions:
     get_random_lattice
     invariant_of_lattices
     get_lattices
-    are_representations_equivalent
     get_partitions
     get_constrained_partitions
     get_random_constrained_partition
@@ -35,14 +32,13 @@ Canonical bases of representations:
 """
 
 # Standard imports.
-from typing import List, Literal
-import random
 import itertools
+import random
 from math import gcd
+from typing import Literal
 
 # Third-party imports.
 import autograd.numpy as np
-
 
 """
 -----------------------------------------------------------------------------------------------------------------------
@@ -86,89 +82,9 @@ def skew_sym_to_vect(mat: np.ndarray) -> np.ndarray:
     return vect
 
 
-def vect_to_skew_sym(vect: np.ndarray) -> np.ndarray:
-    """
-    Converts a skew-symmetric matrix vect, written as a vector in the canonical basis of S_n(R), to its matrix 
-    representation in the canonical basis of M_n(R). In other word, the function reshapes the vector as an
-    upper-diagonal matrix and skew-symmetrizes it.
-
-    Args:
-        vect (np.ndarray): mat vector of length n(n-1)/2 containing the sub-diagonal entries of a skew-symmetric
-            matrix, ordered as (0,1), (0,2), ..., (0,n-1), (1,2), ..., (n-2,n-1).
-
-    Returns:
-        np.ndarray: The reconstructed skew-symmetric matrix of shape (n, n).
-
-    Example:
-        v = np.array([1, 2, 1])
-        mat = vect_to_skew_sym(v)
-        # mat =
-        # [[ 0.  1.  2.]
-        #  [-1.  0.  1.]
-        #  [-2. -1.  0.]]
-    """
-    # Gets the size of the matrix
-    n = int((np.sqrt(1 + 8 * len(vect)) + 1) / 2)
-
-    # Creates the indices of the canonical basis of S_n(R)
-    indices = ((i, j) for i in range(n) for j in range(i + 1, n))
-
-    # Fills upper-diagonal entries of the matrix
-    mat = np.zeros((n, n))
-    for val, idx in zip(vect, indices):
-        mat[idx] = val
-
-    # Skew-symmetrize the matrix
-    mat -= mat.T
-
-    return mat
-
-
-def skew_sym_frame_to_projection(
-        frame: List[np.ndarray], method: Literal["QR", "differentiable"] = "QR"
-        )-> np.ndarray:
-    """
-    Given a list of d skew-symmetric matrices forming a frame (free family), returns the orthogonal projection matrix
-    onto the subspace they span. This is an m x m matrix, where m is the dimension of S_n(R), i.e., m = n(n-1)/2.
-
-    Args:
-        frame (list[np.ndarray]): List of d skew-symmetric matrices of shape
-            (n, n), assumed to be linearly independent.
-        method (str, optional): Orthonormalization method.
-            - "QR" uses NumPy's QR decomposition,
-            - "differentiable" uses a manual Gram-Schmidt process
-                (for autograd, where QR is not implemented).
-
-    Returns:
-        np.ndarray: The projection matrix of shape (m, m), where m = n(n-1)/2, representing the subspace in S_n(R).
-
-    Example:
-        mat = np.array([[ 0,  1, 2],
-                      [-1,  0, 1],
-                      [-2, -1, 0]])
-        frame = [mat]
-        projection = skew_sym_frame_to_projection(frame)
-        # projection is a 3x3 projection matrix:
-        # [[0.16666667 0.33333333 0.16666667]
-        #  [0.33333333 0.66666667 0.33333333]
-        #  [0.16666667 0.33333333 0.16666667]]
-    """
-    # Converts matrices to vectors in the canonical basis of S_n(R).
-    frame_vectors = [skew_sym_to_vect(matrix) for matrix in frame]
-
-    # Orthonormalizes
-    frame_vectors = gram_schmidt_orthonormalization(frame_vectors, method=method)
-
-    # Builds projection matrix.
-    frame_vectors = np.array(frame_vectors)
-    projection = frame_vectors.T @ frame_vectors
-
-    return projection
-
-
 def gram_schmidt_orthonormalization(
-        frame: List[np.ndarray], method: Literal["QR", "differentiable"] = "QR"
-        ) -> List[np.ndarray]:
+    frame: list[np.ndarray], method: Literal["QR", "differentiable"] = "QR"
+) -> list[np.ndarray]:
     """
     Orthonormalizes a list of vectors or square matrices via the Gram-Schmidt process.
 
@@ -254,7 +170,8 @@ def get_random_lattice(
     while not has_maximal_rank:
         # Generates lattice_rank random integral vectors in Z^ambient_rank
         lattice = tuple(
-            tuple(random.sample(range(-frequency_max, frequency_max + 1), ambient_rank)) for _ in range(lattice_rank)
+            tuple(random.sample(range(-frequency_max, frequency_max + 1), ambient_rank))
+            for _ in range(lattice_rank)
         )
         # Check its rank
         has_maximal_rank = np.linalg.matrix_rank(np.array(lattice).T) == lattice_rank
@@ -262,7 +179,11 @@ def get_random_lattice(
     # If required, check whether the orbit spans the ambient space
     if span_ambient_space and lattice_rank == 1:
         # Checks whether the orbit spans the ambient space
-        if (0 in lattice[0]) or (not gcd(*lattice[0]) == 1) or len(np.unique(np.abs(lattice[0]))) < len(lattice[0]):
+        if (
+            (0 in lattice[0])
+            or (not gcd(*lattice[0]) == 1)
+            or len(np.unique(np.abs(lattice[0]))) < len(lattice[0])
+        ):
             # If not, generates a new lattice
             lattice = get_random_lattice(
                 lattice_rank=lattice_rank,
@@ -272,10 +193,8 @@ def get_random_lattice(
             )
 
     elif span_ambient_space:
-        raise ValueError(
-            """The parameter 'span_ambient_space' is only
-            implemented for rank-1 lattices."""
-        )
+        raise ValueError("""The parameter 'span_ambient_space' is only
+            implemented for rank-1 lattices.""")
     return lattice
 
 
@@ -319,131 +238,6 @@ def invariant_of_lattices(
         raise ValueError(f"Method not recognized: {method}.")
 
 
-def get_lattices(
-    lattice_rank: int,
-    ambient_rank: int,
-    frequency_max: int,
-    method: Literal["span-equivalence", "equivalence"] = "span-equivalence",
-    span_ambient_space: bool = True,
-    verbose: bool = False,
-) -> List[tuple[tuple[int, ...], ...]]:
-    """
-    Returns a list of lattices of rank lattice_dim in R^{ambient_rank}, written in a basis.
-        - 'span-equivalence':
-            Returns one lattice per span-equivalence class (span the same subspace of R^ambient_rank). This set is in
-            correspondence with the primitive lattices, we do not guarantee that the selected representatives are
-            primitive. For our purpose, having an arbitrary representative is enough.
-        - 'orbit-equivalence':
-            Returns one representative per orbit-equivalence class (up to signed permutations). It is stronger than
-            'span-equivalence'.  For lattice_dim==1, the output are equivalent. Just as above, the output lattices may
-            not be primitive.
-    In addition, with the parameter "span_ambient_space", we only return lattices whose irreps in its decomposition do
-    not repeat. This ensures that the corresponding orbit spans the ambient space.
-
-    Args:
-        ambient_rank (int): Dimension of the vector.
-        lattice_rank (int): Rank of the lattice.
-        frequency_max (int): Maximum frequency for irreps.
-        method (str, optional): 'exact' for unique representatives, 'repetitions' for all (possibly repeated) lattices.
-        span_ambient_space (bool, optional): If True, only return lattices whose generic orbits span the ambient space.
-        verbose (int, optional): Verbosity level.
-
-    Returns:
-        list: List of lattices, each as a tuple of frequency tuples.
-    """
-    # Sanity check: ambient dimension must be large enough
-    if not lattice_rank <= ambient_rank:
-        raise ValueError("Rank of ambient lattice is too small.")
-
-    # Gets irreps of T^lattice_rank with frequencies in
-    # [0, frequency_max] (tuples of length lattice_dim)
-    irreps = list(itertools.product(range(0, frequency_max + 1), repeat=lattice_rank))
-    irreps.remove((0,) * lattice_rank)
-
-    # Gets lattices, as combinations of irreps (comb instead of prod, for the orbit to span the ambient space)
-    if span_ambient_space:
-        lattices = itertools.combinations(irreps, ambient_rank)
-    else:
-        lattices = itertools.product(irreps, repeat=ambient_rank)
-
-    # Transposes the lattices, to write them as tuples of vectors
-    # in Z^ambient_rank.
-    lattices = [tuple(zip(*c)) for c in lattices]
-
-    # For SO(2), discards non-primitive vectors
-    if lattice_rank == 1:
-        lattices = [lattice for lattice in lattices if gcd(*lattice[0]) == 1]
-
-    # Keeps only maximal rank lattices
-    lattices = [lattice for lattice in lattices if np.linalg.matrix_rank(lattice) == lattice_rank]
-
-    if verbose:
-        print(f"Full-rank lattices: {len(lattices)}")
-
-    # Discards lattices that span the same vector subspace
-    span_equivalence_classes = dict()
-    for lattice in lattices:
-        invariant = invariant_of_lattices(lattice=lattice, method="span-equivalence")
-        if invariant not in span_equivalence_classes:
-            span_equivalence_classes[invariant] = lattice
-    lattices = list(span_equivalence_classes.values())
-
-    if verbose:
-        print(f"Span-equivalence classes: {len(lattices)}")
-
-    # If required, returns lattices obtained
-    if method == "span-equivalence" or lattice_rank == 1:
-        return lattices
-
-    # Otherwise, discards orbit-equivalent lattices (under the action of signed permutations)
-    elif method == "orbit-equivalence":
-        orbit_equivalence_classes = {}
-        for lattice in lattices:
-            invariant = invariant_of_lattices(lattice=lattice, method="orbit-equivalence")
-            if invariant not in orbit_equivalence_classes:
-                orbit_equivalence_classes[invariant] = lattice
-
-        lattices = list(orbit_equivalence_classes.values())
-
-        if verbose:
-            print(f"Orbit-equivalence classes: {len(lattices)}")
-        return lattices
-
-    else:
-        raise ValueError(f"Method not recognized: {method}.")
-
-
-def are_representations_equivalent(group: str, rep0: tuple, rep1: tuple, verbose: bool = False) -> bool:
-    """
-    Determines whether two representations are orbit-equivalent. For the non-Abelian groups SU(2) and SO(3), this boils
-    down to the equality of irreps. For the torus, one checks whether the invariants of the lattices are equal.
-
-    Args:
-        group (str): The group type, one of "torus", "SU(2)", or "SO(3)". Defaults to "torus".
-        rep0 (tuple): The first representation, as a tuple (e.g., partition or lattice basis).
-        rep1 (tuple): The second representation, as a tuple.
-        verbose (bool, optional): If True, prints the result. Defaults to False.
-
-    Returns:
-        bool: True if the representations are equivalent, False otherwise.
-    """
-    if group in ["SU(2)", "SO(3)"]:
-        nonzero_irreps = [sorted([i for i in rep if i > 1]) for rep in [rep0, rep1]]
-        are_equivalent = nonzero_irreps[0] == nonzero_irreps[1]
-    elif group == "torus":
-        invariants = [invariant_of_lattices(lattice=rep, method="orbit-equivalence") for rep in [rep0, rep1]]
-        are_equivalent = invariants[0] == invariants[1]
-    else:
-        raise ValueError(f"Group not recognized: {group}.")
-
-    if verbose:
-        print(f"The representations {rep0} and {rep1}\x1b[1;31m are ", end="")
-        if not are_equivalent:
-            print("not ", end="")
-        print("equivalent\x1b[0m.")
-    return are_equivalent
-
-
 def get_partitions(n: int):
     """Returns generator of partitions of n following
     https://jeromekelleher.net/generating-integer-partitions.html"""
@@ -469,7 +263,9 @@ def get_partitions(n: int):
         yield a[: k + 1]
 
 
-def get_constrained_partitions(group: str, ambient_dim: int, span_ambient_space: bool = False) -> List[tuple[int, ...]]:
+def get_constrained_partitions(
+    group: str, ambient_dim: int, span_ambient_space: bool = False
+) -> list[tuple[int, ...]]:
     """Returns all partitions of the integer n that are valid representations of the specified group."""
     # Defines integers (j % mod == rem) that are not irreps of the group
     if group == "SO(3)":
@@ -506,11 +302,15 @@ def get_constrained_partitions(group: str, ambient_dim: int, span_ambient_space:
     return partitions
 
 
-def get_random_constrained_partition(group: str, ambient_dim: int, span_ambient_space=False) -> tuple[int, ...]:
+def get_random_constrained_partition(
+    group: str, ambient_dim: int, span_ambient_space=False
+) -> tuple[int, ...]:
     """
     Returns a random partition of the integer n that is a valid representation of the specified group.
     """
-    partitions = get_constrained_partitions(group=group, ambient_dim=ambient_dim, span_ambient_space=span_ambient_space)
+    partitions = get_constrained_partitions(
+        group=group, ambient_dim=ambient_dim, span_ambient_space=span_ambient_space
+    )
     return random.choice(partitions)
 
 
@@ -552,15 +352,27 @@ def get_pushforward_alg_irrep_su2(dim: int) -> tuple[np.ndarray, ...] | None:
             for ell in range(1, 2 * j + 2):
                 x_1[k - 1, ell - 1] = (
                     ((1 + (-1) ** k) / 2)
-                    * (delta(ell, k + 1) * a_l(int(k / 2), j) + delta(ell + 3, k) * a_l(int((k - 2) / 2), j))
+                    * (
+                        delta(ell, k + 1) * a_l(int(k / 2), j)
+                        + delta(ell + 3, k) * a_l(int((k - 2) / 2), j)
+                    )
                     - (a_l(j, j) + np.sqrt((j**2 + j) / 2))
-                    * (delta(ell, 2 * j + 1) * delta(2 * j, k) - delta(ell, 2 * j) * delta(2 * j + 1, k))
+                    * (
+                        delta(ell, 2 * j + 1) * delta(2 * j, k)
+                        - delta(ell, 2 * j) * delta(2 * j + 1, k)
+                    )
                     - ((1 + (-1) ** (k - 1)) / 2)
-                    * (delta(ell, k + 3) * a_l(int((k + 1) / 2), j) + delta(ell + 1, k) * a_l(int((k - 1) / 2), j))
+                    * (
+                        delta(ell, k + 3) * a_l(int((k + 1) / 2), j)
+                        + delta(ell + 1, k) * a_l(int((k - 1) / 2), j)
+                    )
                 )
                 x_2[k - 1, ell - 1] = (
                     -(a_l(j, j) + np.sqrt((j**2 + j) / 2))
-                    * (delta(ell, 2 * j + 1) * delta(2 * j - 1, k) - delta(ell, 2 * j - 1) * delta(2 * j + 1, k))
+                    * (
+                        delta(ell, 2 * j + 1) * delta(2 * j - 1, k)
+                        - delta(ell, 2 * j - 1) * delta(2 * j + 1, k)
+                    )
                     + delta(ell, k + 2) * a_l(int((k + 1) / 2), j)
                     - delta(ell + 2, k) * a_l(int((k - 1) / 2), j)
                 )
@@ -581,13 +393,15 @@ def get_pushforward_alg_irrep_su2(dim: int) -> tuple[np.ndarray, ...] | None:
             for ell in range(1, int(4 * j) + 3):
                 r = j
                 x_1[k - 1, ell - 1] = ((1 + (-1) ** (k - 1)) / 2) * (
-                    delta(ell, k + 3) * a_l(int((k + 1) / 2), r) + delta(ell + 1, k) * a_l(int((k - 1) / 2), r)
+                    delta(ell, k + 3) * a_l(int((k + 1) / 2), r)
+                    + delta(ell + 1, k) * a_l(int((k - 1) / 2), r)
                 ) - ((1 + (-1) ** k) / 2) * (
-                    delta(ell, k + 1) * a_l(int(k / 2), r) + delta(ell + 3, k) * a_l(int((k - 2) / 2), r)
+                    delta(ell, k + 1) * a_l(int(k / 2), r)
+                    + delta(ell + 3, k) * a_l(int((k - 2) / 2), r)
                 )
-                x_2[k - 1, ell - 1] = delta(ell, k + 2) * a_l(int((k + 1) / 2), r) - delta(ell + 2, k) * a_l(
-                    int((k - 1) / 2), r
-                )
+                x_2[k - 1, ell - 1] = delta(ell, k + 2) * a_l(
+                    int((k + 1) / 2), r
+                ) - delta(ell + 2, k) * a_l(int((k - 1) / 2), r)
                 x_3[k - 1, ell - 1] = (
                     1
                     / 4
@@ -599,7 +413,7 @@ def get_pushforward_alg_irrep_su2(dim: int) -> tuple[np.ndarray, ...] | None:
     return x_1, x_2, x_3
 
 
-def get_canonical_pushforward_algebra(group: str, rep_type: tuple) -> List[np.ndarray]:
+def get_canonical_pushforward_algebra(group: str, rep_type: tuple) -> list[np.ndarray]:
     """
     Convert a representation-type of a Lie group into the canonical pushforward Lie algebra of the corresponding
     representation. The type can be
@@ -610,12 +424,16 @@ def get_canonical_pushforward_algebra(group: str, rep_type: tuple) -> List[np.nd
     if group == "torus":
         reduced_ambient_dim = len(rep_type[0])
         # Constructs basis of 2x2-block-diagonal skew-symmetric matrices
-        basis = [np.zeros((2 * reduced_ambient_dim, 2 * reduced_ambient_dim)) for _ in range(reduced_ambient_dim)]
+        basis = [
+            np.zeros((2 * reduced_ambient_dim, 2 * reduced_ambient_dim))
+            for _ in range(reduced_ambient_dim)
+        ]
         for i in range(reduced_ambient_dim):
             basis[i][2 * i, 2 * i + 1], basis[i][2 * i + 1, 2 * i] = 1, -1
         # Generates infinitesimal rotations for the frequencies.
         pushforward_algebra = [
-            np.sum([basis[j] * rep_type[i][j] for j in range(reduced_ambient_dim)], 0) for i in range(len(rep_type))
+            np.sum([basis[j] * rep_type[i][j] for j in range(reduced_ambient_dim)], 0)
+            for i in range(len(rep_type))
         ]
 
     # If the group is SU(2) or SO(3)
@@ -627,7 +445,9 @@ def get_canonical_pushforward_algebra(group: str, rep_type: tuple) -> List[np.nd
         for i in range(nb_irreps):
             k = rep_type[i]
             for j in range(3):
-                pushforward_algebra[j][index : (index + k), index : (index + k)] = algebra_irreps[i][j]
+                pushforward_algebra[j][index : (index + k), index : (index + k)] = (
+                    algebra_irreps[i][j]
+                )
             index += k
     else:
         raise ValueError(f"Group not recognized: {group}.")

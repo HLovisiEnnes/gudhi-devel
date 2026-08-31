@@ -1,0 +1,1000 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Periodic cubical complex reference manual &#8212; gudhi v3.11.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'periodic_cubical_complex_ref';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.11.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Periodic cubical complex reference manual</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="periodic-cubical-complex-reference-manual">
+<h1>Periodic cubical complex reference manual<a class="headerlink" href="#periodic-cubical-complex-reference-manual" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">PeriodicCubicalComplex</span></span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex" title="Link to this definition">#</a></dt>
+<dd><p>The PeriodicCubicalComplex is an example of a structured complex useful
+in computational mathematics (specially rigorous numerics) and image
+analysis.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.__init__" title="Link to this definition">#</a></dt>
+<dd><p>PeriodicCubicalComplex constructor from dimensions and cells
+(either vertices or top dimensional) or from a Perseus-style file name.</p>
+<p>Note that in case the periodic cubical complex is constructed from
+‘top_dimensional_cells’ or ‘vertices’ using a flat array,
+the given ‘dimensions’ will be considered using the
+fortran ordering (column-major order).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.params.dimensions"></span><strong>dimensions</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.params.dimensions">¶</a> (<em>list</em><em> of </em><em>int</em>) – A list of number of top dimensional cells.</p></li>
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.params.top_dimensional_cells"></span><strong>top_dimensional_cells</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.params.top_dimensional_cells">¶</a> (<em>list</em><em> of </em><em>double</em>) – A list of top dimensional cells filtration values.</p></li>
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.params.periodic_dimensions"></span><strong>periodic_dimensions</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.params.periodic_dimensions">¶</a> (<em>list</em><em> of </em><em>boolean</em>) – A list of cells periodicity value.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Or</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.params.dimensions"></span><strong>dimensions</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.params.dimensions">¶</a> (<em>list</em><em> of </em><em>int</em>) – A list of number of vertices.</p></li>
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.params.vertices"></span><strong>vertices</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.params.vertices">¶</a> (<em>list</em><em> of </em><em>double</em>) – A list of vertices filtration values.</p></li>
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.params.periodic_dimensions"></span><strong>periodic_dimensions</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.params.periodic_dimensions">¶</a> (<em>list</em><em> of </em><em>boolean</em>) – A list of cells periodicity value.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Or</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.params.top_dimensional_cells"></span><strong>top_dimensional_cells</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.params.top_dimensional_cells">¶</a> (<em>anything convertible to a numpy ndarray</em>) – A multidimensional array of top
+dimensional cells filtration values.</p></li>
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.params.periodic_dimensions"></span><strong>periodic_dimensions</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.params.periodic_dimensions">¶</a> (<em>list</em><em> of </em><em>boolean</em>) – A list of cells periodicity value.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Or</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.params.vertices"></span><strong>vertices</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.params.vertices">¶</a> (<em>anything convertible to a numpy ndarray</em>) – A multidimensional array vertices filtration values.</p></li>
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.params.periodic_dimensions"></span><strong>periodic_dimensions</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.params.periodic_dimensions">¶</a> (<em>list</em><em> of </em><em>boolean</em>) – A list of cells periodicity value.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Or</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.PeriodicCubicalComplex.params.perseus_file"></span><strong>perseus_file</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.params.perseus_file">¶</a> (<em>string</em>) – A <a class="reference external" href="fileformats.html#perseus">Perseus-style</a> file name, giving the filtration values
+of top-dimensional cells and the periodicity.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.all_cells">
+<span class="sig-name descname"><span class="pre">all_cells</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.all_cells" title="Link to this definition">#</a></dt>
+<dd><p>Array with the filtration values of all the cells of the complex.
+Modifying the values is strongly discouraged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.betti_numbers">
+<span class="sig-name descname"><span class="pre">betti_numbers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.betti_numbers" title="Link to this definition">#</a></dt>
+<dd><p>This function returns the Betti numbers of the complex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of int – The Betti numbers ([B0, B1, …, Bn]).</p>
+</dd>
+<dt class="field-even">Note<span class="colon">:</span></dt>
+<dd class="field-even"><p>betti_numbers function requires <a class="reference internal" href="#gudhi.PeriodicCubicalComplex.compute_persistence" title="gudhi.PeriodicCubicalComplex.compute_persistence"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_persistence()</span></code></a> function to be
+launched first.</p>
+</dd>
+<dt class="field-odd">Note<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This function always returns the Betti numbers of a torus as infinity
+filtration cubes are not removed from the complex.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.cofaces_of_persistence_pairs">
+<span class="sig-name descname"><span class="pre">cofaces_of_persistence_pairs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.cofaces_of_persistence_pairs" title="Link to this definition">#</a></dt>
+<dd><p>A persistence interval is described by a pair of cells, one that creates the
+feature and one that kills it. The filtration values of those 2 cells give coordinates
+for a point in a persistence diagram, or a bar in a barcode. Structurally, in the
+cubical complexes provided here, the filtration value of any cell is the minimum of the
+filtration values of the maximal cells that contain it. Connecting persistence diagram
+coordinates to the corresponding value in the input (i.e. the filtration values of
+the top-dimensional cells) is useful for differentiation purposes.</p>
+<p>Since the cubical complex construction from vertices is different from the top dimensional one,
+the former may not have an equivalent with the second construction, and vice versa.
+Therefore, using cofaces_of_persistence_pairs with a cubical complex constructed from vertices
+can lead to an undefined behavior.</p>
+<p>This function returns a list of pairs of top-dimensional cells corresponding to
+the persistence birth and death cells of the filtration. The cells are represented by
+their indices in the input list of top-dimensional cells (and not their indices in the
+internal datastructure that includes non-maximal cells). Note that when two adjacent
+top-dimensional cells have the same filtration value, we arbitrarily return one of the two
+when calling the function on one of their common faces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The top-dimensional cells/cofaces of the positive and negative cells,
+together with the corresponding homological dimension, in two lists of numpy arrays of integers.
+The first list contains the regular persistence pairs, grouped by dimension.
+It contains numpy arrays of shape (number_of_persistence_points, 2).
+The indices of the arrays in the list correspond to the homological dimensions, and the
+integers of each row in each array correspond to: (index of positive top-dimensional cell,
+index of negative top-dimensional cell).
+The second list contains the essential features, grouped by dimension.
+It contains numpy arrays of shape (number_of_persistence_points,).
+The indices of the arrays in the list correspond to the homological dimensions, and the
+integers of each row in each array correspond to: (index of positive top-dimensional cell).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.compute_persistence">
+<span class="sig-name descname"><span class="pre">compute_persistence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">homology_coeff_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.compute_persistence" title="Link to this definition">#</a></dt>
+<dd><p>This function computes the persistence of the complex, so it can be
+accessed through <a class="reference internal" href="#gudhi.PeriodicCubicalComplex.persistent_betti_numbers" title="gudhi.PeriodicCubicalComplex.persistent_betti_numbers"><code class="xref py py-func docutils literal notranslate"><span class="pre">persistent_betti_numbers()</span></code></a>,
+<a class="reference internal" href="#gudhi.PeriodicCubicalComplex.persistence_intervals_in_dimension" title="gudhi.PeriodicCubicalComplex.persistence_intervals_in_dimension"><code class="xref py py-func docutils literal notranslate"><span class="pre">persistence_intervals_in_dimension()</span></code></a>, etc. This function is
+equivalent to <a class="reference internal" href="#gudhi.PeriodicCubicalComplex.persistence" title="gudhi.PeriodicCubicalComplex.persistence"><code class="xref py py-func docutils literal notranslate"><span class="pre">persistence()</span></code></a> when you do not want the list
+<a class="reference internal" href="#gudhi.PeriodicCubicalComplex.persistence" title="gudhi.PeriodicCubicalComplex.persistence"><code class="xref py py-func docutils literal notranslate"><span class="pre">persistence()</span></code></a> returns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.compute_persistence.params.homology_coeff_field"></span><strong>homology_coeff_field</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.compute_persistence.params.homology_coeff_field">¶</a> (<em>int.</em>) – The homology coefficient field. Must be a
+prime number. Default value is 11. Max is 46337.</p></li>
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.compute_persistence.params.min_persistence"></span><strong>min_persistence</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.compute_persistence.params.min_persistence">¶</a> (<em>float.</em>) – The minimum persistence value to take into
+account (strictly greater than min_persistence). Default value is
+0.0.
+Sets min_persistence to -1.0 to see all values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Nothing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.dimension">
+<span class="sig-name descname"><span class="pre">dimension</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.dimension" title="Link to this definition">#</a></dt>
+<dd><p>This function returns the dimension of the complex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int – the complex dimension.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.num_simplices">
+<span class="sig-name descname"><span class="pre">num_simplices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.num_simplices" title="Link to this definition">#</a></dt>
+<dd><p>This function returns the number of all cubes in the complex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int – the number of all cubes in the complex.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.persistence">
+<span class="sig-name descname"><span class="pre">persistence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">homology_coeff_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.persistence" title="Link to this definition">#</a></dt>
+<dd><p>This function computes and returns the persistence of the complex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.persistence.params.homology_coeff_field"></span><strong>homology_coeff_field</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.persistence.params.homology_coeff_field">¶</a> (<em>int.</em>) – The homology coefficient field. Must be a
+prime number. Default value is 11. Max is 46337.</p></li>
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.persistence.params.min_persistence"></span><strong>min_persistence</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.persistence.params.min_persistence">¶</a> (<em>float.</em>) – The minimum persistence value to take into
+account (strictly greater than min_persistence). Default value is
+0.0.
+Sets min_persistence to -1.0 to see all values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of pairs(dimension, pair(birth, death)) – the
+persistence of the complex.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.persistence_intervals_in_dimension">
+<span class="sig-name descname"><span class="pre">persistence_intervals_in_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.persistence_intervals_in_dimension" title="Link to this definition">#</a></dt>
+<dd><p>This function returns the persistence intervals of the complex in a
+specific dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.PeriodicCubicalComplex.persistence_intervals_in_dimension.params.dimension"></span><strong>dimension</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.persistence_intervals_in_dimension.params.dimension">¶</a> (<em>int.</em>) – The specific dimension.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The persistence intervals.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy array of dimension 2</p>
+</dd>
+<dt class="field-even">Note<span class="colon">:</span></dt>
+<dd class="field-even"><p>intervals_in_dim function requires <a class="reference internal" href="#gudhi.PeriodicCubicalComplex.compute_persistence" title="gudhi.PeriodicCubicalComplex.compute_persistence"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_persistence()</span></code></a> function to be
+launched first.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.persistent_betti_numbers">
+<span class="sig-name descname"><span class="pre">persistent_betti_numbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.persistent_betti_numbers" title="Link to this definition">#</a></dt>
+<dd><p>This function returns the persistent Betti numbers of the complex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.persistent_betti_numbers.params.from_value"></span><strong>from_value</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.persistent_betti_numbers.params.from_value">¶</a> (<em>float.</em>) – The persistence birth limit to be added in the
+numbers (persistent birth &lt;= from_value).</p></li>
+<li><p><span class="target" id="gudhi.PeriodicCubicalComplex.persistent_betti_numbers.params.to_value"></span><strong>to_value</strong><a class="paramlink headerlink reference internal" href="#gudhi.PeriodicCubicalComplex.persistent_betti_numbers.params.to_value">¶</a> (<em>float.</em>) – The persistence death limit to be added in the
+numbers (persistent death &gt; to_value).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of int – The persistent Betti numbers ([B0, B1, …,
+Bn]).</p>
+</dd>
+<dt class="field-odd">Note<span class="colon">:</span></dt>
+<dd class="field-odd"><p>persistent_betti_numbers function requires <a class="reference internal" href="#gudhi.PeriodicCubicalComplex.compute_persistence" title="gudhi.PeriodicCubicalComplex.compute_persistence"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_persistence()</span></code></a>
+function to be launched first.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.top_dimensional_cells">
+<span class="sig-name descname"><span class="pre">top_dimensional_cells</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.top_dimensional_cells" title="Link to this definition">#</a></dt>
+<dd><p>Array with the filtration values of the top-dimensional cells of the complex.
+Modifying the values is strongly discouraged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.vertices">
+<span class="sig-name descname"><span class="pre">vertices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.vertices" title="Link to this definition">#</a></dt>
+<dd><p>Array with the filtration values of the vertices of the complex.
+Modifying the values is strongly discouraged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.vertices_of_persistence_pairs">
+<span class="sig-name descname"><span class="pre">vertices_of_persistence_pairs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.vertices_of_persistence_pairs" title="Link to this definition">#</a></dt>
+<dd><p>This function returns a list of pairs of vertices corresponding to
+the persistence birth and death cells of the filtration. The cells are represented by
+their indices in the input list of vertices (and not their indices in the
+internal datastructure that includes non-minimal cells). Note that when two adjacent
+vertices have the same filtration value, we arbitrarily return one of the two
+when calling the function on one of their common faces.</p>
+<p>Since the cubical complex construction from vertices is different from the top dimensional one,
+the former may not have an equivalent with the second construction, and vice versa.
+Therefore, using vertices_of_persistence_pairs with a cubical complex constructed from top_dimensional_cells
+can lead to an undefined behavior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The vertices of the positive and negative cells,
+together with the corresponding homological dimension, in two lists of numpy arrays of integers.
+The first list contains the regular persistence pairs, grouped by dimension.
+It contains numpy arrays of shape (number_of_persistence_points, 2).
+The indices of the arrays in the list correspond to the homological dimensions, and the
+integers of each row in each array correspond to: (index of positive vertex,
+index of negative vertex).
+The second list contains the essential features, grouped by dimension.
+It contains numpy arrays of shape (number_of_persistence_points,).
+The indices of the arrays in the list correspond to the homological dimensions, and the
+integers of each row in each array correspond to: (index of positive vertex).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.__init__"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.all_cells"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.all_cells()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.betti_numbers"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.betti_numbers()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.cofaces_of_persistence_pairs"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.cofaces_of_persistence_pairs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.compute_persistence"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.compute_persistence()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.dimension"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.dimension()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.num_simplices"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.num_simplices()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.persistence"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.persistence()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.persistence_intervals_in_dimension"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.persistence_intervals_in_dimension()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.persistent_betti_numbers"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.persistent_betti_numbers()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.top_dimensional_cells"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.top_dimensional_cells()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.vertices"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.vertices()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.PeriodicCubicalComplex.vertices_of_persistence_pairs"><code class="docutils literal notranslate"><span class="pre">PeriodicCubicalComplex.vertices_of_persistence_pairs()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -19,7 +19,6 @@ periods in a robust way.
 -----------------------------------------------------------------------------------------------------------------------
 
 Sample on orbits:
-    print_hausdorff_distance
     get_periods_torus
     sample_orbit_from_algebra_su2
     sample_orbit_from_algebra_torus
@@ -27,13 +26,14 @@ Sample on orbits:
 """
 
 # Standard imports.
-import math
-from typing import Optional, List, Literal
 import itertools
+import math
+from typing import Literal
 
 # Third-party imports.
 import numpy as np
 import scipy
+
 import gudhi.subsampling
 
 """-
@@ -43,31 +43,10 @@ Sample on orbits
 """
 
 
-def print_hausdorff_distance(pts1: np.ndarray, pts2: np.ndarray, verbose: bool = True) -> float:
-    """
-    Prints the Hausdorff distance from first point cloud to second.
-
-    Args:
-        pts1 (np.ndarray): First point cloud.
-        pts2 (np.ndarray): Second point cloud.
-        verbose (bool): If True, prints the distance. Defaults to True.
-
-    Returns:
-        hausdorff_dist (float): Estimated non-symmetric Hausdorff distance.
-    """
-    hausdorff_dist = scipy.spatial.distance.directed_hausdorff(pts1, pts2)[0]
-    if verbose:
-        print(
-            f"""Non-symmetric \x1b[34mHausdorff distance:
-              {hausdorff_dist:.3e}\x1b[0m."""
-        )
-    return hausdorff_dist
-
-
 def get_periods_torus(
     rep_type: tuple,
-    algebra: List[np.ndarray],
-) -> List[float]:
+    algebra: list[np.ndarray],
+) -> list[float]:
     """
     Returns a list of minimal periods t>0 such that exp(tA)=I for each A in the pushforward algebra. We suppose that
     the elements in "algebra" are such that they generate a periodic 1-parameter subgroup. More precisely, we suppose
@@ -95,7 +74,10 @@ def get_periods_torus(
         return np.sqrt(2) * np.linalg.norm(weights)
 
     # Compute the periods
-    periods = [period_so2(weights) * norm_so2(weights) / np.linalg.norm(mat) for weights, mat in zip(rep_type, algebra)]
+    periods = [
+        period_so2(weights) * norm_so2(weights) / np.linalg.norm(mat)
+        for weights, mat in zip(rep_type, algebra)
+    ]
 
     # Sanity check: the exponentiated matrices should be the identity
     for period, mat in zip(periods, algebra):
@@ -109,22 +91,22 @@ def get_periods_torus(
 
 def sample_orbit_from_algebra_torus(
     rep_type: tuple,
-    algebra: List[np.ndarray],
+    algebra: list[np.ndarray],
     x: np.ndarray,
     nb_points: int,
     method: Literal["uniform", "random"] = "uniform",
 ) -> np.ndarray:
     """
-    Sample points on the orbit of a torus representation from its Lie algebra. We suppose that the algebra is 
+    Sample points on the orbit of a torus representation from its Lie algebra. We suppose that the algebra is
     the canonical algebra indicated in rep_type.
 
     Args:
     rep_type (tuple): Representation type parameters (e.g., weights).
-    algebra (List[np.ndarray]): List of Lie algebra generators as matrices.
+    algebra (list[np.ndarray]): List of Lie algebra generators as matrices.
     x (np.ndarray): Initial vector to act on.
     nb_points (int): Number of points to sample.
     method (str): Sampling method, 'uniform' or 'random'. Defaults to 'uniform'.
-    
+
     Returns:
         np.ndarray: Array of sampled points on the orbit.
     """
@@ -140,10 +122,15 @@ def sample_orbit_from_algebra_torus(
     elif method == "uniform":
         # Get number of points (potentially too many, sparsify later).
         nb_points_circle = int(np.ceil(nb_points ** (1.0 / group_dim)))
-        grids = [np.linspace(0.0, periods[i], nb_points_circle, endpoint=False) for i in range(group_dim)]
+        grids = [
+            np.linspace(0.0, periods[i], nb_points_circle, endpoint=False)
+            for i in range(group_dim)
+        ]
         times = np.array(list(itertools.product(*grids)), dtype=float)
     else:
-        raise ValueError(f"Method '{method}' not recognized. Use 'uniform' or 'random'.")
+        raise ValueError(
+            f"Method '{method}' not recognized. Use 'uniform' or 'random'."
+        )
 
     # Generates orbit (linear combinations or algebra elements wrt times)
     orbit = np.empty((len(times), x.size), dtype=float)
@@ -154,13 +141,15 @@ def sample_orbit_from_algebra_torus(
         orbit[k] = scipy.linalg.expm(mat_alg) @ x
     # Sparsify if required.
     if len(orbit) > nb_points:
-        orbit = gudhi.subsampling.choose_n_farthest_points(points=orbit, nb_points=nb_points)
+        orbit = gudhi.subsampling.choose_n_farthest_points(
+            points=orbit, nb_points=nb_points
+        )
     return orbit
 
 
 def sample_orbit_from_algebra_su2(
     rep_type: tuple,
-    algebra: List[np.ndarray],
+    algebra: list[np.ndarray],
     x: np.ndarray,
     nb_points: int,
 ) -> np.ndarray:
@@ -176,7 +165,7 @@ def sample_orbit_from_algebra_su2(
 
     Args:
         rep_type (tuple): Representation type parameters (e.g., weights or partition).
-        algebra (List[np.ndarray]): List of Lie algebra generators as matrices.
+        algebra (list[np.ndarray]): List of Lie algebra generators as matrices.
         x (np.ndarray): Initial vector to act on.
         nb_points (int): Number of points to sample.
 

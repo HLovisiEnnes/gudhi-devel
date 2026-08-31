@@ -19,31 +19,29 @@ periods in a robust way.
 -----------------------------------------------------------------------------------------------------------------------
 
 Sample on orbits:
-    sample_orbit_from_algebra
-    sample_orbit_from_rep
-    sample_orbit_from_group
+    sample_from_lie_algebra
+    sample_from_lie_group_rep
+    sample_from_lie_group
 
 -----------------------------------------------------------------------------------------------------------------------
 """
 
 # Standard imports.
-import math
-from typing import Optional, List, Literal
-import itertools
+from typing import Literal, Optional
 
 # Third-party imports.
 import numpy as np
 import scipy
-from gudhi.liedetect.algebra import (
-    get_random_lattice,
-    get_random_constrained_partition,
-    get_canonical_pushforward_algebra,
-)
-from gudhi.liedetect.linear_orbits_utils import(
-    sample_orbit_from_algebra_su2,
-    sample_orbit_from_algebra_torus
-)
 
+from gudhi.liedetect.algebra import (
+    get_canonical_pushforward_algebra,
+    get_random_constrained_partition,
+    get_random_lattice,
+)
+from gudhi.liedetect.linear_orbits_utils import (
+    sample_orbit_from_algebra_su2,
+    sample_orbit_from_algebra_torus,
+)
 
 """-
 -----------------------------------------------------------------------------------------------------------------------
@@ -52,10 +50,10 @@ Sample on orbits
 """
 
 
-def sample_orbit_from_algebra(
+def sample_from_lie_algebra(
     group: str,
     rep_type: tuple,
-    algebra: List[np.ndarray],
+    algebra: list[np.ndarray],
     x: np.ndarray,
     nb_points: int,
     method: Literal["uniform", "random"] = "uniform",
@@ -69,7 +67,7 @@ def sample_orbit_from_algebra(
     Args:
         group (str): The group type, e.g., 'torus' or 'SU(2)'.
         rep_type (tuple): Representation type parameters (e.g., weights or partition).
-        algebra (List[np.ndarray]): List of Lie algebra generators as matrices.
+        algebra (list[np.ndarray]): List of Lie algebra generators as matrices.
         x (np.ndarray): Initial vector to act on.
         nb_points (int): Number of points to sample.
         method (str): Sampling method, 'uniform' or 'random'. Defaults to 'uniform'.
@@ -89,14 +87,12 @@ def sample_orbit_from_algebra(
     else:
         raise ValueError(f"Group '{group}' not recognized.")
     if verbose:
-        print(
-            f"""Sampled {len(orbit)} {method} points on the orbit of
-            \x1b[1;31m{group} with rep {rep_type}\x1b[0m."""
-        )
+        print(f"""Sampled {len(orbit)} {method} points on the orbit of
+            \x1b[1;31m{group} with rep {rep_type}\x1b[0m.""")
     return orbit
 
 
-def sample_orbit_from_rep(
+def sample_from_lie_group_rep(
     group: str,
     rep_type: tuple,
     nb_points: int,
@@ -143,11 +139,16 @@ def sample_orbit_from_rep(
     # Right-multiply algebra if needed.
     if right_multiply_algebra:
         if group == "torus":
-            raise NotImplementedError("Right-multiply not implemented for torus representations.")
+            raise NotImplementedError(
+                "Right-multiply not implemented for torus representations."
+            )
         orth = scipy.stats.special_ortho_group.rvs(3)
-        algebra = [np.sum([algebra[j] * orth[j, i] for j in range(len(algebra))], axis=0) for i in range(len(algebra))]
+        algebra = [
+            np.sum([algebra[j] * orth[j, i] for j in range(len(algebra))], axis=0)
+            for i in range(len(algebra))
+        ]
     # Sample orbit.
-    orbit = sample_orbit_from_algebra(
+    orbit = sample_from_lie_algebra(
         group=group,
         rep_type=rep_type,
         algebra=algebra,
@@ -163,7 +164,7 @@ def sample_orbit_from_rep(
     return orbit
 
 
-def sample_orbit_from_group(
+def sample_from_lie_group(
     group: str,
     ambient_dim: int,
     nb_points: int,
@@ -172,7 +173,7 @@ def sample_orbit_from_group(
     conjugate_algebra: bool = False,
     right_multiply_algebra: bool = False,
     translate_orbit: bool = False,
-    method:  Literal["uniform", "random"] = "uniform",
+    method: Literal["uniform", "random"] = "uniform",
     span_ambient_space: bool = False,
     verbose: bool = False,
 ) -> tuple[np.ndarray, tuple]:
@@ -183,19 +184,14 @@ def sample_orbit_from_group(
         group (str): The group type, e.g., 'torus', 'SU(2)', or 'SO(3)'.
         ambient_dim (int): Dimension of the ambient space.
         nb_points (int): Number of points to sample on the orbit.
-        frequency_max (Optional[int]): Maximal frequency for torus
-            representations.
+        frequency_max (Optional[int]): Maximal frequency for torus representations.
         group_dim (Optional[int]): Dimension of the group (for torus).
-        conjugate_algebra (bool): Whether to conjugate the algebra by a
-            random orthogonal matrix.
-        right_multiply_algebra (bool): Whether to right-multiply the
-            algebra by a random orthogonal matrix.
-        translate_orbit (bool): Whether to translate the sampled orbit
-            by a random orthogonal transformation.
+        conjugate_algebra (bool): Whether to conjugate the algebra by a random orthogonal matrix.
+        right_multiply_algebra (bool): Whether to right-multiply the algebra by a random orthogonal matrix.
+        translate_orbit (bool): Whether to translate the sampled orbit by a random orthogonal transformation.
         method (str): Sampling method, 'random' or 'uniform'.
-        span_ambient_space (bool): Whether to only consider representations
-            whose orbits span the ambient space. Only implemented for the
-            circle or the non-Abelian groups.
+        span_ambient_space (bool): Whether to only consider representations whose orbits span the ambient space.
+            Only implemented for the circle or the non-Abelian groups.
         verbose (bool): Whether to print information about the sampled orbit.
 
     Returns:
@@ -220,7 +216,7 @@ def sample_orbit_from_group(
         raise NotImplementedError(f"Group '{group}' not recognized.")
 
     # Samples orbit from the representation type
-    orbit = sample_orbit_from_rep(
+    orbit = sample_from_lie_group_rep(
         group=group,
         rep_type=rep_type,
         nb_points=nb_points,

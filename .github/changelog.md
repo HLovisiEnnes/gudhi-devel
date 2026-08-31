@@ -1,6 +1,65 @@
 Release History
 ===============
 
+[Release 3.13.0](https://github.com/GUDHI/gudhi-devel/releases/tag/tags%2Fgudhi-release-3.13.0)
+-----------
+
+Release date: July 2026
+
+Below is a list of changes made since GUDHI 3.12.0:
+
+- Simplex tree [`[C++]`](https://gudhi.inria.fr/doc/latest/class_gudhi_1_1_simplex__tree.html) and [`[Python`](https://gudhi.inria.fr/python/latest/simplex_tree_ref.html)
+     - A new `euler_characteristic` method, and a Python binding to `num_simplices_by_dimension`.
+     - Preliminary support for multiple filtration values stored in the Simplex tree (available only in `C++`).
+     - Serialization has been upgraded for multiple filtration values support, but also for a `SERIALIZATION_VERSION` number in order to track modification and compatibility between serialization files. It means the serialization files, including pickled SimplexTree, generated from a pre-3.13.0 gudhi version won't be supported (an exception is thrown).
+
+- Reproducibility
+     - [`[C++]`](https://gudhi.inria.fr/doc/latest/group__reproducibility.html) New random functions, with a default random generator that is used internally, and where the user can set the global seed.
+     - [`[Python]`](https://gudhi.inria.fr/python/latest/reproducibility.html) New `gudhi.random.set_seed` function to set the global seed.
+
+- [Tangential complex](https://gudhi.inria.fr/python/latest/tangential_complex_user.html) `[Python]`
+     - `intrisic_dim` constructor argument is deprecated (typo), please use `intrinsic_dim` instead.
+     
+- Miscellaneous
+     - The [list of bugs that were solved](https://github.com/GUDHI/gudhi-devel/issues?q=label%3A3.13.0+is%3Aclosed) is available on GitHub.
+
+[Release 3.12.0](https://github.com/GUDHI/gudhi-devel/releases/tag/tags%2Fgudhi-release-3.12.0)
+-----------
+
+Release date: March 2026
+
+Below is a list of changes made since GUDHI 3.11.0:
+
+- [Čech complex](https://gudhi.inria.fr/python/latest/delaunay_complex_sklearn_itf_ref.html) `[Python]`
+     - Čech complex persistence scikit-learn like interface provides 2 new classes:
+         * [CechPersistence](https://gudhi.inria.fr/python/latest/delaunay_complex_sklearn_itf_ref.html#gudhi.sklearn.CechPersistence) for computing the same persistent homology as the Čech complex, while being significantly smaller, using internally a [DelaunayCechComplex](https://gudhi.inria.fr/python/latest/delaunay_complex_ref.html#gudhi.DelaunayCechComplex).
+         * [WeightedCechPersistence](https://gudhi.inria.fr/python/latest/delaunay_complex_sklearn_itf_ref.html#gudhi.sklearn.WeightedCechPersistence) for computing the same persistent homology as the Weighted Čech complex, while being significantly smaller, using internally a Weighted version of [AlphaComplex](https://gudhi.inria.fr/python/latest/delaunay_complex_ref.html#gudhi.AlphaComplex).
+
+- [Alpha complex dD](https://gudhi.inria.fr/doc/latest/class_gudhi_1_1alpha__complex_1_1_alpha__complex.html) `[C++]`
+     - **API break:** The simplicial complex for the Alpha complex concept has been changed to
+       `dimension_simplex_range` (that must returns a range of simplices of a given dimension) instead of
+       `skeleton_simplex_range` (that was returning a range of simplices lower or equal to a given dimension)
+
+- [Simplex_tree](https://gudhi.inria.fr/doc/latest/class_gudhi_1_1_simplex__tree.html) `[C++]`
+     - A new iterator over the simplices of the simplicial complex that match a given dimension
+
+- [Persistence matrix](https://gudhi.inria.fr/doc/latest/group__persistence__matrix.html) `[C++]`
+     > Matrix API is in a beta version and may change in incompatible ways in the near future.
+     - A new function to insert a maximal cell using swaps.
+
+- [Representations](https://gudhi.inria.fr/python/latest/representations.html) `[Python]`
+     - in metrics, `BottleneckDistance` argument `epsilon` is deprecrated and renamed `e` to be consistent with `bottleneck_distance` and `pairwise_persistence_diagram_distances`
+
+- Installation
+     - Python bindings are now requiring NanoBind. PyBind11 and Cython dependencies are no more required.
+     - Minimal Python version is now &ge; 3.10.0 (was &ge; 3.9.0).
+     - Minimal NumPy version is now &ge; 1.21.6 (was &ge; 1.15.0).
+     - Pip package is now available for OSx &ge; 13.0 (was &ge; 12.0).
+     - Support Eigen 3.4.1 and 5.X.X
+     
+- Miscellaneous
+     - The [list of bugs that were solved](https://github.com/GUDHI/gudhi-devel/issues?q=label%3A3.12.0+is%3Aclosed) is available on GitHub.
+
 [Release 3.11.0](https://github.com/GUDHI/gudhi-devel/releases/tag/tags%2Fgudhi-release-3.11.0)
 -----------
 

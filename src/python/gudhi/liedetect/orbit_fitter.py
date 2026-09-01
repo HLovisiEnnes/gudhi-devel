@@ -17,14 +17,35 @@ from typing import Literal, Optional
 
 # Third-party imports.
 import numpy as np
+import scipy
 
 # GUDHI imports.
 from gudhi.datasets.linear_orbits import sample_from_lie_algebra
 
 # Local imports.
 from .liepca import get_lie_pca_operator
-from .linear_orbits_utils import print_hausdorff_distance
 from .optimization import find_closest_algebra
+
+
+def print_hausdorff_distance(
+    pts1: np.ndarray, pts2: np.ndarray, verbose: bool = True
+) -> float:
+    """
+    Prints the Hausdorff distance from first point cloud to second.
+
+    Args:
+        pts1 (np.ndarray): First point cloud.
+        pts2 (np.ndarray): Second point cloud.
+        verbose (bool): If True, prints the distance. Defaults to True.
+
+    Returns:
+        hausdorff_dist (float): Estimated non-symmetric Hausdorff distance.
+    """
+    hausdorff_dist = scipy.spatial.distance.directed_hausdorff(pts1, pts2)[0]
+    if verbose:
+        print(f"""Non-symmetric \x1b[34mHausdorff distance:
+              {hausdorff_dist:.3e}\x1b[0m.""")
+    return hausdorff_dist
 
 
 class OrbitFitter:
@@ -194,7 +215,7 @@ class OrbitFitter:
     def sample_orbit(
         self,
         nb_points: int,
-        method: Literal["uniform", "random"] = "uniform",
+        method: Literal["evenly_spaced", "random_uniform"] = "evenly_spaced",
         verbose: bool = False,
         x: Optional[np.ndarray] = None,
     ) -> np.ndarray:
@@ -204,13 +225,9 @@ class OrbitFitter:
         are, otherwise, not stably computable from the algebra alone. In particular, it requires that
         `get_closest_algebra` has been run beforehand.
 
-        Note that the output orbit, in the uniform case, may not contain exactly nb_points points (this only happens if
-        the parameter nb_points is a perfect power of the group dimension). In the random case, it will contain exactly
-        nb_points points.
-
         Args:
             nb_points (int): Number of points to sample.
-            method (str): Sampling method, 'uniform' or 'random'. Defaults to 'uniform'.
+            method (str): Sampling method, 'evenly_spaced' or 'random_uniform'. Defaults to 'evenly_spaced'.
             verbose (bool): Whether to print information about the sampled orbit. Defaults to False.
             x (np.ndarray, optional): Initial vector to act on. If None, the first vector of the data is.
                 Defaults to None.

@@ -36,12 +36,14 @@ Canonical bases of representations:
 
 # Standard imports.
 import itertools
-import random
 from math import gcd
 from typing import Literal
 
 # Third-party imports.
 import autograd.numpy as np
+from numpy.random import Generator, default_rng
+
+RandomSeed = int | Generator | None
 
 """
 -----------------------------------------------------------------------------------------------------------------------
@@ -229,6 +231,7 @@ def get_random_lattice(
     ambient_rank: int,
     frequency_max: int,
     span_ambient_space: bool = False,
+    seed: RandomSeed = None,
 ) -> tuple[tuple[int, ...], ...]:
     """
     Generates a random lattice of rank lattice_rank in Z^ambient_rank. It may not be primitive.
@@ -239,25 +242,37 @@ def get_random_lattice(
         frequency_max (int): Maximum frequency for irreps.
         span_ambient_space (bool): Whether to only consider representations whose orbits span the ambient space. Only
             implemented for rank-1 lattices.
+        seed (int or numpy.random.Generator, optional): Seed or generator for sampling. If None, uses a random generator.
 
     Returns:
         tuple: The generated lattice as a tuple of tuples.
     """
-    # Sanity check: ambient dimension must be large enough
+    # Parameter checks.
+    if frequency_max < 1:
+        raise ValueError("'frequency_max' must be at least 1.")
     if lattice_rank > ambient_rank:
         raise ValueError("Rank of ambient lattice is too small.")
+    # Create generator.
+    rng = default_rng(seed)
 
     # Picks a random lattice
     has_maximal_rank = False
 
-    while not has_maximal_rank:
+    max_attempts = 100
+    for _ in range(max_attempts):
         # Generates lattice_rank random integral vectors in Z^ambient_rank
+        values = list(range(-frequency_max, frequency_max + 1))
         lattice = tuple(
-            tuple(random.sample(range(-frequency_max, frequency_max + 1), ambient_rank))
-            for _ in range(lattice_rank)
+                    tuple(
+                        int(value) for value in rng.choice(values, size=ambient_rank, replace=False, ))
+                        for _ in range(lattice_rank)
         )
         # Check its rank
         has_maximal_rank = np.linalg.matrix_rank(np.array(lattice).T) == lattice_rank
+        if has_maximal_rank:
+            break
+    else:
+        raise RuntimeError("Failed to generate a valid lattice.")
 
     # If required, check whether the orbit spans the ambient space
     if span_ambient_space and lattice_rank == 1:
@@ -273,6 +288,7 @@ def get_random_lattice(
                 ambient_rank=ambient_rank,
                 frequency_max=frequency_max,
                 span_ambient_space=True,
+                seed=rng,
             )
 
     elif span_ambient_space:
@@ -489,8 +505,10 @@ def get_constrained_partitions(
     # Defines integers (j % mod == rem) that are not irreps of the group
     if group == "SO(3)":
         mod, rem = 2, 0
-    if group == "SU(2)":
+    elif group == "SU(2)":
         mod, rem = 4, 2
+    else:
+        raise ValueError(f"Group {group} not recognized.")
 
     # Gets partitions satisfying the constraints
     partitions = []
@@ -522,15 +540,23 @@ def get_constrained_partitions(
 
 
 def get_random_constrained_partition(
-    group: str, ambient_dim: int, span_ambient_space=False
+    group: str,
+    ambient_dim: int,
+    span_ambient_space=False,
+    seed: RandomSeed = None,
 ) -> tuple[int, ...]:
     """
     Returns a random partition of the integer n that is a valid representation of the specified group.
     """
+    # Creates generator.
+    rng = default_rng(seed)
+    # Gets all partitions satisfying the constraints.
     partitions = get_constrained_partitions(
         group=group, ambient_dim=ambient_dim, span_ambient_space=span_ambient_space
     )
-    return random.choice(partitions)
+    # Select a random partition from the list.
+    index = int(rng.integers(len(partitions)))
+    return partitions[index]
 
 
 """

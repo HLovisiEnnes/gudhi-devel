@@ -128,6 +128,8 @@ def find_closest_algebra(
         optimal_rep: The optimal representation type found.
         optimal_algebra: List of matrices forming the optimal Lie algebra.
     """
+    if group not in ["torus", "SU(2)", "SO(3)"]:
+        raise ValueError(f"Group {group!r} not recognized.")
     group_dim = group_dim if group == "torus" else 3
     ambient_dim = int(np.sqrt(lie_pca.shape[0]))
 
@@ -138,6 +140,12 @@ def find_closest_algebra(
     # Gets representations to test.
     if reps_to_test is None:
         if group == "torus":
+            if group_dim is None:
+                raise ValueError("'group_dim' is required when group='torus'.")
+            if frequency_max is None:
+                raise ValueError("'frequency_max' is required when group='torus'.")
+            if ambient_dim % 2 != 0:
+                raise ValueError("'ambient_dim' must be even when group='torus'.")
             reps_to_test = get_lattices(
                 lattice_rank=group_dim,
                 ambient_rank=int(ambient_dim / 2),

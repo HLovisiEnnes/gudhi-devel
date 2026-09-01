@@ -27,7 +27,7 @@ Sample on orbits:
 """
 
 # Standard imports.
-from typing import Literal, Optional
+from typing import Literal
 
 # Third-party imports.
 import numpy as np
@@ -70,7 +70,7 @@ def sample_from_lie_algebra(
         algebra (list[np.ndarray]): List of Lie algebra generators as matrices.
         x (np.ndarray): Initial vector to act on.
         nb_points (int): Number of points to sample.
-        method (str): Sampling method, 'uniform' or 'random'. Defaults to 'uniform'.
+        method (str): Sampling method, 'uniform' or 'random'. Defaults to 'uniform'. Only works for the torus.
         verbose (bool): Whether to print information about the sampled orbit.
 
     Returns:
@@ -82,7 +82,7 @@ def sample_from_lie_algebra(
         )
     elif group in ["SU(2)", "SO(3)"]:
         orbit = sample_orbit_from_algebra_su2(
-            rep_type=rep_type, algebra=algebra, x=x, nb_points=nb_points, method=method
+            rep_type=rep_type, algebra=algebra, x=x, nb_points=nb_points
         )
     else:
         raise ValueError(f"Group '{group}' not recognized.")
@@ -168,8 +168,8 @@ def sample_from_lie_group(
     group: str,
     ambient_dim: int,
     nb_points: int,
-    frequency_max: Optional[int] = None,
-    group_dim: Optional[int] = None,
+    frequency_max: int | None = None,
+    group_dim: int | None = None,
     conjugate_algebra: bool = False,
     right_multiply_algebra: bool = False,
     translate_orbit: bool = False,

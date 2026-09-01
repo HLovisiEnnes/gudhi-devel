@@ -6,6 +6,7 @@ Copyright (C) 2016 Inria
 """
 
 import numpy as np
+from gudhi import liedetect
 from gudhi.datasets.linear_orbits import (
     sample_from_lie_algebra,
     sample_from_lie_group,
@@ -29,8 +30,6 @@ def test_sampling():
         group, rep_type, algebra, x, nb_points, method=method
     )
 
-    print(pts_algebra)
-
     pts_rep = sample_from_lie_group_rep(group, rep_type, nb_points, method=method)
 
     assert np.allclose(pts_algebra, pts_rep, atol=1e-6)
@@ -46,3 +45,24 @@ def test_sampling():
     )
 
     assert pts_group.shape[1] == ambient_dim
+
+    orbit_fitter = liedetect.OrbitFitter(pts_rep)
+    nb_neighbors = 10
+    orbit_dim = 1
+
+    _ = orbit_fitter.lie_pca(
+        nb_neighbors=nb_neighbors, orbit_dim=orbit_dim, method="PCA", verbose=False
+    )
+
+    frequency_max = 4
+
+    method = "abelian"
+    la, _ = orbit_fitter.closest_algebra(
+        group="torus",
+        group_dim=1,
+        frequency_max=frequency_max,
+        method=method,
+        verbose=False,
+    )
+
+    assert liedetect.are_representations_equivalent("torus", rep_type, la)

@@ -124,7 +124,7 @@ def vect_to_skew_sym(vect: np.ndarray) -> np.ndarray:
 
 
 def skew_sym_frame_to_projection(
-    frame: List[np.ndarray], method: Literal["QR", "differentiable"] = "QR"
+    frame: list[np.ndarray], method: Literal["QR", "differentiable"] = "QR"
 ) -> np.ndarray:
     """
     Given a list of d skew-symmetric matrices forming a frame (free family), returns the orthogonal projection matrix
@@ -328,7 +328,7 @@ def get_lattices(
     method: Literal["span-equivalence", "equivalence"] = "span-equivalence",
     span_ambient_space: bool = True,
     verbose: bool = False,
-) -> List[tuple[tuple[int, ...], ...]]:
+) -> list[tuple[tuple[int, ...], ...]]:
     """
     Returns a list of lattices of rank lattice_dim in R^{ambient_rank}, written in a basis.
         - 'span-equivalence':

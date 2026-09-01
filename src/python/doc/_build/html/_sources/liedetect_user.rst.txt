@@ -20,7 +20,7 @@ Given a point cloud :math:`\{x_i\}` lying on or close to an orbit of a represent
 or :math:`SU(2)`, LieDetect `[Ennes and Tinarrage, 2025] <https://link.springer.com/article/10.1007/s10208-025-09728-4>`_ estimates the representation :math:`\rho(g)`
 in terms of its representation type. This estimate allows reconstruction of the
 representation orbit. The algorithm consists of four steps, described below and
-detailed in :cite:P:`ennes2025liedetect`.
+detailed in the paper.
 
 .. figure:: img/liedetect.png
 

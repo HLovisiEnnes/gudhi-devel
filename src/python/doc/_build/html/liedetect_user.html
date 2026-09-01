@@ -652,10 +652,10 @@ can be decomposed as a direct sum of irreducible representations. The multiset o
 characterizing this decomposition is called the representation type of <span class="math notranslate nohighlight">\(\rho\)</span>.</p>
 <p>Given a point cloud <span class="math notranslate nohighlight">\(\{x_i\}\)</span> lying on or close to an orbit of a representation
 <span class="math notranslate nohighlight">\(\rho(g)\)</span> of the compact Lie groups <span class="math notranslate nohighlight">\(SO(2)\)</span>, <span class="math notranslate nohighlight">\(T^d\)</span>, <span class="math notranslate nohighlight">\(SO(3)\)</span>,
-or <span class="math notranslate nohighlight">\(SU(2)\)</span>, LieDetect <span class="bibtex-citation" id="id1">[]</span> estimates the representation <span class="math notranslate nohighlight">\(\rho(g)\)</span>
+or <span class="math notranslate nohighlight">\(SU(2)\)</span>, LieDetect <a class="reference external" href="https://link.springer.com/article/10.1007/s10208-025-09728-4">[Ennes and Tinarrage, 2025]</a> estimates the representation <span class="math notranslate nohighlight">\(\rho(g)\)</span>
 in terms of its representation type. This estimate allows reconstruction of the
 representation orbit. The algorithm consists of four steps, described below and
-detailed in <span class="bibtex-citation" id="id2">[]</span>.</p>
+detailed in <span class="bibtex-citation" id="id1">[]</span>.</p>
 <figure class="align-default">
 <img alt="_images/liedetect.png" src="_images/liedetect.png" />
 </figure>
@@ -675,7 +675,7 @@ obtained by normalization.</p>
 </section>
 <section id="step-2-liepca">
 <h2>Step 2: LiePCA<a class="headerlink" href="#step-2-liepca" title="Link to this heading">#</a></h2>
-<p>The second step uses the LiePCA algorithm of <span class="bibtex-citation" id="id3">[]</span>. Tangent information along
+<p>The second step uses the LiePCA algorithm of <span class="bibtex-citation" id="id2">[]</span>. Tangent information along
 the orbit is used to compute an operator approximating the infinitesimal action
 of the representation (i.e., the associated Lie algebra representation).
 This functionality is provided by the <a class="reference internal" href="liedetect_orbit_fitter_ref.html#gudhi.liedetect.OrbitFitter" title="gudhi.liedetect.OrbitFitter"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrbitFitter</span></code></a> class.</p>
@@ -731,7 +731,7 @@ input point cloud often provide a useful indicator of convergence.</p>
 <h2>Generate synthetic data<a class="headerlink" href="#generate-synthetic-data" title="Link to this heading">#</a></h2>
 <p>LieDetect also provides functions to generate synthetic data near orbits of
 representations.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.liedetect</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_orbit_from_group</span><span class="p">,</span> <span class="n">sample_orbit_from_rep</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.datasets.linear_orbits</span><span class="w"> </span><span class="kn">import</span>  <span class="n">sample_orbit_from_group</span><span class="p">,</span> <span class="n">sample_orbit_from_rep</span>
 
 <span class="c1"># Choose the Lie group</span>
 <span class="n">pts</span> <span class="o">=</span> <span class="n">sample_orbit_from_group</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s2">"torus"</span><span class="p">,</span> <span class="n">ambient_dim</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
@@ -747,7 +747,8 @@ representations.</p>
 <p>The example below illustrates a typical use of LieDetect. Points are sampled
 near an orbit of a representation of <span class="math notranslate nohighlight">\(SO(3)\)</span>, and the four steps of the
 algorithm are applied to recover the representation type.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.liedetect</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrbitFitter</span><span class="p">,</span> <span class="n">Orthonormalize</span><span class="p">,</span> <span class="n">sample_orbit_from_group</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.liedetect</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrbitFitter</span><span class="p">,</span> <span class="n">Orthonormalize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.datasets.linear_orbits</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_orbit_from_group</span>
 
 <span class="c1"># Input</span>
 <span class="n">pts</span> <span class="o">=</span> <span class="n">sample_orbit_from_group</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s2">"SO(3)"</span><span class="p">,</span> <span class="n">ambient_dim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>

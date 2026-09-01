@@ -13,7 +13,7 @@ Implementation of the main class of the LieDetect module, OrbitFitter.
 """
 
 # Standard imports.
-from typing import Literal, Optional
+from typing import Literal
 
 # Third-party imports.
 import numpy as np
@@ -33,24 +33,6 @@ class OrbitFitter:
 
     Parameters:
         pts (np.ndarray): Point cloud of shape (n_points, ambient_dim).
-
-    Public attributes:
-        We use trailing underscores to follow the scikit-learn convention
-        for attributes set by specific methods.
-
-        points (np.ndarray): The input point cloud.
-        shape (tuple): Shape of the input point cloud.
-        orbit_dim (int): Dimension of the orbit to detect after running 'get_lie_pca'.
-        lie_pca_operator_ (np.ndarray): The computed Lie-PCA operator after running 'get_lie_pca'.
-        group (str): Name of the tested group after running 'get_closest_algebra'.
-        representation_type_ (str): Type of representation after running 'get_closest_algebra'.
-        algebra_ (np.ndarray): The closest Lie algebra found after running 'get_closest_algebra'.
-        orbit_ (np.array): Sampled orbit. Only defined after running 'get_sample_orbit'.
-        hausdorff_distances_: Tuple[float, float]: Non-symmetric Hausdorff distances from the point cloud to the sampled orbit
-            and the sampled orbit to the point cloud, respectively. Only defined if 'get_sample_orbit' is called.
-        is_lie_pca (bool): Whether 'get_lie_pca' has been run.
-        is_closest_algebra (bool): Whether 'get_closest_algebra' has been run.
-        is_sample_orbit (bool): Whether 'get_sample_orbit' has been run.
     """
 
     def __init__(self, pts: np.ndarray) -> None:
@@ -109,9 +91,7 @@ class OrbitFitter:
 
         return self.lie_pca_operator_
 
-    def print_lie_pca_eigenvalues(
-        self, return_vals: bool = False
-    ) -> Optional[np.ndarray]:
+    def print_lie_pca_eigenvalues(self, return_vals: bool = False) -> np.ndarray | None:
         """
         Prints the eigenvalues of the Lie-PCA operator.
 
@@ -138,9 +118,9 @@ class OrbitFitter:
     def closest_algebra(
         self,
         group: str,
-        group_dim: Optional[int] = None,
-        frequency_max: Optional[int] = None,
-        reps_to_test: Optional[list] = None,
+        group_dim: int | None = None,
+        frequency_max: int | None = None,
+        reps_to_test: list | None = None,
         span_ambient_space: bool = True,
         method: Literal["bottom_lie_pca", "full_lie_pca", "abelian"] = "bottom_lie_pca",
         verbose: bool = False,
@@ -196,7 +176,7 @@ class OrbitFitter:
         nb_points: int,
         method: Literal["uniform", "random"] = "uniform",
         verbose: bool = False,
-        x: Optional[np.ndarray] = None,
+        x: np.ndarray | None = None,
     ) -> np.ndarray:
         """
         Samples points on the orbit of a compact Lie group representation, given its Lie algebra generators. We suppose

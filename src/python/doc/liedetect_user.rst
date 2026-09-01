@@ -17,10 +17,10 @@ characterizing this decomposition is called the representation type of :math:`\r
 
 Given a point cloud :math:`\{x_i\}` lying on or close to an orbit of a representation
 :math:`\rho(g)` of the compact Lie groups :math:`SO(2)`, :math:`T^d`, :math:`SO(3)`,
-or :math:`SU(2)`, LieDetect :cite:`ennes2025liedetect` estimates the representation :math:`\rho(g)`
+or :math:`SU(2)`, LieDetect `[Ennes and Tinarrage, 2025] <https://link.springer.com/article/10.1007/s10208-025-09728-4>`_ estimates the representation :math:`\rho(g)`
 in terms of its representation type. This estimate allows reconstruction of the
 representation orbit. The algorithm consists of four steps, described below and
-detailed in :cite:`ennes2025liedetect`.
+detailed in :cite:P:`ennes2025liedetect`.
 
 .. figure:: img/liedetect.png
 
@@ -132,7 +132,7 @@ representations.
 
 .. code-block:: python
 
-    from gudhi.liedetect import sample_orbit_from_group, sample_orbit_from_rep
+    from gudhi.datasets.linear_orbits import  sample_orbit_from_group, sample_orbit_from_rep
 
     # Choose the Lie group
     pts = sample_orbit_from_group(group="torus", ambient_dim=4,
@@ -152,7 +152,8 @@ algorithm are applied to recover the representation type.
 
 .. code-block:: python
 
-    from gudhi.liedetect import OrbitFitter, Orthonormalize, sample_orbit_from_group
+    from gudhi.liedetect import OrbitFitter, Orthonormalize
+    from gudhi.datasets.linear_orbits import sample_orbit_from_group
 
     # Input
     pts = sample_orbit_from_group(group="SO(3)", ambient_dim=5,

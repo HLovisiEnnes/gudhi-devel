@@ -608,26 +608,6 @@
 <dd class="field-odd"><p><span class="target" id="gudhi.liedetect.OrbitFitter.params.pts"></span><strong>pts</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.params.pts">¶</a> (<em>np.ndarray</em>) – Point cloud of shape (n_points, ambient_dim).</p>
 </dd>
 </dl>
-<dl>
-<dt>Public attributes:</dt><dd><p>We use trailing underscores to follow the scikit-learn convention
-for attributes set by specific methods.</p>
-<p>points (np.ndarray): The input point cloud.
-shape (tuple): Shape of the input point cloud.
-orbit_dim (int): Dimension of the orbit to detect after running ‘get_lie_pca’.
-<a href="#id1"><span class="problematic" id="id2">lie_pca_operator_</span></a> (np.ndarray): The computed Lie-PCA operator after running ‘get_lie_pca’.
-group (str): Name of the tested group after running ‘get_closest_algebra’.
-<a href="#id3"><span class="problematic" id="id4">representation_type_</span></a> (str): Type of representation after running ‘get_closest_algebra’.
-<a href="#id5"><span class="problematic" id="id6">algebra_</span></a> (np.ndarray): The closest Lie algebra found after running ‘get_closest_algebra’.
-<a href="#id7"><span class="problematic" id="id8">orbit_</span></a> (np.array): Sampled orbit. Only defined after running ‘get_sample_orbit’.
-<a href="#id9"><span class="problematic" id="id10">hausdorff_distances_</span></a>: Tuple[float, float]: Non-symmetric Hausdorff distances from the point cloud to the sampled orbit</p>
-<blockquote>
-<div><p>and the sampled orbit to the point cloud, respectively. Only defined if ‘get_sample_orbit’ is called.</p>
-</div></blockquote>
-<p>is_lie_pca (bool): Whether ‘get_lie_pca’ has been run.
-is_closest_algebra (bool): Whether ‘get_closest_algebra’ has been run.
-is_sample_orbit (bool): Whether ‘get_sample_orbit’ has been run.</p>
-</dd>
-</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.liedetect.OrbitFitter.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/orbit_fitter.html#OrbitFitter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.OrbitFitter.__init__" title="Link to this definition">#</a></dt>

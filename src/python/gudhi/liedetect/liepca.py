@@ -28,7 +28,7 @@ Lie PCA:
 """
 
 # Standard imports.
-from typing import Literal, Optional
+from typing import Literal
 
 # Third-party imports.
 import numpy as np
@@ -46,7 +46,7 @@ def get_covariance_matrix(
     pts: np.ndarray,
     center: bool = False,
     normalize: bool = False,
-    orbit_dim: Optional[int] = None,
+    orbit_dim: int | None = None,
 ) -> np.ndarray:
     """
     Computes the covariance matrix of a point cloud.
@@ -200,15 +200,6 @@ class Orthonormalize:
 
     Parameters:
         pts (np.ndarray): Point cloud.
-
-    Public attributes:
-        points (np.ndarray): (Training) point cloud.
-        cov (np.ndarray): Covariance matrix of the (training) data points.
-        mean (float): The mean of the (training) data points.
-        is_fitted (bool): Indicates whether 'fit' or 'fit_transform' has been called.
-        orth_points (np.ndarray): The orthogonalized points. Only defined after running 'fit' or 'fit_transform'.
-        orthonormal_transf (np.ndarray): The matrix for the linear projection onto orthonormalization.
-            Only defined after running 'fit' or 'fit_transform'.
     """
 
     def __init__(self, pts: np.ndarray) -> None:
@@ -273,7 +264,7 @@ class Orthonormalize:
 
     def inverse_transform(
         self,
-        pts: Optional[np.ndarray] = None,
+        pts: np.ndarray | None = None,
         add_mean: bool = True,
         in_place: bool = False,
     ) -> np.ndarray:

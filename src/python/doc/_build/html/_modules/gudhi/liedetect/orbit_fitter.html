@@ -615,14 +615,35 @@
 
 <span class="c1"># Third-party imports.</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
 
 <span class="c1"># GUDHI imports.</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.datasets.linear_orbits</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_from_lie_algebra</span>
 
 <span class="c1"># Local imports.</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.liepca</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lie_pca_operator</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.linear_orbits_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_hausdorff_distance</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.optimization</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_closest_algebra</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">print_hausdorff_distance</span><span class="p">(</span>
+    <span class="n">pts1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">pts2</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Prints the Hausdorff distance from first point cloud to second.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pts1 (np.ndarray): First point cloud.</span>
+<span class="sd">        pts2 (np.ndarray): Second point cloud.</span>
+<span class="sd">        verbose (bool): If True, prints the distance. Defaults to True.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        hausdorff_dist (float): Estimated non-symmetric Hausdorff distance.</span>
+<span class="sd">    """</span>
+    <span class="n">hausdorff_dist</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">spatial</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">directed_hausdorff</span><span class="p">(</span><span class="n">pts1</span><span class="p">,</span> <span class="n">pts2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"""Non-symmetric </span><span class="se">\x1b</span><span class="s2">[34mHausdorff distance:</span>
+<span class="s2">              </span><span class="si">{</span><span class="n">hausdorff_dist</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="se">\x1b</span><span class="s2">[0m."""</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">hausdorff_dist</span>
 
 
 <div class="viewcode-block" id="OrbitFitter">
@@ -788,7 +809,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">sample_orbit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">nb_points</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">method</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"uniform"</span><span class="p">,</span> <span class="s2">"random"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"uniform"</span><span class="p">,</span>
+        <span class="n">method</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"evenly_spaced"</span><span class="p">,</span> <span class="s2">"random_uniform"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"evenly_spaced"</span><span class="p">,</span>
         <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
@@ -798,13 +819,9 @@
 <span class="sd">        are, otherwise, not stably computable from the algebra alone. In particular, it requires that</span>
 <span class="sd">        `get_closest_algebra` has been run beforehand.</span>
 
-<span class="sd">        Note that the output orbit, in the uniform case, may not contain exactly nb_points points (this only happens if</span>
-<span class="sd">        the parameter nb_points is a perfect power of the group dimension). In the random case, it will contain exactly</span>
-<span class="sd">        nb_points points.</span>
-
 <span class="sd">        Args:</span>
 <span class="sd">            nb_points (int): Number of points to sample.</span>
-<span class="sd">            method (str): Sampling method, 'uniform' or 'random'. Defaults to 'uniform'.</span>
+<span class="sd">            method (str): Sampling method, 'evenly_spaced' or 'random_uniform'. Defaults to 'evenly_spaced'.</span>
 <span class="sd">            verbose (bool): Whether to print information about the sampled orbit. Defaults to False.</span>
 <span class="sd">            x (np.ndarray, optional): Initial vector to act on. If None, the first vector of the data is.</span>
 <span class="sd">                Defaults to None.</span>

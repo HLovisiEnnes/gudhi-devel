@@ -1,0 +1,1144 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gudhi.simplex_tree &#8212; gudhi v3.14.0a0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_paramlinks.css?v=dd72e65a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gudhi/simplex_tree';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.14.0a0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">gudhi.simplex_tree</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for gudhi.simplex_tree</h1><div class="highlight"><pre>
+<span></span><span class="c1"># This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is released under MIT.</span>
+<span class="c1"># See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license details.</span>
+<span class="c1"># Author(s):       Vincent Rouvreau</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2016 Inria</span>
+<span class="c1">#</span>
+<span class="c1"># Modification(s):</span>
+<span class="c1">#   - 2023/02 Vincent Rouvreau: Add serialize/deserialize for pickle feature</span>
+<span class="c1">#   - 2025/03 Alexis Gobé &amp; Hannah Schreiber: Use nanobind instead of Cython for python bindings.</span>
+<span class="c1">#   - YYYY/MM Author: Description of the modification</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArrayLike</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">gudhi</span><span class="w"> </span><span class="kn">import</span> <span class="n">_simplex_tree_ext</span> <span class="k">as</span> <span class="n">t</span>
+
+
+<span class="c1"># SimplexTree python interface</span>
+<div class="viewcode-block" id="SimplexTree">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SimplexTree</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">_Simplex_tree_python_interface</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The simplex tree is an efficient and flexible data structure for</span>
+<span class="sd">    representing general (filtered) simplicial complexes. The data structure</span>
+<span class="sd">    is described in Jean-Daniel Boissonnat and Clément Maria. The Simplex</span>
+<span class="sd">    Tree: An Efficient Data Structure for General Simplicial Complexes.</span>
+<span class="sd">    Algorithmica, pages 1–22, 2014.</span>
+
+<span class="sd">    This class is a filtered, with keys, and non contiguous vertices version</span>
+<span class="sd">    of the simplex tree.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="SimplexTree.__init__">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""SimplexTree constructor.</span>
+
+<span class="sd">        :param other: If `other` is `None` (default value), an empty `SimplexTree` is created.</span>
+<span class="sd">            If `other` is a `SimplexTree`, the `SimplexTree` is constructed from a deep copy of `other`.</span>
+<span class="sd">        :type other: SimplexTree (Optional)</span>
+<span class="sd">        :returns: An empty or a copy simplex tree.</span>
+<span class="sd">        :rtype: SimplexTree</span>
+
+<span class="sd">        :raises TypeError: In case `other` is neither `None`, nor a `SimplexTree`.</span>
+<span class="sd">        :note: If the `SimplexTree` is a copy, the persistence information is not copied. If you need it in the clone,</span>
+<span class="sd">            you have to call :func:`compute_persistence` on it even if you had already computed it in the original.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">other</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">SimplexTree</span><span class="p">):</span>
+                <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="s2">"`other` argument requires to be of type `SimplexTree`, or `None`."</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_persistence_defined</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Returns true if Persistence pointer is not None."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">!=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="SimplexTree.copy">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.copy">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimplexTree</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        :returns: A simplex tree that is a deep copy of itself.</span>
+<span class="sd">        :rtype: SimplexTree</span>
+
+<span class="sd">        :note: The persistence information is not copied. If you need it in the clone, you have to call</span>
+<span class="sd">            :func:`compute_persistence` on it even if you had already computed it in the original.</span>
+<span class="sd">        """</span>
+        <span class="n">simplex_tree</span> <span class="o">=</span> <span class="n">SimplexTree</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">simplex_tree</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimplexTree</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SimplexTree.initialize_filtration">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.initialize_filtration">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize_filtration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""This function initializes and sorts the simplicial complex</span>
+<span class="sd">        filtration vector.</span>
+
+<span class="sd">        .. deprecated:: 3.2.0</span>
+<span class="sd">        """</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="s2">"Since Gudhi 3.2, calling SimplexTree.initialize_filtration is unnecessary."</span><span class="p">,</span>
+            <span class="ne">DeprecationWarning</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_initialize_filtration</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.create_from_array">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.create_from_array">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_from_array</span><span class="p">(</span><span class="n">filtrations</span><span class="p">,</span> <span class="n">max_filtration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">SimplexTree</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Creates a new, empty complex and inserts vertices and edges. The vertices are numbered from 0 to n-1, and</span>
+<span class="sd">        the filtration values are encoded in the array, with the diagonal representing the vertices. It is the</span>
+<span class="sd">        caller's responsibility to ensure that this defines a filtration, which can be achieved with either::</span>
+
+<span class="sd">            filtrations[np.diag_indices_from(filtrations)] = filtrations.min(axis=1)</span>
+
+<span class="sd">        or::</span>
+
+<span class="sd">            diag = filtrations.diagonal()</span>
+<span class="sd">            filtrations = np.fmax(np.fmax(filtrations, diag[:, None]), diag[None, :])</span>
+
+<span class="sd">        :param filtrations: the filtration values of the vertices and edges to insert. The matrix is assumed to be symmetric.</span>
+<span class="sd">        :type filtrations: numpy.ndarray of shape (n,n)</span>
+<span class="sd">        :param max_filtration: only insert vertices and edges with filtration values no larger than max_filtration</span>
+<span class="sd">        :type max_filtration: float</span>
+<span class="sd">        :returns: the new complex</span>
+<span class="sd">        :rtype: SimplexTree</span>
+<span class="sd">        """</span>
+        <span class="c1"># TODO: document which half of the matrix is actually read?</span>
+        <span class="n">filtrations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">filtrations</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">filtrations</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"`filtrations` has to be a 2d array. Got </span><span class="si">{</span><span class="n">filtrations</span><span class="o">.</span><span class="n">ndim</span><span class="si">=}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">filtrations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">filtrations</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"`filtrations` has to be a square array. Got </span><span class="si">{</span><span class="n">filtrations</span><span class="o">.</span><span class="n">shape</span><span class="si">=}</span><span class="s2">"</span>
+            <span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">SimplexTree</span><span class="p">()</span>
+        <span class="n">ret</span><span class="o">.</span><span class="n">_insert_matrix</span><span class="p">(</span><span class="n">filtrations</span><span class="p">,</span> <span class="n">max_filtration</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.insert_edges_from_coo_matrix">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.insert_edges_from_coo_matrix">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">insert_edges_from_coo_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimplexTree</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Inserts edges given by a sparse matrix in `COOrdinate format</span>
+<span class="sd">        &lt;https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html&gt;`_.</span>
+<span class="sd">        If an edge is repeated, the smallest filtration value is used. Missing entries are not inserted.</span>
+<span class="sd">        Diagonal entries are currently interpreted as vertices, although we do not guarantee this behavior</span>
+<span class="sd">        in the future, and this is only useful if you want to insert vertices with a smaller filtration value</span>
+<span class="sd">        than the smallest edge containing it, since vertices are implicitly inserted together with the edges.</span>
+
+<span class="sd">        :param edges: the edges to insert and their filtration values.</span>
+<span class="sd">        :type edges: scipy.sparse.coo_matrix of shape (n,n)</span>
+
+<span class="sd">        .. seealso:: :func:`insert_batch`</span>
+<span class="sd">        """</span>
+        <span class="c1"># Without this, it could be slow if we end up inserting vertices in a bad order (flat_map).</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_insert_batch_vertices</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">edges</span><span class="o">.</span><span class="n">row</span><span class="p">,</span> <span class="n">edges</span><span class="o">.</span><span class="n">col</span><span class="p">))),</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="c1"># TODO: optimize this?</span>
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">edges</span><span class="o">.</span><span class="n">row</span><span class="p">,</span> <span class="n">edges</span><span class="o">.</span><span class="n">col</span><span class="p">,</span> <span class="n">edges</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">insert</span><span class="p">((</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">edge</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.insert_batch">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.insert_batch">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">insert_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertex_array</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">,</span> <span class="n">filtrations</span><span class="p">:</span> <span class="n">ArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimplexTree</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Inserts k-simplices given by a sparse array in a format similar</span>
+<span class="sd">        to `torch.sparse &lt;https://pytorch.org/docs/stable/sparse.html&gt;`_.</span>
+<span class="sd">        The n-th simplex has vertices `vertex_array[0,n]`, ...,</span>
+<span class="sd">        `vertex_array[k,n]` and filtration value `filtrations[n]`.</span>
+<span class="sd">        If a simplex is repeated, the smallest filtration value is used.</span>
+<span class="sd">        Simplices with a repeated vertex are currently interpreted as lower</span>
+<span class="sd">        dimensional simplices, but we do not guarantee this behavior in the</span>
+<span class="sd">        future. Any time a simplex is inserted, its faces are inserted as well</span>
+<span class="sd">        if needed to preserve a simplicial complex.</span>
+
+<span class="sd">        :param vertex_array: the k-simplices to insert.</span>
+<span class="sd">        :type vertex_array: numpy.array of shape (k+1,n)</span>
+<span class="sd">        :param filtrations: the filtration values.</span>
+<span class="sd">        :type filtrations: numpy.array of shape (n,)</span>
+<span class="sd">        """</span>
+        <span class="n">simplices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vertex_array</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">intc</span><span class="p">)</span>
+        <span class="n">vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">simplices</span><span class="p">)</span>
+        <span class="n">fil</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">filtrations</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_insert_batch</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">simplices</span><span class="p">,</span> <span class="n">fil</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.extended_persistence">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.extended_persistence">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extended_persistence</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">homology_coeff_field</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">min_persistence</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]]:</span>
+<span class="w">        </span><span class="sd">"""This function retrieves good values for extended persistence, and separate the diagrams into the Ordinary,</span>
+<span class="sd">        Relative, Extended+ and Extended- subdiagrams.</span>
+
+<span class="sd">        :param homology_coeff_field: The homology coefficient field. Must be a prime number. Default value is 11. Max is 46337.</span>
+<span class="sd">        :type homology_coeff_field: int</span>
+<span class="sd">        :param min_persistence: The minimum persistence value (i.e., the absolute value of the difference between the</span>
+<span class="sd">            persistence diagram point coordinates) to take into account (strictly greater than min_persistence).</span>
+<span class="sd">            Default value is 0.0. Sets min_persistence to -1.0 to see all values.</span>
+<span class="sd">        :type min_persistence: float</span>
+<span class="sd">        :returns: A list of four persistence diagrams in the format described in :func:`persistence`. The first one is</span>
+<span class="sd">            Ordinary, the second one is Relative, the third one is Extended+ and the fourth one is Extended-.</span>
+<span class="sd">            See https://link.springer.com/article/10.1007/s10208-008-9027-z and/or section 2.2 in</span>
+<span class="sd">            https://link.springer.com/article/10.1007/s10208-017-9370-z for a description of these subtypes.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            This function should be called only if :func:`extend_filtration` has been called first!</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            The coordinates of the persistence diagram points might be a little different than the</span>
+<span class="sd">            original filtration values due to the internal transformation (scaling to [-2,-1]) that is</span>
+<span class="sd">            performed on these values during the computation of extended persistence.</span>
+
+<span class="sd">        This</span>
+<span class="sd">        `notebook &lt;https://github.com/GUDHI/TDA-tutorial/blob/master/tutorials/Tuto-GUDHI-extended-persistence.ipynb&gt;`_</span>
+<span class="sd">        explains how to compute an extension of persistence called extended persistence.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">_Simplex_tree_persistence_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_compute_persistence</span><span class="p">(</span><span class="n">homology_coeff_field</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_compute_extended_persistence_subdiagrams</span><span class="p">(</span><span class="n">min_persistence</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.persistence">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.persistence">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">persistence</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">homology_coeff_field</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">min_persistence</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">persistence_dim_max</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
+<span class="w">        </span><span class="sd">"""This function computes and returns the persistence of the simplicial complex.</span>
+
+<span class="sd">        :param homology_coeff_field: The homology coefficient field. Must be a</span>
+<span class="sd">            prime number. Default value is 11. Max is 46337.</span>
+<span class="sd">        :type homology_coeff_field: int</span>
+<span class="sd">        :param min_persistence: The minimum persistence value to take into</span>
+<span class="sd">            account (strictly greater than min_persistence). Default value is</span>
+<span class="sd">            0.0.</span>
+<span class="sd">            Set min_persistence to -1.0 to see all values.</span>
+<span class="sd">        :type min_persistence: float</span>
+<span class="sd">        :param persistence_dim_max: If true, the persistent homology for the</span>
+<span class="sd">            maximal dimension in the complex is computed. If false, it is</span>
+<span class="sd">            ignored. Default is false.</span>
+<span class="sd">        :type persistence_dim_max: bool</span>
+<span class="sd">        :returns: The persistence of the simplicial complex.</span>
+<span class="sd">        :rtype:  list of pairs(dimension, pair(birth, death))</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_persistence</span><span class="p">(</span><span class="n">homology_coeff_field</span><span class="p">,</span> <span class="n">min_persistence</span><span class="p">,</span> <span class="n">persistence_dim_max</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_get_persistence</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.compute_persistence">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.compute_persistence">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_persistence</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">homology_coeff_field</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">min_persistence</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">persistence_dim_max</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimplexTree</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""This function computes the persistence of the simplicial complex, so it can be accessed through</span>
+<span class="sd">        :func:`persistent_betti_numbers`, :func:`persistence_pairs`, etc. This function is equivalent to :func:`persistence`</span>
+<span class="sd">        when you do not want the list :func:`persistence` returns.</span>
+
+<span class="sd">        :param homology_coeff_field: The homology coefficient field. Must be a</span>
+<span class="sd">            prime number. Default value is 11. Max is 46337.</span>
+<span class="sd">        :type homology_coeff_field: int</span>
+<span class="sd">        :param min_persistence: The minimum persistence value to take into</span>
+<span class="sd">            account (strictly greater than min_persistence). Default value is</span>
+<span class="sd">            0.0.</span>
+<span class="sd">            Sets min_persistence to -1.0 to see all values.</span>
+<span class="sd">        :type min_persistence: float</span>
+<span class="sd">        :param persistence_dim_max: If true, the persistent homology for the</span>
+<span class="sd">            maximal dimension in the complex is computed. If false, it is</span>
+<span class="sd">            ignored. Default is false.</span>
+<span class="sd">        :type persistence_dim_max: bool</span>
+<span class="sd">        :returns: Nothing.</span>
+<span class="sd">        """</span>
+        <span class="c1"># bool(persistence_dim_max) because of numpy bool_ is not recognized as the right type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">_Simplex_tree_persistence_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">bool</span><span class="p">(</span><span class="n">persistence_dim_max</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_compute_persistence</span><span class="p">(</span><span class="n">homology_coeff_field</span><span class="p">,</span> <span class="n">min_persistence</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.betti_numbers">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.betti_numbers">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">betti_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""This function returns the Betti numbers of the simplicial complex.</span>
+
+<span class="sd">        :returns: The Betti numbers ([B0, B1, ..., Bn]).</span>
+<span class="sd">        :rtype:  list of int</span>
+
+<span class="sd">        :note: betti_numbers function requires</span>
+<span class="sd">            :func:`compute_persistence`</span>
+<span class="sd">            function to be launched first.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"compute_persistence() must be called before betti_numbers()"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_betti_numbers</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.persistent_betti_numbers">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.persistent_betti_numbers">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">persistent_betti_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_value</span><span class="p">,</span> <span class="n">to_value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""This function returns the persistent Betti numbers of the</span>
+<span class="sd">        simplicial complex.</span>
+
+<span class="sd">        :param from_value: The persistence birth limit to be added in the</span>
+<span class="sd">            numbers (persistent birth &lt;= from_value).</span>
+<span class="sd">        :type from_value: float</span>
+<span class="sd">        :param to_value: The persistence death limit to be added in the</span>
+<span class="sd">            numbers (persistent death &gt; to_value).</span>
+<span class="sd">        :type to_value: float</span>
+
+<span class="sd">        :returns: The persistent Betti numbers ([B0, B1, ..., Bn]).</span>
+<span class="sd">        :rtype:  list of int</span>
+
+<span class="sd">        :note: persistent_betti_numbers function requires</span>
+<span class="sd">            :func:`compute_persistence`</span>
+<span class="sd">            function to be launched first.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"compute_persistence() must be called before persistent_betti_numbers()"</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_persistent_betti_numbers</span><span class="p">(</span><span class="n">from_value</span><span class="p">,</span> <span class="n">to_value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.persistence_intervals_in_dimension">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.persistence_intervals_in_dimension">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">persistence_intervals_in_dimension</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dimension</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""This function returns the persistence intervals of the simplicial</span>
+<span class="sd">        complex in a specific dimension.</span>
+
+<span class="sd">        :param dimension: The specific dimension.</span>
+<span class="sd">        :type dimension: int</span>
+<span class="sd">        :returns: The persistence intervals.</span>
+<span class="sd">        :rtype:  numpy array of dimension 2</span>
+
+<span class="sd">        :note: intervals_in_dim function requires</span>
+<span class="sd">            :func:`compute_persistence`</span>
+<span class="sd">            function to be launched first.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"compute_persistence() must be called before persistence_intervals_in_dimension()"</span>
+            <span class="p">)</span>
+        <span class="n">piid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_intervals_in_dimension</span><span class="p">(</span><span class="n">dimension</span><span class="p">))</span>
+        <span class="c1"># Workaround https://github.com/GUDHI/gudhi-devel/issues/507</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">piid</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">piid</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.persistence_pairs">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.persistence_pairs">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">persistence_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]]:</span>
+<span class="w">        </span><span class="sd">"""This function returns a list of persistence birth and death simplices pairs.</span>
+
+<span class="sd">        :returns: A list of persistence simplices intervals.</span>
+<span class="sd">        :rtype:  list of pair of list of int</span>
+
+<span class="sd">        :note: persistence_pairs function requires</span>
+<span class="sd">            :func:`compute_persistence`</span>
+<span class="sd">            function to be launched first.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"compute_persistence() must be called before persistence_pairs()"</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_persistence_pairs</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.write_persistence_diagram">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.write_persistence_diagram">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_persistence_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">persistence_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimplexTree</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""This function writes the persistence intervals of the simplicial</span>
+<span class="sd">        complex in a user given file name.</span>
+
+<span class="sd">        :param persistence_file: Name of the file.</span>
+<span class="sd">        :type persistence_file: string</span>
+
+<span class="sd">        :note: intervals_in_dim function requires</span>
+<span class="sd">            :func:`compute_persistence`</span>
+<span class="sd">            function to be launched first.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"compute_persistence() must be called before write_persistence_diagram()"</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_write_output_diagram</span><span class="p">(</span><span class="n">persistence_file</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.lower_star_persistence_generators">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.lower_star_persistence_generators">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">lower_star_persistence_generators</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">"""Assuming this is a lower-star filtration, this function returns the persistence pairs,</span>
+<span class="sd">        where each simplex is replaced with the vertex that gave it its filtration value.</span>
+
+<span class="sd">        :returns: First the regular persistence pairs, grouped by dimension, with one vertex per extremity,</span>
+<span class="sd">            and second the essential features, grouped by dimension, with one vertex each</span>
+<span class="sd">        :rtype: Tuple[List[numpy.array[int] of shape (n,2)], List[numpy.array[int] of shape (m,)]]</span>
+
+<span class="sd">        :note: lower_star_persistence_generators requires that `persistence()` be called first.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"lower_star_persistence_generators() requires that persistence() be called first"</span>
+            <span class="p">)</span>
+        <span class="n">gen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_lower_star_generators</span><span class="p">()</span>
+        <span class="n">normal</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">gen</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="n">infinite</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">gen</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="n">infinite</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.flag_persistence_generators">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.flag_persistence_generators">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">flag_persistence_generators</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">"""Assuming this is a flag complex, this function returns the persistence pairs,</span>
+<span class="sd">        where each simplex is replaced with the vertices of the edges that gave it its filtration value.</span>
+
+<span class="sd">        :returns: First the regular persistence pairs of dimension 0, with one vertex for birth and two for death;</span>
+<span class="sd">            then the other regular persistence pairs, grouped by dimension, with 2 vertices per extremity;</span>
+<span class="sd">            then the connected components, with one vertex each;</span>
+<span class="sd">            finally the other essential features, grouped by dimension, with 2 vertices for birth.</span>
+<span class="sd">        :rtype: Tuple[numpy.array[int] of shape (n,3), List[numpy.array[int] of shape (m,4)], numpy.array[int] of shape (l,), List[numpy.array[int] of shape (k,2)]]</span>
+
+<span class="sd">        :note: flag_persistence_generators requires that `persistence()` be called first.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"flag_persistence_generators() requires that persistence() be called first"</span>
+            <span class="p">)</span>
+        <span class="n">gen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_flag_generators</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gen</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">normal0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+            <span class="n">normals</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">gen</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">normal0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">l</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">normals</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">gen</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">infinite0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">infinites</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">gen</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">infinite0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
+            <span class="n">infinites</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">normal0</span><span class="p">,</span> <span class="n">normals</span><span class="p">,</span> <span class="n">infinite0</span><span class="p">,</span> <span class="n">infinites</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SimplexTree.collapse_edges">
+<a class="viewcode-back" href="../../simplex_tree_ref.html#gudhi.SimplexTree.collapse_edges">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">collapse_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nb_iterations</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimplexTree</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Assuming the complex is a graph (simplices of higher dimension are ignored), this method implicitly</span>
+<span class="sd">        interprets it as the 1-skeleton of a flag complex, and replaces it with another (smaller) graph whose</span>
+<span class="sd">        expansion has the same persistent homology, using a technique known as edge collapses</span>
+<span class="sd">        (see :cite:`edgecollapsearxiv`).</span>
+
+<span class="sd">        A natural application is to get a simplex tree of dimension 1 from :class:`~gudhi.RipsComplex`,</span>
+<span class="sd">        then collapse edges, perform :meth:`expansion()` and finally compute persistence</span>
+<span class="sd">        (cf. :download:`rips_complex_edge_collapse_example.py &lt;../example/rips_complex_edge_collapse_example.py&gt;`).</span>
+
+<span class="sd">        :param nb_iterations: The number of edge collapse iterations to perform. Default is 1.</span>
+<span class="sd">        :type nb_iterations: int</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">            The current simplex tree is assumed to be a graph, that is of maximal dimension 1.</span>
+<span class="sd">            If it is not the case, all higher dimensional simplices will get lost during the</span>
+<span class="sd">            reduction process and not be reinserted. To regain them, call `expansion(max_dim)` afterwards.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">nb_iterations</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimension</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s2">"collapse_edges() ignores all the simplices of dimension 2 or more in this complex."</span>
+            <span class="c1"># Always print this specific warning</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"always"</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">RuntimeWarning</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="ne">RuntimeWarning</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_collapse_edges</span><span class="p">(</span><span class="n">nb_iterations</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

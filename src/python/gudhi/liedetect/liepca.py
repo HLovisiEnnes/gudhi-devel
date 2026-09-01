@@ -19,7 +19,9 @@ Dimension reduction:
 
 Orthonormalization:
     print_norms
+    batch_matrix_multiplication
     orthonormalize
+    Orthonormalize
 
 Lie PCA:
     get_lie_pca_operator

@@ -1,0 +1,809 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gudhi.off_utils &#8212; gudhi v3.14.0a0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_paramlinks.css?v=dd72e65a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gudhi/off_utils';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.14.0a0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">gudhi.off_utils</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for gudhi.off_utils</h1><div class="highlight"><pre>
+<span></span><span class="c1"># This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is released under MIT.</span>
+<span class="c1"># See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license details.</span>
+<span class="c1"># Author(s):       Vincent Rouvreau</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2016 Inria</span>
+<span class="c1">#</span>
+<span class="c1"># Modification(s):</span>
+<span class="c1">#   - 2023/11 Vincent Rouvreau: numpy interface for read_points_from_off_file</span>
+<span class="c1">#   - YYYY/MM Author: Description of the modification</span>
+
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">errno</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_next_line</span><span class="p">(</span><span class="n">file_desc</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">"#"</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the next line that is not a comment.</span>
+
+<span class="sd">    :param file_desc: An open file in read mode.</span>
+<span class="sd">    :type file_desc: file</span>
+<span class="sd">    :param comment: The characters or list of characters used to indicate the start of a comment.</span>
+<span class="sd">    :type comment: string</span>
+
+<span class="sd">    :returns: The next line.</span>
+<span class="sd">    :rtype: string</span>
+<span class="sd">    """</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="c1"># file_desc.readline() is preferred to next(file_desc), as the second option is not compatible with</span>
+        <span class="c1"># seek and tell methods</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">file_desc</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">comment</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">line</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_read_off_file_header</span><span class="p">(</span><span class="n">file_desc</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Return the information contained in the header of an OFF file.</span>
+
+<span class="sd">    :param file_desc: An open file in read mode.</span>
+<span class="sd">    :type file_desc: file</span>
+
+<span class="sd">    :returns: The point cloud dimension, and the number of points.</span>
+<span class="sd">    :rtype: tuple(int, int)</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If the file does not respect the OFF file format.</span>
+<span class="sd">    """</span>
+    <span class="n">nb_vertices</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">line</span> <span class="o">=</span> <span class="n">_get_next_line</span><span class="p">(</span><span class="n">file_desc</span><span class="p">)</span>
+    <span class="c1"># First line should be "OFF" (3d case with some variants) "4OFF" (4d case) or "nOFF" (dD case)</span>
+    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"noff"</span><span class="p">):</span>
+        <span class="c1"># "nOFF" case, next line is the dimension</span>
+        <span class="c1"># can also contain nb_vertices, nb_faces nb_edges (can also be on the next line)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">_get_next_line</span><span class="p">(</span><span class="n">file_desc</span><span class="p">)</span>
+        <span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()]</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="n">digits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">nb_vertices</span> <span class="o">=</span> <span class="n">digits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="c1"># nb_faces =  digits[2]</span>
+            <span class="c1"># nb_edges =  digits[3] # not used - can be ignored</span>
+            <span class="c1"># nb_cells =  digits[4]</span>
+    <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"4off"</span><span class="p">):</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="c1"># "OFF", "COFF" and "STOFF" are 3d cases - let's stick with the C++ interface</span>
+    <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">dim</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Inconsistent OFF header, got '</span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="si">}</span><span class="s2">', should be 'OFF', '4OFF' or 'nOFF'"</span>
+        <span class="p">)</span>
+
+    <span class="c1"># nb_vertices can be already set by "nOFF" case, when 'dim nb_vertices nb_faces nb_edges' on the same line</span>
+    <span class="k">if</span> <span class="n">nb_vertices</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Number of points is the first number ("OFF" case) or the second one ("nOFF" case) of the second line</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">_get_next_line</span><span class="p">(</span><span class="n">file_desc</span><span class="p">)</span>
+        <span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()]</span>
+        <span class="n">nb_vertices</span> <span class="o">=</span> <span class="n">digits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># nb_faces =  digits[1]</span>
+        <span class="c1"># nb_edges =  digits[2] # not used - can be ignored</span>
+        <span class="c1"># nb_cells =  digits[3]</span>
+    <span class="c1"># "_get_next_line + go back to the previous line" is just a hack for comments in the most likely places</span>
+    <span class="c1"># TODO: remove "_get_next_line + go back to the previous line" when numpy ≥ 1.23.0 will be the standard</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">_get_next_line</span><span class="p">(</span><span class="n">file_desc</span><span class="p">)</span>
+    <span class="c1"># Here the first line without comment is read - let's go back to the beginning of this line</span>
+    <span class="n">file_desc</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">file_desc</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">dim</span><span class="p">,</span> <span class="n">nb_vertices</span>
+
+
+<div class="viewcode-block" id="read_points_from_off_file">
+<a class="viewcode-back" href="../../point_cloud.html#gudhi.read_points_from_off_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_points_from_off_file</span><span class="p">(</span><span class="n">off_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Read points from an `OFF file &lt;fileformats.html#off-file-format&gt;`_.</span>
+
+<span class="sd">    :param off_file: An OFF file style name.</span>
+<span class="sd">    :type off_file: string</span>
+
+<span class="sd">    :returns:  The point set.</span>
+<span class="sd">    :rtype: numpy.ndarray</span>
+
+<span class="sd">    :raises FileNotFoundError: If the file cannot be opened.</span>
+
+<span class="sd">    .. warning::</span>
+<span class="sd">        This function is using `numpy.loadtxt &lt;https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html&gt;`_</span>
+<span class="sd">        with `comments='#'` as an argument. Empty and or comment lines between the points are only supported with numpy</span>
+<span class="sd">        &amp;ge; 1.23.0.</span>
+<span class="sd">    """</span>
+    <span class="c1"># newline='' is required for Windows, otherwise end of line with '\r\n' are only detected as '\n'</span>
+    <span class="c1"># This is required by _read_off_file_header that needs the exact length of the line (to go backward in the file reading)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">off_file</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span> <span class="k">as</span> <span class="n">input_file</span><span class="p">:</span>
+        <span class="n">dim</span><span class="p">,</span> <span class="n">nb_points</span> <span class="o">=</span> <span class="n">_read_off_file_header</span><span class="p">(</span><span class="n">input_file</span><span class="p">)</span>
+        <span class="c1"># usecols=list(range(dim)) stands here to avoid comments at the end of line</span>
+        <span class="c1"># or colors that can be added in RGB format after the points, the faces, ...</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span>
+            <span class="n">input_file</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s2">"#"</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">dim</span><span class="p">),</span> <span class="n">max_rows</span><span class="o">=</span><span class="n">nb_points</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="n">nb_points</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> is different from expected (</span><span class="si">{</span><span class="n">nb_points</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">points</span></div>
+
+
+
+<div class="viewcode-block" id="write_points_to_off_file">
+<a class="viewcode-back" href="../../point_cloud.html#gudhi.write_points_to_off_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">write_points_to_off_file</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">points</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Write points to an `OFF file &lt;fileformats.html#off-file-format&gt;`_.</span>
+
+<span class="sd">    A simple wrapper for `numpy.savetxt`.</span>
+
+<span class="sd">    :param fname: Name of the OFF file.</span>
+<span class="sd">    :type fname: str or file handle</span>
+<span class="sd">    :param points: Point coordinates.</span>
+<span class="sd">    :type points: numpy array of shape (n, dim)</span>
+<span class="sd">    """</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> has different length from expected length 2"</span><span class="p">)</span>
+    <span class="n">dim</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">dim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="s2">"OFF</span><span class="se">\n</span><span class="si">{}</span><span class="s2"> 0 0"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="s2">"nOFF</span><span class="se">\n</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> 0 0"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">head</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

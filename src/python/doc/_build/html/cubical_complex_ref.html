@@ -606,13 +606,13 @@ which can be significantly faster than <a class="reference internal" href="#gudh
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">CubicalComplex</span></span><a class="headerlink" href="#gudhi.CubicalComplex" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">CubicalComplex</span></span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex" title="Link to this definition">#</a></dt>
 <dd><p>The CubicalComplex is an example of a structured complex useful in
 computational mathematics (specially rigorous numerics) and image
 analysis.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_dimensional_cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perseus_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CubicalComplex.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_dimensional_cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perseus_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex.__init__" title="Link to this definition">#</a></dt>
 <dd><p>CubicalComplex constructor from the filtration values of either
 the top-dimensional cells, or the vertices.</p>
 <p>Note that in case <cite>top_dimensional_cells</cite> or <cite>vertices</cite> is passed as a flat array,
@@ -661,7 +661,7 @@ of top-dimensional cells.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex.all_cells">
-<span class="sig-name descname"><span class="pre">all_cells</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CubicalComplex.all_cells" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">all_cells</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex.all_cells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex.all_cells" title="Link to this definition">#</a></dt>
 <dd><p>Array with the filtration values of all the cells of the complex.
 Modifying the values is strongly discouraged.</p>
 <dl class="field-list simple">
@@ -673,7 +673,7 @@ Modifying the values is strongly discouraged.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex.betti_numbers">
-<span class="sig-name descname"><span class="pre">betti_numbers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CubicalComplex.betti_numbers" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">betti_numbers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex.betti_numbers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex.betti_numbers" title="Link to this definition">#</a></dt>
 <dd><p>This function returns the Betti numbers of the complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -692,7 +692,7 @@ filtration cubes are not removed from the complex.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex.cofaces_of_persistence_pairs">
-<span class="sig-name descname"><span class="pre">cofaces_of_persistence_pairs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CubicalComplex.cofaces_of_persistence_pairs" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">cofaces_of_persistence_pairs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex.cofaces_of_persistence_pairs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex.cofaces_of_persistence_pairs" title="Link to this definition">#</a></dt>
 <dd><p>A persistence interval is described by a pair of cells, one that creates the
 feature and one that kills it. The filtration values of those 2 cells give coordinates
 for a point in a persistence diagram, or a bar in a barcode. Structurally, in the
@@ -729,7 +729,7 @@ integers of each row in each array correspond to: (index of positive top-dimensi
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex.compute_persistence">
-<span class="sig-name descname"><span class="pre">compute_persistence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">homology_coeff_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CubicalComplex.compute_persistence" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_persistence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">homology_coeff_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex.compute_persistence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex.compute_persistence" title="Link to this definition">#</a></dt>
 <dd><p>This function computes the persistence of the complex, so it can be
 accessed through <a class="reference internal" href="#gudhi.CubicalComplex.persistent_betti_numbers" title="gudhi.CubicalComplex.persistent_betti_numbers"><code class="xref py py-func docutils literal notranslate"><span class="pre">persistent_betti_numbers()</span></code></a>,
 <a class="reference internal" href="#gudhi.CubicalComplex.persistence_intervals_in_dimension" title="gudhi.CubicalComplex.persistence_intervals_in_dimension"><code class="xref py py-func docutils literal notranslate"><span class="pre">persistence_intervals_in_dimension()</span></code></a>, etc. This function is
@@ -776,7 +776,7 @@ Sets min_persistence to -1.0 to see all values.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex.persistence">
-<span class="sig-name descname"><span class="pre">persistence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">homology_coeff_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CubicalComplex.persistence" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">persistence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">homology_coeff_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex.persistence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex.persistence" title="Link to this definition">#</a></dt>
 <dd><p>This function computes and returns the persistence of the complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -798,7 +798,7 @@ persistence of the complex.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex.persistence_intervals_in_dimension">
-<span class="sig-name descname"><span class="pre">persistence_intervals_in_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CubicalComplex.persistence_intervals_in_dimension" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">persistence_intervals_in_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimension</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex.persistence_intervals_in_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex.persistence_intervals_in_dimension" title="Link to this definition">#</a></dt>
 <dd><p>This function returns the persistence intervals of the complex in a
 specific dimension.</p>
 <dl class="field-list simple">
@@ -820,7 +820,7 @@ launched first.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex.persistent_betti_numbers">
-<span class="sig-name descname"><span class="pre">persistent_betti_numbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CubicalComplex.persistent_betti_numbers" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">persistent_betti_numbers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex.persistent_betti_numbers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex.persistent_betti_numbers" title="Link to this definition">#</a></dt>
 <dd><p>This function returns the persistent Betti numbers of the complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -844,7 +844,7 @@ function to be launched first.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex.top_dimensional_cells">
-<span class="sig-name descname"><span class="pre">top_dimensional_cells</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CubicalComplex.top_dimensional_cells" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">top_dimensional_cells</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex.top_dimensional_cells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex.top_dimensional_cells" title="Link to this definition">#</a></dt>
 <dd><p>Array with the filtration values of the top-dimensional cells of the complex.
 Modifying the values is strongly discouraged.</p>
 <dl class="field-list simple">
@@ -856,7 +856,7 @@ Modifying the values is strongly discouraged.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex.vertices">
-<span class="sig-name descname"><span class="pre">vertices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CubicalComplex.vertices" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">vertices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex.vertices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex.vertices" title="Link to this definition">#</a></dt>
 <dd><p>Array with the filtration values of the vertices of the complex.
 Modifying the values is strongly discouraged.</p>
 <dl class="field-list simple">
@@ -868,7 +868,7 @@ Modifying the values is strongly discouraged.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CubicalComplex.vertices_of_persistence_pairs">
-<span class="sig-name descname"><span class="pre">vertices_of_persistence_pairs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CubicalComplex.vertices_of_persistence_pairs" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">vertices_of_persistence_pairs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cubical_complex.html#CubicalComplex.vertices_of_persistence_pairs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.CubicalComplex.vertices_of_persistence_pairs" title="Link to this definition">#</a></dt>
 <dd><p>This function returns a list of pairs of vertices corresponding to
 the persistence birth and death cells of the filtration. The cells are represented by
 their indices in the input list of vertices (and not their indices in the

@@ -601,7 +601,7 @@
 <h1>Diagram readers reference manual<a class="headerlink" href="#diagram-readers-reference-manual" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="gudhi.read_persistence_intervals_grouped_by_dimension">
-<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">read_persistence_intervals_grouped_by_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">persistence_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.read_persistence_intervals_grouped_by_dimension" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">read_persistence_intervals_grouped_by_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">persistence_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/reader_utils.html#read_persistence_intervals_grouped_by_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.read_persistence_intervals_grouped_by_dimension" title="Link to this definition">#</a></dt>
 <dd><p>Reads a file containing persistence intervals.
 Each line might contain 2, 3 or 4 values: [[field] dimension] birth death
 The return value is a <cite>dict(dim, list(tuple(birth, death)))</cite>
@@ -625,7 +625,7 @@ Note: the function does not check that birth &lt;= death.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="gudhi.read_persistence_intervals_in_dimension">
-<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">read_persistence_intervals_in_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">persistence_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_this_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.read_persistence_intervals_in_dimension" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">read_persistence_intervals_in_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">persistence_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_this_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/reader_utils.html#read_persistence_intervals_in_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.read_persistence_intervals_in_dimension" title="Link to this definition">#</a></dt>
 <dd><p>Reads a file containing persistence intervals.
 Each line of persistence_file might contain 2, 3 or 4 values:
 [[field] dimension] birth death

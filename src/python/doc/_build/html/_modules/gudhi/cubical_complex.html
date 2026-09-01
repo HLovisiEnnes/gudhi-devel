@@ -1,0 +1,1051 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gudhi.cubical_complex &#8212; gudhi v3.14.0a0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_paramlinks.css?v=dd72e65a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gudhi/cubical_complex';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.14.0a0" />
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">gudhi.cubical_complex</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for gudhi.cubical_complex</h1><div class="highlight"><pre>
+<span></span><span class="c1"># This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is released under MIT.</span>
+<span class="c1"># See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license details.</span>
+<span class="c1"># Author(s):       Vincent Rouvreau</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2016 Inria</span>
+<span class="c1">#</span>
+<span class="c1"># Modification(s):</span>
+<span class="c1">#   - 2025/03 Hannah Schreiber: Use nanobind instead of Cython for python bindings.</span>
+<span class="c1">#   - YYYY/MM Author: Description of the modification</span>
+
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">gudhi._cubical_complex_ext</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_Bitmap_cubical_complex_interface</span><span class="p">,</span>
+    <span class="n">_Cubical_complex_persistence_interface</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="c1"># CubicalComplex python interface</span>
+<div class="viewcode-block" id="CubicalComplex">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CubicalComplex</span><span class="p">(</span><span class="n">_Bitmap_cubical_complex_interface</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""The CubicalComplex is an example of a structured complex useful in</span>
+<span class="sd">    computational mathematics (specially rigorous numerics) and image</span>
+<span class="sd">    analysis.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="CubicalComplex.__init__">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">top_dimensional_cells</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">vertices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">dimensions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">perseus_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""CubicalComplex constructor from the filtration values of either</span>
+<span class="sd">        the top-dimensional cells, or the vertices.</span>
+
+<span class="sd">        Note that in case `top_dimensional_cells` or `vertices` is passed as a flat array,</span>
+<span class="sd">        its true shape can be given in `dimensions`, which is considered using the</span>
+<span class="sd">        fortran ordering (column-major order). However, we recommend passing directly an</span>
+<span class="sd">        array of the right shape.</span>
+
+<span class="sd">        :param top_dimensional_cells: A multidimensional array of</span>
+<span class="sd">            top dimensional cells filtration values.</span>
+<span class="sd">        :type top_dimensional_cells: anything convertible to a numpy.ndarray</span>
+
+<span class="sd">        Or</span>
+
+<span class="sd">        :param vertices: A multidimensional array of vertices</span>
+<span class="sd">            filtration values.</span>
+<span class="sd">        :type vertices: anything convertible to a numpy.ndarray</span>
+
+<span class="sd">        Or</span>
+
+<span class="sd">        :param top_dimensional_cells: Filtration values of the top-dimensional cells.</span>
+<span class="sd">        :type top_dimensional_cells: Iterable[float]</span>
+<span class="sd">        :param dimensions: Shape of the array of top dimensional cells (Fortran order).</span>
+<span class="sd">        :type dimensions: Iterable[int]</span>
+
+<span class="sd">        Or</span>
+
+<span class="sd">        :param vertices: Filtration values of the vertices.</span>
+<span class="sd">        :type vertices: Iterable[float]</span>
+<span class="sd">        :param dimensions: Shape of the array of vertices (Fortran order).</span>
+<span class="sd">        :type dimensions: Iterable[int]</span>
+
+<span class="sd">        Or</span>
+
+<span class="sd">        :param perseus_file: A `Perseus-style &lt;fileformats.html#perseus&gt;`_ file name, giving the filtration values</span>
+<span class="sd">            of top-dimensional cells.</span>
+<span class="sd">        :type perseus_file: str</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_built_from_vertices</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">perseus_file</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">top_dimensional_cells</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">or</span> <span class="n">vertices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">or</span> <span class="n">dimensions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"The Perseus file contains all the information, do not specify anything else"</span>
+                <span class="p">)</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">perseus_file</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">top_dimensional_cells</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">vertices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"Can only specify the top dimensional cells OR the vertices, not both"</span>
+                <span class="p">)</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="n">top_dimensional_cells</span>
+        <span class="k">elif</span> <span class="n">vertices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="n">vertices</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_built_from_vertices</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">"Must specify one of top_dimensional_cells, vertices, or perseus_file"</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">dimensions</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s2">"F"</span><span class="p">)</span>
+            <span class="n">dimensions</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">"F"</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">dimensions</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">vertices</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_persistence_defined</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Returns true if Persistence pointer is not None."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">!=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="CubicalComplex.all_cells">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex.all_cells">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">all_cells</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Array with the filtration values of all the cells of the complex.</span>
+<span class="sd">        Modifying the values is strongly discouraged.</span>
+
+<span class="sd">        :returns:  numpy.ndarray</span>
+<span class="sd">        """</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_get_numpy_array</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">2</span> <span class="o">*</span> <span class="n">d</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_shape</span><span class="p">()],</span> <span class="n">order</span><span class="o">=</span><span class="s2">"F"</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CubicalComplex.top_dimensional_cells">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex.top_dimensional_cells">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">top_dimensional_cells</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Array with the filtration values of the top-dimensional cells of the complex.</span>
+<span class="sd">        Modifying the values is strongly discouraged.</span>
+
+<span class="sd">        :returns:  numpy.ndarray</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_cells</span><span class="p">()[(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">),)</span> <span class="o">*</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dimension</span><span class="p">()]</span></div>
+
+
+<div class="viewcode-block" id="CubicalComplex.vertices">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex.vertices">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vertices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Array with the filtration values of the vertices of the complex.</span>
+<span class="sd">        Modifying the values is strongly discouraged.</span>
+
+<span class="sd">        :returns:  numpy.ndarray</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_cells</span><span class="p">()[(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">),)</span> <span class="o">*</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">dimension</span><span class="p">()]</span></div>
+
+
+<div class="viewcode-block" id="CubicalComplex.compute_persistence">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex.compute_persistence">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_persistence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">homology_coeff_field</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">min_persistence</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""This function computes the persistence of the complex, so it can be</span>
+<span class="sd">        accessed through :func:`persistent_betti_numbers`,</span>
+<span class="sd">        :func:`persistence_intervals_in_dimension`, etc. This function is</span>
+<span class="sd">        equivalent to :func:`persistence` when you do not want the list</span>
+<span class="sd">        :func:`persistence` returns.</span>
+
+<span class="sd">        :param homology_coeff_field: The homology coefficient field. Must be a</span>
+<span class="sd">            prime number. Default value is 11. Max is 46337.</span>
+<span class="sd">        :type homology_coeff_field: int.</span>
+<span class="sd">        :param min_persistence: The minimum persistence value to take into</span>
+<span class="sd">            account (strictly greater than min_persistence). Default value is</span>
+<span class="sd">            0.0.</span>
+<span class="sd">            Sets min_persistence to -1.0 to see all values.</span>
+<span class="sd">        :type min_persistence: float.</span>
+<span class="sd">        :returns: Nothing.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">=</span> <span class="n">_Cubical_complex_persistence_interface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_compute_persistence</span><span class="p">(</span><span class="n">homology_coeff_field</span><span class="p">,</span> <span class="n">min_persistence</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CubicalComplex.persistence">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex.persistence">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">persistence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">homology_coeff_field</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">min_persistence</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""This function computes and returns the persistence of the complex.</span>
+
+<span class="sd">        :param homology_coeff_field: The homology coefficient field. Must be a</span>
+<span class="sd">            prime number. Default value is 11. Max is 46337.</span>
+<span class="sd">        :type homology_coeff_field: int.</span>
+<span class="sd">        :param min_persistence: The minimum persistence value to take into</span>
+<span class="sd">            account (strictly greater than min_persistence). Default value is</span>
+<span class="sd">            0.0.</span>
+<span class="sd">            Sets min_persistence to -1.0 to see all values.</span>
+<span class="sd">        :type min_persistence: float.</span>
+<span class="sd">        :returns: list of pairs(dimension, pair(birth, death)) -- the</span>
+<span class="sd">            persistence of the complex.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_persistence</span><span class="p">(</span><span class="n">homology_coeff_field</span><span class="p">,</span> <span class="n">min_persistence</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_get_persistence</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="CubicalComplex.cofaces_of_persistence_pairs">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex.cofaces_of_persistence_pairs">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cofaces_of_persistence_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""A persistence interval is described by a pair of cells, one that creates the</span>
+<span class="sd">        feature and one that kills it. The filtration values of those 2 cells give coordinates</span>
+<span class="sd">        for a point in a persistence diagram, or a bar in a barcode. Structurally, in the</span>
+<span class="sd">        cubical complexes provided here, the filtration value of any cell is the minimum of the</span>
+<span class="sd">        filtration values of the maximal cells that contain it. Connecting persistence diagram</span>
+<span class="sd">        coordinates to the corresponding value in the input (i.e. the filtration values of</span>
+<span class="sd">        the top-dimensional cells) is useful for differentiation purposes.</span>
+
+<span class="sd">        Since the cubical complex construction from vertices is different from the top dimensional one,</span>
+<span class="sd">        the former may not have an equivalent with the second construction, and vice versa.</span>
+<span class="sd">        Therefore, using :func:`cofaces_of_persistence_pairs` with a cubical complex constructed from vertices</span>
+<span class="sd">        can lead to an undefined behavior.</span>
+
+<span class="sd">        This function returns a list of pairs of top-dimensional cells corresponding to</span>
+<span class="sd">        the persistence birth and death cells of the filtration. The cells are represented by</span>
+<span class="sd">        their indices in the input list of top-dimensional cells (and not their indices in the</span>
+<span class="sd">        internal data structure that includes non-maximal cells). Note that when two adjacent</span>
+<span class="sd">        top-dimensional cells have the same filtration value, we arbitrarily return one of the two</span>
+<span class="sd">        when calling the function on one of their common faces.</span>
+
+<span class="sd">        :returns: The top-dimensional cells/cofaces of the positive and negative cells,</span>
+<span class="sd">            together with the corresponding homological dimension, in two lists of numpy arrays of integers.</span>
+<span class="sd">            The first list contains the regular persistence pairs, grouped by dimension.</span>
+<span class="sd">            It contains numpy arrays of shape (number_of_persistence_points, 2).</span>
+<span class="sd">            The indices of the arrays in the list correspond to the homological dimensions, and the</span>
+<span class="sd">            integers of each row in each array correspond to: (index of positive top-dimensional cell,</span>
+<span class="sd">            index of negative top-dimensional cell).</span>
+<span class="sd">            The second list contains the essential features, grouped by dimension.</span>
+<span class="sd">            It contains numpy arrays of shape (number_of_persistence_points,).</span>
+<span class="sd">            The indices of the arrays in the list correspond to the homological dimensions, and the</span>
+<span class="sd">            integers of each row in each array correspond to: (index of positive top-dimensional cell).</span>
+<span class="sd">        """</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"compute_persistence() must be called before cofaces_of_persistence_pairs()"</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_built_from_vertices</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"cofaces_of_persistence_pairs() only makes sense for a complex initialized "</span>
+                <span class="s2">"from the values of the top-dimensional cells"</span>
+            <span class="p">)</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
+        <span class="c1"># TODO: verify the return type of cofaces_of_cubical_persistence_pairs() by nanobind</span>
+        <span class="c1"># a copy is perhaps avoidable?</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_cofaces_of_cubical_persistence_pairs</span><span class="p">())</span>
+
+        <span class="n">ess_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">pr</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">ess</span> <span class="o">=</span> <span class="n">pr</span><span class="p">[</span><span class="n">ess_ind</span><span class="p">]</span>
+        <span class="n">max_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ess</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ess</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_h</span><span class="p">):</span>
+            <span class="n">hidxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">ess</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">h</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">output</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ess</span><span class="p">[</span><span class="n">hidxs</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">reg_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pr</span><span class="p">)),</span> <span class="n">ess_ind</span><span class="p">)</span>
+        <span class="n">reg</span> <span class="o">=</span> <span class="n">pr</span><span class="p">[</span><span class="n">reg_ind</span><span class="p">]</span>
+        <span class="n">max_h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">reg</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_h</span><span class="p">):</span>
+            <span class="n">hidxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">reg</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">h</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reg</span><span class="p">[</span><span class="n">hidxs</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">:])</span>
+
+        <span class="k">return</span> <span class="n">output</span></div>
+
+
+<div class="viewcode-block" id="CubicalComplex.vertices_of_persistence_pairs">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex.vertices_of_persistence_pairs">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vertices_of_persistence_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""This function returns a list of pairs of vertices corresponding to</span>
+<span class="sd">        the persistence birth and death cells of the filtration. The cells are represented by</span>
+<span class="sd">        their indices in the input list of vertices (and not their indices in the</span>
+<span class="sd">        internal data structure that includes non-minimal cells). Note that when two adjacent</span>
+<span class="sd">        vertices have the same filtration value, we arbitrarily return one of the two</span>
+<span class="sd">        when calling the function on one of their common faces.</span>
+
+<span class="sd">        Since the cubical complex construction from vertices is different from the top dimensional one,</span>
+<span class="sd">        the former may not have an equivalent with the second construction, and vice versa.</span>
+<span class="sd">        Therefore, using :func:`vertices_of_persistence_pairs` with a cubical complex constructed from</span>
+<span class="sd">        top_dimensional_cells can lead to an undefined behavior.</span>
+
+<span class="sd">        :returns: The vertices of the positive and negative cells,</span>
+<span class="sd">            together with the corresponding homological dimension, in two lists of numpy arrays of integers.</span>
+<span class="sd">            The first list contains the regular persistence pairs, grouped by dimension.</span>
+<span class="sd">            It contains numpy arrays of shape (number_of_persistence_points, 2).</span>
+<span class="sd">            The indices of the arrays in the list correspond to the homological dimensions, and the</span>
+<span class="sd">            integers of each row in each array correspond to: (index of positive vertex,</span>
+<span class="sd">            index of negative vertex).</span>
+<span class="sd">            The second list contains the essential features, grouped by dimension.</span>
+<span class="sd">            It contains numpy arrays of shape (number_of_persistence_points,).</span>
+<span class="sd">            The indices of the arrays in the list correspond to the homological dimensions, and the</span>
+<span class="sd">            integers of each row in each array correspond to: (index of positive vertex).</span>
+<span class="sd">        """</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"compute_persistence() must be called before vertices_of_persistence_pairs()"</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_built_from_vertices</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"vertices_of_persistence_pairs() only makes sense for a complex"</span>
+                <span class="s2">" initialized from the values of the vertices"</span>
+            <span class="p">)</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="p">[[],</span> <span class="p">[]]</span>
+        <span class="c1"># TODO: verify the return type of cofaces_of_cubical_persistence_pairs() by nanobind</span>
+        <span class="c1"># a copy is perhaps avoidable?</span>
+        <span class="n">pr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_vertices_of_cubical_persistence_pairs</span><span class="p">())</span>
+
+        <span class="c1"># except pr, is there any difference from the method above? If not, factorize?</span>
+        <span class="n">ess_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">pr</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">ess</span> <span class="o">=</span> <span class="n">pr</span><span class="p">[</span><span class="n">ess_ind</span><span class="p">]</span>
+        <span class="n">max_h</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ess</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ess</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_h</span><span class="p">):</span>
+            <span class="n">hidxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">ess</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">h</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">output</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ess</span><span class="p">[</span><span class="n">hidxs</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">reg_ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pr</span><span class="p">))),</span> <span class="n">ess_ind</span><span class="p">)</span>
+        <span class="n">reg</span> <span class="o">=</span> <span class="n">pr</span><span class="p">[</span><span class="n">reg_ind</span><span class="p">]</span>
+        <span class="n">max_h</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">reg</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_h</span><span class="p">):</span>
+            <span class="n">hidxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">reg</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">h</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reg</span><span class="p">[</span><span class="n">hidxs</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">:])</span>
+
+        <span class="k">return</span> <span class="n">output</span></div>
+
+
+<div class="viewcode-block" id="CubicalComplex.betti_numbers">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex.betti_numbers">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">betti_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""This function returns the Betti numbers of the complex.</span>
+
+<span class="sd">        :returns: list of int -- The Betti numbers ([B0, B1, ..., Bn]).</span>
+
+<span class="sd">        :note: betti_numbers function requires :func:`compute_persistence` function to be</span>
+<span class="sd">            launched first.</span>
+
+<span class="sd">        :note: betti_numbers function always returns [1, 0, 0, ...] as infinity</span>
+<span class="sd">            filtration cubes are not removed from the complex.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"compute_persistence() must be called before betti_numbers()"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_betti_numbers</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="CubicalComplex.persistent_betti_numbers">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex.persistent_betti_numbers">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">persistent_betti_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_value</span><span class="p">,</span> <span class="n">to_value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""This function returns the persistent Betti numbers of the complex.</span>
+
+<span class="sd">        :param from_value: The persistence birth limit to be added in the</span>
+<span class="sd">            numbers (persistent birth &lt;= from_value).</span>
+<span class="sd">        :type from_value: float.</span>
+<span class="sd">        :param to_value: The persistence death limit to be added in the</span>
+<span class="sd">            numbers (persistent death &gt; to_value).</span>
+<span class="sd">        :type to_value: float.</span>
+
+<span class="sd">        :returns: list of int -- The persistent Betti numbers ([B0, B1, ...,</span>
+<span class="sd">            Bn]).</span>
+
+<span class="sd">        :note: persistent_betti_numbers function requires :func:`compute_persistence`</span>
+<span class="sd">            function to be launched first.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"compute_persistence() must be called before persistent_betti_numbers()"</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_persistent_betti_numbers</span><span class="p">(</span><span class="n">from_value</span><span class="p">,</span> <span class="n">to_value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CubicalComplex.persistence_intervals_in_dimension">
+<a class="viewcode-back" href="../../cubical_complex_ref.html#gudhi.CubicalComplex.persistence_intervals_in_dimension">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">persistence_intervals_in_dimension</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dimension</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""This function returns the persistence intervals of the complex in a</span>
+<span class="sd">        specific dimension.</span>
+
+<span class="sd">        :param dimension: The specific dimension.</span>
+<span class="sd">        :type dimension: int.</span>
+<span class="sd">        :returns: The persistence intervals.</span>
+<span class="sd">        :rtype:  numpy array of dimension 2</span>
+
+<span class="sd">        :note: intervals_in_dim function requires :func:`compute_persistence` function to be</span>
+<span class="sd">            launched first.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pers</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"compute_persistence() must be called before persistence_intervals_in_dimension()"</span>
+            <span class="p">)</span>
+        <span class="n">piid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pers</span><span class="o">.</span><span class="n">_intervals_in_dimension</span><span class="p">(</span><span class="n">dimension</span><span class="p">))</span>
+        <span class="c1"># Workaround https://github.com/GUDHI/gudhi-devel/issues/507</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">piid</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">piid</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

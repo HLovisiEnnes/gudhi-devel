@@ -3,9 +3,6 @@ See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license det
 Author(s):       Henrique Ennes & Raphaël Tinarrage
 
 Copyright (C) 2016 Inria
-
-
-Obs: More robust tests will be implemented once the full LieDetect pipeline is ready.
 """
 
 import numpy as np

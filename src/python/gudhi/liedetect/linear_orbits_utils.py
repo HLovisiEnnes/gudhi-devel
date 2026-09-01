@@ -19,6 +19,7 @@ periods in a robust way.
 -----------------------------------------------------------------------------------------------------------------------
 
 Sample on orbits:
+    print_hausdorff_distance
     get_periods_torus
     sample_orbit_from_algebra_su2
     sample_orbit_from_algebra_torus
@@ -41,6 +42,27 @@ import gudhi.subsampling
 Sample on orbits
 -----------------------------------------------------------------------------------------------------------------------
 """
+
+
+def print_hausdorff_distance(
+    pts1: np.ndarray, pts2: np.ndarray, verbose: bool = True
+) -> float:
+    """
+    Prints the Hausdorff distance from first point cloud to second.
+
+    Args:
+        pts1 (np.ndarray): First point cloud.
+        pts2 (np.ndarray): Second point cloud.
+        verbose (bool): If True, prints the distance. Defaults to True.
+
+    Returns:
+        hausdorff_dist (float): Estimated non-symmetric Hausdorff distance.
+    """
+    hausdorff_dist = scipy.spatial.distance.directed_hausdorff(pts1, pts2)[0]
+    if verbose:
+        print(f"""Non-symmetric \x1b[34mHausdorff distance:
+              {hausdorff_dist:.3e}\x1b[0m.""")
+    return hausdorff_dist
 
 
 def get_periods_torus(

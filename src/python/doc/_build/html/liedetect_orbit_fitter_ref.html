@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>OrbitFitter reference manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>OrbitFitter reference manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -48,7 +48,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -58,7 +58,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -311,6 +311,10 @@
   
   
 
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
   
 </div>
 
@@ -595,6 +599,142 @@
                   
   <section id="orbitfitter-reference-manual">
 <h1>OrbitFitter reference manual<a class="headerlink" href="#orbitfitter-reference-manual" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.liedetect.OrbitFitter">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.liedetect.</span></span><span class="sig-name descname"><span class="pre">OrbitFitter</span></span><a class="reference internal" href="_modules/gudhi/liedetect/orbit_fitter.html#OrbitFitter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.OrbitFitter" title="Link to this definition">#</a></dt>
+<dd><p>Basic class for LieDetect functionalities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.liedetect.OrbitFitter.params.pts"></span><strong>pts</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.params.pts">¶</a> (<em>np.ndarray</em>) – Point cloud of shape (n_points, ambient_dim).</p>
+</dd>
+</dl>
+<dl>
+<dt>Public attributes:</dt><dd><p>We use trailing underscores to follow the scikit-learn convention
+for attributes set by specific methods.</p>
+<p>points (np.ndarray): The input point cloud.
+shape (tuple): Shape of the input point cloud.
+orbit_dim (int): Dimension of the orbit to detect after running ‘get_lie_pca’.
+<a href="#id1"><span class="problematic" id="id2">lie_pca_operator_</span></a> (np.ndarray): The computed Lie-PCA operator after running ‘get_lie_pca’.
+group (str): Name of the tested group after running ‘get_closest_algebra’.
+<a href="#id3"><span class="problematic" id="id4">representation_type_</span></a> (str): Type of representation after running ‘get_closest_algebra’.
+<a href="#id5"><span class="problematic" id="id6">algebra_</span></a> (np.ndarray): The closest Lie algebra found after running ‘get_closest_algebra’.
+<a href="#id7"><span class="problematic" id="id8">orbit_</span></a> (np.array): Sampled orbit. Only defined after running ‘get_sample_orbit’.
+<a href="#id9"><span class="problematic" id="id10">hausdorff_distances_</span></a>: Tuple[float, float]: Non-symmetric Hausdorff distances from the point cloud to the sampled orbit</p>
+<blockquote>
+<div><p>and the sampled orbit to the point cloud, respectively. Only defined if ‘get_sample_orbit’ is called.</p>
+</div></blockquote>
+<p>is_lie_pca (bool): Whether ‘get_lie_pca’ has been run.
+is_closest_algebra (bool): Whether ‘get_closest_algebra’ has been run.
+is_sample_orbit (bool): Whether ‘get_sample_orbit’ has been run.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.liedetect.OrbitFitter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/orbit_fitter.html#OrbitFitter.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.OrbitFitter.__init__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.liedetect.OrbitFitter.closest_algebra">
+<span class="sig-name descname"><span class="pre">closest_algebra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reps_to_test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">span_ambient_space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bottom_lie_pca'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose_top_scores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/orbit_fitter.html#OrbitFitter.closest_algebra"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.OrbitFitter.closest_algebra" title="Link to this definition">#</a></dt>
+<dd><p>Finds the closest pushforward Lie algebra of a group (subspace of skew-symmetric matrices) to the given
+Lie PCA operator. This requires that <cite>get_lie_pca</cite> has been run beforehand.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.closest_algebra.params.group"></span><strong>group</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.closest_algebra.params.group">¶</a> (<em>str</em>) – The group (‘torus’, ‘SU(2)’, or ‘SO(3)’).</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.closest_algebra.params.group_dim"></span><strong>group_dim</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.closest_algebra.params.group_dim">¶</a> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Dimension of the torus (if group=’torus’), otherwise ignored.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.closest_algebra.params.frequency_max"></span><strong>frequency_max</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.closest_algebra.params.frequency_max">¶</a> (<em>int</em>) – Maximum frequency for lattice search (torus case).</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.closest_algebra.params.reps_to_test"></span><strong>reps_to_test</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.closest_algebra.params.reps_to_test">¶</a> (<em>list</em><em>, </em><em>optional</em>) – List of representations to test. If None, computed automatically.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.closest_algebra.params.span_ambient_space"></span><strong>span_ambient_space</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.closest_algebra.params.span_ambient_space">¶</a> (<em>bool</em>) – Whether to restrict to representations with orbits spanning the ambient space.
+Defaults to True.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.closest_algebra.params.method"></span><strong>method</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.closest_algebra.params.method">¶</a> (<em>str</em>) – Optimization method: ‘bottom_lie_pca’, ‘full_lie_pca’,  or ‘abelian’ (torus only). Defaults
+to ‘bottom_lie_pca’.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.closest_algebra.params.verbose"></span><strong>verbose</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.closest_algebra.params.verbose">¶</a> (<em>bool</em>) – If True, prints progress and results. Defaults to False.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.closest_algebra.params.verbose_top_scores"></span><strong>verbose_top_scores</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.closest_algebra.params.verbose_top_scores">¶</a> (<em>bool</em>) – If True, prints top scoring representations. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The optimal representation type found.
+optimal_algebra: List of matrices forming the optimal Lie algebra.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>optimal_rep</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.liedetect.OrbitFitter.lie_pca">
+<span class="sig-name descname"><span class="pre">lie_pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nb_neighbors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orbit_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'PCA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/orbit_fitter.html#OrbitFitter.lie_pca"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.OrbitFitter.lie_pca" title="Link to this definition">#</a></dt>
+<dd><p>Computes the LiePCA operator from the input point cloud.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.lie_pca.params.nb_neighbors"></span><strong>nb_neighbors</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.lie_pca.params.nb_neighbors">¶</a> (<em>int</em>) – Number of neighbors to consider for the Lie-PCA operator.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.lie_pca.params.orbit_dim"></span><strong>orbit_dim</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.lie_pca.params.orbit_dim">¶</a> (<em>int</em>) – Dimension of the orbit to detect.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.lie_pca.params.method"></span><strong>method</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.lie_pca.params.method">¶</a> (<em>str</em>) – Method to compute the Lie-PCA operator. Options are “PCA” (default) and “covariance”.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.lie_pca.params.correction"></span><strong>correction</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.lie_pca.params.correction">¶</a> (<em>bool</em>) – Whether to apply the bias correction to the Lie-PCA operator.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.lie_pca.params.verbose"></span><strong>verbose</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.lie_pca.params.verbose">¶</a> (<em>bool</em>) – Whether to print progress and debug information.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The computed Lie-PCA operator.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>lie_pca (np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.liedetect.OrbitFitter.print_lie_pca_eigenvalues">
+<span class="sig-name descname"><span class="pre">print_lie_pca_eigenvalues</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">return_vals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/orbit_fitter.html#OrbitFitter.print_lie_pca_eigenvalues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.OrbitFitter.print_lie_pca_eigenvalues" title="Link to this definition">#</a></dt>
+<dd><p>Prints the eigenvalues of the Lie-PCA operator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.liedetect.OrbitFitter.print_lie_pca_eigenvalues.params.return_vals"></span><strong>return_vals</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.print_lie_pca_eigenvalues.params.return_vals">¶</a> (<em>bool</em>) – If True, returns the eigenvalues as
+a numpy array.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.liedetect.OrbitFitter.sample_orbit">
+<span class="sig-name descname"><span class="pre">sample_orbit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nb_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/orbit_fitter.html#OrbitFitter.sample_orbit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.OrbitFitter.sample_orbit" title="Link to this definition">#</a></dt>
+<dd><p>Samples points on the orbit of a compact Lie group representation, given its Lie algebra generators. We suppose
+that the algebra is isomorphic to the canonical algebra estimate. This allows us to compute the periods, which
+are, otherwise, not stably computable from the algebra alone. In particular, it requires that
+<cite>get_closest_algebra</cite> has been run beforehand.</p>
+<p>Note that the output orbit, in the uniform case, may not contain exactly nb_points points (this only happens if
+the parameter nb_points is a perfect power of the group dimension). In the random case, it will contain exactly
+nb_points points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.sample_orbit.params.nb_points"></span><strong>nb_points</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.sample_orbit.params.nb_points">¶</a> (<em>int</em>) – Number of points to sample.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.sample_orbit.params.method"></span><strong>method</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.sample_orbit.params.method">¶</a> (<em>str</em>) – Sampling method, ‘uniform’ or ‘random’. Defaults to ‘uniform’.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.sample_orbit.params.verbose"></span><strong>verbose</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.sample_orbit.params.verbose">¶</a> (<em>bool</em>) – Whether to print information about the sampled orbit. Defaults to False.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.OrbitFitter.sample_orbit.params.x"></span><strong>x</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.OrbitFitter.sample_orbit.params.x">¶</a> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Initial vector to act on. If None, the first vector of the data is.
+Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Array of sampled points on the orbit.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -613,6 +753,31 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.OrbitFitter"><code class="docutils literal notranslate"><span class="pre">OrbitFitter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.OrbitFitter.__init__"><code class="docutils literal notranslate"><span class="pre">OrbitFitter.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.OrbitFitter.closest_algebra"><code class="docutils literal notranslate"><span class="pre">OrbitFitter.closest_algebra()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.OrbitFitter.lie_pca"><code class="docutils literal notranslate"><span class="pre">OrbitFitter.lie_pca()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.OrbitFitter.print_lie_pca_eigenvalues"><code class="docutils literal notranslate"><span class="pre">OrbitFitter.print_lie_pca_eigenvalues()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.OrbitFitter.sample_orbit"><code class="docutils literal notranslate"><span class="pre">OrbitFitter.sample_orbit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

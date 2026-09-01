@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Mapper/GIC/Nerve complexes reference manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>Mapper/GIC/Nerve complexes reference manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -48,7 +48,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -58,7 +58,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -600,13 +600,671 @@
   <section id="mapper-gic-nerve-complexes-reference-manual">
 <h1>Mapper/GIC/Nerve complexes reference manual<a class="headerlink" href="#mapper-gic-nerve-complexes-reference-manual" title="Link to this heading">#</a></h1>
 <section id="mappercomplex-reference-manual">
-<h2><code class="xref py py-class docutils literal notranslate"><span class="pre">MapperComplex</span></code> reference manual<a class="headerlink" href="#mappercomplex-reference-manual" title="Link to this heading">#</a></h2>
+<h2><a class="reference internal" href="#gudhi.cover_complex.MapperComplex" title="gudhi.cover_complex.MapperComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapperComplex</span></code></a> reference manual<a class="headerlink" href="#mappercomplex-reference-manual" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.cover_complex.</span></span><span class="sig-name descname"><span class="pre">MapperComplex</span></span><a class="reference internal" href="_modules/gudhi/cover_complex.html#MapperComplex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.cover_complex.MapperComplex" title="Link to this definition">#</a></dt>
+<dd><p>This is a class for computing Mapper simplicial complexes on point clouds or distance matrices.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'point</span> <span class="pre">cloud'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_points_per_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_bnds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolutions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clustering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DBSCAN()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cover_complex.html#MapperComplex.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Constructor for the MapperComplex class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.params.input_type"></span><strong>input_type</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.params.input_type">¶</a> (<em>string</em>) – type of input data. Either “point cloud” or “distance matrix”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.params.min_points_per_node"></span><strong>min_points_per_node</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.params.min_points_per_node">¶</a> (<em>int</em>) – threshold on the size of the cover complex nodes (default 0). Any node associated to a subpopulation with less than <strong>min_points_per_node</strong> points will be removed.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.params.filter_bnds"></span><strong>filter_bnds</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.params.filter_bnds">¶</a> (<em>list</em><em> of </em><em>lists</em><em> or </em><em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>num_filters</em><em>) </em><em>x 2</em><em>)</em>) – limits of each filter, of the form [[f_1^min, f_1^max], …, [f_n^min, f_n^max]]. If one of the values is numpy.nan, it can be computed from the dataset with the fit() method.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.params.resolutions"></span><strong>resolutions</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.params.resolutions">¶</a> (<em>list</em><em> or </em><em>numpy array</em><em> of </em><em>shape num_filters containing integers</em>) – resolution of each filter function, ie number of intervals required to cover each filter image. If None, it is estimated from data.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.params.gains"></span><strong>gains</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.params.gains">¶</a> (<em>list</em><em> or </em><em>numpy array</em><em> of </em><em>shape num_filters containing doubles in</em><em> [</em><em>0</em><em>,</em><em>1</em><em>]</em>) – gain of each filter function, ie overlap percentage of the intervals covering each filter image. If None, it is set as 1/3 for all filters, since in the automatic parameter selection method in <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a>, any arbitrary value between 1/3 and 1/2 works, so we go with the minimal one (ensuring that the complex is a graph if only given one filter).</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.params.clustering"></span><strong>clustering</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.params.clustering">¶</a> (<em>class</em>) – clustering class (default sklearn.cluster.DBSCAN()). Common clustering classes can be found in the scikit-learn library (such as AgglomerativeClustering for instance). If None, it is set to hierarchical clustering, with scale estimated from data.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.params.N"></span><strong>N</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.params.N">¶</a> (<em>int</em>) – subsampling iterations (default 100) for estimating scale and resolutions. Used only if clustering or resolutions = None. See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.params.beta"></span><strong>beta</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.params.beta">¶</a> (<em>float</em>) – exponent parameter (default 0.) for estimating scale and resolutions. Used only if clustering or resolutions = None. See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.params.C"></span><strong>C</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.params.C">¶</a> (<em>float</em>) – constant parameter (default 10.) for estimating scale and resolutions. Used only if clustering or resolutions = None. See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.params.verbose"></span><strong>verbose</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.params.verbose">¶</a> (<em>bool</em>) – whether to display info while computing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.estimate_scale">
+<span class="sig-name descname"><span class="pre">estimate_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cover_complex.html#MapperComplex.estimate_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.estimate_scale" title="Link to this definition">#</a></dt>
+<dd><p>Compute estimated scale of a point cloud or a distance matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.estimate_scale.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.estimate_scale.params.X">¶</a> (<em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_coordinates</em><em>) </em><em>if point cloud and</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_points</em><em>) </em><em>if distance matrix</em>) – input point cloud or distance matrix.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.estimate_scale.params.N"></span><strong>N</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.estimate_scale.params.N">¶</a> (<em>int</em>) – subsampling iterations (default 100). See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.estimate_scale.params.beta"></span><strong>beta</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.estimate_scale.params.beta">¶</a> (<em>float</em>) – exponent parameter (default 0.). See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.estimate_scale.params.C"></span><strong>C</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.estimate_scale.params.C">¶</a> (<em>float</em>) – constant parameter (default 10.). See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>delta</strong> – estimated scale that can be used with, e.g., agglomerative clustering.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cover_complex.html#MapperComplex.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.fit" title="Link to this definition">#</a></dt>
+<dd><p>Fit the MapperComplex class on a point cloud or a distance matrix: compute the Mapper complex and store it in a simplex tree called <cite>simplex_tree_</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.fit.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.fit.params.X">¶</a> (<em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_coordinates</em><em>) </em><em>if point cloud and</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_points</em><em>) </em><em>if distance matrix</em>) – input point cloud or distance matrix.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.fit.params.y"></span><strong>y</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.fit.params.y">¶</a> (<em>n x 1 array</em>) – point labels (unused).</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.fit.params.filters"></span><strong>filters</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.fit.params.filters">¶</a> (<em>list</em><em> of </em><em>lists</em><em> or </em><em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_filters</em><em>)</em>) – filter functions (sometimes called lenses) used to compute the cover. Each column of the numpy array defines a scalar function defined on the input points.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.fit.params.colors"></span><strong>colors</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.fit.params.colors">¶</a> (<em>list</em><em> of </em><em>lists</em><em> or </em><em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_colors</em><em>)</em>) – functions used to color the nodes of the cover complex. More specifically, coloring is done by computing the means of these functions on the subpopulations corresponding to each node. If None, first coordinate is used if input is point cloud, and eccentricity is used if input is distance matrix.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.get_metadata_routing" title="Link to this definition">#</a></dt>
+<dd><p>Get metadata routing of this object.</p>
+<p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>routing</strong> – A <code class="xref py py-class docutils literal notranslate"><span class="pre">MetadataRequest</span></code> encapsulating
+routing information.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>MetadataRequest</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.get_networkx">
+<span class="sig-name descname"><span class="pre">get_networkx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_attributes_from_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.get_networkx" title="Link to this definition">#</a></dt>
+<dd><p>Turn the 1-skeleton of the cover complex computed after calling fit() method into a networkx graph.
+This function requires networkx (<a class="reference external" href="https://networkx.org/documentation/stable/install.html">https://networkx.org/documentation/stable/install.html</a>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.cover_complex.MapperComplex.get_networkx.params.set_attributes_from_colors"></span><strong>set_attributes_from_colors</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.get_networkx.params.set_attributes_from_colors">¶</a> (<em>bool</em>) – if True, the color functions will be used as attributes for the networkx graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>G</strong> – graph representing the 1-skeleton of the cover complex.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>networkx graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.get_optimal_parameters_for_agglomerative_clustering">
+<span class="sig-name descname"><span class="pre">get_optimal_parameters_for_agglomerative_clustering</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cover_complex.html#MapperComplex.get_optimal_parameters_for_agglomerative_clustering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.get_optimal_parameters_for_agglomerative_clustering" title="Link to this definition">#</a></dt>
+<dd><p>Compute optimal scale and resolutions for a point cloud or a distance matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.get_optimal_parameters_for_agglomerative_clustering.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.get_optimal_parameters_for_agglomerative_clustering.params.X">¶</a> (<em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_coordinates</em><em>) </em><em>if point cloud and</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_points</em><em>) </em><em>if distance matrix</em>) – input point cloud or distance matrix.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.get_optimal_parameters_for_agglomerative_clustering.params.beta"></span><strong>beta</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.get_optimal_parameters_for_agglomerative_clustering.params.beta">¶</a> (<em>float</em>) – exponent parameter (default 0.). See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.get_optimal_parameters_for_agglomerative_clustering.params.C"></span><strong>C</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.get_optimal_parameters_for_agglomerative_clustering.params.C">¶</a> (<em>float</em>) – constant parameter (default 10.). See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.get_optimal_parameters_for_agglomerative_clustering.params.N"></span><strong>N</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.get_optimal_parameters_for_agglomerative_clustering.params.N">¶</a> (<em>int</em>) – subsampling iterations (default 100). See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>delta</strong> (<em>float</em>) – optimal scale that can be used with agglomerative clustering.</p></li>
+<li><p><strong>resolutions</strong> (<em>numpy array of shape (num_filters)</em>) – optimal resolutions associated to each filter.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.get_params" title="Link to this definition">#</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.cover_complex.MapperComplex.get_params.params.deep"></span><strong>deep</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.get_params.params.deep">¶</a> (<em>bool</em><em>, </em><em>default=True</em>) – If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>params</strong> – Parameter names mapped to their values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.save_to_dot">
+<span class="sig-name descname"><span class="pre">save_to_dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover_complex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'color'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.save_to_dot" title="Link to this definition">#</a></dt>
+<dd><p>Write the 0-skeleton of the cover complex in a DOT file called “{file_name}.dot”, that can be processed with, e.g., neato. The vertices of the cover complex are colored with the first color function, ie, the first column of self.colors.  This function also produces an extra pdf file “colorbar_{color_name}.pdf” containing a colorbar corresponding to the node colors in the DOT file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_dot.params.file_name"></span><strong>file_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_dot.params.file_name">¶</a> (<em>string</em>) – name for the output .dot file, default “cover_complex”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_dot.params.color_name"></span><strong>color_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_dot.params.color_name">¶</a> (<em>string</em>) – name for the output .pdf showing the colorbar of the color used for the Mapper nodes, default “color”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_dot.params.eps_color"></span><strong>eps_color</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_dot.params.eps_color">¶</a> (<em>float</em>) – scale the node colors between [eps_color, 1-eps_color]. Should be between 0 and 1/2. When close to 0., the color varies a lot across the nodes, if close to 1/2, the color tends to be more uniform.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_dot.params.eps_size"></span><strong>eps_size</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_dot.params.eps_size">¶</a> (<em>float</em>) – scale the node sizes between [eps_size, 1-eps_size]. Should be between 0 and 1/2. When close to 0., the size varies a lot across the nodes, if close to 1/2, the nodes tend to have the same size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.save_to_html">
+<span class="sig-name descname"><span class="pre">save_to_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover_complex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cover_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'color'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.save_to_html" title="Link to this definition">#</a></dt>
+<dd><p>Write the cover complex to an HTML file called “{file_name}.html”, that can be visualized in a browser. This function is based on a fork of <a class="github reference external" href="https://github.com/MLWave/kepler-mapper">MLWave/kepler-mapper</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_html.params.file_name"></span><strong>file_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_html.params.file_name">¶</a> (<em>string</em>) – name for the output .html file, default “cover_complex”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_html.params.data_name"></span><strong>data_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_html.params.data_name">¶</a> (<em>string</em>) – name to use for the data on which the cover complex was computed, default “data”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_html.params.cover_name"></span><strong>cover_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_html.params.cover_name">¶</a> (<em>string</em>) – name to use for the cover used to compute the cover complex, default “cover”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_html.params.color_name"></span><strong>color_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_html.params.color_name">¶</a> (<em>string</em>) – name to use for the color used to color the cover complex nodes, default “color”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.save_to_txt">
+<span class="sig-name descname"><span class="pre">save_to_txt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover_complex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cover_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'color'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.save_to_txt" title="Link to this definition">#</a></dt>
+<dd><p>Write the cover complex to a TXT file called “{file_name}.txt”, that can be processed with the KeplerMapper Python script “KeplerMapperVisuFromTxtFile.py” available under “src/Nerve_GIC/utilities/”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_txt.params.file_name"></span><strong>file_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_txt.params.file_name">¶</a> (<em>string</em>) – name for the output .txt file, default “cover_complex”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_txt.params.data_name"></span><strong>data_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_txt.params.data_name">¶</a> (<em>string</em>) – name to use for the data on which the cover complex was computed, default “data”. It will be used when generating an html visualization with KeplerMapperVisuFromTxtFile.py</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_txt.params.cover_name"></span><strong>cover_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_txt.params.cover_name">¶</a> (<em>string</em>) – name to use for the cover used to compute the cover complex, default “cover”. It will be used when generating an html visualization with KeplerMapperVisuFromTxtFile.py</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.save_to_txt.params.color_name"></span><strong>color_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.save_to_txt.params.color_name">¶</a> (<em>string</em>) – name to use for the color used to color the cover complex nodes, default “color”. It will be used when generating an html visualization with KeplerMapperVisuFromTxtFile.py</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.set_fit_request">
+<span class="sig-name descname"><span class="pre">set_fit_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.set_fit_request" title="Link to this definition">#</a></dt>
+<dd><p>Configure whether metadata should be requested to be passed to the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method.</p>
+<p>Note that this method is only relevant when this estimator is used as a
+sub-estimator within a <span class="xref std std-term">meta-estimator</span> and metadata routing is enabled
+with <code class="docutils literal notranslate"><span class="pre">enable_metadata_routing=True</span></code> (see <code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.set_config()</span></code>).
+Please check the <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: metadata is requested, and passed to <code class="docutils literal notranslate"><span class="pre">fit</span></code> if provided. The request is ignored if metadata is not provided.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: metadata is not requested and the meta-estimator will not pass it to <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p></li>
+</ul>
+<p>The default (<code class="docutils literal notranslate"><span class="pre">sklearn.utils.metadata_routing.UNCHANGED</span></code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.set_fit_request.params.colors"></span><strong>colors</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.set_fit_request.params.colors">¶</a> (<em>str</em><em>, </em><em>True</em><em>, </em><em>False</em><em>, or </em><em>None</em><em>,                     </em><em>default=sklearn.utils.metadata_routing.UNCHANGED</em>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">colors</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.MapperComplex.set_fit_request.params.filters"></span><strong>filters</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.set_fit_request.params.filters">¶</a> (<em>str</em><em>, </em><em>True</em><em>, </em><em>False</em><em>, or </em><em>None</em><em>,                     </em><em>default=sklearn.utils.metadata_routing.UNCHANGED</em>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">filters</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – The updated object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.MapperComplex.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.MapperComplex.set_params" title="Link to this definition">#</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
+parameters of the form <code class="docutils literal notranslate"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it’s
+possible to update each component of a nested object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.cover_complex.MapperComplex.set_params.params.**params"></span><strong>**params</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.MapperComplex.set_params.params.**params">¶</a> (<em>dict</em>) – Estimator parameters.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – Estimator instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>estimator instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="graphinducedcomplex-reference-manual">
-<h2><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphInducedComplex</span></code> reference manual<a class="headerlink" href="#graphinducedcomplex-reference-manual" title="Link to this heading">#</a></h2>
+<h2><a class="reference internal" href="#gudhi.cover_complex.GraphInducedComplex" title="gudhi.cover_complex.GraphInducedComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphInducedComplex</span></code></a> reference manual<a class="headerlink" href="#graphinducedcomplex-reference-manual" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.cover_complex.GraphInducedComplex">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.cover_complex.</span></span><span class="sig-name descname"><span class="pre">GraphInducedComplex</span></span><a class="reference internal" href="_modules/gudhi/cover_complex.html#GraphInducedComplex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.cover_complex.GraphInducedComplex" title="Link to this definition">#</a></dt>
+<dd><p>This is a class for computing graph induced simplicial complexes on point clouds or distance matrices.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.GraphInducedComplex.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'point</span> <span class="pre">cloud'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cover</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'functional'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_points_per_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voronoi_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_bnds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rips'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rips_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cover_complex.html#GraphInducedComplex.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.cover_complex.GraphInducedComplex.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Constructor for the GraphInducedComplex class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.input_type"></span><strong>input_type</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.input_type">¶</a> (<em>string</em>) – type of input data. Either “point cloud” or “distance matrix”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.cover"></span><strong>cover</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.cover">¶</a> (<em>string</em>) – specifies the cover. Either “functional” (preimages of filter function), “voronoi” or “precomputed”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.min_points_per_node"></span><strong>min_points_per_node</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.min_points_per_node">¶</a> (<em>int</em>) – threshold on the size of the cover complex nodes (default 0). Any node associated to a subpopulation with less than <strong>min_points_per_node</strong> points will be removed.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.voronoi_samples"></span><strong>voronoi_samples</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.voronoi_samples">¶</a> (<em>int</em>) – number of Voronoi germs used for partitioning the input dataset. Used only if cover = “voronoi”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.assignments"></span><strong>assignments</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.assignments">¶</a> (<em>list</em><em> of </em><em>length</em><em> (</em><em>num_points</em><em>) of </em><em>lists</em><em> of </em><em>integers</em>) – cover assignment for each point. Used only if cover = “precomputed”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.filter_bnds"></span><strong>filter_bnds</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.filter_bnds">¶</a> (<em>list</em><em> or </em><em>numpy array</em><em> of </em><em>shape 2</em>) – limits of the filter function, of the form [f^min, f^max]. If one of the values is numpy.nan, it can be computed from the dataset with the fit() method. Used only if cover = “functional”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.resolution"></span><strong>resolution</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.resolution">¶</a> (<em>int</em>) – resolution of the filter function, ie number of intervals required to cover each filter image. Used only if cover = “functional”. If None, it is estimated from data.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.gain"></span><strong>gain</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.gain">¶</a> (<em>double in</em><em> [</em><em>0</em><em>,</em><em>1</em><em>]</em>) – gain of the filter function, ie overlap percentage of the intervals covering each filter image. Used only if cover = “functional”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.N"></span><strong>N</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.N">¶</a> (<em>int</em>) – subsampling iterations (default 100) for estimating scale and resolutions. Used only if cover = “functional”. See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.beta"></span><strong>beta</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.beta">¶</a> (<em>double</em>) – exponent parameter (default 0.) for estimating scale and resolutions. Used only if cover = “functional”. See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.C"></span><strong>C</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.C">¶</a> (<em>double</em>) – constant parameter (default 10.) for estimating scale and resolutions. Used only if cover = “functional”. See <a class="reference external" href="http://www.jmlr.org/papers/volume19/17-291/17-291.pdf">http://www.jmlr.org/papers/volume19/17-291/17-291.pdf</a> for details.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.graph"></span><strong>graph</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.graph">¶</a> (<em>string</em>) – type of graph to use for GIC. Currently accepts “rips” only.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.rips_threshold"></span><strong>rips_threshold</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.rips_threshold">¶</a> (<em>float</em>) – Rips parameter. Used only if graph = “rips”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.params.verbose"></span><strong>verbose</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.params.verbose">¶</a> (<em>bool</em>) – whether to display info while computing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.GraphInducedComplex.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cover_complex.html#GraphInducedComplex.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.cover_complex.GraphInducedComplex.fit" title="Link to this definition">#</a></dt>
+<dd><p>Fit the GraphInducedComplex class on a point cloud or a distance matrix: compute the graph induced complex and store it in a simplex tree called <cite>simplex_tree_</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.fit.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.fit.params.X">¶</a> (<em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_coordinates</em><em>) </em><em>if point cloud and</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_points</em><em>) </em><em>if distance matrix</em>) – input point cloud or distance matrix.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.fit.params.y"></span><strong>y</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.fit.params.y">¶</a> (<em>n x 1 array</em>) – point labels (unused).</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.fit.params.filter"></span><strong>filter</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.fit.params.filter">¶</a> (<em>list</em><em> or </em><em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>num_points</em><em>)</em>) – filter function (sometimes called lens) used to compute the cover. Used only if cover = “functional”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.fit.params.color"></span><strong>color</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.fit.params.color">¶</a> (<em>list</em><em> or </em><em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>num_points</em><em>)</em>) – function used to color the nodes of the cover complex. More specifically, coloring is done by computing the means of this function on the subpopulations corresponding to each node. If None, first coordinate is used if input is point cloud, and eccentricity is used if input is distance matrix.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.GraphInducedComplex.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.GraphInducedComplex.get_metadata_routing" title="Link to this definition">#</a></dt>
+<dd><p>Get metadata routing of this object.</p>
+<p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>routing</strong> – A <code class="xref py py-class docutils literal notranslate"><span class="pre">MetadataRequest</span></code> encapsulating
+routing information.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>MetadataRequest</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.GraphInducedComplex.get_networkx">
+<span class="sig-name descname"><span class="pre">get_networkx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_attributes_from_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.GraphInducedComplex.get_networkx" title="Link to this definition">#</a></dt>
+<dd><p>Turn the 1-skeleton of the cover complex computed after calling fit() method into a networkx graph.
+This function requires networkx (<a class="reference external" href="https://networkx.org/documentation/stable/install.html">https://networkx.org/documentation/stable/install.html</a>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.get_networkx.params.set_attributes_from_colors"></span><strong>set_attributes_from_colors</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.get_networkx.params.set_attributes_from_colors">¶</a> (<em>bool</em>) – if True, the color functions will be used as attributes for the networkx graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>G</strong> – graph representing the 1-skeleton of the cover complex.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>networkx graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.GraphInducedComplex.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.GraphInducedComplex.get_params" title="Link to this definition">#</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.get_params.params.deep"></span><strong>deep</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.get_params.params.deep">¶</a> (<em>bool</em><em>, </em><em>default=True</em>) – If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>params</strong> – Parameter names mapped to their values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.GraphInducedComplex.save_to_dot">
+<span class="sig-name descname"><span class="pre">save_to_dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover_complex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'color'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.GraphInducedComplex.save_to_dot" title="Link to this definition">#</a></dt>
+<dd><p>Write the 0-skeleton of the cover complex in a DOT file called “{file_name}.dot”, that can be processed with, e.g., neato. The vertices of the cover complex are colored with the first color function, ie, the first column of self.colors.  This function also produces an extra pdf file “colorbar_{color_name}.pdf” containing a colorbar corresponding to the node colors in the DOT file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_dot.params.file_name"></span><strong>file_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_dot.params.file_name">¶</a> (<em>string</em>) – name for the output .dot file, default “cover_complex”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_dot.params.color_name"></span><strong>color_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_dot.params.color_name">¶</a> (<em>string</em>) – name for the output .pdf showing the colorbar of the color used for the Mapper nodes, default “color”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_dot.params.eps_color"></span><strong>eps_color</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_dot.params.eps_color">¶</a> (<em>float</em>) – scale the node colors between [eps_color, 1-eps_color]. Should be between 0 and 1/2. When close to 0., the color varies a lot across the nodes, if close to 1/2, the color tends to be more uniform.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_dot.params.eps_size"></span><strong>eps_size</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_dot.params.eps_size">¶</a> (<em>float</em>) – scale the node sizes between [eps_size, 1-eps_size]. Should be between 0 and 1/2. When close to 0., the size varies a lot across the nodes, if close to 1/2, the nodes tend to have the same size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.GraphInducedComplex.save_to_html">
+<span class="sig-name descname"><span class="pre">save_to_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover_complex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cover_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'color'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.GraphInducedComplex.save_to_html" title="Link to this definition">#</a></dt>
+<dd><p>Write the cover complex to an HTML file called “{file_name}.html”, that can be visualized in a browser. This function is based on a fork of <a class="github reference external" href="https://github.com/MLWave/kepler-mapper">MLWave/kepler-mapper</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_html.params.file_name"></span><strong>file_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_html.params.file_name">¶</a> (<em>string</em>) – name for the output .html file, default “cover_complex”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_html.params.data_name"></span><strong>data_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_html.params.data_name">¶</a> (<em>string</em>) – name to use for the data on which the cover complex was computed, default “data”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_html.params.cover_name"></span><strong>cover_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_html.params.cover_name">¶</a> (<em>string</em>) – name to use for the cover used to compute the cover complex, default “cover”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_html.params.color_name"></span><strong>color_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_html.params.color_name">¶</a> (<em>string</em>) – name to use for the color used to color the cover complex nodes, default “color”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.GraphInducedComplex.save_to_txt">
+<span class="sig-name descname"><span class="pre">save_to_txt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover_complex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cover_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'color'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.GraphInducedComplex.save_to_txt" title="Link to this definition">#</a></dt>
+<dd><p>Write the cover complex to a TXT file called “{file_name}.txt”, that can be processed with the KeplerMapper Python script “KeplerMapperVisuFromTxtFile.py” available under “src/Nerve_GIC/utilities/”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_txt.params.file_name"></span><strong>file_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_txt.params.file_name">¶</a> (<em>string</em>) – name for the output .txt file, default “cover_complex”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_txt.params.data_name"></span><strong>data_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_txt.params.data_name">¶</a> (<em>string</em>) – name to use for the data on which the cover complex was computed, default “data”. It will be used when generating an html visualization with KeplerMapperVisuFromTxtFile.py</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_txt.params.cover_name"></span><strong>cover_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_txt.params.cover_name">¶</a> (<em>string</em>) – name to use for the cover used to compute the cover complex, default “cover”. It will be used when generating an html visualization with KeplerMapperVisuFromTxtFile.py</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.save_to_txt.params.color_name"></span><strong>color_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.save_to_txt.params.color_name">¶</a> (<em>string</em>) – name to use for the color used to color the cover complex nodes, default “color”. It will be used when generating an html visualization with KeplerMapperVisuFromTxtFile.py</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.GraphInducedComplex.set_fit_request">
+<span class="sig-name descname"><span class="pre">set_fit_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.GraphInducedComplex.set_fit_request" title="Link to this definition">#</a></dt>
+<dd><p>Configure whether metadata should be requested to be passed to the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method.</p>
+<p>Note that this method is only relevant when this estimator is used as a
+sub-estimator within a <span class="xref std std-term">meta-estimator</span> and metadata routing is enabled
+with <code class="docutils literal notranslate"><span class="pre">enable_metadata_routing=True</span></code> (see <code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.set_config()</span></code>).
+Please check the <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: metadata is requested, and passed to <code class="docutils literal notranslate"><span class="pre">fit</span></code> if provided. The request is ignored if metadata is not provided.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: metadata is not requested and the meta-estimator will not pass it to <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p></li>
+</ul>
+<p>The default (<code class="docutils literal notranslate"><span class="pre">sklearn.utils.metadata_routing.UNCHANGED</span></code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.set_fit_request.params.color"></span><strong>color</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.set_fit_request.params.color">¶</a> (<em>str</em><em>, </em><em>True</em><em>, </em><em>False</em><em>, or </em><em>None</em><em>,                     </em><em>default=sklearn.utils.metadata_routing.UNCHANGED</em>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">color</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.set_fit_request.params.filter"></span><strong>filter</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.set_fit_request.params.filter">¶</a> (<em>str</em><em>, </em><em>True</em><em>, </em><em>False</em><em>, or </em><em>None</em><em>,                     </em><em>default=sklearn.utils.metadata_routing.UNCHANGED</em>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">filter</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – The updated object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.GraphInducedComplex.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.GraphInducedComplex.set_params" title="Link to this definition">#</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
+parameters of the form <code class="docutils literal notranslate"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it’s
+possible to update each component of a nested object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.cover_complex.GraphInducedComplex.set_params.params.**params"></span><strong>**params</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.GraphInducedComplex.set_params.params.**params">¶</a> (<em>dict</em>) – Estimator parameters.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – Estimator instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>estimator instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="nervecomplex-reference-manual">
-<h2><code class="xref py py-class docutils literal notranslate"><span class="pre">NerveComplex</span></code> reference manual<a class="headerlink" href="#nervecomplex-reference-manual" title="Link to this heading">#</a></h2>
+<h2><a class="reference internal" href="#gudhi.cover_complex.NerveComplex" title="gudhi.cover_complex.NerveComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">NerveComplex</span></code></a> reference manual<a class="headerlink" href="#nervecomplex-reference-manual" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.cover_complex.NerveComplex">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.cover_complex.</span></span><span class="sig-name descname"><span class="pre">NerveComplex</span></span><a class="reference internal" href="_modules/gudhi/cover_complex.html#NerveComplex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.cover_complex.NerveComplex" title="Link to this definition">#</a></dt>
+<dd><p>This is a class for computing nerve simplicial complexes on point clouds or distance matrices.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.NerveComplex.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'point</span> <span class="pre">cloud'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_points_per_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cover_complex.html#NerveComplex.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.cover_complex.NerveComplex.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Constructor for the NerveComplex class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.params.input_type"></span><strong>input_type</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.params.input_type">¶</a> (<em>string</em>) – type of input data. Either “point cloud” or “distance matrix”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.params.min_points_per_node"></span><strong>min_points_per_node</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.params.min_points_per_node">¶</a> (<em>int</em>) – threshold on the size of the cover complex nodes (default 0). Any node associated to a subpopulation with less than <strong>min_points_per_node</strong> points will be removed.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.params.verbose"></span><strong>verbose</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.params.verbose">¶</a> (<em>bool</em>) – whether to display info while computing.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.NerveComplex.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/cover_complex.html#NerveComplex.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.cover_complex.NerveComplex.fit" title="Link to this definition">#</a></dt>
+<dd><p>Fit the NerveComplex class on a point cloud or a distance matrix: compute the nerve complex and store it in a simplex tree called <cite>simplex_tree_</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.fit.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.fit.params.X">¶</a> (<em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_coordinates</em><em>) </em><em>if point cloud and</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_points</em><em>) </em><em>if distance matrix</em>) – input point cloud or distance matrix.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.fit.params.y"></span><strong>y</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.fit.params.y">¶</a> (<em>n x 1 array</em>) – point labels (unused).</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.fit.params.assignments"></span><strong>assignments</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.fit.params.assignments">¶</a> (<em>list</em><em> of </em><em>length</em><em> (</em><em>num_points</em><em>) of </em><em>lists</em><em> of </em><em>integers</em>) – cover assignment for each point.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.fit.params.color"></span><strong>color</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.fit.params.color">¶</a> (<em>numpy array</em><em> of </em><em>shape</em><em> (</em><em>num_points</em><em>) </em><em>x</em><em> (</em><em>num_colors</em><em>)</em>) – functions used to color the nodes of the cover complex. More specifically, coloring is done by computing the means of these functions on the subpopulations corresponding to each node. If None, first coordinate is used if input is point cloud, and eccentricity is used if input is distance matrix.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.NerveComplex.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.NerveComplex.get_metadata_routing" title="Link to this definition">#</a></dt>
+<dd><p>Get metadata routing of this object.</p>
+<p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>routing</strong> – A <code class="xref py py-class docutils literal notranslate"><span class="pre">MetadataRequest</span></code> encapsulating
+routing information.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>MetadataRequest</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.NerveComplex.get_networkx">
+<span class="sig-name descname"><span class="pre">get_networkx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_attributes_from_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.NerveComplex.get_networkx" title="Link to this definition">#</a></dt>
+<dd><p>Turn the 1-skeleton of the cover complex computed after calling fit() method into a networkx graph.
+This function requires networkx (<a class="reference external" href="https://networkx.org/documentation/stable/install.html">https://networkx.org/documentation/stable/install.html</a>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.cover_complex.NerveComplex.get_networkx.params.set_attributes_from_colors"></span><strong>set_attributes_from_colors</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.get_networkx.params.set_attributes_from_colors">¶</a> (<em>bool</em>) – if True, the color functions will be used as attributes for the networkx graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>G</strong> – graph representing the 1-skeleton of the cover complex.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>networkx graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.NerveComplex.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.NerveComplex.get_params" title="Link to this definition">#</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.cover_complex.NerveComplex.get_params.params.deep"></span><strong>deep</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.get_params.params.deep">¶</a> (<em>bool</em><em>, </em><em>default=True</em>) – If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>params</strong> – Parameter names mapped to their values.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.NerveComplex.save_to_dot">
+<span class="sig-name descname"><span class="pre">save_to_dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover_complex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'color'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.NerveComplex.save_to_dot" title="Link to this definition">#</a></dt>
+<dd><p>Write the 0-skeleton of the cover complex in a DOT file called “{file_name}.dot”, that can be processed with, e.g., neato. The vertices of the cover complex are colored with the first color function, ie, the first column of self.colors.  This function also produces an extra pdf file “colorbar_{color_name}.pdf” containing a colorbar corresponding to the node colors in the DOT file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_dot.params.file_name"></span><strong>file_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_dot.params.file_name">¶</a> (<em>string</em>) – name for the output .dot file, default “cover_complex”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_dot.params.color_name"></span><strong>color_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_dot.params.color_name">¶</a> (<em>string</em>) – name for the output .pdf showing the colorbar of the color used for the Mapper nodes, default “color”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_dot.params.eps_color"></span><strong>eps_color</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_dot.params.eps_color">¶</a> (<em>float</em>) – scale the node colors between [eps_color, 1-eps_color]. Should be between 0 and 1/2. When close to 0., the color varies a lot across the nodes, if close to 1/2, the color tends to be more uniform.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_dot.params.eps_size"></span><strong>eps_size</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_dot.params.eps_size">¶</a> (<em>float</em>) – scale the node sizes between [eps_size, 1-eps_size]. Should be between 0 and 1/2. When close to 0., the size varies a lot across the nodes, if close to 1/2, the nodes tend to have the same size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.NerveComplex.save_to_html">
+<span class="sig-name descname"><span class="pre">save_to_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover_complex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cover_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'color'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.NerveComplex.save_to_html" title="Link to this definition">#</a></dt>
+<dd><p>Write the cover complex to an HTML file called “{file_name}.html”, that can be visualized in a browser. This function is based on a fork of <a class="github reference external" href="https://github.com/MLWave/kepler-mapper">MLWave/kepler-mapper</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_html.params.file_name"></span><strong>file_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_html.params.file_name">¶</a> (<em>string</em>) – name for the output .html file, default “cover_complex”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_html.params.data_name"></span><strong>data_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_html.params.data_name">¶</a> (<em>string</em>) – name to use for the data on which the cover complex was computed, default “data”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_html.params.cover_name"></span><strong>cover_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_html.params.cover_name">¶</a> (<em>string</em>) – name to use for the cover used to compute the cover complex, default “cover”.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_html.params.color_name"></span><strong>color_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_html.params.color_name">¶</a> (<em>string</em>) – name to use for the color used to color the cover complex nodes, default “color”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.NerveComplex.save_to_txt">
+<span class="sig-name descname"><span class="pre">save_to_txt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover_complex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cover_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cover'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'color'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.NerveComplex.save_to_txt" title="Link to this definition">#</a></dt>
+<dd><p>Write the cover complex to a TXT file called “{file_name}.txt”, that can be processed with the KeplerMapper Python script “KeplerMapperVisuFromTxtFile.py” available under “src/Nerve_GIC/utilities/”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_txt.params.file_name"></span><strong>file_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_txt.params.file_name">¶</a> (<em>string</em>) – name for the output .txt file, default “cover_complex”</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_txt.params.data_name"></span><strong>data_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_txt.params.data_name">¶</a> (<em>string</em>) – name to use for the data on which the cover complex was computed, default “data”. It will be used when generating an html visualization with KeplerMapperVisuFromTxtFile.py</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_txt.params.cover_name"></span><strong>cover_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_txt.params.cover_name">¶</a> (<em>string</em>) – name to use for the cover used to compute the cover complex, default “cover”. It will be used when generating an html visualization with KeplerMapperVisuFromTxtFile.py</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.save_to_txt.params.color_name"></span><strong>color_name</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.save_to_txt.params.color_name">¶</a> (<em>string</em>) – name to use for the color used to color the cover complex nodes, default “color”. It will be used when generating an html visualization with KeplerMapperVisuFromTxtFile.py</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.NerveComplex.set_fit_request">
+<span class="sig-name descname"><span class="pre">set_fit_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.NerveComplex.set_fit_request" title="Link to this definition">#</a></dt>
+<dd><p>Configure whether metadata should be requested to be passed to the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method.</p>
+<p>Note that this method is only relevant when this estimator is used as a
+sub-estimator within a <span class="xref std std-term">meta-estimator</span> and metadata routing is enabled
+with <code class="docutils literal notranslate"><span class="pre">enable_metadata_routing=True</span></code> (see <code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.set_config()</span></code>).
+Please check the <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: metadata is requested, and passed to <code class="docutils literal notranslate"><span class="pre">fit</span></code> if provided. The request is ignored if metadata is not provided.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: metadata is not requested and the meta-estimator will not pass it to <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p></li>
+</ul>
+<p>The default (<code class="docutils literal notranslate"><span class="pre">sklearn.utils.metadata_routing.UNCHANGED</span></code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.set_fit_request.params.assignments"></span><strong>assignments</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.set_fit_request.params.assignments">¶</a> (<em>str</em><em>, </em><em>True</em><em>, </em><em>False</em><em>, or </em><em>None</em><em>,                     </em><em>default=sklearn.utils.metadata_routing.UNCHANGED</em>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">assignments</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+<li><p><span class="target" id="gudhi.cover_complex.NerveComplex.set_fit_request.params.color"></span><strong>color</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.set_fit_request.params.color">¶</a> (<em>str</em><em>, </em><em>True</em><em>, </em><em>False</em><em>, or </em><em>None</em><em>,                     </em><em>default=sklearn.utils.metadata_routing.UNCHANGED</em>) – Metadata routing for <code class="docutils literal notranslate"><span class="pre">color</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – The updated object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.cover_complex.NerveComplex.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.cover_complex.NerveComplex.set_params" title="Link to this definition">#</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
+parameters of the form <code class="docutils literal notranslate"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it’s
+possible to update each component of a nested object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.cover_complex.NerveComplex.set_params.params.**params"></span><strong>**params</strong><a class="paramlink headerlink reference internal" href="#gudhi.cover_complex.NerveComplex.set_params.params.**params">¶</a> (<em>dict</em>) – Estimator parameters.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>self</strong> – Estimator instance.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>estimator instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For reproducible results, consider using <a class="reference internal" href="reproducibility.html#gudhi.random.set_seed" title="gudhi.random.set_seed"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_seed()</span></code></a>.</p>
+</div>
 </section>
 </section>
 
@@ -639,9 +1297,56 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mappercomplex-reference-manual"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapperComplex</span></code> reference manual</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphinducedcomplex-reference-manual"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphInducedComplex</span></code> reference manual</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nervecomplex-reference-manual"><code class="xref py py-class docutils literal notranslate"><span class="pre">NerveComplex</span></code> reference manual</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mappercomplex-reference-manual"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapperComplex</span></code> reference manual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex"><code class="docutils literal notranslate"><span class="pre">MapperComplex</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.__init__"><code class="docutils literal notranslate"><span class="pre">MapperComplex.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.estimate_scale"><code class="docutils literal notranslate"><span class="pre">MapperComplex.estimate_scale()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.fit"><code class="docutils literal notranslate"><span class="pre">MapperComplex.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">MapperComplex.get_metadata_routing()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.get_networkx"><code class="docutils literal notranslate"><span class="pre">MapperComplex.get_networkx()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.get_optimal_parameters_for_agglomerative_clustering"><code class="docutils literal notranslate"><span class="pre">MapperComplex.get_optimal_parameters_for_agglomerative_clustering()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.get_params"><code class="docutils literal notranslate"><span class="pre">MapperComplex.get_params()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.save_to_dot"><code class="docutils literal notranslate"><span class="pre">MapperComplex.save_to_dot()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.save_to_html"><code class="docutils literal notranslate"><span class="pre">MapperComplex.save_to_html()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.save_to_txt"><code class="docutils literal notranslate"><span class="pre">MapperComplex.save_to_txt()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.set_fit_request"><code class="docutils literal notranslate"><span class="pre">MapperComplex.set_fit_request()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.MapperComplex.set_params"><code class="docutils literal notranslate"><span class="pre">MapperComplex.set_params()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graphinducedcomplex-reference-manual"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphInducedComplex</span></code> reference manual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.GraphInducedComplex"><code class="docutils literal notranslate"><span class="pre">GraphInducedComplex</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.GraphInducedComplex.__init__"><code class="docutils literal notranslate"><span class="pre">GraphInducedComplex.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.GraphInducedComplex.fit"><code class="docutils literal notranslate"><span class="pre">GraphInducedComplex.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.GraphInducedComplex.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">GraphInducedComplex.get_metadata_routing()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.GraphInducedComplex.get_networkx"><code class="docutils literal notranslate"><span class="pre">GraphInducedComplex.get_networkx()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.GraphInducedComplex.get_params"><code class="docutils literal notranslate"><span class="pre">GraphInducedComplex.get_params()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.GraphInducedComplex.save_to_dot"><code class="docutils literal notranslate"><span class="pre">GraphInducedComplex.save_to_dot()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.GraphInducedComplex.save_to_html"><code class="docutils literal notranslate"><span class="pre">GraphInducedComplex.save_to_html()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.GraphInducedComplex.save_to_txt"><code class="docutils literal notranslate"><span class="pre">GraphInducedComplex.save_to_txt()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.GraphInducedComplex.set_fit_request"><code class="docutils literal notranslate"><span class="pre">GraphInducedComplex.set_fit_request()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.GraphInducedComplex.set_params"><code class="docutils literal notranslate"><span class="pre">GraphInducedComplex.set_params()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nervecomplex-reference-manual"><code class="xref py py-class docutils literal notranslate"><span class="pre">NerveComplex</span></code> reference manual</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.NerveComplex"><code class="docutils literal notranslate"><span class="pre">NerveComplex</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.NerveComplex.__init__"><code class="docutils literal notranslate"><span class="pre">NerveComplex.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.NerveComplex.fit"><code class="docutils literal notranslate"><span class="pre">NerveComplex.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.NerveComplex.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">NerveComplex.get_metadata_routing()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.NerveComplex.get_networkx"><code class="docutils literal notranslate"><span class="pre">NerveComplex.get_networkx()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.NerveComplex.get_params"><code class="docutils literal notranslate"><span class="pre">NerveComplex.get_params()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.NerveComplex.save_to_dot"><code class="docutils literal notranslate"><span class="pre">NerveComplex.save_to_dot()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.NerveComplex.save_to_html"><code class="docutils literal notranslate"><span class="pre">NerveComplex.save_to_html()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.NerveComplex.save_to_txt"><code class="docutils literal notranslate"><span class="pre">NerveComplex.save_to_txt()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.NerveComplex.set_fit_request"><code class="docutils literal notranslate"><span class="pre">NerveComplex.set_fit_request()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.cover_complex.NerveComplex.set_params"><code class="docutils literal notranslate"><span class="pre">NerveComplex.set_params()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

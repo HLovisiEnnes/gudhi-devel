@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gudhi.persistence_graphical_tools &#8212; gudhi v3.11.0 documentation</title>
+    <title>gudhi.persistence_graphical_tools &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -30,8 +30,8 @@
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="../../_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -47,7 +47,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -57,7 +57,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="../../_static/searchtools.js"></script>
@@ -605,10 +605,13 @@
 <span class="c1"># Modification(s):</span>
 <span class="c1">#   - 2020/02 Theo Lacombe: Added more options for improved rendering and more flexibility.</span>
 <span class="c1">#   - 2022/11 Vincent Rouvreau: "Automatic" legend display detected by _array_handler that returns if the persistence</span>
-<span class="c1">#                               was a nx2 array.</span>
+<span class="c1">#                               was a n x 2 array.</span>
 <span class="c1">#   - 2024/11 Vincent Rouvreau: Support for sklearn like persistence feedback: New _format_handler function that</span>
 <span class="c1">#                               enhances former _array_handler function.</span>
 <span class="c1">#   - YYYY/MM Author: Description of the modification</span>
+
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
+
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -617,13 +620,10 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">errno</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.reader_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_persistence_intervals_in_dimension</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.reader_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_persistence_intervals_grouped_by_dimension</span>
-
-<span class="n">__author__</span> <span class="o">=</span> <span class="s2">"Vincent Rouvreau, Bertrand Michel, Theo Lacombe"</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">"Copyright (C) 2016 Inria"</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
 
 <span class="n">_gudhi_matplotlib_use_tex</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -638,22 +638,25 @@
 <span class="sd">    :returns: (float, float) -- (min_birth, max_death).</span>
 <span class="sd">    """</span>
     <span class="c1"># Look for minimum birth date and maximum death date for plot optimisation</span>
-    <span class="n">max_death</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">min_birth</span> <span class="o">=</span> <span class="n">persistence</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">interval</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">persistence</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">):</span>
-            <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">max_death</span><span class="p">:</span>
-                <span class="n">max_death</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">max_death</span><span class="p">:</span>
-            <span class="n">max_death</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">min_birth</span><span class="p">:</span>
-            <span class="n">min_birth</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">band</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
-        <span class="n">max_death</span> <span class="o">+=</span> <span class="n">band</span>
-    <span class="c1"># can happen if only points at inf death</span>
-    <span class="k">if</span> <span class="n">min_birth</span> <span class="o">==</span> <span class="n">max_death</span><span class="p">:</span>
-        <span class="n">max_death</span> <span class="o">=</span> <span class="n">max_death</span> <span class="o">+</span> <span class="mf">1.0</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">min_birth</span><span class="p">,</span> <span class="n">max_death</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">max_death</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">min_birth</span> <span class="o">=</span> <span class="n">persistence</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">interval</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">persistence</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">max_death</span><span class="p">:</span>
+                    <span class="n">max_death</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">max_death</span><span class="p">:</span>
+                <span class="n">max_death</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">min_birth</span><span class="p">:</span>
+                <span class="n">min_birth</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">interval</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">band</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="n">max_death</span> <span class="o">+=</span> <span class="n">band</span>
+        <span class="c1"># can happen if only points at inf death</span>
+        <span class="k">if</span> <span class="n">min_birth</span> <span class="o">==</span> <span class="n">max_death</span><span class="p">:</span>
+            <span class="n">max_death</span> <span class="o">=</span> <span class="n">max_death</span> <span class="o">+</span> <span class="mf">1.0</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">min_birth</span><span class="p">,</span> <span class="n">max_death</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_format_handler</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
@@ -670,20 +673,18 @@
     <span class="c1"># Array</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">first_death_value</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">first_death_value</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
-            <span class="k">return</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">],</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">first_death_value</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
+            <span class="n">pers</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pers</span><span class="p">,</span> <span class="mi">1</span>
     <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
         <span class="k">pass</span>
     <span class="c1"># Iterable of array</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">pers</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">fake_dim</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
-            <span class="n">first_death_value</span> <span class="o">=</span> <span class="n">elt</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">first_death_value</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
-                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Should be a list of (birth,death)"</span><span class="p">)</span>
-            <span class="n">pers</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">fake_dim</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">elt</span><span class="p">)</span>
-            <span class="n">fake_dim</span> <span class="o">=</span> <span class="n">fake_dim</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>  <span class="c1"># check that death values have correct type</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">elt</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">elt</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"Should be a list of (birth, death)"</span><span class="p">)</span>
+        <span class="n">pers</span> <span class="o">=</span> <span class="p">[[</span><span class="n">fake_dim</span><span class="p">,</span> <span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">fake_dim</span><span class="p">,</span> <span class="n">elt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">elt</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">pers</span><span class="p">,</span> <span class="mi">2</span>
     <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
         <span class="k">pass</span>
@@ -691,8 +692,33 @@
     <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="mi">0</span>
 
 
+<span class="c1"># only necessary because _format_handler does not directly decompose everything into xd, yd arrays for plotting</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_get_number_of_pairs_by_dimension</span><span class="p">(</span><span class="n">barcode</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">barcode</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[],</span> <span class="mi">0</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">barcode</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
+            <span class="c1"># array of (b,d)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">barcode</span><span class="p">)],</span> <span class="mi">1</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">barcode</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">barcode</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">):</span>
+            <span class="c1"># array of array of (b,d)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">barcode</span><span class="p">[</span><span class="n">d</span><span class="p">])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">barcode</span><span class="p">))],</span> <span class="nb">len</span><span class="p">(</span><span class="n">barcode</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># array of (dim, (b,d))</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">bar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">barcode</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+
 <span class="k">def</span><span class="w"> </span><span class="nf">_limit_to_max_intervals</span><span class="p">(</span><span class="n">persistence</span><span class="p">,</span> <span class="n">max_intervals</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""This function returns truncated persistence if length is bigger than max_intervals.</span>
+<span class="w">    </span><span class="sd">"""This function returns truncated persistence if length is bigger than max_intervals and a boolean which is `True`</span>
+<span class="sd">    if and only if the persistence array was actually truncated.</span>
 <span class="sd">    :param persistence: Persistence intervals values list. Can be grouped by dimension or not.</span>
 <span class="sd">    :type persistence: an array of (dimension, (birth, death)) or an array of (birth, death).</span>
 <span class="sd">    :param max_intervals: maximal number of intervals to display. Selected intervals are those with the longest life</span>
@@ -707,9 +733,9 @@
             <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">persistence</span><span class="p">),</span> <span class="n">max_intervals</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="c1"># Sort by life time, then takes only the max_intervals elements</span>
-        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">persistence</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="n">max_intervals</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">persistence</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)[:</span><span class="n">max_intervals</span><span class="p">],</span> <span class="kc">True</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">persistence</span>
+        <span class="k">return</span> <span class="n">persistence</span><span class="p">,</span> <span class="kc">False</span>
 
 
 <span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -738,7 +764,9 @@
         <span class="k">return</span> <span class="kc">False</span>
     <span class="k">return</span> <span class="kc">True</span>
 
+
 <span class="c1"># TODO: a new homology_dimensions like argument for plot_persistence_barcode and plot_persistence_diagram</span>
+
 
 <div class="viewcode-block" id="plot_persistence_barcode">
 <a class="viewcode-back" href="../../persistence_graphical_tools_ref.html#gudhi.plot_persistence_barcode">[docs]</a>
@@ -801,23 +829,21 @@
         <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">persistence_file</span><span class="p">):</span>
             <span class="c1"># Reset persistence</span>
             <span class="n">persistence</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">diag</span> <span class="o">=</span> <span class="n">read_persistence_intervals_grouped_by_dimension</span><span class="p">(</span><span class="n">persistence_file</span><span class="o">=</span><span class="n">persistence_file</span><span class="p">)</span>
+            <span class="n">diag</span> <span class="o">=</span> <span class="n">read_persistence_intervals_grouped_by_dimension</span><span class="p">(</span>
+                <span class="n">persistence_file</span><span class="o">=</span><span class="n">persistence_file</span>
+            <span class="p">)</span>
             <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">diag</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="k">for</span> <span class="n">persistence_interval</span> <span class="ow">in</span> <span class="n">diag</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
                     <span class="n">persistence</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">persistence_interval</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">),</span> <span class="n">persistence_file</span><span class="p">)</span>
 
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">persistence</span><span class="p">,</span> <span class="n">input_type</span> <span class="o">=</span> <span class="n">_format_handler</span><span class="p">(</span><span class="n">persistence</span><span class="p">)</span>
-        <span class="n">persistence</span> <span class="o">=</span> <span class="n">_limit_to_max_intervals</span><span class="p">(</span>
-            <span class="n">persistence</span><span class="p">,</span> <span class="n">max_intervals</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">life_time</span><span class="p">:</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="p">)</span>
-        <span class="p">(</span><span class="n">min_birth</span><span class="p">,</span> <span class="n">max_death</span><span class="p">)</span> <span class="o">=</span> <span class="n">_min_birth_max_death</span><span class="p">(</span><span class="n">persistence</span><span class="p">)</span>
-        <span class="n">persistence</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">persistence</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">birth</span><span class="p">:</span> <span class="n">birth</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
-        <span class="n">min_birth</span><span class="p">,</span> <span class="n">max_death</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span>
-        <span class="k">pass</span>
+    <span class="n">persistence</span><span class="p">,</span> <span class="n">input_type</span> <span class="o">=</span> <span class="n">_format_handler</span><span class="p">(</span><span class="n">persistence</span><span class="p">)</span>
+    <span class="n">persistence</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_limit_to_max_intervals</span><span class="p">(</span>
+        <span class="n">persistence</span><span class="p">,</span> <span class="n">max_intervals</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">life_time</span><span class="p">:</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="p">(</span><span class="n">min_birth</span><span class="p">,</span> <span class="n">max_death</span><span class="p">)</span> <span class="o">=</span> <span class="n">_min_birth_max_death</span><span class="p">(</span><span class="n">persistence</span><span class="p">)</span>
+    <span class="n">persistence</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">persistence</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">birth</span><span class="p">:</span> <span class="n">birth</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 
     <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_death</span> <span class="o">-</span> <span class="n">min_birth</span><span class="p">)</span> <span class="o">*</span> <span class="n">inf_delta</span>
     <span class="c1"># Replace infinity values with max_death + delta for bar code to be more readable</span>
@@ -830,7 +856,10 @@
         <span class="n">colormap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Set1</span><span class="o">.</span><span class="n">colors</span>
 
     <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">birth</span> <span class="k">for</span> <span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="p">(</span><span class="n">birth</span><span class="p">,</span> <span class="n">death</span><span class="p">))</span> <span class="ow">in</span> <span class="n">persistence</span><span class="p">]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="p">[(</span><span class="n">death</span> <span class="o">-</span> <span class="n">birth</span><span class="p">)</span> <span class="k">if</span> <span class="n">death</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span> <span class="k">else</span> <span class="p">(</span><span class="n">infinity</span> <span class="o">-</span> <span class="n">birth</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="p">(</span><span class="n">birth</span><span class="p">,</span> <span class="n">death</span><span class="p">))</span> <span class="ow">in</span> <span class="n">persistence</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">death</span> <span class="o">-</span> <span class="n">birth</span><span class="p">)</span> <span class="k">if</span> <span class="n">death</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span> <span class="k">else</span> <span class="p">(</span><span class="n">infinity</span> <span class="o">-</span> <span class="n">birth</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="p">(</span><span class="n">birth</span><span class="p">,</span> <span class="n">death</span><span class="p">))</span> <span class="ow">in</span> <span class="n">persistence</span>
+    <span class="p">]</span>
     <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">colormap</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="k">for</span> <span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="p">(</span><span class="n">birth</span><span class="p">,</span> <span class="n">death</span><span class="p">))</span> <span class="ow">in</span> <span class="n">persistence</span><span class="p">]</span>
 
     <span class="n">axes</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">y</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -843,10 +872,12 @@
     <span class="k">if</span> <span class="n">legend</span><span class="p">:</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s2">"Dimension"</span>
         <span class="k">if</span> <span class="n">input_type</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">title</span> <span class="o">=</span> <span class="s2">"Range"</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="s2">"Diagram"</span>
         <span class="n">dimensions</span> <span class="o">=</span> <span class="p">{</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">persistence</span><span class="p">}</span>
         <span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
-            <span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">dim</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">dim</span><span class="p">))</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">dimensions</span><span class="p">],</span>
+            <span class="n">handles</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">dim</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">dim</span><span class="p">))</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">dimensions</span>
+            <span class="p">],</span>
             <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
             <span class="n">loc</span><span class="o">=</span><span class="s2">"best"</span><span class="p">,</span>
         <span class="p">)</span>
@@ -890,7 +921,7 @@
 <span class="sd">    :type persistence_file: string</span>
 <span class="sd">    :param alpha: plot transparency value (0.0 transparent through 1.0 opaque - default is 0.6).</span>
 <span class="sd">    :type alpha: float</span>
-<span class="sd">    :param band: band (not displayed if :math:`\leq` 0. - default is 0.)</span>
+<span class="sd">    :param band: band (not displayed if ≤ 0. - default is 0.)</span>
 <span class="sd">    :type band: float</span>
 <span class="sd">    :param max_intervals: maximal number of intervals to display. Selected intervals are those with the longest life</span>
 <span class="sd">        time. Set it to 0 to see all. Default value is 1000000.</span>
@@ -928,22 +959,24 @@
         <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">persistence_file</span><span class="p">):</span>
             <span class="c1"># Reset persistence</span>
             <span class="n">persistence</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">diag</span> <span class="o">=</span> <span class="n">read_persistence_intervals_grouped_by_dimension</span><span class="p">(</span><span class="n">persistence_file</span><span class="o">=</span><span class="n">persistence_file</span><span class="p">)</span>
+            <span class="n">diag</span> <span class="o">=</span> <span class="n">read_persistence_intervals_grouped_by_dimension</span><span class="p">(</span>
+                <span class="n">persistence_file</span><span class="o">=</span><span class="n">persistence_file</span>
+            <span class="p">)</span>
             <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">diag</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="k">for</span> <span class="n">persistence_interval</span> <span class="ow">in</span> <span class="n">diag</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
                     <span class="n">persistence</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">persistence_interval</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">),</span> <span class="n">persistence_file</span><span class="p">)</span>
 
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">persistence</span><span class="p">,</span> <span class="n">input_type</span> <span class="o">=</span> <span class="n">_format_handler</span><span class="p">(</span><span class="n">persistence</span><span class="p">)</span>
-        <span class="n">persistence</span> <span class="o">=</span> <span class="n">_limit_to_max_intervals</span><span class="p">(</span>
-            <span class="n">persistence</span><span class="p">,</span> <span class="n">max_intervals</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">life_time</span><span class="p">:</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="p">)</span>
-        <span class="n">min_birth</span><span class="p">,</span> <span class="n">max_death</span> <span class="o">=</span> <span class="n">_min_birth_max_death</span><span class="p">(</span><span class="n">persistence</span><span class="p">,</span> <span class="n">band</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
-        <span class="n">min_birth</span><span class="p">,</span> <span class="n">max_death</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span>
-        <span class="k">pass</span>
+    <span class="n">persistence</span><span class="p">,</span> <span class="n">input_type</span> <span class="o">=</span> <span class="n">_format_handler</span><span class="p">(</span><span class="n">persistence</span><span class="p">)</span>
+    <span class="n">persistence</span><span class="p">,</span> <span class="n">changed</span> <span class="o">=</span> <span class="n">_limit_to_max_intervals</span><span class="p">(</span>
+        <span class="n">persistence</span><span class="p">,</span> <span class="n">max_intervals</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">life_time</span><span class="p">:</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">changed</span> <span class="ow">or</span> <span class="n">input_type</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">persistence</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">persistence</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">min_birth</span><span class="p">,</span> <span class="n">max_death</span> <span class="o">=</span> <span class="n">_min_birth_max_death</span><span class="p">(</span><span class="n">persistence</span><span class="p">,</span> <span class="n">band</span><span class="p">)</span>
+
+    <span class="n">sizes</span><span class="p">,</span> <span class="n">num_dim</span> <span class="o">=</span> <span class="n">_get_number_of_pairs_by_dimension</span><span class="p">(</span><span class="n">persistence</span><span class="p">)</span>
 
     <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_death</span> <span class="o">-</span> <span class="n">min_birth</span><span class="p">)</span> <span class="o">*</span> <span class="n">inf_delta</span>
     <span class="c1"># Replace infinity values with max_death + delta for diagram to be more</span>
@@ -974,20 +1007,39 @@
 
     <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">birth</span> <span class="k">for</span> <span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="p">(</span><span class="n">birth</span><span class="p">,</span> <span class="n">death</span><span class="p">))</span> <span class="ow">in</span> <span class="n">persistence</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">death</span> <span class="k">if</span> <span class="n">death</span> <span class="o">!=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span> <span class="k">else</span> <span class="n">infinity</span> <span class="k">for</span> <span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="p">(</span><span class="n">birth</span><span class="p">,</span> <span class="n">death</span><span class="p">))</span> <span class="ow">in</span> <span class="n">persistence</span><span class="p">]</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">colormap</span><span class="p">[</span><span class="n">dim</span><span class="p">]</span> <span class="k">for</span> <span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="p">(</span><span class="n">birth</span><span class="p">,</span> <span class="n">death</span><span class="p">))</span> <span class="ow">in</span> <span class="n">persistence</span><span class="p">]</span>
 
-    <span class="n">axes</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_dim</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">sizes</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">sizes</span><span class="p">[</span><span class="n">d</span><span class="p">]</span>
+            <span class="n">xd</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">yd</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">j</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">colormap</span><span class="p">[</span><span class="n">d</span><span class="p">]</span>
+            <span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                <span class="n">xd</span><span class="p">,</span>
+                <span class="n">yd</span><span class="p">,</span>
+                <span class="n">linestyle</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span>
+                <span class="n">markersize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">c</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+            <span class="p">)</span>
+
     <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="n">death</span> <span class="k">for</span> <span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="p">(</span><span class="n">birth</span><span class="p">,</span> <span class="n">death</span><span class="p">))</span> <span class="ow">in</span> <span class="n">persistence</span><span class="p">):</span>
         <span class="c1"># infinity line and text</span>
-        <span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">axis_start</span><span class="p">,</span> <span class="n">axis_end</span><span class="p">],</span> <span class="p">[</span><span class="n">infinity</span><span class="p">,</span> <span class="n">infinity</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">axis_start</span><span class="p">,</span> <span class="n">axis_end</span><span class="p">],</span> <span class="p">[</span><span class="n">infinity</span><span class="p">,</span> <span class="n">infinity</span><span class="p">],</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span>
+        <span class="p">)</span>
         <span class="c1"># Infinity label</span>
         <span class="n">yt</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">get_yticks</span><span class="p">()</span>
-        <span class="n">yt</span> <span class="o">=</span> <span class="n">yt</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">yt</span> <span class="o">&lt;</span> <span class="n">axis_end</span><span class="p">)]</span>  <span class="c1"># to avoid plotting ticklabel higher than infinity</span>
+        <span class="n">ytl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">())</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">yt</span> <span class="o">&lt;</span> <span class="n">axis_end</span>
+        <span class="n">yt</span> <span class="o">=</span> <span class="n">yt</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>  <span class="c1"># to avoid plotting ticklabel higher than infinity</span>
+        <span class="n">ytl</span> <span class="o">=</span> <span class="n">ytl</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
         <span class="n">yt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">infinity</span><span class="p">)</span>
-        <span class="n">ytl</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"</span><span class="si">%.3f</span><span class="s2">"</span> <span class="o">%</span> <span class="n">e</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">yt</span><span class="p">]</span>  <span class="c1"># to avoid float precision error</span>
-        <span class="n">ytl</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"$+\infty$"</span>
-        <span class="n">axes</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yt</span><span class="p">)</span>
-        <span class="n">axes</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ytl</span><span class="p">)</span>
+        <span class="n">ytl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ytl</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"$+\infty$"</span><span class="p">)</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yt</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">ytl</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">legend</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">input_type</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="c1"># By default, if persistence is an array of (dimension, (birth, death)), or an</span>
@@ -997,10 +1049,12 @@
     <span class="k">if</span> <span class="n">legend</span><span class="p">:</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s2">"Dimension"</span>
         <span class="k">if</span> <span class="n">input_type</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">title</span> <span class="o">=</span> <span class="s2">"Range"</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="s2">"Diagram"</span>
         <span class="n">dimensions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">({</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">persistence</span><span class="p">})</span>
         <span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
-            <span class="n">handles</span><span class="o">=</span><span class="p">[</span><span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">dim</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">dim</span><span class="p">))</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">dimensions</span><span class="p">],</span>
+            <span class="n">handles</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">mpatches</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">colormap</span><span class="p">[</span><span class="n">dim</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">dim</span><span class="p">))</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="n">dimensions</span>
+            <span class="p">],</span>
             <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
             <span class="n">loc</span><span class="o">=</span><span class="s2">"lower right"</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1110,7 +1164,11 @@
         <span class="p">)</span>
         <span class="n">persistence_dim</span> <span class="o">=</span> <span class="n">persistence_dim</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">persistence_dim</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])]</span>
         <span class="n">persistence_dim</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="n">_limit_to_max_intervals</span><span class="p">(</span><span class="n">persistence_dim</span><span class="p">,</span> <span class="n">max_intervals</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">life_time</span><span class="p">:</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">_limit_to_max_intervals</span><span class="p">(</span>
+                <span class="n">persistence_dim</span><span class="p">,</span>
+                <span class="n">max_intervals</span><span class="p">,</span>
+                <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">life_time</span><span class="p">:</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">life_time</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="p">)</span>
 
         <span class="c1"># Set as numpy array birth and death (remove undefined values - inf and NaN)</span>

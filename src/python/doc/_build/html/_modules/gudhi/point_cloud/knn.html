@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gudhi.point_cloud.knn &#8212; gudhi v3.11.0 documentation</title>
+    <title>gudhi.point_cloud.knn &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -30,8 +30,8 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -47,7 +47,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -57,7 +57,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -603,16 +603,16 @@
 <span class="c1"># Copyright (C) 2020 Inria</span>
 <span class="c1">#</span>
 <span class="c1"># Modification(s):</span>
+<span class="c1">#   - 2025/09 Vincent Rouvreau: Move `len` test in fit as it may not be defined until eagerpy modify its format</span>
 <span class="c1">#   - YYYY/MM Author: Description of the modification</span>
+
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
+
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
 <span class="c1"># TODO: https://github.com/facebookresearch/faiss</span>
-
-<span class="n">__author__</span> <span class="o">=</span> <span class="s2">"Marc Glisse"</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">"Copyright (C) 2020 Inria"</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
 
 
 <div class="viewcode-block" id="KNearestNeighbors">
@@ -628,7 +628,9 @@
 
 <div class="viewcode-block" id="KNearestNeighbors.__init__">
 <a class="viewcode-back" href="../../../point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"euclidean"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"euclidean"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Args:</span>
 <span class="sd">            k (int): number of neighbors (possibly including the point itself).</span>
@@ -679,9 +681,13 @@
         <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"minkowski"</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"p"</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"p"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"implementation"</span><span class="p">)</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"keops"</span><span class="p">,</span> <span class="s2">"ckdtree"</span><span class="p">}:</span>
-            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s2">"minkowski"</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">!=</span> <span class="s2">"minkowski"</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"metric has to be minkowski for the given parameters"</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"implementation"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"hnsw"</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s2">"minkowski"</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"p"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">!=</span> <span class="s2">"minkowski"</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"p"</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"metric has to be minkowski and p set to 2 for the given parameters"</span>
+                <span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"implementation"</span><span class="p">):</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s2">"minkowski"</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"implementation"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"ckdtree"</span>
@@ -704,10 +710,6 @@
 <span class="sd">        Args:</span>
 <span class="sd">            X (numpy.array): coordinates for reference points.</span>
 <span class="sd">        """</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">"Expected number of neighbors (aka. 'k') &lt;= number of samples, but k=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="si">}</span><span class="s2"> and number of samples=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
-            <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ref_points</span> <span class="o">=</span> <span class="n">X</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"enable_autodiff"</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
             <span class="kn">import</span><span class="w"> </span><span class="nn">eagerpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ep</span>
@@ -717,6 +719,13 @@
                 <span class="c1"># I don't know a clever way to reuse a GPU tensor from tensorflow in pytorch</span>
                 <span class="c1"># without copying to/from the CPU.</span>
                 <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="c1"># In case of enable_autodiff, `len(X)` may not be defined until `ep.astensor(X)` and/or `X = X.numpy()` above</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Expected number of neighbors (aka. 'k') &lt;= number of samples, but k=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="si">}</span><span class="s2">"</span>
+                <span class="sa">f</span><span class="s2">" and number of samples=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"implementation"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"ckdtree"</span><span class="p">:</span>
             <span class="c1"># sklearn could handle this, but it is much slower</span>
             <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial</span><span class="w"> </span><span class="kn">import</span> <span class="n">cKDTree</span>
@@ -728,7 +737,9 @@
             <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">NearestNeighbors</span>
 
             <span class="n">nargs</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"p"</span><span class="p">,</span> <span class="s2">"n_jobs"</span><span class="p">,</span> <span class="s2">"metric_params"</span><span class="p">,</span> <span class="s2">"algorithm"</span><span class="p">,</span> <span class="s2">"leaf_size"</span><span class="p">}</span>
+                <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"p"</span><span class="p">,</span> <span class="s2">"n_jobs"</span><span class="p">,</span> <span class="s2">"metric_params"</span><span class="p">,</span> <span class="s2">"algorithm"</span><span class="p">,</span> <span class="s2">"leaf_size"</span><span class="p">}</span>
             <span class="p">}</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">nn</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span><span class="p">,</span> <span class="o">**</span><span class="n">nargs</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -738,7 +749,12 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">hnswlib</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="s2">"l2"</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>  <span class="c1"># Actually returns squared distances</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">init_index</span><span class="p">(</span>
-                <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"ef_construction"</span><span class="p">,</span> <span class="s2">"M"</span><span class="p">,</span> <span class="s2">"random_seed"</span><span class="p">}}</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span>
+                <span class="o">**</span><span class="p">{</span>
+                    <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"ef_construction"</span><span class="p">,</span> <span class="s2">"M"</span><span class="p">,</span> <span class="s2">"random_seed"</span><span class="p">}</span>
+                <span class="p">},</span>
             <span class="p">)</span>
             <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"num_threads"</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -773,7 +789,8 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">newX</span> <span class="o">=</span> <span class="n">ep</span><span class="o">.</span><span class="n">astensor</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"implementation"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"keops"</span> <span class="ow">or</span> <span class="p">(</span>
-                    <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">newX</span><span class="p">,</span> <span class="n">ep</span><span class="o">.</span><span class="n">PyTorchTensor</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">newX</span><span class="p">,</span> <span class="n">ep</span><span class="o">.</span><span class="n">NumPyTensor</span><span class="p">)</span>
+                    <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">newX</span><span class="p">,</span> <span class="n">ep</span><span class="o">.</span><span class="n">PyTorchTensor</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">newX</span><span class="p">,</span> <span class="n">ep</span><span class="o">.</span><span class="n">NumPyTensor</span><span class="p">)</span>
                 <span class="p">):</span>
                     <span class="n">newX</span> <span class="o">=</span> <span class="n">newX</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -784,7 +801,8 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">return_distance</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"enable_autodiff"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="c1"># We can implement more later as needed</span>
-            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s2">"minkowski"</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">!=</span> <span class="s2">"minkowski"</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"metric has to be minkowski for the given parameters"</span><span class="p">)</span>
             <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"p"</span><span class="p">]</span>
             <span class="n">Y</span> <span class="o">=</span> <span class="n">ep</span><span class="o">.</span><span class="n">astensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ref_points</span><span class="p">)</span>
             <span class="n">neighbor_pts</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">neighbors</span><span class="p">,]</span>
@@ -840,7 +858,9 @@
                         <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
                             <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="p">]</span>
 
-                    <span class="n">neighbors</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">parallel</span><span class="p">(</span><span class="n">delayed</span><span class="p">(</span><span class="n">func</span><span class="p">)(</span><span class="n">X</span><span class="p">[</span><span class="n">s</span><span class="p">])</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">slices</span><span class="p">))</span>
+                    <span class="n">neighbors</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                        <span class="n">parallel</span><span class="p">(</span><span class="n">delayed</span><span class="p">(</span><span class="n">func</span><span class="p">)(</span><span class="n">X</span><span class="p">[</span><span class="n">s</span><span class="p">])</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">slices</span><span class="p">)</span>
+                    <span class="p">)</span>
                     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_distance</span><span class="p">:</span>
                         <span class="n">distances</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">take_along_axis</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
                         <span class="k">return</span> <span class="n">neighbors</span><span class="p">,</span> <span class="n">distances</span>
@@ -869,7 +889,9 @@
                         <span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">M</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="p">]</span>
                     <span class="n">slices</span> <span class="o">=</span> <span class="n">gen_even_slices</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">effective_n_jobs</span><span class="p">(</span><span class="n">n_jobs</span><span class="p">))</span>
                     <span class="n">parallel</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">prefer</span><span class="o">=</span><span class="s2">"threads"</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)</span>
-                    <span class="n">distances</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">parallel</span><span class="p">(</span><span class="n">delayed</span><span class="p">(</span><span class="n">func</span><span class="p">)(</span><span class="n">X</span><span class="p">[</span><span class="n">s</span><span class="p">])</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">slices</span><span class="p">))</span>
+                    <span class="n">distances</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                        <span class="n">parallel</span><span class="p">(</span><span class="n">delayed</span><span class="p">(</span><span class="n">func</span><span class="p">)(</span><span class="n">X</span><span class="p">[</span><span class="n">s</span><span class="p">])</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">slices</span><span class="p">)</span>
+                    <span class="p">)</span>
                 <span class="k">return</span> <span class="n">distances</span>
             <span class="k">return</span> <span class="kc">None</span>
 
@@ -877,10 +899,15 @@
             <span class="n">ef</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"ef"</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">ef</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">set_ef</span><span class="p">(</span><span class="n">ef</span><span class="p">)</span>
-            <span class="n">neighbors</span><span class="p">,</span> <span class="n">distances</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">knn_query</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"num_threads"</span><span class="p">])</span>
+            <span class="n">neighbors</span><span class="p">,</span> <span class="n">distances</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">knn_query</span><span class="p">(</span>
+                <span class="n">X</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">num_threads</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"num_threads"</span><span class="p">]</span>
+            <span class="p">)</span>
             <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">distances</span><span class="p">))):</span>
-                    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Overflow/infinite value encountered while computing 'distances'"</span><span class="p">,</span> <span class="ne">RuntimeWarning</span><span class="p">)</span>
+                    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                        <span class="s2">"Overflow/infinite value encountered while computing 'distances'"</span><span class="p">,</span>
+                        <span class="ne">RuntimeWarning</span><span class="p">,</span>
+                    <span class="p">)</span>
             <span class="c1"># The k nearest neighbors are always sorted. I couldn't find it in the doc, but the code calls searchKnn,</span>
             <span class="c1"># which returns a priority_queue, and then fills the return array backwards with top/pop on the queue.</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_index</span><span class="p">:</span>
@@ -909,15 +936,19 @@
             <span class="k">elif</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># Any even integer?</span>
                 <span class="n">mat</span> <span class="o">=</span> <span class="p">((</span><span class="n">LazyTensor</span><span class="p">(</span><span class="n">XX</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:])</span> <span class="o">-</span> <span class="n">LazyTensor</span><span class="p">(</span><span class="n">YY</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]))</span> <span class="o">**</span> <span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">mat</span> <span class="o">=</span> <span class="p">((</span><span class="n">LazyTensor</span><span class="p">(</span><span class="n">XX</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:])</span> <span class="o">-</span> <span class="n">LazyTensor</span><span class="p">(</span><span class="n">YY</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]))</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">**</span> <span class="n">p</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">mat</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="p">(</span><span class="n">LazyTensor</span><span class="p">(</span><span class="n">XX</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:])</span> <span class="o">-</span> <span class="n">LazyTensor</span><span class="p">(</span><span class="n">YY</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]))</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">**</span> <span class="n">p</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_index</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_distance</span><span class="p">:</span>
                     <span class="n">distances</span><span class="p">,</span> <span class="n">neighbors</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">Kmin_argKmin</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
                     <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
                         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()):</span>
-                            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Overflow/infinite value encountered while computing 'distances'"</span><span class="p">,</span>
-                                          <span class="ne">RuntimeWarning</span><span class="p">)</span>
+                            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                                <span class="s2">"Overflow/infinite value encountered while computing 'distances'"</span><span class="p">,</span>
+                                <span class="ne">RuntimeWarning</span><span class="p">,</span>
+                            <span class="p">)</span>
                     <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
                         <span class="n">distances</span> <span class="o">=</span> <span class="n">distances</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">p</span><span class="p">)</span>
                     <span class="k">return</span> <span class="n">neighbors</span><span class="p">,</span> <span class="n">distances</span>
@@ -928,8 +959,10 @@
                 <span class="n">distances</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">Kmin</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
                 <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()):</span>
-                        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"Overflow/infinite value encountered while computing 'distances'"</span><span class="p">,</span>
-                                      <span class="ne">RuntimeWarning</span><span class="p">)</span>
+                        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                            <span class="s2">"Overflow/infinite value encountered while computing 'distances'"</span><span class="p">,</span>
+                            <span class="ne">RuntimeWarning</span><span class="p">,</span>
+                        <span class="p">)</span>
                 <span class="k">if</span> <span class="n">p</span> <span class="o">!=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
                     <span class="n">distances</span> <span class="o">=</span> <span class="n">distances</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">p</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">distances</span>
@@ -953,7 +986,9 @@
                 <span class="k">return</span> <span class="n">distances</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"implementation"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"sklearn"</span>
+        <span class="c1"># sklearn is the last valid value possible for "implementation"</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"implementation"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"sklearn"</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"implementation method has no known value"</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_distance</span><span class="p">:</span>
             <span class="n">distances</span><span class="p">,</span> <span class="n">neighbors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_index</span><span class="p">:</span>

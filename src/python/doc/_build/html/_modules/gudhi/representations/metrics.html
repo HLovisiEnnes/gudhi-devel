@@ -1,0 +1,1300 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gudhi.representations.metrics &#8212; gudhi v3.14.0a0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css?v=dd72e65a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gudhi/representations/metrics';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.14.0a0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">gudhi.representations.metrics</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for gudhi.representations.metrics</h1><div class="highlight"><pre>
+<span></span><span class="c1"># This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is released under MIT.</span>
+<span class="c1"># See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license details.</span>
+<span class="c1"># Author(s):       Mathieu Carrière</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2018 Inria</span>
+<span class="c1">#</span>
+<span class="c1"># Modification(s):</span>
+<span class="c1">#   - 2025/01 Vincent Rouvreau: BottleneckDistance(epsilon=...) is deprecated. Consider using BottleneckDistance(e=...)</span>
+<span class="c1">#   - YYYY/MM Author: Description of the modification</span>
+
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"GPL v3"</span>
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise_distances</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">joblib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.hera</span><span class="w"> </span><span class="kn">import</span> <span class="n">wasserstein_distance</span> <span class="k">as</span> <span class="n">hera_wasserstein_distance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Padding</span>
+
+
+<span class="c1">#############################################</span>
+<span class="c1"># Metrics ###################################</span>
+<span class="c1">#############################################</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sliced_wasserstein_distance</span><span class="p">(</span><span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">num_directions</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a function for computing the sliced Wasserstein distance from two persistence diagrams. The Sliced Wasserstein distance is computed by projecting the persistence diagrams onto lines, comparing the projections with the 1-norm, and finally averaging over the lines. See http://proceedings.mlr.press/v70/carriere17a.html for more details.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        D1: (n x 2) numpy.array encoding the (finite points of the) first diagram. Must not contain essential points (i.e. with infinite coordinate).</span>
+<span class="sd">        D2: (m x 2) numpy.array encoding the second diagram.</span>
+<span class="sd">        num_directions (int): number of lines evenly sampled from [-pi/2,pi/2] in order to approximate and speed up the distance computation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: the sliced Wasserstein distance between persistence diagrams.</span>
+<span class="sd">    """</span>
+    <span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num_directions</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span>
+    <span class="p">]</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">thetas</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">thetas</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">approx1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">D1</span><span class="p">,</span> <span class="n">lines</span><span class="p">)</span>
+    <span class="n">approx_diag1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">D1</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">D1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">lines</span>
+    <span class="p">)</span>
+    <span class="n">approx2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">D2</span><span class="p">,</span> <span class="n">lines</span><span class="p">)</span>
+    <span class="n">approx_diag2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">broadcast_to</span><span class="p">(</span><span class="n">D2</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">D2</span><span class="p">),</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">lines</span>
+    <span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">approx1</span><span class="p">,</span> <span class="n">approx_diag2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">approx2</span><span class="p">,</span> <span class="n">approx_diag1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="n">B</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">L1</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_compute_persistence_diagram_projections</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">num_directions</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a function for projecting the points of a list of persistence diagrams (as well as their diagonal projections) onto a fixed number of lines sampled uniformly on [-pi/2, pi/2]. This function can be used as a preprocessing step in order to speed up the running time for computing all pairwise sliced Wasserstein distances / kernel values on a list of persistence diagrams.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        X (list of n numpy arrays of shape (num,2)): list of persistence diagrams.</span>
+<span class="sd">        num_directions (int): number of lines evenly sampled from [-pi/2,pi/2] in order to approximate and speed up the distance computation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        list of n numpy arrays of shape (2*num,num_directions): list of projected persistence diagrams.</span>
+<span class="sd">    """</span>
+    <span class="n">thetas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="n">num_directions</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span>
+    <span class="p">]</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">thetas</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">thetas</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">XX</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">lines</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))),</span> <span class="n">lines</span><span class="p">)])</span>
+        <span class="k">for</span> <span class="n">D</span> <span class="ow">in</span> <span class="n">X</span>
+    <span class="p">]</span>
+    <span class="k">return</span> <span class="n">XX</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sliced_wasserstein_distance_on_projections</span><span class="p">(</span><span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a function for computing the sliced Wasserstein distance between two persistence diagrams that have already been projected onto some lines. It simply amounts to comparing the sorted projections with the 1-norm, and averaging over the lines. See http://proceedings.mlr.press/v70/carriere17a.html for more details.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        D1: (2n x number_of_lines) numpy.array containing the n projected points of the first diagram, and the n projections of their diagonal projections.</span>
+<span class="sd">        D2: (2m x number_of_lines) numpy.array containing the m projected points of the second diagram, and the m projections of their diagonal projections.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: the sliced Wasserstein distance between the projected persistence diagrams.</span>
+<span class="sd">    """</span>
+    <span class="n">lim1</span><span class="p">,</span> <span class="n">lim2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">D2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">approx1</span><span class="p">,</span> <span class="n">approx_diag1</span><span class="p">,</span> <span class="n">approx2</span><span class="p">,</span> <span class="n">approx_diag2</span> <span class="o">=</span> <span class="n">D1</span><span class="p">[:</span><span class="n">lim1</span><span class="p">],</span> <span class="n">D1</span><span class="p">[</span><span class="n">lim1</span><span class="p">:],</span> <span class="n">D2</span><span class="p">[:</span><span class="n">lim2</span><span class="p">],</span> <span class="n">D2</span><span class="p">[</span><span class="n">lim2</span><span class="p">:]</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">approx1</span><span class="p">,</span> <span class="n">approx_diag2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">approx2</span><span class="p">,</span> <span class="n">approx_diag1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">L1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="n">B</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">L1</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_persistence_fisher_distance</span><span class="p">(</span><span class="n">D1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">kernel_approx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a function for computing the persistence Fisher distance from two persistence diagrams. The persistence Fisher distance is obtained by computing the original Fisher distance between the probability distributions associated to the persistence diagrams given by convolving them with a Gaussian kernel. See http://papers.nips.cc/paper/8205-persistence-fisher-kernel-a-riemannian-manifold-kernel-for-persistence-diagrams for more details.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        D1: (n x 2) numpy.array encoding the (finite points of the) first diagram). Must not contain essential points (i.e. with infinite coordinate).</span>
+<span class="sd">        D2: (m x 2) numpy.array encoding the second diagram.</span>
+<span class="sd">        bandwidth (float): bandwidth of the Gaussian kernel used to turn persistence diagrams into probability distributions.</span>
+<span class="sd">        kernel_approx: kernel approximation class used to speed up computation. Common kernel approximations classes can be found in the scikit-learn library (such as RBFSampler for instance).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: the persistence Fisher distance between persistence diagrams.</span>
+<span class="sd">    """</span>
+    <span class="n">projection</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">diagonal_projections1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">D1</span><span class="p">,</span> <span class="n">projection</span><span class="p">)</span>
+    <span class="n">diagonal_projections2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">D2</span><span class="p">,</span> <span class="n">projection</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">kernel_approx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">approx1</span> <span class="o">=</span> <span class="n">kernel_approx</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span>
+        <span class="n">approx_diagonal1</span> <span class="o">=</span> <span class="n">kernel_approx</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">diagonal_projections1</span><span class="p">)</span>
+        <span class="n">approx2</span> <span class="o">=</span> <span class="n">kernel_approx</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">D2</span><span class="p">)</span>
+        <span class="n">approx_diagonal2</span> <span class="o">=</span> <span class="n">kernel_approx</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">diagonal_projections2</span><span class="p">)</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">approx1</span><span class="p">,</span> <span class="n">approx_diagonal1</span><span class="p">,</span> <span class="n">approx2</span><span class="p">,</span> <span class="n">approx_diagonal2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">U</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">approx1</span><span class="p">,</span> <span class="n">approx_diagonal2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">approx2</span><span class="p">,</span> <span class="n">approx_diagonal1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+        <span class="p">)</span>
+        <span class="n">vectori</span><span class="p">,</span> <span class="n">vectorj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">V</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+        <span class="n">vectori_sum</span><span class="p">,</span> <span class="n">vectorj_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vectori</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vectorj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">vectori_sum</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">vectori</span> <span class="o">=</span> <span class="n">vectori</span> <span class="o">/</span> <span class="n">vectori_sum</span>
+        <span class="k">if</span> <span class="n">vectorj_sum</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">vectorj</span> <span class="o">=</span> <span class="n">vectorj</span> <span class="o">/</span> <span class="n">vectorj_sum</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vectori</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vectorj</span><span class="p">)),</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">D1</span><span class="p">,</span> <span class="n">diagonal_projections1</span><span class="p">,</span> <span class="n">D2</span><span class="p">,</span> <span class="n">diagonal_projections2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">U</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">D1</span><span class="p">,</span> <span class="n">diagonal_projections2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">D2</span><span class="p">,</span> <span class="n">diagonal_projections1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+        <span class="p">)</span>
+        <span class="n">vectori</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">pairwise_distances</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">U</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">)))</span>
+            <span class="o">/</span> <span class="p">(</span><span class="n">bandwidth</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)),</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">vectorj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">pairwise_distances</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">V</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">bandwidth</span><span class="p">)))</span>
+            <span class="o">/</span> <span class="p">(</span><span class="n">bandwidth</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)),</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">vectori_sum</span><span class="p">,</span> <span class="n">vectorj_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vectori</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vectorj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">vectori_sum</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">vectori</span> <span class="o">=</span> <span class="n">vectori</span> <span class="o">/</span> <span class="n">vectori_sum</span>
+        <span class="k">if</span> <span class="n">vectorj_sum</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">vectorj</span> <span class="o">=</span> <span class="n">vectorj</span> <span class="o">/</span> <span class="n">vectorj_sum</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vectori</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vectorj</span><span class="p">)),</span> <span class="mf">1.0</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_pairwise</span><span class="p">(</span><span class="n">fallback</span><span class="p">,</span> <span class="n">skipdiag</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="n">n_jobs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">Y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fallback</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)</span>
+    <span class="n">triu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="n">skipdiag</span><span class="p">)</span>
+    <span class="n">tril</span> <span class="o">=</span> <span class="p">(</span><span class="n">triu</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">triu</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">par</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">prefer</span><span class="o">=</span><span class="s2">"threads"</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">par</span><span class="p">(</span><span class="n">delayed</span><span class="p">(</span><span class="n">metric</span><span class="p">)([</span><span class="n">triu</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]],</span> <span class="p">[</span><span class="n">triu</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">triu</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)))</span>
+    <span class="n">m</span><span class="p">[</span><span class="n">triu</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>
+    <span class="n">m</span><span class="p">[</span><span class="n">tril</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>
+    <span class="k">if</span> <span class="n">skipdiag</span><span class="p">:</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">m</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_sklearn_wrapper</span><span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This function is a wrapper for any metric between two persistence diagrams that takes two numpy arrays of shapes (nx2) and (mx2) as arguments.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">Y</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">flat_metric</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">metric</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span> <span class="n">X</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">flat_metric</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">metric</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span> <span class="n">Y</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">flat_metric</span>
+
+
+<span class="n">PAIRWISE_DISTANCE_FUNCTIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"wasserstein"</span><span class="p">:</span> <span class="n">hera_wasserstein_distance</span><span class="p">,</span>
+    <span class="s2">"hera_wasserstein"</span><span class="p">:</span> <span class="n">hera_wasserstein_distance</span><span class="p">,</span>
+    <span class="s2">"persistence_fisher"</span><span class="p">:</span> <span class="n">_persistence_fisher_distance</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="pairwise_persistence_diagram_distances">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.pairwise_persistence_diagram_distances">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">pairwise_persistence_diagram_distances</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"bottleneck"</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This function computes the distance matrix between two lists of persistence diagrams given as numpy arrays of shape (nx2).</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        X (list of n numpy arrays of shape (numx2)): first list of persistence diagrams.</span>
+<span class="sd">        Y (list of m numpy arrays of shape (numx2)): second list of persistence diagrams (optional). If None, pairwise distances are computed from the first list only.</span>
+<span class="sd">        metric: distance to use. It can be either a string ("sliced_wasserstein", "wasserstein", "hera_wasserstein" (Wasserstein distance computed with Hera---note that Hera is also used for the default option "wasserstein"), "pot_wasserstein" (Wasserstein distance computed with POT), "bottleneck", "persistence_fisher") or a function taking two numpy arrays of shape (nx2) and (mx2) as inputs. If it is a function, make sure that it is symmetric and that it outputs 0 if called on the same two arrays.</span>
+<span class="sd">        n_jobs (int): number of jobs to use for the computation. This uses joblib.Parallel(prefer="threads"), so metrics that do not release the GIL may not scale unless run inside a `joblib.parallel_backend &lt;https://joblib.readthedocs.io/en/latest/parallel.html#joblib.parallel_backend&gt;`_ block.</span>
+<span class="sd">        **kwargs: optional keyword parameters. Any further parameters are passed directly to the distance function. See the docs of the various distance classes in this module.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        numpy array of shape (nxm): distance matrix</span>
+<span class="sd">    """</span>
+    <span class="n">XX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">YY</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">Y</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">Y</span> <span class="ow">is</span> <span class="n">X</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)),</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"bottleneck"</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">bottleneck_distance</span>
+
+            <span class="k">return</span> <span class="n">_pairwise</span><span class="p">(</span>
+                <span class="n">pairwise_distances</span><span class="p">,</span>
+                <span class="kc">True</span><span class="p">,</span>
+                <span class="n">XX</span><span class="p">,</span>
+                <span class="n">YY</span><span class="p">,</span>
+                <span class="n">metric</span><span class="o">=</span><span class="n">_sklearn_wrapper</span><span class="p">(</span><span class="n">bottleneck_distance</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
+                <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Gudhi built without CGAL"</span><span class="p">)</span>
+            <span class="k">raise</span>
+    <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"pot_wasserstein"</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.wasserstein</span><span class="w"> </span><span class="kn">import</span> <span class="n">wasserstein_distance</span> <span class="k">as</span> <span class="n">pot_wasserstein_distance</span>
+
+            <span class="k">return</span> <span class="n">_pairwise</span><span class="p">(</span>
+                <span class="n">pairwise_distances</span><span class="p">,</span>
+                <span class="kc">True</span><span class="p">,</span>
+                <span class="n">XX</span><span class="p">,</span>
+                <span class="n">YY</span><span class="p">,</span>
+                <span class="n">metric</span><span class="o">=</span><span class="n">_sklearn_wrapper</span><span class="p">(</span><span class="n">pot_wasserstein_distance</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
+                <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">"POT (Python Optimal Transport) is not installed. Please install POT or use metric='wasserstein' or metric='hera_wasserstein'"</span>
+            <span class="p">)</span>
+            <span class="k">raise</span>
+    <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"sliced_wasserstein"</span><span class="p">:</span>
+        <span class="n">Xproj</span> <span class="o">=</span> <span class="n">_compute_persistence_diagram_projections</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">Yproj</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">Y</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">_compute_persistence_diagram_projections</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_pairwise</span><span class="p">(</span>
+            <span class="n">pairwise_distances</span><span class="p">,</span>
+            <span class="kc">True</span><span class="p">,</span>
+            <span class="n">XX</span><span class="p">,</span>
+            <span class="n">YY</span><span class="p">,</span>
+            <span class="n">metric</span><span class="o">=</span><span class="n">_sklearn_wrapper</span><span class="p">(</span><span class="n">_sliced_wasserstein_distance_on_projections</span><span class="p">,</span> <span class="n">Xproj</span><span class="p">,</span> <span class="n">Yproj</span><span class="p">),</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">metric</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_pairwise</span><span class="p">(</span>
+            <span class="n">pairwise_distances</span><span class="p">,</span>
+            <span class="kc">True</span><span class="p">,</span>
+            <span class="n">XX</span><span class="p">,</span>
+            <span class="n">YY</span><span class="p">,</span>
+            <span class="n">metric</span><span class="o">=</span><span class="n">_sklearn_wrapper</span><span class="p">(</span><span class="n">PAIRWISE_DISTANCE_FUNCTIONS</span><span class="p">[</span><span class="n">metric</span><span class="p">],</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_pairwise</span><span class="p">(</span>
+            <span class="n">pairwise_distances</span><span class="p">,</span>
+            <span class="kc">True</span><span class="p">,</span>
+            <span class="n">XX</span><span class="p">,</span>
+            <span class="n">YY</span><span class="p">,</span>
+            <span class="n">metric</span><span class="o">=</span><span class="n">_sklearn_wrapper</span><span class="p">(</span><span class="n">metric</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="SlicedWassersteinDistance">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.SlicedWassersteinDistance">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SlicedWassersteinDistance</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for computing the sliced Wasserstein distance matrix from a list of persistence diagrams. The Sliced Wasserstein distance is computed by projecting the persistence diagrams onto lines, comparing the projections with the 1-norm, and finally integrating over all possible lines. See http://proceedings.mlr.press/v70/carriere17a.html for more details.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="SlicedWassersteinDistance.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.SlicedWassersteinDistance.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_directions</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the SlicedWassersteinDistance class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            num_directions (int): number of lines evenly sampled from [-pi/2,pi/2] in order to approximate and speed up the distance computation (default 10).</span>
+<span class="sd">            n_jobs (int): number of jobs to use for the computation. See :func:`pairwise_persistence_diagram_distances` for details.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_directions</span> <span class="o">=</span> <span class="n">num_directions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span></div>
+
+
+<div class="viewcode-block" id="SlicedWassersteinDistance.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.SlicedWassersteinDistance.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the SlicedWassersteinDistance class on a list of persistence diagrams: persistence diagrams are projected onto the different lines. The diagrams themselves and their projections are then stored in numpy arrays, called **diagrams_** and **approx_diag_**.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diagrams_</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="SlicedWassersteinDistance.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.SlicedWassersteinDistance.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute all sliced Wasserstein distances between the persistence diagrams that were stored after calling the fit() method, and a given list of (possibly different) persistence diagrams.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array of shape (number of diagrams in **diagrams**) x (number of diagrams in X): matrix of pairwise sliced Wasserstein distances.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">pairwise_persistence_diagram_distances</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">diagrams_</span><span class="p">,</span>
+            <span class="n">metric</span><span class="o">=</span><span class="s2">"sliced_wasserstein"</span><span class="p">,</span>
+            <span class="n">num_directions</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_directions</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SlicedWassersteinDistance.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.SlicedWassersteinDistance.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag1</span><span class="p">,</span> <span class="n">diag2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply SlicedWassersteinDistance on a single pair of persistence diagrams and outputs the result.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag1 (n x 2 numpy array): first input persistence diagram.</span>
+<span class="sd">            diag2 (n x 2 numpy array): second input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: sliced Wasserstein distance.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">_sliced_wasserstein_distance</span><span class="p">(</span><span class="n">diag1</span><span class="p">,</span> <span class="n">diag2</span><span class="p">,</span> <span class="n">num_directions</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_directions</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BottleneckDistance">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.BottleneckDistance">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BottleneckDistance</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">"""</span>
+<span class="sd">    This is a class for computing the bottleneck distance matrix from a list of persistence diagrams.</span>
+
+<span class="sd">    :Requires: `CGAL &lt;installation.html#cgal&gt;`_</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="BottleneckDistance.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.BottleneckDistance.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the BottleneckDistance class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            epsilon (double): **[deprecated]** consider using `e` instead.</span>
+<span class="sd">            e (double): absolute (additive) error tolerated on the distance (default is the smallest positive float),</span>
+<span class="sd">                see :func:`gudhi.bottleneck_distance`.</span>
+<span class="sd">            n_jobs (int): number of jobs to use for the computation. See :func:`pairwise_persistence_diagram_distances`</span>
+<span class="sd">                for details.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="o">=</span> <span class="n">e</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">epsilon</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"'epsilon' (deprecated argument in favor of 'e') cannot be set at the same time as 'e'"</span>
+                <span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">"epsilon is a deprecated argument, please consider using e"</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span></div>
+
+
+<div class="viewcode-block" id="BottleneckDistance.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.BottleneckDistance.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the BottleneckDistance class on a list of persistence diagrams: persistence diagrams are stored in a numpy</span>
+<span class="sd">        array called **diagrams**.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diagrams_</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="BottleneckDistance.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.BottleneckDistance.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute all bottleneck distances between the persistence diagrams that were stored after calling the fit()</span>
+<span class="sd">        method, and a given list of (possibly different) persistence diagrams.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array of shape (number of diagrams in **diagrams**) x (number of diagrams in X): matrix of pairwise</span>
+<span class="sd">                bottleneck distances.</span>
+<span class="sd">        """</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">e</span>
+        <span class="k">return</span> <span class="n">pairwise_persistence_diagram_distances</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagrams_</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"bottleneck"</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="BottleneckDistance.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.BottleneckDistance.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag1</span><span class="p">,</span> <span class="n">diag2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply BottleneckDistance on a single pair of persistence diagrams and outputs the result.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag1 (n x 2 numpy array): first input persistence diagram.</span>
+<span class="sd">            diag2 (n x 2 numpy array): second input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: bottleneck distance.</span>
+<span class="sd">        """</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">bottleneck_distance</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">bottleneck_distance</span><span class="p">(</span><span class="n">diag1</span><span class="p">,</span> <span class="n">diag2</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">bottleneck_distance</span><span class="p">(</span><span class="n">diag1</span><span class="p">,</span> <span class="n">diag2</span><span class="p">,</span> <span class="n">e</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Gudhi built without CGAL"</span><span class="p">)</span>
+            <span class="k">raise</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="PersistenceFisherDistance">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.PersistenceFisherDistance">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PersistenceFisherDistance</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for computing the persistence Fisher distance matrix from a list of persistence diagrams. The persistence Fisher distance is obtained by computing the original Fisher distance between the probability distributions associated to the persistence diagrams given by convolving them with a Gaussian kernel. See http://papers.nips.cc/paper/8205-persistence-fisher-kernel-a-riemannian-manifold-kernel-for-persistence-diagrams for more details.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="PersistenceFisherDistance.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.PersistenceFisherDistance.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">kernel_approx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the PersistenceFisherDistance class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            bandwidth (double): bandwidth of the Gaussian kernel used to turn persistence diagrams into probability distributions (default 1.).</span>
+<span class="sd">            kernel_approx (class): kernel approximation class used to speed up computation (default None). Common kernel approximations classes can be found in the scikit-learn library (such as RBFSampler for instance).</span>
+<span class="sd">            n_jobs (int): number of jobs to use for the computation. See :func:`pairwise_persistence_diagram_distances` for details.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_approx</span> <span class="o">=</span> <span class="n">bandwidth</span><span class="p">,</span> <span class="n">kernel_approx</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span></div>
+
+
+<div class="viewcode-block" id="PersistenceFisherDistance.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.PersistenceFisherDistance.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the PersistenceFisherDistance class on a list of persistence diagrams: persistence diagrams are stored in a numpy array called **diagrams** and the kernel approximation class (if not None) is applied on them.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diagrams_</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="PersistenceFisherDistance.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.PersistenceFisherDistance.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute all persistence Fisher distances between the persistence diagrams that were stored after calling the fit() method, and a given list of (possibly different) persistence diagrams.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array of shape (number of diagrams in **diagrams**) x (number of diagrams in X): matrix of pairwise persistence Fisher distances.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">pairwise_persistence_diagram_distances</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">diagrams_</span><span class="p">,</span>
+            <span class="n">metric</span><span class="o">=</span><span class="s2">"persistence_fisher"</span><span class="p">,</span>
+            <span class="n">bandwidth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">,</span>
+            <span class="n">kernel_approx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_approx</span><span class="p">,</span>
+            <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PersistenceFisherDistance.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.PersistenceFisherDistance.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag1</span><span class="p">,</span> <span class="n">diag2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply PersistenceFisherDistance on a single pair of persistence diagrams and outputs the result.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag1 (n x 2 numpy array): first input persistence diagram.</span>
+<span class="sd">            diag2 (n x 2 numpy array): second input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: persistence Fisher distance.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">_persistence_fisher_distance</span><span class="p">(</span>
+            <span class="n">diag1</span><span class="p">,</span> <span class="n">diag2</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">,</span> <span class="n">kernel_approx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_approx</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="WassersteinDistance">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.WassersteinDistance">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">WassersteinDistance</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for computing the Wasserstein distance matrix from a list of persistence diagrams.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="WassersteinDistance.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.WassersteinDistance.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">internal_p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"hera"</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the WassersteinDistance class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            order (int): exponent for Wasserstein, default value is 1., see :func:`gudhi.wasserstein.wasserstein_distance`.</span>
+<span class="sd">            internal_p (int): ground metric on the (upper-half) plane (i.e. norm l_p in R^2), default value is `np.inf`, see :func:`gudhi.wasserstein.wasserstein_distance`.</span>
+<span class="sd">            mode (str): method for computing Wasserstein distance. Either "pot" or "hera". Default set to "hera".</span>
+<span class="sd">            delta (float): relative error 1+delta. Used only if mode == "hera".</span>
+<span class="sd">            n_jobs (int): number of jobs to use for the computation. See :func:`pairwise_persistence_diagram_distances` for details.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">internal_p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">order</span><span class="p">,</span> <span class="n">internal_p</span><span class="p">,</span> <span class="n">mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta</span> <span class="o">=</span> <span class="n">delta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span></div>
+
+
+<div class="viewcode-block" id="WassersteinDistance.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.WassersteinDistance.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the WassersteinDistance class on a list of persistence diagrams: persistence diagrams are stored in a numpy array called **diagrams**.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"pot"</span><span class="p">,</span> <span class="s2">"hera"</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span>
+                <span class="s2">"Unknown mode. Current available values for mode are 'hera' and 'pot'"</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diagrams_</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="WassersteinDistance.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.WassersteinDistance.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute all Wasserstein distances between the persistence diagrams that were stored after calling the fit() method, and a given list of (possibly different) persistence diagrams.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array of shape (number of diagrams in **diagrams**) x (number of diagrams in X): matrix of pairwise Wasserstein distances.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">"hera"</span><span class="p">:</span>
+            <span class="n">Xfit</span> <span class="o">=</span> <span class="n">pairwise_persistence_diagram_distances</span><span class="p">(</span>
+                <span class="n">X</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">diagrams_</span><span class="p">,</span>
+                <span class="n">metric</span><span class="o">=</span><span class="s2">"hera_wasserstein"</span><span class="p">,</span>
+                <span class="n">order</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">,</span>
+                <span class="n">internal_p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_p</span><span class="p">,</span>
+                <span class="n">delta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">delta</span><span class="p">,</span>
+                <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Xfit</span> <span class="o">=</span> <span class="n">pairwise_persistence_diagram_distances</span><span class="p">(</span>
+                <span class="n">X</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">diagrams_</span><span class="p">,</span>
+                <span class="n">metric</span><span class="o">=</span><span class="s2">"pot_wasserstein"</span><span class="p">,</span>
+                <span class="n">order</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">,</span>
+                <span class="n">internal_p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_p</span><span class="p">,</span>
+                <span class="n">matching</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">Xfit</span></div>
+
+
+<div class="viewcode-block" id="WassersteinDistance.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.metrics.WassersteinDistance.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag1</span><span class="p">,</span> <span class="n">diag2</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply WassersteinDistance on a single pair of persistence diagrams and outputs the result.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag1 (n x 2 numpy array): first input persistence diagram.</span>
+<span class="sd">            diag2 (n x 2 numpy array): second input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: Wasserstein distance.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">"hera"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">hera_wasserstein_distance</span><span class="p">(</span>
+                <span class="n">diag1</span><span class="p">,</span> <span class="n">diag2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">,</span> <span class="n">internal_p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_p</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">delta</span>
+            <span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">"pot"</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.wasserstein</span><span class="w"> </span><span class="kn">import</span> <span class="n">wasserstein_distance</span> <span class="k">as</span> <span class="n">pot_wasserstein_distance</span>
+
+                <span class="k">return</span> <span class="n">pot_wasserstein_distance</span><span class="p">(</span>
+                    <span class="n">diag1</span><span class="p">,</span> <span class="n">diag2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">,</span> <span class="n">internal_p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_p</span><span class="p">,</span> <span class="n">matching</span><span class="o">=</span><span class="kc">False</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">"POT (Python Optimal Transport) is not installed. Please install POT or use mode='hera'"</span>
+                <span class="p">)</span>
+                <span class="k">raise</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span>
+                <span class="s2">"Unknown mode. Current available values for mode are 'hera' and 'pot'"</span>
+            <span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

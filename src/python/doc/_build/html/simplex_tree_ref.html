@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Simplex tree reference manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>Simplex tree reference manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -31,8 +31,8 @@
 <link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -49,7 +49,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -59,7 +59,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -612,10 +612,11 @@ Algorithmica, pages 1–22, 2014.</p>
 of the simplex tree.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.__eq__">
-<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.__eq__" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">gudhi._simplex_tree_ext._Simplex_tree_python_interface</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.__eq__" title="Link to this definition">#</a></dt>
+<dd><p>Equality operator in order to compare 2 SimplexTree data structures.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>True if the 2 complexes have the same simplices with the same filtration values, False otherwise.</p>
+<dd class="field-odd"><p><cite>True</cite> if the 2 complexes have the same simplices with the same filtration values, <cite>False</cite> otherwise.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>bool</p>
@@ -625,10 +626,11 @@ of the simplex tree.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.__getstate__">
-<span class="sig-name descname"><span class="pre">__getstate__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.__getstate__" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<span class="sig-name descname"><span class="pre">__getstate__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray[dtype=int8]</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.__getstate__" title="Link to this definition">#</a></dt>
+<dd><p>Serialize (or flatten) the SimplexTree data structure in order to pickle SimplexTree</p>
+<dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Serialized (or flattened) SimplexTree data structure in order to pickle SimplexTree.</p>
+<dd class="field-odd"><p>Serialized SimplexTree data structure.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>numpy.array of shape (n,)</p>
@@ -638,7 +640,7 @@ of the simplex tree.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.__init__" title="Link to this definition">#</a></dt>
 <dd><p>SimplexTree constructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -663,9 +665,9 @@ you have to call <a class="reference internal" href="#gudhi.SimplexTree.compute_
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.__setstate__">
-<span class="sig-name descname"><span class="pre">__setstate__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.__setstate__" title="Link to this definition">#</a></dt>
-<dd><p>Construct the SimplexTree data structure from a Numpy Array (cf. <a class="reference internal" href="#gudhi.SimplexTree.__getstate__" title="gudhi.SimplexTree.__getstate__"><code class="xref py py-func docutils literal notranslate"><span class="pre">__getstate__()</span></code></a>)
-in order to unpickle a SimplexTree.</p>
+<span class="sig-name descname"><span class="pre">__setstate__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self,</span> <span class="pre">state:</span> <span class="pre">numpy.ndarray[dtype=int8,</span> <span class="pre">shape=(*),</span> <span class="pre">writable=False]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.__setstate__" title="Link to this definition">#</a></dt>
+<dd><p>Construct the SimplexTree data structure from a Numpy Array (cf. <a class="reference internal" href="#gudhi.SimplexTree.__getstate__" title="gudhi.SimplexTree.__getstate__"><code class="xref py py-func docutils literal notranslate"><span class="pre">__getstate__()</span></code></a>) in order to
+unpickle a SimplexTree.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.SimplexTree.__setstate__.params.state"></span><strong>state</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.__setstate__.params.state">¶</a> (<em>numpy.array</em><em> of </em><em>shape</em><em> (</em><em>n</em><em>,</em><em>)</em>) – Serialized SimplexTree data structure</p>
@@ -675,9 +677,8 @@ in order to unpickle a SimplexTree.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.assign_filtration">
-<span class="sig-name descname"><span class="pre">assign_filtration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simplex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtration</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.assign_filtration" title="Link to this definition">#</a></dt>
-<dd><p>This function assigns a new filtration value to a
-given N-simplex.</p>
+<span class="sig-name descname"><span class="pre">assign_filtration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.assign_filtration" title="Link to this definition">#</a></dt>
+<dd><p>This function assigns a new filtration value to a given N-simplex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -688,13 +689,10 @@ given N-simplex.</p>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Beware that after this operation, the structure may not be a valid
-filtration anymore, a simplex could have a lower filtration value
-than one of its faces. Callers are responsible for fixing this
-(with more <a class="reference internal" href="#gudhi.SimplexTree.assign_filtration" title="gudhi.SimplexTree.assign_filtration"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assign_filtration()</span></code></a> or
-<a class="reference internal" href="#gudhi.SimplexTree.make_filtration_non_decreasing" title="gudhi.SimplexTree.make_filtration_non_decreasing"><code class="xref py py-meth docutils literal notranslate"><span class="pre">make_filtration_non_decreasing()</span></code></a> for instance) before calling
-any function that relies on the filtration property, like
-<a class="reference internal" href="#gudhi.SimplexTree.persistence" title="gudhi.SimplexTree.persistence"><code class="xref py py-meth docutils literal notranslate"><span class="pre">persistence()</span></code></a>.</p>
+<p>Beware that after this operation, the structure may not be a valid filtration anymore, a simplex could have a lower
+filtration value than one of its faces. Callers are responsible for fixing this (with more
+<a class="reference internal" href="#gudhi.SimplexTree.assign_filtration" title="gudhi.SimplexTree.assign_filtration"><code class="xref py py-meth docutils literal notranslate"><span class="pre">assign_filtration()</span></code></a> or <a class="reference internal" href="#gudhi.SimplexTree.make_filtration_non_decreasing" title="gudhi.SimplexTree.make_filtration_non_decreasing"><code class="xref py py-meth docutils literal notranslate"><span class="pre">make_filtration_non_decreasing()</span></code></a> for instance) before calling any function that
+relies on the filtration property, like <a class="reference internal" href="#gudhi.SimplexTree.persistence" title="gudhi.SimplexTree.persistence"><code class="xref py py-meth docutils literal notranslate"><span class="pre">persistence()</span></code></a>.</p>
 </div>
 </dd></dl>
 
@@ -718,6 +716,12 @@ function to be launched first.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="gudhi.SimplexTree.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.clear" title="Link to this definition">#</a></dt>
+<dd><p>Remove all the simplices, leaving an empty complex.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.collapse_edges">
 <span class="sig-name descname"><span class="pre">collapse_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nb_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.collapse_edges" title="Link to this definition">#</a></dt>
 <dd><p>Assuming the complex is a graph (simplices of higher dimension are ignored), this method implicitly
@@ -731,7 +735,16 @@ then collapse edges, perform <a class="reference internal" href="#gudhi.SimplexT
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.SimplexTree.collapse_edges.params.nb_iterations"></span><strong>nb_iterations</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.collapse_edges.params.nb_iterations">¶</a> (<em>int</em>) – The number of edge collapse iterations to perform. Default is 1.</p>
 </dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#gudhi.SimplexTree" title="gudhi.simplex_tree.SimplexTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimplexTree</span></code></a></span></p>
+</dd>
 </dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The current simplex tree is assumed to be a graph, that is of maximal dimension 1.
+If it is not the case, all higher dimensional simplices will get lost during the
+reduction process and not be reinserted. To regain them, call <cite>expansion(max_dim)</cite> afterwards.</p>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -754,8 +767,11 @@ maximal dimension in the complex is computed. If false, it is
 ignored. Default is false.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Nothing.</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#gudhi.SimplexTree" title="gudhi.simplex_tree.SimplexTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimplexTree</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Nothing.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -809,7 +825,7 @@ caller’s responsibility to ensure that this defines a filtration, which can be
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.dimension">
-<span class="sig-name descname"><span class="pre">dimension</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.dimension" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.dimension" title="Link to this definition">#</a></dt>
 <dd><p>This function returns the dimension of the simplicial complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -821,28 +837,34 @@ caller’s responsibility to ensure that this defines a filtration, which can be
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This function is not constant time because it can recompute
-dimension if required (can be triggered by
-<a class="reference internal" href="#gudhi.SimplexTree.remove_maximal_simplex" title="gudhi.SimplexTree.remove_maximal_simplex"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_maximal_simplex()</span></code></a>
-or
-<a class="reference internal" href="#gudhi.SimplexTree.prune_above_filtration" title="gudhi.SimplexTree.prune_above_filtration"><code class="xref py py-func docutils literal notranslate"><span class="pre">prune_above_filtration()</span></code></a>
-methods).</p>
+<p>This function is not constant time because it can recompute dimension if required (can be triggered by
+<a class="reference internal" href="#gudhi.SimplexTree.remove_maximal_simplex" title="gudhi.SimplexTree.remove_maximal_simplex"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_maximal_simplex()</span></code></a> or  <a class="reference internal" href="#gudhi.SimplexTree.prune_above_filtration" title="gudhi.SimplexTree.prune_above_filtration"><code class="xref py py-func docutils literal notranslate"><span class="pre">prune_above_filtration()</span></code></a> methods).</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="gudhi.SimplexTree.euler_characteristic">
+<span class="sig-name descname"><span class="pre">euler_characteristic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.euler_characteristic" title="Link to this definition">#</a></dt>
+<dd><p>This function computes and returns the Euler characteristic of the non-filtered underlying complex represented
+by the simplex tree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The Euler characteristic.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.expansion">
-<span class="sig-name descname"><span class="pre">expansion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_dimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.expansion" title="Link to this definition">#</a></dt>
-<dd><p>Expands the simplex tree containing only its one skeleton
-until dimension max_dim.</p>
-<p>The expanded simplicial complex until dimension <span class="math notranslate nohighlight">\(d\)</span>
-attached to a graph <span class="math notranslate nohighlight">\(G\)</span> is the maximal simplicial complex of
-dimension at most <span class="math notranslate nohighlight">\(d\)</span> admitting the graph <span class="math notranslate nohighlight">\(G\)</span> as
-<span class="math notranslate nohighlight">\(1\)</span>-skeleton.
-The filtration value assigned to a simplex is the maximal filtration
-value of one of its edges.</p>
-<p>The simplex tree must contain no simplex of dimension bigger than
-1 when calling the method.</p>
+<span class="sig-name descname"><span class="pre">expansion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dimension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.expansion" title="Link to this definition">#</a></dt>
+<dd><p>Expands the simplex tree containing only its one skeleton until dimension max_dim.</p>
+<p>The expanded simplicial complex until dimension <span class="math notranslate nohighlight">\(d\)</span> attached to a graph <span class="math notranslate nohighlight">\(G\)</span> is the maximal simplicial
+complex of dimension at most <span class="math notranslate nohighlight">\(d\)</span> admitting the graph <span class="math notranslate nohighlight">\(G\)</span> as <span class="math notranslate nohighlight">\(1\)</span>-skeleton.
+The filtration value assigned to a simplex is the maximal filtration value of one of its edges.</p>
+<p>The simplex tree must contain no simplex of dimension bigger than 1 when calling the method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.SimplexTree.expansion.params.max_dimension"></span><strong>max_dimension</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.expansion.params.max_dimension">¶</a> (<em>int</em>) – The maximal dimension.</p>
@@ -852,8 +874,8 @@ value of one of its edges.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.expansion_with_blocker">
-<span class="sig-name descname"><span class="pre">expansion_with_blocker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocker_func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.expansion_with_blocker" title="Link to this definition">#</a></dt>
-<dd><p>Expands the Simplex_tree containing only a graph. Simplices corresponding to cliques in the graph are added
+<span class="sig-name descname"><span class="pre">expansion_with_blocker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocker_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.expansion_with_blocker" title="Link to this definition">#</a></dt>
+<dd><p>Expands the SimplexTree containing only a graph. Simplices corresponding to cliques in the graph are added
 incrementally, faces before cofaces, unless the simplex has dimension larger than <cite>max_dim</cite> or <cite>blocker_func</cite>
 returns <cite>True</cite> for this simplex.</p>
 <p>The function identifies a candidate simplex whose faces are all already in the complex, inserts it with a
@@ -878,7 +900,7 @@ not been vetted by <cite>blocker_func</cite> yet, or have already been rejected 
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.extend_filtration">
-<span class="sig-name descname"><span class="pre">extend_filtration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.extend_filtration" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">extend_filtration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.extend_filtration" title="Link to this definition">#</a></dt>
 <dd><p>Extend filtration for computing extended persistence. This function only uses the filtration values at the
 0-dimensional simplices, and computes the extended persistence diagram induced by the lower-star filtration
 computed with these values.</p>
@@ -889,10 +911,10 @@ The function <a class="reference internal" href="#gudhi.SimplexTree.extended_per
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Note that this code creates an extra vertex internally, so you should make sure that the simplex tree does
-not contain a vertex with the largest possible value (i.e., 4294967295).</p>
+<p>Note that this code creates an extra vertex internally, so you should make sure that the simplex tree does not
+contain a vertex with the largest possible value (i.e., 4294967295).</p>
 </div>
-<p>This <a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/Tuto-GUDHI-extended-persistence.ipynb">notebook</a>
+<p>This <a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/tutorials/Tuto-GUDHI-extended-persistence.ipynb">notebook</a>
 explains how to compute an extension of persistence called extended persistence.</p>
 </dd></dl>
 
@@ -910,8 +932,11 @@ persistence diagram point coordinates) to take into account (strictly greater th
 Default value is 0.0. Sets min_persistence to -1.0 to see all values.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list of four persistence diagrams in the format described in <a class="reference internal" href="#gudhi.SimplexTree.persistence" title="gudhi.SimplexTree.persistence"><code class="xref py py-func docutils literal notranslate"><span class="pre">persistence()</span></code></a>. The first one is
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of four persistence diagrams in the format described in <a class="reference internal" href="#gudhi.SimplexTree.persistence" title="gudhi.SimplexTree.persistence"><code class="xref py py-func docutils literal notranslate"><span class="pre">persistence()</span></code></a>. The first one is
 Ordinary, the second one is Relative, the third one is Extended+ and the fourth one is Extended-.
 See <a class="reference external" href="https://link.springer.com/article/10.1007/s10208-008-9027-z">https://link.springer.com/article/10.1007/s10208-008-9027-z</a> and/or section 2.2 in
 <a class="reference external" href="https://link.springer.com/article/10.1007/s10208-017-9370-z">https://link.springer.com/article/10.1007/s10208-017-9370-z</a> for a description of these subtypes.</p>
@@ -927,15 +952,16 @@ See <a class="reference external" href="https://link.springer.com/article/10.100
 original filtration values due to the internal transformation (scaling to [-2,-1]) that is
 performed on these values during the computation of extended persistence.</p>
 </div>
-<p>This <a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/Tuto-GUDHI-extended-persistence.ipynb">notebook</a>
+<p>This
+<a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/tutorials/Tuto-GUDHI-extended-persistence.ipynb">notebook</a>
 explains how to compute an extension of persistence called extended persistence.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.filtration">
-<span class="sig-name descname"><span class="pre">filtration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simplex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.filtration" title="Link to this definition">#</a></dt>
-<dd><p>This function returns the filtration value for a given N-simplex in
-this simplicial complex, or +infinity if it is not in the complex.</p>
+<span class="sig-name descname"><span class="pre">filtration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.filtration" title="Link to this definition">#</a></dt>
+<dd><p>This function returns the filtration value for a given N-simplex in this simplicial complex, or +infinity if it is not
+in the complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.SimplexTree.filtration.params.simplex"></span><strong>simplex</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.filtration.params.simplex">¶</a> (<em>list</em><em> of </em><em>int</em>) – The N-simplex, represented by a list of vertex.</p>
@@ -951,15 +977,14 @@ this simplicial complex, or +infinity if it is not in the complex.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.find">
-<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simplex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.find" title="Link to this definition">#</a></dt>
-<dd><p>This function returns if the N-simplex was found in the simplicial
-complex or not.</p>
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.find" title="Link to this definition">#</a></dt>
+<dd><p>This function returns if the N-simplex was found in the simplicial complex or not.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.SimplexTree.find.params.simplex"></span><strong>simplex</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.find.params.simplex">¶</a> (<em>list</em><em> of </em><em>int</em>) – The N-simplex to find, represented by a list of vertex.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>true if the simplex was found, false otherwise.</p>
+<dd class="field-even"><p><cite>True</cite> if the simplex was found, <cite>False</cite> otherwise.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
@@ -990,8 +1015,8 @@ finally the other essential features, grouped by dimension, with 2 vertices for 
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.get_boundaries">
-<span class="sig-name descname"><span class="pre">get_boundaries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simplex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.get_boundaries" title="Link to this definition">#</a></dt>
-<dd><p>This function returns a generator with the boundaries of a given N-simplex.
+<span class="sig-name descname"><span class="pre">get_boundaries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">collections.abc.Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gudhi.SimplexTree.get_boundaries" title="Link to this definition">#</a></dt>
+<dd><p>This function returns an iterator over the boundaries of a given N-simplex.
 If you do not need the filtration values, the boundary can also be obtained as
 <code class="code docutils literal notranslate"><span class="pre">itertools.combinations(simplex,len(simplex)-1)</span></code>.</p>
 <dl class="field-list simple">
@@ -1002,22 +1027,20 @@ If you do not need the filtration values, the boundary can also be obtained as
 <dd class="field-even"><p>The (simplices of the) boundary of a simplex</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>generator with tuples(simplex, filtration)</p>
+<dd class="field-odd"><p>Iterator over tuples(simplex, filtration)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.get_cofaces">
-<span class="sig-name descname"><span class="pre">get_cofaces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simplex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.get_cofaces" title="Link to this definition">#</a></dt>
-<dd><p>This function returns the cofaces of a given N-simplex with a
-given codimension.</p>
+<span class="sig-name descname"><span class="pre">get_cofaces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gudhi.SimplexTree.get_cofaces" title="Link to this definition">#</a></dt>
+<dd><p>This function returns the cofaces of a given N-simplex with a given codimension.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><span class="target" id="gudhi.SimplexTree.get_cofaces.params.simplex"></span><strong>simplex</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.get_cofaces.params.simplex">¶</a> (<em>list</em><em> of </em><em>int</em>) – The N-simplex, represented by a list of vertex.</p></li>
-<li><p><span class="target" id="gudhi.SimplexTree.get_cofaces.params.codimension"></span><strong>codimension</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.get_cofaces.params.codimension">¶</a> (<em>int</em>) – The codimension. If codimension = 0, all cofaces
-are returned (equivalent of get_star function)</p></li>
+<li><p><span class="target" id="gudhi.SimplexTree.get_cofaces.params.codimension"></span><strong>codimension</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.get_cofaces.params.codimension">¶</a> (<em>int</em>) – The codimension. If codimension = 0, all cofaces are returned (equivalent of get_star function)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1031,38 +1054,37 @@ are returned (equivalent of get_star function)</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.get_filtration">
-<span class="sig-name descname"><span class="pre">get_filtration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.get_filtration" title="Link to this definition">#</a></dt>
-<dd><p>This function returns a generator with simplices and their given
+<span class="sig-name descname"><span class="pre">get_filtration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">collections.abc.Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gudhi.SimplexTree.get_filtration" title="Link to this definition">#</a></dt>
+<dd><p>This function returns an iterator over simplices and their given
 filtration values sorted by increasing filtration values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The simplices sorted by increasing filtration values.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>generator with tuples(simplex, filtration)</p>
+<dd class="field-even"><p>Iterator over tuples(simplex, filtration)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.get_simplices">
-<span class="sig-name descname"><span class="pre">get_simplices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.get_simplices" title="Link to this definition">#</a></dt>
-<dd><p>This function returns a generator with simplices and their given
-filtration values.</p>
+<span class="sig-name descname"><span class="pre">get_simplices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">collections.abc.Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gudhi.SimplexTree.get_simplices" title="Link to this definition">#</a></dt>
+<dd><p>This function returns an iterator over simplices and their given filtration values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The simplices.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>generator with tuples(simplex, filtration)</p>
+<dd class="field-even"><p>Iterator over tuples(simplex, filtration)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.get_skeleton">
-<span class="sig-name descname"><span class="pre">get_skeleton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.get_skeleton" title="Link to this definition">#</a></dt>
-<dd><p>This function returns a generator with the (simplices of the) skeleton of a maximum given dimension.</p>
+<span class="sig-name descname"><span class="pre">get_skeleton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">collections.abc.Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gudhi.SimplexTree.get_skeleton" title="Link to this definition">#</a></dt>
+<dd><p>This function returns an iterator over the (simplices of the) skeleton of a maximum given dimension.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.SimplexTree.get_skeleton.params.dimension"></span><strong>dimension</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.get_skeleton.params.dimension">¶</a> (<em>int</em>) – The skeleton dimension value.</p>
@@ -1071,14 +1093,14 @@ filtration values.</p>
 <dd class="field-even"><p>The (simplices of the) skeleton of a maximum dimension.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>generator with tuples(simplex, filtration)</p>
+<dd class="field-odd"><p>Iterator over tuples(simplex, filtration)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.get_star">
-<span class="sig-name descname"><span class="pre">get_star</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simplex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.get_star" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_star</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gudhi.SimplexTree.get_star" title="Link to this definition">#</a></dt>
 <dd><p>This function returns the star of a given N-simplex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1105,22 +1127,18 @@ filtration vector.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.insert">
-<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simplex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.insert" title="Link to this definition">#</a></dt>
-<dd><p>This function inserts the given N-simplex and its subfaces with the
-given filtration value (default value is ‘0.0’). If some of those
-simplices are already present with a higher filtration value, their
-filtration value is lowered.</p>
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.insert" title="Link to this definition">#</a></dt>
+<dd><p>This function inserts the given N-simplex and its subfaces with the given filtration value (default value is ‘0.0’). If
+some of those simplices are already present with a higher filtration value, their filtration value is lowered.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gudhi.SimplexTree.insert.params.simplex"></span><strong>simplex</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.insert.params.simplex">¶</a> (<em>list</em><em> of </em><em>int</em>) – The N-simplex to insert, represented by a list of
-vertex.</p></li>
+<li><p><span class="target" id="gudhi.SimplexTree.insert.params.simplex"></span><strong>simplex</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.insert.params.simplex">¶</a> (<em>list</em><em> of </em><em>int</em>) – The N-simplex to insert, represented by a list of vertex.</p></li>
 <li><p><span class="target" id="gudhi.SimplexTree.insert.params.filtration"></span><strong>filtration</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.insert.params.filtration">¶</a> (<em>float</em>) – The filtration value of the simplex.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>true if the simplex was not yet in the complex, false
-otherwise (whatever its original filtration value).</p>
+<dd class="field-even"><p><cite>True</cite> if the simplex was not yet in the complex, <cite>False</cite> otherwise (whatever its original filtration value)</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
@@ -1128,9 +1146,9 @@ otherwise (whatever its original filtration value).</p>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
+<dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.insert_batch">
-<span class="sig-name descname"><span class="pre">insert_batch</span></span><a class="headerlink" href="#gudhi.SimplexTree.insert_batch" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">insert_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtrations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.insert_batch" title="Link to this definition">#</a></dt>
 <dd><p>Inserts k-simplices given by a sparse array in a format similar
 to <a class="reference external" href="https://pytorch.org/docs/stable/sparse.html">torch.sparse</a>.
 The n-th simplex has vertices <cite>vertex_array[0,n]</cite>, …,
@@ -1143,9 +1161,12 @@ if needed to preserve a simplicial complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>vertex_array</strong> (<em>numpy.array</em><em> of </em><em>shape</em><em> (</em><em>k+1</em><em>,</em><em>n</em><em>)</em>) – the k-simplices to insert.</p></li>
-<li><p><strong>filtrations</strong> (<em>numpy.array</em><em> of </em><em>shape</em><em> (</em><em>n</em><em>,</em><em>)</em>) – the filtration values.</p></li>
+<li><p><span class="target" id="gudhi.SimplexTree.insert_batch.params.vertex_array"></span><strong>vertex_array</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.insert_batch.params.vertex_array">¶</a> (<em>numpy.array</em><em> of </em><em>shape</em><em> (</em><em>k+1</em><em>,</em><em>n</em><em>)</em>) – the k-simplices to insert.</p></li>
+<li><p><span class="target" id="gudhi.SimplexTree.insert_batch.params.filtrations"></span><strong>filtrations</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.insert_batch.params.filtrations">¶</a> (<em>numpy.array</em><em> of </em><em>shape</em><em> (</em><em>n</em><em>,</em><em>)</em>) – the filtration values.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#gudhi.SimplexTree" title="gudhi.simplex_tree.SimplexTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimplexTree</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1162,6 +1183,9 @@ than the smallest edge containing it, since vertices are implicitly inserted tog
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.SimplexTree.insert_edges_from_coo_matrix.params.edges"></span><strong>edges</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.insert_edges_from_coo_matrix.params.edges">¶</a> (<em>scipy.sparse.coo_matrix</em><em> of </em><em>shape</em><em> (</em><em>n</em><em>,</em><em>n</em><em>)</em>) – the edges to insert and their filtration values.</p>
 </dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#gudhi.SimplexTree" title="gudhi.simplex_tree.SimplexTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimplexTree</span></code></a></span></p>
+</dd>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -1171,11 +1195,11 @@ than the smallest edge containing it, since vertices are implicitly inserted tog
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.is_empty">
-<span class="sig-name descname"><span class="pre">is_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.is_empty" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">is_empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.is_empty" title="Link to this definition">#</a></dt>
 <dd><p>This function returns whether the simplicial complex is empty.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>True if the simplicial complex is empty.</p>
+<dd class="field-odd"><p><cite>True</cite> if the simplicial complex is empty.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>bool</p>
@@ -1204,13 +1228,12 @@ and second the essential features, grouped by dimension, with one vertex each</p
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.make_filtration_non_decreasing">
-<span class="sig-name descname"><span class="pre">make_filtration_non_decreasing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.make_filtration_non_decreasing" title="Link to this definition">#</a></dt>
-<dd><p>This function ensures that each simplex has a higher filtration
-value than its faces by increasing the filtration values.</p>
+<span class="sig-name descname"><span class="pre">make_filtration_non_decreasing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.make_filtration_non_decreasing" title="Link to this definition">#</a></dt>
+<dd><p>This function ensures that each simplex has a higher filtration value than its faces by increasing the filtration
+values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>True if any filtration value was modified,
-False if the filtration was already non-decreasing.</p>
+<dd class="field-odd"><p><cite>True</cite> if any filtration value was modified, <cite>False</cite> if the filtration was already non-decreasing.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>bool</p>
@@ -1220,9 +1243,8 @@ False if the filtration was already non-decreasing.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.num_simplices">
-<span class="sig-name descname"><span class="pre">num_simplices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.num_simplices" title="Link to this definition">#</a></dt>
-<dd><p>This function returns the number of simplices of the simplicial
-complex.</p>
+<span class="sig-name descname"><span class="pre">num_simplices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.num_simplices" title="Link to this definition">#</a></dt>
+<dd><p>This function returns the number of simplices of the simplicial complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>the simplicial complex number of simplices.</p>
@@ -1234,10 +1256,23 @@ complex.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="gudhi.SimplexTree.num_simplices_by_dimension">
+<span class="sig-name descname"><span class="pre">num_simplices_by_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.ndarray[dtype=uint64]</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.num_simplices_by_dimension" title="Link to this definition">#</a></dt>
+<dd><p>Computes and returns the number of simplices of each dimension in the complex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Array containing at index <cite>d</cite> the number of simplices of dimension <cite>d</cite> in the complex.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>1-dimensional numpy.array of length <cite>maximal dimension + 1</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.num_vertices">
-<span class="sig-name descname"><span class="pre">num_vertices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.num_vertices" title="Link to this definition">#</a></dt>
-<dd><p>This function returns the number of vertices of the simplicial
-complex.</p>
+<span class="sig-name descname"><span class="pre">num_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.num_vertices" title="Link to this definition">#</a></dt>
+<dd><p>This function returns the number of vertices of the simplicial complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The simplicial complex number of vertices.</p>
@@ -1347,7 +1382,7 @@ function to be launched first.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.prune_above_dimension">
-<span class="sig-name descname"><span class="pre">prune_above_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.prune_above_dimension" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">prune_above_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.prune_above_dimension" title="Link to this definition">#</a></dt>
 <dd><p>Remove all simplices of dimension greater than a given value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1364,7 +1399,7 @@ function to be launched first.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.prune_above_filtration">
-<span class="sig-name descname"><span class="pre">prune_above_filtration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filtration</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.prune_above_filtration" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">prune_above_filtration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.prune_above_filtration" title="Link to this definition">#</a></dt>
 <dd><p>Prune above filtration value given as parameter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1379,23 +1414,16 @@ function to be launched first.</p>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Note that the dimension of the simplicial complex may be lower
-after calling
-<a class="reference internal" href="#gudhi.SimplexTree.prune_above_filtration" title="gudhi.SimplexTree.prune_above_filtration"><code class="xref py py-func docutils literal notranslate"><span class="pre">prune_above_filtration()</span></code></a>
-than it was before. However,
-<a class="reference internal" href="#gudhi.SimplexTree.upper_bound_dimension" title="gudhi.SimplexTree.upper_bound_dimension"><code class="xref py py-func docutils literal notranslate"><span class="pre">upper_bound_dimension()</span></code></a>
-will return the old value, which remains a
-valid upper bound. If you care, you can call
-<a class="reference internal" href="#gudhi.SimplexTree.dimension" title="gudhi.SimplexTree.dimension"><code class="xref py py-func docutils literal notranslate"><span class="pre">dimension()</span></code></a>
-method to recompute the exact dimension.</p>
+<p>Note that the dimension of the simplicial complex may be lower after calling <a class="reference internal" href="#gudhi.SimplexTree.prune_above_filtration" title="gudhi.SimplexTree.prune_above_filtration"><code class="xref py py-func docutils literal notranslate"><span class="pre">prune_above_filtration()</span></code></a> than it
+was before. However, <a class="reference internal" href="#gudhi.SimplexTree.upper_bound_dimension" title="gudhi.SimplexTree.upper_bound_dimension"><code class="xref py py-func docutils literal notranslate"><span class="pre">upper_bound_dimension()</span></code></a> will return the old value, which remains a  valid upper bound.
+If you care, you can call <a class="reference internal" href="#gudhi.SimplexTree.dimension" title="gudhi.SimplexTree.dimension"><code class="xref py py-func docutils literal notranslate"><span class="pre">dimension()</span></code></a> method to recompute the exact dimension.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.remove_maximal_simplex">
-<span class="sig-name descname"><span class="pre">remove_maximal_simplex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simplex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.remove_maximal_simplex" title="Link to this definition">#</a></dt>
-<dd><p>This function removes a given maximal N-simplex from the simplicial
-complex.</p>
+<span class="sig-name descname"><span class="pre">remove_maximal_simplex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simplex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.remove_maximal_simplex" title="Link to this definition">#</a></dt>
+<dd><p>This function removes a given maximal N-simplex from the simplicial complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.SimplexTree.remove_maximal_simplex.params.simplex"></span><strong>simplex</strong><a class="paramlink headerlink reference internal" href="#gudhi.SimplexTree.remove_maximal_simplex.params.simplex">¶</a> (<em>list</em><em> of </em><em>int</em>) – The N-simplex, represented by a list of vertex.</p>
@@ -1403,24 +1431,20 @@ complex.</p>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The dimension of the simplicial complex may be lower after calling
-remove_maximal_simplex than it was before. However,
-<a class="reference internal" href="#gudhi.SimplexTree.upper_bound_dimension" title="gudhi.SimplexTree.upper_bound_dimension"><code class="xref py py-func docutils literal notranslate"><span class="pre">upper_bound_dimension()</span></code></a>
-method will return the old value, which
-remains a valid upper bound. If you care, you can call
-<a class="reference internal" href="#gudhi.SimplexTree.dimension" title="gudhi.SimplexTree.dimension"><code class="xref py py-func docutils literal notranslate"><span class="pre">dimension()</span></code></a>
-to recompute the exact dimension.</p>
+<p>The dimension of the simplicial complex may be lower after calling remove_maximal_simplex than it was before.
+However, <a class="reference internal" href="#gudhi.SimplexTree.upper_bound_dimension" title="gudhi.SimplexTree.upper_bound_dimension"><code class="xref py py-func docutils literal notranslate"><span class="pre">upper_bound_dimension()</span></code></a> method will return the old value, which remains a valid upper bound. If you
+care, you can call <a class="reference internal" href="#gudhi.SimplexTree.dimension" title="gudhi.SimplexTree.dimension"><code class="xref py py-func docutils literal notranslate"><span class="pre">dimension()</span></code></a> to recompute the exact dimension.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.reset_filtration">
-<span class="sig-name descname"><span class="pre">reset_filtration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filtration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.reset_filtration" title="Link to this definition">#</a></dt>
-<dd><p>This function resets the filtration value of all the simplices of dimension at least min_dim. Resets all the
-simplex tree when <cite>min_dim = 0</cite>.
-<cite>reset_filtration</cite> may break the filtration property with <cite>min_dim &gt; 0</cite>, and it is the user’s responsibility to
-make it a valid filtration (using a large enough <cite>filt_value</cite>, or calling <cite>make_filtration_non_decreasing</cite>
-afterwards for instance).</p>
+<span class="sig-name descname"><span class="pre">reset_filtration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.reset_filtration" title="Link to this definition">#</a></dt>
+<dd><p>This function resets the filtration value of all the simplices of dimension at least min_dim. Resets all the simplex
+tree when <cite>min_dim = 0</cite>.
+<cite>reset_filtration</cite> may break the filtration property with <cite>min_dim &gt; 0</cite>, and it is the user’s responsibility to make it
+a valid filtration (using a large enough <cite>filt_value</cite>, or calling <cite>make_filtration_non_decreasing</cite> afterwards for
+instance).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1433,7 +1457,7 @@ afterwards for instance).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.set_dimension">
-<span class="sig-name descname"><span class="pre">set_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.set_dimension" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exact</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.set_dimension" title="Link to this definition">#</a></dt>
 <dd><p>This function sets the dimension of the simplicial complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1442,21 +1466,15 @@ afterwards for instance).</p>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This function must be used with caution because it disables
-dimension recomputation when required
-(this recomputation can be triggered by
-<a class="reference internal" href="#gudhi.SimplexTree.remove_maximal_simplex" title="gudhi.SimplexTree.remove_maximal_simplex"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_maximal_simplex()</span></code></a>
-or
-<a class="reference internal" href="#gudhi.SimplexTree.prune_above_filtration" title="gudhi.SimplexTree.prune_above_filtration"><code class="xref py py-func docutils literal notranslate"><span class="pre">prune_above_filtration()</span></code></a>
-).</p>
+<p>This function must be used with caution because it disables dimension recomputation when required (this
+recomputation can be triggered by  <a class="reference internal" href="#gudhi.SimplexTree.remove_maximal_simplex" title="gudhi.SimplexTree.remove_maximal_simplex"><code class="xref py py-func docutils literal notranslate"><span class="pre">remove_maximal_simplex()</span></code></a> or <a class="reference internal" href="#gudhi.SimplexTree.prune_above_filtration" title="gudhi.SimplexTree.prune_above_filtration"><code class="xref py py-func docutils literal notranslate"><span class="pre">prune_above_filtration()</span></code></a> ).</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.SimplexTree.upper_bound_dimension">
-<span class="sig-name descname"><span class="pre">upper_bound_dimension</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.SimplexTree.upper_bound_dimension" title="Link to this definition">#</a></dt>
-<dd><p>This function returns a valid dimension upper bound of the
-simplicial complex.</p>
+<span class="sig-name descname"><span class="pre">upper_bound_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#gudhi.SimplexTree.upper_bound_dimension" title="Link to this definition">#</a></dt>
+<dd><p>This function returns a valid dimension upper bound of the simplicial complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>an upper bound on the dimension of the simplicial complex.</p>
@@ -1480,6 +1498,9 @@ complex in a user given file name.</p>
 <dd class="field-even"><p>intervals_in_dim function requires
 <a class="reference internal" href="#gudhi.SimplexTree.compute_persistence" title="gudhi.SimplexTree.compute_persistence"><code class="xref py py-func docutils literal notranslate"><span class="pre">compute_persistence()</span></code></a>
 function to be launched first.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#gudhi.SimplexTree" title="gudhi.simplex_tree.SimplexTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimplexTree</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1524,11 +1545,13 @@ function to be launched first.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.__setstate__"><code class="docutils literal notranslate"><span class="pre">SimplexTree.__setstate__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.assign_filtration"><code class="docutils literal notranslate"><span class="pre">SimplexTree.assign_filtration()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.betti_numbers"><code class="docutils literal notranslate"><span class="pre">SimplexTree.betti_numbers()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.clear"><code class="docutils literal notranslate"><span class="pre">SimplexTree.clear()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.collapse_edges"><code class="docutils literal notranslate"><span class="pre">SimplexTree.collapse_edges()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.compute_persistence"><code class="docutils literal notranslate"><span class="pre">SimplexTree.compute_persistence()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.copy"><code class="docutils literal notranslate"><span class="pre">SimplexTree.copy()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.create_from_array"><code class="docutils literal notranslate"><span class="pre">SimplexTree.create_from_array()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.dimension"><code class="docutils literal notranslate"><span class="pre">SimplexTree.dimension()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.euler_characteristic"><code class="docutils literal notranslate"><span class="pre">SimplexTree.euler_characteristic()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.expansion"><code class="docutils literal notranslate"><span class="pre">SimplexTree.expansion()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.expansion_with_blocker"><code class="docutils literal notranslate"><span class="pre">SimplexTree.expansion_with_blocker()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.extend_filtration"><code class="docutils literal notranslate"><span class="pre">SimplexTree.extend_filtration()</span></code></a></li>
@@ -1544,12 +1567,13 @@ function to be launched first.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.get_star"><code class="docutils literal notranslate"><span class="pre">SimplexTree.get_star()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.initialize_filtration"><code class="docutils literal notranslate"><span class="pre">SimplexTree.initialize_filtration()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.insert"><code class="docutils literal notranslate"><span class="pre">SimplexTree.insert()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.insert_batch"><code class="docutils literal notranslate"><span class="pre">SimplexTree.insert_batch</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.insert_batch"><code class="docutils literal notranslate"><span class="pre">SimplexTree.insert_batch()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.insert_edges_from_coo_matrix"><code class="docutils literal notranslate"><span class="pre">SimplexTree.insert_edges_from_coo_matrix()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.is_empty"><code class="docutils literal notranslate"><span class="pre">SimplexTree.is_empty()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.lower_star_persistence_generators"><code class="docutils literal notranslate"><span class="pre">SimplexTree.lower_star_persistence_generators()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.make_filtration_non_decreasing"><code class="docutils literal notranslate"><span class="pre">SimplexTree.make_filtration_non_decreasing()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.num_simplices"><code class="docutils literal notranslate"><span class="pre">SimplexTree.num_simplices()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.num_simplices_by_dimension"><code class="docutils literal notranslate"><span class="pre">SimplexTree.num_simplices_by_dimension()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.num_vertices"><code class="docutils literal notranslate"><span class="pre">SimplexTree.num_vertices()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.persistence"><code class="docutils literal notranslate"><span class="pre">SimplexTree.persistence()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.SimplexTree.persistence_intervals_in_dimension"><code class="docutils literal notranslate"><span class="pre">SimplexTree.persistence_intervals_in_dimension()</span></code></a></li>

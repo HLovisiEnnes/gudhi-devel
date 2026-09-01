@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Bottleneck distance user manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>Bottleneck distance user manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -49,7 +49,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -59,7 +59,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -651,7 +651,7 @@ norm in <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span>.</p><
 <span class="bibtex-citation" id="id1">[]</span> and requires <a class="reference external" href="installation.html#cgal">CGAL</a> (<a class="reference external" href="/licensing/">GPL v3</a>).</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="gudhi.bottleneck_distance">
-<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">bottleneck_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagram_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diagram_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#gudhi.bottleneck_distance" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">bottleneck_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">diagram_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diagram_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.bottleneck_distance" title="Link to this definition">#</a></dt>
 <dd><p>Compute the Bottleneck distance between two diagrams.
 Points at infinity and on the diagonal are supported.</p>
 <dl class="field-list simple">
@@ -688,7 +688,7 @@ Morozov, and Arnur Nigmetov.</p>
 </div>
 <dl class="py function">
 <dt class="sig sig-object py" id="gudhi.hera.bottleneck_distance">
-<span class="sig-prename descclassname"><span class="pre">gudhi.hera.</span></span><span class="sig-name descname"><span class="pre">bottleneck_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#gudhi.hera.bottleneck_distance" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">gudhi.hera.</span></span><span class="sig-name descname"><span class="pre">bottleneck_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/hera.html#bottleneck_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.hera.bottleneck_distance" title="Link to this definition">#</a></dt>
 <dd><p>Compute the Bottleneck distance between two diagrams.
 Points at infinity are supported.</p>
 <div class="admonition note">

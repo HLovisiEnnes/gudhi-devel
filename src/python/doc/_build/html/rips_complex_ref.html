@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Rips complex reference manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>Rips complex reference manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -31,8 +31,8 @@
 <link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -48,7 +48,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -58,7 +58,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -601,7 +601,7 @@
 <h1>Rips complex reference manual<a class="headerlink" href="#rips-complex-reference-manual" title="Link to this heading">#</a></h1>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If you only want to compute persistent homology, consider using <code class="xref py py-class docutils literal notranslate"><span class="pre">RipsPersistence</span></code>,
+<p>If you only want to compute persistent homology, consider using <a class="reference internal" href="rips_complex_sklearn_itf_ref.html#gudhi.sklearn.RipsPersistence" title="gudhi.sklearn.RipsPersistence"><code class="xref py py-class docutils literal notranslate"><span class="pre">RipsPersistence</span></code></a>,
 which can be significantly faster than <a class="reference internal" href="#gudhi.RipsComplex" title="gudhi.RipsComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">RipsComplex</span></code></a> in some cases.</p>
 </div>
 <dl class="py class">
@@ -612,17 +612,18 @@ equal to a given threshold. Edge length is computed from a user given point clou
 or a distance matrix.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.RipsComplex.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.RipsComplex.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_edge_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.RipsComplex.__init__" title="Link to this definition">#</a></dt>
 <dd><p>RipsComplex constructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="target" id="gudhi.RipsComplex.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.RipsComplex.params.points">¶</a> (<em>List</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A list of points in d-Dimension.</p>
+<dd class="field-odd"><p><span class="target" id="gudhi.RipsComplex.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.RipsComplex.params.points">¶</a> (<em>Sequence</em><em>[</em><em>Sequence</em><em>[</em><em>float</em><em>]</em><em>] or </em><em>any array like object</em><em> of </em><em>ndim 2 and dtype convertible to float.</em>) – A list of points in d-Dimension.</p>
 </dd>
 </dl>
 <p>Or</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="target" id="gudhi.RipsComplex.params.distance_matrix"></span><strong>distance_matrix</strong><a class="paramlink headerlink reference internal" href="#gudhi.RipsComplex.params.distance_matrix">¶</a> (<em>List</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A distance matrix (full square or lower triangular).</p>
+<dd class="field-odd"><p><span class="target" id="gudhi.RipsComplex.params.distance_matrix"></span><strong>distance_matrix</strong><a class="paramlink headerlink reference internal" href="#gudhi.RipsComplex.params.distance_matrix">¶</a> (<em>Sequence</em><em>[</em><em>Sequence</em><em>[</em><em>float</em><em>]</em><em>] </em><em>(</em><em>square</em><em> or </em><em>just the lower triangle</em><em>) or </em><em>any square array like
+object</em><em> of </em><em>dtype convertible to float.</em>) – A distance matrix (full square or lower triangular).</p>
 </dd>
 </dl>
 <p>And in both cases</p>
@@ -632,16 +633,12 @@ or a distance matrix.</p>
 <li><p><span class="target" id="gudhi.RipsComplex.params.max_edge_length"></span><strong>max_edge_length</strong><a class="paramlink headerlink reference internal" href="#gudhi.RipsComplex.params.max_edge_length">¶</a> (<em>float</em>) – Maximal edge length. All edges of the graph strictly greater than <cite>threshold</cite> are not
 inserted in the graph.</p></li>
 <li><p><span class="target" id="gudhi.RipsComplex.params.sparse"></span><strong>sparse</strong><a class="paramlink headerlink reference internal" href="#gudhi.RipsComplex.params.sparse">¶</a> (<em>float</em>) – If this is not None, it switches to building a sparse Rips and represents the approximation
-parameter epsilon.</p></li>
+parameter epsilon. For reproducible results, when building a sparse Rips consider using
+<a class="reference internal" href="reproducibility.html#gudhi.random.set_seed" title="gudhi.random.set_seed"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_seed()</span></code></a>.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gudhi.RipsComplex.__new__">
-<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.RipsComplex.__new__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.RipsComplex.create_simplex_tree">
@@ -768,7 +765,6 @@ Rips complex.</p></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Rips complex reference manual</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.RipsComplex"><code class="docutils literal notranslate"><span class="pre">RipsComplex</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.RipsComplex.__init__"><code class="docutils literal notranslate"><span class="pre">RipsComplex.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.RipsComplex.__new__"><code class="docutils literal notranslate"><span class="pre">RipsComplex.__new__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.RipsComplex.create_simplex_tree"><code class="docutils literal notranslate"><span class="pre">RipsComplex.create_simplex_tree()</span></code></a></li>
 </ul>
 </li>

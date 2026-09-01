@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>CoverComplex reference manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>CoverComplex reference manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -31,8 +31,8 @@
 <link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -48,7 +48,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -58,7 +58,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -619,15 +619,14 @@ different elements of C correspond to the simplices of the GIC.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.compute_PD">
-<span class="sig-name descname"><span class="pre">compute_PD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.compute_PD" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_PD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gudhi.CoverComplex.compute_PD" title="Link to this definition">#</a></dt>
 <dd><p>Computes the extended persistence diagram of the complex.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.compute_confidence_level_from_distance">
-<span class="sig-name descname"><span class="pre">compute_confidence_level_from_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.compute_confidence_level_from_distance" title="Link to this definition">#</a></dt>
-<dd><p>Computes the confidence level of a specific bottleneck distance
-threshold.</p>
+<span class="sig-name descname"><span class="pre">compute_confidence_level_from_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.compute_confidence_level_from_distance" title="Link to this definition">#</a></dt>
+<dd><p>Computes the confidence level of a specific bottleneck distance threshold.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.CoverComplex.compute_confidence_level_from_distance.params.distance"></span><strong>distance</strong><a class="paramlink headerlink reference internal" href="#gudhi.CoverComplex.compute_confidence_level_from_distance.params.distance">¶</a> (<em>double</em>) – Bottleneck distance.</p>
@@ -643,7 +642,7 @@ threshold.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.compute_distance_from_confidence_level">
-<span class="sig-name descname"><span class="pre">compute_distance_from_confidence_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.compute_distance_from_confidence_level" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_distance_from_confidence_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.compute_distance_from_confidence_level" title="Link to this definition">#</a></dt>
 <dd><p>Computes the bottleneck distance threshold corresponding to a
 specific confidence level.</p>
 <dl class="field-list simple">
@@ -661,7 +660,7 @@ specific confidence level.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.compute_distribution">
-<span class="sig-name descname"><span class="pre">compute_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.compute_distribution" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.compute_distribution" title="Link to this definition">#</a></dt>
 <dd><p>Computes bootstrapped distances distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -672,9 +671,9 @@ specific confidence level.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.compute_p_value">
-<span class="sig-name descname"><span class="pre">compute_p_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.compute_p_value" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_p_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.compute_p_value" title="Link to this definition">#</a></dt>
 <dd><p>Computes the p-value, i.e. the opposite of the confidence level of
-the largest bottleneck distance preserving the points in the
+the largest bottleneck distance preserving the points
 persistence diagram of the output simplicial complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -701,13 +700,13 @@ persistence diagram of the output simplicial complex.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.find_simplices">
-<span class="sig-name descname"><span class="pre">find_simplices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.find_simplices" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">find_simplices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.find_simplices" title="Link to this definition">#</a></dt>
 <dd><p>Computes the simplices of the simplicial complex.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.plot_dot">
-<span class="sig-name descname"><span class="pre">plot_dot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.plot_dot" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">plot_dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.plot_dot" title="Link to this definition">#</a></dt>
 <dd><p>Creates a .dot file called SC.dot for neato (part of the graphviz
 package) once the simplicial complex is computed to get a visualization of
 its 1-skeleton in a .pdf file.</p>
@@ -715,7 +714,7 @@ its 1-skeleton in a .pdf file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.plot_off">
-<span class="sig-name descname"><span class="pre">plot_off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.plot_off" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">plot_off</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.plot_off" title="Link to this definition">#</a></dt>
 <dd><p>Creates a .off file called SC.off for 3D visualization, which contains
 the 2-skeleton of the GIC. This function assumes that the cover has been
 computed with Voronoi. If data points are in 1D or 2D, the remaining
@@ -741,7 +740,7 @@ coordinates of the points embedded in 3D are set to 0.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_automatic_resolution">
-<span class="sig-name descname"><span class="pre">set_automatic_resolution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_automatic_resolution" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_automatic_resolution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_automatic_resolution" title="Link to this definition">#</a></dt>
 <dd><p>Computes the optimal length of intervals (i.e. the smallest interval
 length avoiding discretization artifacts - see <span class="bibtex-citation" id="id1">[]</span>) for a
 functional cover.</p>
@@ -750,14 +749,14 @@ functional cover.</p>
 <dd class="field-odd"><p>double</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>reso interval length used to compute the cover.</p>
+<dd class="field-even"><p>resolution interval length used to compute the cover.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_color_from_coordinate">
-<span class="sig-name descname"><span class="pre">set_color_from_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_color_from_coordinate" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_color_from_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_color_from_coordinate" title="Link to this definition">#</a></dt>
 <dd><p>Computes the function used to color the nodes of the simplicial
 complex from the k-th coordinate.</p>
 <dl class="field-list simple">
@@ -781,7 +780,7 @@ complex from a file containing the function values.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_color_from_range">
-<span class="sig-name descname"><span class="pre">set_color_from_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_color_from_range" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_color_from_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_color_from_range" title="Link to this definition">#</a></dt>
 <dd><p>Computes the function used to color the nodes of the simplicial
 complex from a vector stored in memory.</p>
 <dl class="field-list simple">
@@ -793,9 +792,8 @@ complex from a vector stored in memory.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_cover_from_Voronoi">
-<span class="sig-name descname"><span class="pre">set_cover_from_Voronoi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_cover_from_Voronoi" title="Link to this definition">#</a></dt>
-<dd><p>Creates the cover C from the Voronoï cells of a subsampling of the
-point cloud.</p>
+<span class="sig-name descname"><span class="pre">set_cover_from_Voronoi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_cover_from_Voronoi" title="Link to this definition">#</a></dt>
+<dd><p>Creates the cover C from the Voronoï cells of a subsampling of the point cloud.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.CoverComplex.set_cover_from_Voronoi.params.m"></span><strong>m</strong><a class="paramlink headerlink reference internal" href="#gudhi.CoverComplex.set_cover_from_Voronoi.params.m">¶</a> (<em>int</em>) – Number of points in the subsample. Default value is 100.</p>
@@ -817,13 +815,13 @@ each point (the order has to be the same as in the input file!).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_cover_from_function">
-<span class="sig-name descname"><span class="pre">set_cover_from_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_cover_from_function" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_cover_from_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_cover_from_function" title="Link to this definition">#</a></dt>
 <dd><p>Creates a cover C from the preimages of the function f.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_cover_from_range">
-<span class="sig-name descname"><span class="pre">set_cover_from_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignments</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_cover_from_range" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_cover_from_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_cover_from_range" title="Link to this definition">#</a></dt>
 <dd><p>Creates a cover C from a vector stored in memory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -834,9 +832,8 @@ each point (the order has to be the same as in the input file!).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_distances_from_range">
-<span class="sig-name descname"><span class="pre">set_distances_from_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_matrix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_distances_from_range" title="Link to this definition">#</a></dt>
-<dd><p>Reads and stores the input distance matrix from a vector stored in
-memory.</p>
+<span class="sig-name descname"><span class="pre">set_distances_from_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_distances_from_range" title="Link to this definition">#</a></dt>
+<dd><p>Reads and stores the input distance matrix from a vector stored in memory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.CoverComplex.set_distances_from_range.params.distance_matrix"></span><strong>distance_matrix</strong><a class="paramlink headerlink reference internal" href="#gudhi.CoverComplex.set_distances_from_range.params.distance_matrix">¶</a> (<em>vector</em><em>[</em><em>vector</em><em>[</em><em>double</em><em>]</em><em>]</em>) – Input vector containing the distance matrix.</p>
@@ -846,7 +843,7 @@ memory.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_function_from_coordinate">
-<span class="sig-name descname"><span class="pre">set_function_from_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_function_from_coordinate" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_function_from_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_function_from_coordinate" title="Link to this definition">#</a></dt>
 <dd><p>Creates the function f from the k-th coordinate of the point cloud.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -868,7 +865,7 @@ memory.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_function_from_range">
-<span class="sig-name descname"><span class="pre">set_function_from_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_function_from_range" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_function_from_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_function_from_range" title="Link to this definition">#</a></dt>
 <dd><p>Creates the function f from a vector stored in memory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -879,7 +876,7 @@ memory.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_gain">
-<span class="sig-name descname"><span class="pre">set_gain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_gain" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_gain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_gain" title="Link to this definition">#</a></dt>
 <dd><p>Sets a gain from a value stored in memory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -890,14 +887,13 @@ memory.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_graph_from_OFF">
-<span class="sig-name descname"><span class="pre">set_graph_from_OFF</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_graph_from_OFF" title="Link to this definition">#</a></dt>
-<dd><p>Creates a graph G from the triangulation given by the input OFF
-file.</p>
+<span class="sig-name descname"><span class="pre">set_graph_from_OFF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_graph_from_OFF" title="Link to this definition">#</a></dt>
+<dd><p>Creates a graph G from the triangulation given by the input OFF file.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_graph_from_automatic_rips">
-<span class="sig-name descname"><span class="pre">set_graph_from_automatic_rips</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_graph_from_automatic_rips" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_graph_from_automatic_rips</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_graph_from_automatic_rips" title="Link to this definition">#</a></dt>
 <dd><p>Creates a graph G from a Rips complex whose threshold value is
 automatically tuned with subsampling - see <span class="bibtex-citation" id="id2">[]</span>.</p>
 <dl class="field-list simple">
@@ -928,7 +924,7 @@ of its two nodes.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_graph_from_rips">
-<span class="sig-name descname"><span class="pre">set_graph_from_rips</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_graph_from_rips" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_graph_from_rips</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_graph_from_rips" title="Link to this definition">#</a></dt>
 <dd><p>Creates a graph G from a Rips complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -939,7 +935,7 @@ of its two nodes.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_mask">
-<span class="sig-name descname"><span class="pre">set_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodemask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_mask" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodemask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_mask" title="Link to this definition">#</a></dt>
 <dd><p>Sets the mask, which is a threshold integer such that nodes in the
 complex that contain a number of data points which is less than or
 equal to this threshold are not displayed.</p>
@@ -952,9 +948,8 @@ equal to this threshold are not displayed.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_point_cloud_from_range">
-<span class="sig-name descname"><span class="pre">set_point_cloud_from_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cloud</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_point_cloud_from_range" title="Link to this definition">#</a></dt>
-<dd><p>Reads and stores the input point cloud from a vector stored in
-memory.</p>
+<span class="sig-name descname"><span class="pre">set_point_cloud_from_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cloud</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_point_cloud_from_range" title="Link to this definition">#</a></dt>
+<dd><p>Reads and stores the input point cloud from a vector stored in memory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.CoverComplex.set_point_cloud_from_range.params.cloud"></span><strong>cloud</strong><a class="paramlink headerlink reference internal" href="#gudhi.CoverComplex.set_point_cloud_from_range.params.cloud">¶</a> (<em>vector</em><em>[</em><em>vector</em><em>[</em><em>double</em><em>]</em><em>]</em>) – Input vector containing the point cloud.</p>
@@ -964,7 +959,7 @@ memory.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_resolution_with_interval_length">
-<span class="sig-name descname"><span class="pre">set_resolution_with_interval_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resolution</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_resolution_with_interval_length" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_resolution_with_interval_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_resolution_with_interval_length" title="Link to this definition">#</a></dt>
 <dd><p>Sets a length of intervals from a value stored in memory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -975,8 +970,8 @@ memory.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_resolution_with_interval_number">
-<span class="sig-name descname"><span class="pre">set_resolution_with_interval_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resolution</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_resolution_with_interval_number" title="Link to this definition">#</a></dt>
-<dd><p>Sets a number of intervals from a value stored in memory.</p>
+<span class="sig-name descname"><span class="pre">set_resolution_with_interval_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_resolution_with_interval_number" title="Link to this definition">#</a></dt>
+<dd><p>“Sets a number of intervals from a value stored in memory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="target" id="gudhi.CoverComplex.set_resolution_with_interval_number.params.resolution"></span><strong>resolution</strong><a class="paramlink headerlink reference internal" href="#gudhi.CoverComplex.set_resolution_with_interval_number.params.resolution">¶</a> (<em>int</em>) – Number of intervals.</p>
@@ -986,7 +981,7 @@ memory.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_subsampling">
-<span class="sig-name descname"><span class="pre">set_subsampling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_subsampling" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_subsampling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_subsampling" title="Link to this definition">#</a></dt>
 <dd><p>Sets the constants used to subsample the data set. These constants
 are explained in <span class="bibtex-citation" id="id3">[]</span>.</p>
 <dl class="field-list simple">
@@ -1001,7 +996,7 @@ are explained in <span class="bibtex-citation" id="id3">[]</span>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_type">
-<span class="sig-name descname"><span class="pre">set_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_type" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_type" title="Link to this definition">#</a></dt>
 <dd><p>Specifies whether the type of the output simplicial complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1012,7 +1007,7 @@ are explained in <span class="bibtex-citation" id="id3">[]</span>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.set_verbose">
-<span class="sig-name descname"><span class="pre">set_verbose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.set_verbose" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_verbose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.set_verbose" title="Link to this definition">#</a></dt>
 <dd><p>Specifies whether the program should display information or not.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1023,7 +1018,7 @@ are explained in <span class="bibtex-citation" id="id3">[]</span>.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.subcolor">
-<span class="sig-name descname"><span class="pre">subcolor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.subcolor" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">subcolor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.subcolor" title="Link to this definition">#</a></dt>
 <dd><p>Returns the mean color value corresponding to a specific node of the
 created complex.</p>
 <dl class="field-list simple">
@@ -1041,7 +1036,7 @@ created complex.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.subpopulation">
-<span class="sig-name descname"><span class="pre">subpopulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.subpopulation" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">subpopulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gudhi.CoverComplex.subpopulation" title="Link to this definition">#</a></dt>
 <dd><p>Returns the data subset corresponding to a specific node of the
 created complex.</p>
 <dl class="field-list simple">
@@ -1059,13 +1054,17 @@ created complex.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.CoverComplex.write_info">
-<span class="sig-name descname"><span class="pre">write_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.CoverComplex.write_info" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">write_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.CoverComplex.write_info" title="Link to this definition">#</a></dt>
 <dd><p>Creates a .txt file called SC.txt describing the 1-skeleton, which can
 then be plotted with e.g. KeplerMapper.</p>
 </dd></dl>
 
 </dd></dl>
 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For reproducible results, consider using <a class="reference internal" href="reproducibility.html#gudhi.random.set_seed" title="gudhi.random.set_seed"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_seed()</span></code></a>.</p>
+</div>
 </section>
 
 

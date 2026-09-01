@@ -1,0 +1,1243 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gudhi.representations.preprocessing &#8212; gudhi v3.14.0a0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css?v=dd72e65a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gudhi/representations/preprocessing';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.14.0a0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">gudhi.representations.preprocessing</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for gudhi.representations.preprocessing</h1><div class="highlight"><pre>
+<span></span><span class="c1"># This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is released under MIT.</span>
+<span class="c1"># See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license details.</span>
+<span class="c1"># Author(s):       Mathieu Carrière, Vincent Rouvreau</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2018 Inria</span>
+<span class="c1">#</span>
+<span class="c1"># Modification(s):</span>
+<span class="c1">#   - 2021/10 Vincent Rouvreau: Add DimensionSelector</span>
+<span class="c1">#   - YYYY/MM Author: Description of the modification</span>
+
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+
+
+<span class="c1">#############################################</span>
+<span class="c1"># Utils #####################################</span>
+<span class="c1">#############################################</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_maybe_fit_transform</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    In __call__, use transform on the object itself if it has been fitted,</span>
+<span class="sd">    otherwise fit_transform on a clone of the object so it doesn't affect future calls.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">diag</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="o">**</span><span class="n">obj</span><span class="o">.</span><span class="n">get_params</span><span class="p">())</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">([</span><span class="n">diag</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Clamping">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.Clamping">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Clamping</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for clamping a list of values. It is not meant to be called directly on (a list of) persistence diagrams, but it is rather meant to be used as a parameter for the DiagramScaler class. As such it has the same methods and purpose as common scalers from sklearn.preprocessing such as MinMaxScaler, RobustScaler, StandardScaler, etc. A typical use would be for instance if you want to clamp abscissae or ordinates (or both) of persistence diagrams within a pre-defined interval.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="Clamping.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.Clamping.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the Clamping class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            limit (float): clamping value (default np.inf).</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">minimum</span> <span class="o">=</span> <span class="n">minimum</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maximum</span> <span class="o">=</span> <span class="n">maximum</span></div>
+
+
+<div class="viewcode-block" id="Clamping.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.Clamping.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the Clamping class on a list of values (this function actually does nothing but is useful when Clamping is included in a scikit-learn Pipeline).</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (numpy array of size n): input values.</span>
+<span class="sd">            y (n x 1 array): value labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Clamping.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.Clamping.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Clamp list of values.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (numpy array of size n): input list of values.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array of size n: output list of values.</span>
+<span class="sd">        """</span>
+        <span class="n">Xfit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minimum</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximum</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Xfit</span></div>
+</div>
+
+
+
+<span class="c1">#############################################</span>
+<span class="c1"># Preprocessing #############################</span>
+<span class="c1">#############################################</span>
+
+
+<div class="viewcode-block" id="BirthPersistenceTransform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.BirthPersistenceTransform">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BirthPersistenceTransform</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for the affine transformation (x,y) -&gt; (x,y-x) to be applied on persistence diagrams.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="BirthPersistenceTransform.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.BirthPersistenceTransform.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for BirthPersistenceTransform class.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="BirthPersistenceTransform.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.BirthPersistenceTransform.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the BirthPersistenceTransform class on a list of persistence diagrams (this function actually does nothing but is useful when BirthPersistenceTransform is included in a scikit-learn Pipeline).</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy array): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="BirthPersistenceTransform.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.BirthPersistenceTransform.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply the BirthPersistenceTransform function on the persistence diagrams.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy array): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of n x 2 numpy array: transformed persistence diagrams.</span>
+<span class="sd">        """</span>
+        <span class="n">Xfit</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">diag</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+            <span class="c1"># new_diag = np.empty(diag.shape)</span>
+            <span class="c1"># np.copyto(new_diag, diag)</span>
+            <span class="n">new_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">diag</span><span class="p">)</span>
+            <span class="n">new_diag</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_diag</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">new_diag</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">Xfit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_diag</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Xfit</span></div>
+
+
+<div class="viewcode-block" id="BirthPersistenceTransform.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.BirthPersistenceTransform.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply BirthPersistenceTransform on a single persistence diagram and outputs the result.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            n x 2 numpy array: transformed persistence diagram.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">diag</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="DiagramScaler">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DiagramScaler">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DiagramScaler</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for preprocessing persistence diagrams with a given list of scalers, such as those included in scikit-learn.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="DiagramScaler.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DiagramScaler.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scalers</span><span class="o">=</span><span class="p">[]):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the DiagramScaler class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            use (bool): whether to use the class or not (default False).</span>
+<span class="sd">            scalers (list of classes): list of scalers to be fit on the persistence diagrams (default []). Each element of the list is a tuple with two elements: the first one is a list of coordinates, and the second one is a scaler (i.e. a class with fit() and transform() methods) that is going to be applied to these coordinates. Common scalers can be found in the scikit-learn library (such as MinMaxScaler for instance).</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span> <span class="o">=</span> <span class="n">scalers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="n">use</span></div>
+
+
+<div class="viewcode-block" id="DiagramScaler.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DiagramScaler.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the DiagramScaler class on a list of persistence diagrams: persistence diagrams are concatenated in a big numpy array, and scalers are fit (by calling their fit() method) on their corresponding coordinates in this big array.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 or n x 1 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">P</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">indices</span><span class="p">,</span> <span class="n">scaler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span><span class="p">:</span>
+                <span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">P</span><span class="p">[:,</span> <span class="n">indices</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="DiagramScaler.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DiagramScaler.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply the DiagramScaler function on the persistence diagrams. The fitted scalers are applied (by calling their transform() method) to their corresponding coordinates in each persistence diagram individually.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 or n x 1 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of n x 2 or n x 1 numpy arrays: transformed persistence diagrams.</span>
+<span class="sd">        """</span>
+        <span class="n">Xfit</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Xfit</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">Xfit</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">indices</span><span class="p">,</span> <span class="n">scaler</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scalers</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">I</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">:</span>
+                            <span class="n">Xfit</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span> <span class="n">I</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span>
+                                <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Xfit</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span> <span class="n">I</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+                            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">Xfit</span></div>
+
+
+<div class="viewcode-block" id="DiagramScaler.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DiagramScaler.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply DiagramScaler on a single persistence diagram and outputs the result.</span>
+<span class="sd">        If :func:`fit` hasn't been run, this uses `fit_transform` on a clone of the object and thus does not affect later calls.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            n x 2 numpy array: transformed persistence diagram.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">_maybe_fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"is_fitted_"</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Padding">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.Padding">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Padding</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for padding a list of persistence diagrams with dummy points, so that all persistence diagrams end up with the same number of points.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="Padding.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.Padding.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the Padding class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            use (bool): whether to use the class or not (default False).</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="n">use</span></div>
+
+
+<div class="viewcode-block" id="Padding.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.Padding.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the Padding class on a list of persistence diagrams.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 or n x 1 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_pts_</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">diag</span><span class="p">)</span> <span class="k">for</span> <span class="n">diag</span> <span class="ow">in</span> <span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Padding.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.Padding.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Add dummy points to each persistence diagram so that they all have the same cardinality. All points are given an additional coordinate indicating if the point was added after padding (0) or already present before (1).</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 or n x 1 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of n x 3 or n x 2 numpy arrays: padded persistence diagrams.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="p">:</span>
+            <span class="n">Xfit</span><span class="p">,</span> <span class="n">num_diag</span> <span class="o">=</span> <span class="p">[],</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">diag</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+                <span class="n">diag_pad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span>
+                    <span class="n">diag</span><span class="p">,</span>
+                    <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_pts_</span> <span class="o">-</span> <span class="n">diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+                    <span class="s2">"constant"</span><span class="p">,</span>
+                    <span class="n">constant_values</span><span class="o">=</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+                <span class="p">)</span>
+                <span class="n">diag_pad</span><span class="p">[:</span> <span class="n">diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">Xfit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">diag_pad</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Xfit</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="k">return</span> <span class="n">Xfit</span></div>
+
+
+<div class="viewcode-block" id="Padding.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.Padding.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply Padding on a single persistence diagram and outputs the result.</span>
+<span class="sd">        If :func:`fit` hasn't been run, this uses `fit_transform` on a clone of the object and thus does not affect later calls.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            n x 2 numpy array: padded persistence diagram.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">_maybe_fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"max_pts_"</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ProminentPoints">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.ProminentPoints">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ProminentPoints</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for removing points that are close or far from the diagonal in persistence diagrams.  If persistence diagrams are n x 2 numpy arrays (i.e. persistence diagrams with ordinary features), points are ordered and thresholded by distance-to-diagonal. If persistence diagrams are n x 1 numpy arrays (i.e. persistence diagrams with essential features), points are not ordered and thresholded by first coordinate.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="ProminentPoints.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.ProminentPoints.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_pts</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">"upper"</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the ProminentPoints class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            use (bool): whether to use the class or not (default False).</span>
+<span class="sd">            location (string): either "upper" or "lower" (default "upper"). Whether to keep the points that are far away ("upper") or close ("lower") to the diagonal.</span>
+<span class="sd">            num_pts (int): cardinality threshold (default 10). If location == "upper", keep the top **num_pts** points that are the farthest away from the diagonal. If location == "lower", keep the top **num_pts** points that are the closest to the diagonal.</span>
+<span class="sd">            threshold (float): distance-to-diagonal threshold (default -1). If location == "upper", keep the points that are at least at a distance **threshold** from the diagonal. If location == "lower", keep the points that are at most at a distance **threshold** from the diagonal.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_pts</span> <span class="o">=</span> <span class="n">num_pts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="n">use</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">location</span></div>
+
+
+<div class="viewcode-block" id="ProminentPoints.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.ProminentPoints.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the ProminentPoints class on a list of persistence diagrams (this function actually does nothing but is useful when ProminentPoints is included in a scikit-learn Pipeline).</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 or n x 1 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="ProminentPoints.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.ProminentPoints.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        If location == "upper", first select the top **num_pts** points that are the farthest away from the diagonal, then select and return from these points the ones that are at least at distance **threshold** from the diagonal for each persistence diagram individually. If location == "lower", first select the top **num_pts** points that are the closest to the diagonal, then select and return from these points the ones that are at most at distance **threshold** from the diagonal for each persistence diagram individually.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 or n x 1 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of n x 2 or n x 1 numpy arrays: thresholded persistence diagrams.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="p">:</span>
+            <span class="n">Xfit</span><span class="p">,</span> <span class="n">num_diag</span> <span class="o">=</span> <span class="p">[],</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_diag</span><span class="p">):</span>
+                <span class="n">diag</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">pers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">diag</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">diag</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+                        <span class="n">idx_thresh</span> <span class="o">=</span> <span class="n">pers</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
+                        <span class="n">thresh_diag</span><span class="p">,</span> <span class="n">thresh_pers</span> <span class="o">=</span> <span class="n">diag</span><span class="p">[</span><span class="n">idx_thresh</span><span class="p">],</span> <span class="n">pers</span><span class="p">[</span><span class="n">idx_thresh</span><span class="p">]</span>
+                        <span class="n">sort_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">thresh_pers</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">==</span> <span class="s2">"upper"</span><span class="p">:</span>
+                            <span class="n">new_diag</span> <span class="o">=</span> <span class="n">thresh_diag</span><span class="p">[</span>
+                                <span class="n">sort_index</span><span class="p">[:</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_pts</span><span class="p">,</span> <span class="n">thresh_diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span> <span class="p">:</span>
+                            <span class="p">]</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">==</span> <span class="s2">"lower"</span><span class="p">:</span>
+                            <span class="n">new_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                                <span class="p">[</span>
+                                    <span class="n">thresh_diag</span><span class="p">[</span>
+                                        <span class="n">sort_index</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_pts</span><span class="p">,</span> <span class="n">thresh_diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">:],</span>
+                                        <span class="p">:,</span>
+                                    <span class="p">],</span>
+                                    <span class="n">diag</span><span class="p">[</span><span class="o">~</span><span class="n">idx_thresh</span><span class="p">],</span>
+                                <span class="p">],</span>
+                                <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                            <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">new_diag</span> <span class="o">=</span> <span class="n">diag</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">birth</span> <span class="o">=</span> <span class="n">diag</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+                        <span class="n">idx_thresh</span> <span class="o">=</span> <span class="n">birth</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
+                        <span class="n">thresh_diag</span><span class="p">,</span> <span class="n">thresh_birth</span> <span class="o">=</span> <span class="n">diag</span><span class="p">[</span><span class="n">idx_thresh</span><span class="p">],</span> <span class="n">birth</span><span class="p">[</span><span class="n">idx_thresh</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">==</span> <span class="s2">"upper"</span><span class="p">:</span>
+                            <span class="n">new_diag</span> <span class="o">=</span> <span class="n">thresh_diag</span><span class="p">[</span>
+                                <span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_pts</span><span class="p">,</span> <span class="n">thresh_diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="p">:</span>
+                            <span class="p">]</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">location</span> <span class="o">==</span> <span class="s2">"lower"</span><span class="p">:</span>
+                            <span class="n">new_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                                <span class="p">[</span>
+                                    <span class="n">thresh_diag</span><span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_pts</span><span class="p">,</span> <span class="n">thresh_diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">:,</span> <span class="p">:],</span>
+                                    <span class="n">diag</span><span class="p">[</span><span class="o">~</span><span class="n">idx_thresh</span><span class="p">],</span>
+                                <span class="p">],</span>
+                                <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                            <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">new_diag</span> <span class="o">=</span> <span class="n">diag</span>
+
+                <span class="n">Xfit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_diag</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Xfit</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="k">return</span> <span class="n">Xfit</span></div>
+
+
+<div class="viewcode-block" id="ProminentPoints.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.ProminentPoints.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply ProminentPoints on a single persistence diagram and outputs the result.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            n x 2 numpy array: thresholded persistence diagram.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">diag</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="DiagramSelector">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DiagramSelector">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DiagramSelector</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for extracting finite or essential points in persistence diagrams.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="DiagramSelector.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DiagramSelector.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">point_type</span><span class="o">=</span><span class="s2">"finite"</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the DiagramSelector class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            use (bool): whether to use the class or not (default False).</span>
+<span class="sd">            limit (float): second coordinate value that is the criterion for being an essential point (default numpy.inf).</span>
+<span class="sd">            point_type (string): either "finite" or "essential". The type of the points that are going to be extracted.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_type</span> <span class="o">=</span> <span class="n">use</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">point_type</span></div>
+
+
+<div class="viewcode-block" id="DiagramSelector.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DiagramSelector.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the DiagramSelector class on a list of persistence diagrams (this function actually does nothing but is useful when DiagramSelector is included in a scikit-learn Pipeline).</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 or n x 1 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="DiagramSelector.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DiagramSelector.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Extract and return the finite or essential points of each persistence diagram individually.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 or n x 1 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of n x 2 or n x 1 numpy arrays: extracted persistence diagrams.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use</span><span class="p">:</span>
+            <span class="n">Xfit</span><span class="p">,</span> <span class="n">num_diag</span> <span class="o">=</span> <span class="p">[],</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_type</span> <span class="o">==</span> <span class="s2">"finite"</span><span class="p">:</span>
+                <span class="n">Xfit</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">diag</span><span class="p">[</span><span class="n">diag</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">]</span> <span class="k">if</span> <span class="n">diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">diag</span> <span class="k">for</span> <span class="n">diag</span> <span class="ow">in</span> <span class="n">X</span>
+                <span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">Xfit</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">diag</span><span class="p">[</span><span class="n">diag</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">limit</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">diag</span>
+                    <span class="k">for</span> <span class="n">diag</span> <span class="ow">in</span> <span class="n">X</span>
+                <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Xfit</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="k">return</span> <span class="n">Xfit</span></div>
+
+
+<div class="viewcode-block" id="DiagramSelector.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DiagramSelector.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply DiagramSelector on a single persistence diagram and outputs the result.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            n x 2 numpy array: extracted persistence diagram.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">diag</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span></div>
+</div>
+
+
+
+<span class="c1"># Mermaid sequence diagram - https://mermaid-js.github.io/mermaid-live-editor/</span>
+<span class="c1"># sequenceDiagram</span>
+<span class="c1">#     USER-&gt;&gt;DimensionSelector: fit_transform(&lt;br/&gt;[[array( Hi(X0) ), array( Hj(X0) ), ...],&lt;br/&gt; [array( Hi(X1) ), array( Hj(X1) ), ...],&lt;br/&gt; ...])</span>
+<span class="c1">#     DimensionSelector-&gt;&gt;thread1: _transform([array( Hi(X0) ), array( Hj(X0) )], ...)</span>
+<span class="c1">#     DimensionSelector-&gt;&gt;thread2: _transform([array( Hi(X1) ), array( Hj(X1) )], ...)</span>
+<span class="c1">#     Note right of DimensionSelector: ...</span>
+<span class="c1">#     thread1-&gt;&gt;DimensionSelector: array( Hn(X0) )</span>
+<span class="c1">#     thread2-&gt;&gt;DimensionSelector: array( Hn(X1) )</span>
+<span class="c1">#     Note right of DimensionSelector: ...</span>
+<span class="c1">#     DimensionSelector-&gt;&gt;USER: [array( Hn(X0) ), &lt;br/&gt; array( Hn(X1) ), &lt;br/&gt; ...]</span>
+
+
+<div class="viewcode-block" id="DimensionSelector">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DimensionSelector">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DimensionSelector</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class to select persistence diagrams in a specific dimension from its index.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="DimensionSelector.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DimensionSelector.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the DimensionSelector class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            index (int): The returned persistence diagrams dimension index. Default value is `0`.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span></div>
+
+
+<div class="viewcode-block" id="DimensionSelector.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DimensionSelector.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Nothing to be done, but useful when included in a scikit-learn Pipeline.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="DimensionSelector.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.preprocessing.DimensionSelector.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Select persistence diagrams from its dimension.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of list of tuple): List of list of persistence pairs, i.e.</span>
+<span class="sd">                `[[array( Hi(X0) ), array( Hj(X0) ), ...], [array( Hi(X1) ), array( Hj(X1) ), ...], ...]`</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of tuple:</span>
+<span class="sd">            Persistence diagrams in a specific dimension. i.e. if `index` was set to `m` and `Hn` is at index `m` of</span>
+<span class="sd">            the input, it returns `[array( Hn(X0) ), array( Hn(X1), ...]`</span>
+<span class="sd">        """</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">persistence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">persistence</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

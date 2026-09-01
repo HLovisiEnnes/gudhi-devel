@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tangential complex user manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>Tangential complex user manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -49,7 +49,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -59,7 +59,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -753,7 +753,7 @@ itself and/or after the perturbation process.</p>
        <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">14.</span><span class="p">],</span>
        <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">19.</span><span class="p">],</span>
        <span class="p">[</span><span class="mf">9.</span><span class="p">,</span> <span class="mf">17.</span><span class="p">]]</span>
-<span class="n">tc</span> <span class="o">=</span> <span class="n">TangentialComplex</span><span class="p">(</span><span class="n">intrisic_dim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">points</span> <span class="o">=</span> <span class="n">pts</span><span class="p">)</span>
+<span class="n">tc</span> <span class="o">=</span> <span class="n">TangentialComplex</span><span class="p">(</span><span class="n">intrinsic_dim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">points</span> <span class="o">=</span> <span class="n">pts</span><span class="p">)</span>
 <span class="n">tc</span><span class="o">.</span><span class="n">compute_tangential_complex</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Tangential contains </span><span class="si">{</span><span class="n">tc</span><span class="o">.</span><span class="n">num_simplices</span><span class="p">()</span><span class="si">}</span><span class="s1"> simplices - </span><span class="si">{</span><span class="n">tc</span><span class="o">.</span><span class="n">num_vertices</span><span class="p">()</span><span class="si">}</span><span class="s1"> vertices.'</span><span class="p">)</span>
 
@@ -790,7 +790,7 @@ Simplex tree is of dimension 1 - 15 simplices - 7 vertices.
 inconsistencies by perturbing the positions of points involved in inconsistent
 simplices.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi</span><span class="w"> </span><span class="kn">import</span> <span class="n">TangentialComplex</span>
-<span class="n">tc</span> <span class="o">=</span> <span class="n">TangentialComplex</span><span class="p">(</span><span class="n">intrisic_dim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">points</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+<span class="n">tc</span> <span class="o">=</span> <span class="n">TangentialComplex</span><span class="p">(</span><span class="n">intrinsic_dim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">points</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
 <span class="n">tc</span><span class="o">.</span><span class="n">compute_tangential_complex</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Tangential contains </span><span class="si">{</span><span class="n">tc</span><span class="o">.</span><span class="n">num_vertices</span><span class="p">()</span><span class="si">}</span><span class="s1"> vertices.'</span><span class="p">)</span>
 

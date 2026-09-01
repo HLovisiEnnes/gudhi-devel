@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Čech complex persistence scikit-learn like interface &#8212; gudhi v3.11.0 documentation</title>
+    <title>Čech complex persistence scikit-learn like interface &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -48,7 +48,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -58,7 +58,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -630,9 +630,9 @@ N points are subsampled randomly on each circle, where N randomly between 100 an
 In order to complicate things, some noise (+/- 5% of the radius value) to the point coordinates.</p>
 <p>The TDA scikit-learn pipeline is constructed and is composed of:</p>
 <ol class="arabic simple">
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">CechPersistence</span></code> that builds a Čech complex from the inputs and
-returns its persistence diagrams in dimension 1.</p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">PersistenceLengths</span></code> that returns here the biggest persistence bar in
+<li><p><a class="reference internal" href="#gudhi.sklearn.CechPersistence" title="gudhi.sklearn.CechPersistence"><code class="xref py py-class docutils literal notranslate"><span class="pre">CechPersistence</span></code></a> that computes the persistence of the Čech complex (through some Delaunay
+equivalent) from the inputs and returns its persistence diagrams in dimension 1.</p></li>
+<li><p><a class="reference internal" href="representations.html#gudhi.representations.vector_methods.PersistenceLengths" title="gudhi.representations.vector_methods.PersistenceLengths"><code class="xref py py-class docutils literal notranslate"><span class="pre">PersistenceLengths</span></code></a> that returns here the biggest persistence bar in
 dimension 1.</p></li>
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">LinearRegression</a>
 an ordinary least squares Linear Regression from scikit-learn.</p></li>
@@ -695,10 +695,154 @@ regression line of the model when fitting on the other 25% of the dataset.</p>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>(<a class="reference download internal" download="" href="_downloads/d8af5aa7fe743233d5559fac35584b9c/cech_complex_sklearn_itf.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<p>(<a class="reference download internal" download="" href="_downloads/d8af5aa7fe743233d5559fac35584b9c/cech_complex_sklearn_itf.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>, <a class="reference download internal" download="" href="_downloads/86ee6e69747ad474b045458a65a0b4f2/cech_complex_sklearn_itf.png"><code class="xref download docutils literal notranslate"><span class="pre">png</span></code></a>, <a class="reference download internal" download="" href="_downloads/530c4d667236fc10a91263996e30b283/cech_complex_sklearn_itf.hires.png"><code class="xref download docutils literal notranslate"><span class="pre">hires.png</span></code></a>, <a class="reference download internal" download="" href="_downloads/934b09d8f1e10948ffb213b36fc30490/cech_complex_sklearn_itf.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a>)</p>
+<figure class="align-default" id="id1">
+<img alt="_images/cech_complex_sklearn_itf.png" class="plot-directive" src="_images/cech_complex_sklearn_itf.png" />
+<figcaption>
+<p><span class="caption-text">Regression line of the model</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 </section>
 <section id="cech-complex-persistence-scikit-learn-like-interface-reference">
 <h2>Čech complex persistence scikit-learn like interface reference<a class="headerlink" href="#cech-complex-persistence-scikit-learn-like-interface-reference" title="Link to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.sklearn.CechPersistence">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.sklearn.</span></span><span class="sig-name descname"><span class="pre">CechPersistence</span></span><a class="reference internal" href="_modules/gudhi/sklearn/cech_persistence.html#CechPersistence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.CechPersistence" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerMixin</span></code></p>
+<p>This is a class for computing the same persistent homology as the Čech complex, while being significantly smaller,
+using internally a <a class="reference internal" href="delaunay_complex_ref.html#gudhi.DelaunayCechComplex" title="gudhi.DelaunayCechComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelaunayCechComplex</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.sklearn.CechPersistence.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">homology_dimensions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'safe'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_squared_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">homology_coeff_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/cech_persistence.html#CechPersistence.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.CechPersistence.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Constructor for the CechPersistence class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.sklearn.CechPersistence.params.homology_dimensions"></span><strong>homology_dimensions</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CechPersistence.params.homology_dimensions">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span>) – The returned persistence diagrams dimension(s).
+Short circuit the use of <a class="reference internal" href="representations.html#gudhi.representations.preprocessing.DimensionSelector" title="gudhi.representations.preprocessing.DimensionSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">DimensionSelector</span></code></a> when only
+one dimension matters (in other words, when <cite>homology_dimensions</cite> is an int).</p></li>
+<li><p><span class="target" id="gudhi.sklearn.CechPersistence.params.precision"></span><strong>precision</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CechPersistence.params.precision">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'fast'</span></code>, <code class="docutils literal notranslate"><span class="pre">'safe'</span></code>, <code class="docutils literal notranslate"><span class="pre">'exact'</span></code>]</span>) – Complex precision can be ‘fast’, ‘safe’ or ‘exact’. Default is ‘safe’.</p></li>
+<li><p><span class="target" id="gudhi.sklearn.CechPersistence.params.output_squared_values"></span><strong>output_squared_values</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CechPersistence.params.output_squared_values">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Square filtration values when <cite>True</cite>. Default is <cite>False</cite> (contrary to its
+default value in <a class="reference internal" href="delaunay_complex_ref.html#gudhi.DelaunayCechComplex" title="gudhi.DelaunayCechComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelaunayCechComplex</span></code></a>).</p></li>
+<li><p><span class="target" id="gudhi.sklearn.CechPersistence.params.threshold"></span><strong>threshold</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CechPersistence.params.threshold">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The maximum filtration value the simplices shall not exceed. Default is set to infinity, and
+there is very little point using anything else since it does not save time.
+Notice that the filtration values (equal to radii, by default, or squared radii) will be different in
+function of <cite>output_squared_values</cite> value (when <cite>False</cite>, by default, or <cite>True</cite>).</p></li>
+<li><p><span class="target" id="gudhi.sklearn.CechPersistence.params.homology_coeff_field"></span><strong>homology_coeff_field</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CechPersistence.params.homology_coeff_field">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The homology coefficient field. Must be a prime number. Default value is 11.</p></li>
+<li><p><span class="target" id="gudhi.sklearn.CechPersistence.params.n_jobs"></span><strong>n_jobs</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CechPersistence.params.n_jobs">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – Number of jobs to run in parallel. <cite>None</cite> (default value) means <cite>n_jobs = 1</cite> unless in a
+joblib.parallel_backend context. <cite>-1</cite> means using all processors. cf.
+<a class="reference external" href="https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html">https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html</a> for more details.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.sklearn.CechPersistence.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/cech_persistence.html#CechPersistence.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.CechPersistence.fit" title="Link to this definition">#</a></dt>
+<dd><p>Fit the <cite>CechPersistence</cite> class in function of <cite>homology_dimensions</cite> type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.sklearn.CechPersistence.get_feature_names_out">
+<span class="sig-name descname"><span class="pre">get_feature_names_out</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/cech_persistence.html#CechPersistence.get_feature_names_out"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.CechPersistence.get_feature_names_out" title="Link to this definition">#</a></dt>
+<dd><p>Provide column names for implementing sklearn’s set_output API.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.sklearn.CechPersistence.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/cech_persistence.html#CechPersistence.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.CechPersistence.transform" title="Link to this definition">#</a></dt>
+<dd><p>Compute all the Čech complexes and their associated persistence diagrams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.sklearn.CechPersistence.transform.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CechPersistence.transform.params.X">¶</a> (<em>list</em><em> of </em><em>list</em><em> of </em><em>float OR list</em><em> of </em><em>numpy.ndarray</em>) – list of point clouds as Euclidean coordinates.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Persistence diagrams in the format:</p>
+<ul class="simple">
+<li><p>If <cite>homology_dimensions</cite> was set to <cite>n</cite>: <cite>[array( Hn(X[0]) ), array( Hn(X[1]) ), …]</cite></p></li>
+<li><p>If <cite>homology_dimensions</cite> was set to <cite>[i, j]</cite>:
+<cite>[[array( Hi(X[0]) ), array( Hj(X[0]) )], [array( Hi(X[1]) ), array( Hj(X[1]) )], …]</cite></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of numpy ndarray of shape (,2) or list of list of numpy ndarray of shape (,2)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.sklearn.WeightedCechPersistence">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.sklearn.</span></span><span class="sig-name descname"><span class="pre">WeightedCechPersistence</span></span><a class="reference internal" href="_modules/gudhi/sklearn/cech_persistence.html#WeightedCechPersistence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.WeightedCechPersistence" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerMixin</span></code></p>
+<p>This is a class for computing the same persistent homology as the Weighted Čech complex, while being significantly
+smaller, using internally a Weighted version of <a class="reference internal" href="delaunay_complex_ref.html#gudhi.AlphaComplex" title="gudhi.AlphaComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">AlphaComplex</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.sklearn.WeightedCechPersistence.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">homology_dimensions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'safe'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_squared_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">homology_coeff_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/cech_persistence.html#WeightedCechPersistence.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.WeightedCechPersistence.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Constructor for the WeightedCechPersistence class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.sklearn.WeightedCechPersistence.params.homology_dimensions"></span><strong>homology_dimensions</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.WeightedCechPersistence.params.homology_dimensions">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</span>) – The returned persistence diagrams dimension(s).
+Short circuit the use of <a class="reference internal" href="representations.html#gudhi.representations.preprocessing.DimensionSelector" title="gudhi.representations.preprocessing.DimensionSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">DimensionSelector</span></code></a> when only
+one dimension matters (in other words, when <cite>homology_dimensions</cite> is an int).</p></li>
+<li><p><span class="target" id="gudhi.sklearn.WeightedCechPersistence.params.precision"></span><strong>precision</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.WeightedCechPersistence.params.precision">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'fast'</span></code>, <code class="docutils literal notranslate"><span class="pre">'safe'</span></code>, <code class="docutils literal notranslate"><span class="pre">'exact'</span></code>]</span>) – Complex precision can be ‘fast’, ‘safe’ or ‘exact’. Default is ‘safe’.</p></li>
+<li><p><span class="target" id="gudhi.sklearn.WeightedCechPersistence.params.output_squared_values"></span><strong>output_squared_values</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.WeightedCechPersistence.params.output_squared_values">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Square filtration values when <cite>True</cite>. Default is <cite>True</cite>  (contrary to the unweighted
+version <a class="reference internal" href="#gudhi.sklearn.CechPersistence" title="gudhi.sklearn.CechPersistence"><code class="xref py py-class docutils literal notranslate"><span class="pre">CechPersistence</span></code></a>).</p></li>
+<li><p><span class="target" id="gudhi.sklearn.WeightedCechPersistence.params.threshold"></span><strong>threshold</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.WeightedCechPersistence.params.threshold">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The maximum filtration value the simplices shall not exceed. Default is set to infinity, and
+there is very little point using anything else since it does not save time.
+Notice that the filtration values (equal to squared radii, by default, or radii) will be different in
+function of <cite>output_squared_values</cite> value (when <cite>True</cite>, by default, or <cite>False</cite>).</p></li>
+<li><p><span class="target" id="gudhi.sklearn.WeightedCechPersistence.params.homology_coeff_field"></span><strong>homology_coeff_field</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.WeightedCechPersistence.params.homology_coeff_field">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The homology coefficient field. Must be a prime number. Default value is 11.</p></li>
+<li><p><span class="target" id="gudhi.sklearn.WeightedCechPersistence.params.n_jobs"></span><strong>n_jobs</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.WeightedCechPersistence.params.n_jobs">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – Number of jobs to run in parallel. <cite>None</cite> (default value) means <cite>n_jobs = 1</cite> unless in a
+joblib.parallel_backend context. <cite>-1</cite> means using all processors. cf.
+<a class="reference external" href="https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html">https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html</a> for more details.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.sklearn.WeightedCechPersistence.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/cech_persistence.html#WeightedCechPersistence.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.WeightedCechPersistence.fit" title="Link to this definition">#</a></dt>
+<dd><p>Fit the <cite>WeightedCechPersistence</cite> class in function of <cite>homology_dimensions</cite> type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.sklearn.WeightedCechPersistence.get_feature_names_out">
+<span class="sig-name descname"><span class="pre">get_feature_names_out</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/cech_persistence.html#WeightedCechPersistence.get_feature_names_out"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.WeightedCechPersistence.get_feature_names_out" title="Link to this definition">#</a></dt>
+<dd><p>Provide column names for implementing sklearn’s set_output API.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.sklearn.WeightedCechPersistence.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/cech_persistence.html#WeightedCechPersistence.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.WeightedCechPersistence.transform" title="Link to this definition">#</a></dt>
+<dd><p>Compute all the Weighted Čech complexes and their associated persistence diagrams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.sklearn.WeightedCechPersistence.transform.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.WeightedCechPersistence.transform.params.X">¶</a> (<em>list</em><em> of </em><em>list</em><em> of </em><em>float OR list</em><em> of </em><em>numpy.ndarray</em>) – list of point clouds as Euclidean coordinates, plus the weight (as the last column value).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Persistence diagrams in the format:</p>
+<ul class="simple">
+<li><p>If <cite>homology_dimensions</cite> was set to <cite>n</cite>: <cite>[array( Hn(X[0]) ), array( Hn(X[1]) ), …]</cite></p></li>
+<li><p>If <cite>homology_dimensions</cite> was set to <cite>[i, j]</cite>:
+<cite>[[array( Hi(X[0]) ), array( Hj(X[0]) )], [array( Hi(X[1]) ), array( Hj(X[1]) )], …]</cite></p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of numpy ndarray of shape (,2) or list of list of numpy ndarray of shape (,2)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -732,7 +876,23 @@ regression line of the model when fitting on the other 25% of the dataset.</p>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cech-complex-persistence-scikit-learn-like-interface-example">Čech complex persistence scikit-learn like interface example</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cech-complex-persistence-scikit-learn-like-interface-reference">Čech complex persistence scikit-learn like interface reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cech-complex-persistence-scikit-learn-like-interface-reference">Čech complex persistence scikit-learn like interface reference</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.sklearn.CechPersistence"><code class="docutils literal notranslate"><span class="pre">CechPersistence</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.sklearn.CechPersistence.__init__"><code class="docutils literal notranslate"><span class="pre">CechPersistence.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.sklearn.CechPersistence.fit"><code class="docutils literal notranslate"><span class="pre">CechPersistence.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.sklearn.CechPersistence.get_feature_names_out"><code class="docutils literal notranslate"><span class="pre">CechPersistence.get_feature_names_out()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.sklearn.CechPersistence.transform"><code class="docutils literal notranslate"><span class="pre">CechPersistence.transform()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.sklearn.WeightedCechPersistence"><code class="docutils literal notranslate"><span class="pre">WeightedCechPersistence</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.sklearn.WeightedCechPersistence.__init__"><code class="docutils literal notranslate"><span class="pre">WeightedCechPersistence.__init__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.sklearn.WeightedCechPersistence.fit"><code class="docutils literal notranslate"><span class="pre">WeightedCechPersistence.fit()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.sklearn.WeightedCechPersistence.get_feature_names_out"><code class="docutils literal notranslate"><span class="pre">WeightedCechPersistence.get_feature_names_out()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.sklearn.WeightedCechPersistence.transform"><code class="docutils literal notranslate"><span class="pre">WeightedCechPersistence.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Periodic cubical complex reference manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>Periodic cubical complex reference manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -31,8 +31,8 @@
 <link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -48,7 +48,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -58,7 +58,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -607,7 +607,7 @@ in computational mathematics (specially rigorous numerics) and image
 analysis.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_dimensional_cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periodic_dimensions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perseus_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.__init__" title="Link to this definition">#</a></dt>
 <dd><p>PeriodicCubicalComplex constructor from dimensions and cells
 (either vertices or top dimensional) or from a Perseus-style file name.</p>
 <p>Note that in case the periodic cubical complex is constructed from
@@ -709,7 +709,7 @@ can lead to an undefined behavior.</p>
 <p>This function returns a list of pairs of top-dimensional cells corresponding to
 the persistence birth and death cells of the filtration. The cells are represented by
 their indices in the input list of top-dimensional cells (and not their indices in the
-internal datastructure that includes non-maximal cells). Note that when two adjacent
+internal data structure that includes non-maximal cells). Note that when two adjacent
 top-dimensional cells have the same filtration value, we arbitrarily return one of the two
 when calling the function on one of their common faces.</p>
 <dl class="field-list simple">
@@ -756,7 +756,7 @@ Sets min_persistence to -1.0 to see all values.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.dimension">
-<span class="sig-name descname"><span class="pre">dimension</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.dimension" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.dimension" title="Link to this definition">#</a></dt>
 <dd><p>This function returns the dimension of the complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -767,7 +767,7 @@ Sets min_persistence to -1.0 to see all values.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.PeriodicCubicalComplex.num_simplices">
-<span class="sig-name descname"><span class="pre">num_simplices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.num_simplices" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">num_simplices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#gudhi.PeriodicCubicalComplex.num_simplices" title="Link to this definition">#</a></dt>
 <dd><p>This function returns the number of all cubes in the complex.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -874,7 +874,7 @@ Modifying the values is strongly discouraged.</p>
 <dd><p>This function returns a list of pairs of vertices corresponding to
 the persistence birth and death cells of the filtration. The cells are represented by
 their indices in the input list of vertices (and not their indices in the
-internal datastructure that includes non-minimal cells). Note that when two adjacent
+internal data structure that includes non-minimal cells). Note that when two adjacent
 vertices have the same filtration value, we arbitrarily return one of the two
 when calling the function on one of their common faces.</p>
 <p>Since the cubical complex construction from vertices is different from the top dimensional one,

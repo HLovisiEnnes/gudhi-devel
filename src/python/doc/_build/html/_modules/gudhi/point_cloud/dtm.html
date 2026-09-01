@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gudhi.point_cloud.dtm &#8212; gudhi v3.11.0 documentation</title>
+    <title>gudhi.point_cloud.dtm &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -30,8 +30,8 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -47,7 +47,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -57,7 +57,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -605,19 +605,19 @@
 <span class="c1"># Modification(s):</span>
 <span class="c1">#   - YYYY/MM Author: Description of the modification</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">.knn</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNearestNeighbors</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
+
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">__author__</span> <span class="o">=</span> <span class="s2">"Marc Glisse"</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">"Copyright (C) 2020 Inria"</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.knn</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNearestNeighbors</span>
 
 
 <div class="viewcode-block" id="DistanceToMeasure">
 <a class="viewcode-back" href="../../../point_cloud.html#gudhi.point_cloud.dtm.DistanceToMeasure">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DistanceToMeasure</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Class to compute the distance to the empirical measure defined by a point set, </span>
+<span class="sd">    Class to compute the distance to the empirical measure defined by a point set,</span>
 <span class="sd">    as introduced in :cite:`dtmgeoinference2011`.</span>
 <span class="sd">    """</span>
 
@@ -652,7 +652,11 @@
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"metric"</span><span class="p">,</span> <span class="s2">"euclidean"</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">"neighbors"</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNearestNeighbors</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span>
+                <span class="n">return_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">return_distance</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">sort_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
@@ -675,7 +679,7 @@
             <span class="n">distances</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">distances</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">knn</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">distances</span> <span class="o">=</span> <span class="n">distances</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">distances</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span>
         <span class="n">dtm</span> <span class="o">=</span> <span class="n">distances</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span>
         <span class="n">dtm</span> <span class="o">=</span> <span class="n">dtm</span> <span class="o">**</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">)</span>
         <span class="c1"># We compute too many powers, 1/p in knn then q in dtm, 1/q in dtm then q or some log in the caller.</span>
@@ -700,7 +704,9 @@
 
 <div class="viewcode-block" id="DTMDensity.__init__">
 <a class="viewcode-back" href="../../../point_cloud.html#gudhi.point_cloud.dtm.DTMDensity.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Args:</span>
 <span class="sd">            k (int): number of neighbors (possibly including the point itself). Optional if it can be guessed</span>
@@ -720,14 +726,16 @@
         <span class="k">if</span> <span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
             <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">assert</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"metric"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"neighbors"</span><span class="p">,</span> <span class="s1">'Must specify k or weights, unless metric is "neighbors"'</span>
+                <span class="k">if</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"metric"</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">"neighbors"</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Must specify k or weights, unless metric is 'neighbors'"</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">k</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
-            <span class="k">assert</span> <span class="n">k</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">k</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> <span class="s2">"k differs from the length of weights"</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"k differs from the length of weights"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">kwargs</span>
@@ -750,7 +758,11 @@
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"metric"</span><span class="p">,</span> <span class="s2">"euclidean"</span><span class="p">)</span> <span class="o">!=</span> <span class="s2">"neighbors"</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">knn</span> <span class="o">=</span> <span class="n">KNearestNeighbors</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sort_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span>
+                <span class="n">return_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">return_distance</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">sort_results</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"metric"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"precomputed"</span><span class="p">:</span>
@@ -770,10 +782,8 @@
         <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span>
         <span class="n">dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span>
         <span class="k">if</span> <span class="n">dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"metric"</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span>
-                <span class="s2">"neighbors"</span><span class="p">,</span>
-                <span class="s2">"precomputed"</span><span class="p">,</span>
-            <span class="p">},</span> <span class="s2">"dim not specified and cannot guess the dimension"</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">"metric"</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"neighbors"</span><span class="p">,</span> <span class="s2">"precomputed"</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"dim not specified and cannot guess the dimension"</span><span class="p">)</span>
             <span class="n">dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">q</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">q</span> <span class="o">=</span> <span class="n">dim</span>
@@ -788,7 +798,7 @@
                 <span class="n">distances</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">distances</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">knn</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">distances</span> <span class="o">=</span> <span class="n">distances</span> <span class="o">**</span> <span class="n">q</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">distances</span><span class="o">**</span><span class="n">q</span>
         <span class="n">dtm</span> <span class="o">=</span> <span class="p">(</span><span class="n">distances</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">:</span>
             <span class="n">dtm</span> <span class="o">/=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="n">q</span> <span class="o">/</span> <span class="n">dim</span><span class="p">)</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Linear orbits &#8212; gudhi v3.11.0 documentation</title>
+    <title>Linear orbits &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -49,7 +49,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -59,7 +59,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -625,6 +625,40 @@ representation orbit of the specified Lie group.</p>
 <span class="n">gen_points</span> <span class="o">=</span> <span class="n">sample_from_lie_group</span><span class="p">(</span><span class="n">group</span> <span class="o">=</span> <span class="s2">"torus"</span><span class="p">,</span> <span class="n">ambient_dim</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">nb_points</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
 </pre></div>
 </div>
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.datasets.linear_orbits.sample_from_lie_group">
+<span class="sig-prename descclassname"><span class="pre">gudhi.datasets.linear_orbits.</span></span><span class="sig-name descname"><span class="pre">sample_from_lie_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ambient_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conjugate_algebra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_multiply_algebra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">translate_orbit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">span_ambient_space</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/datasets/linear_orbits.html#sample_from_lie_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.datasets.linear_orbits.sample_from_lie_group" title="Link to this definition">#</a></dt>
+<dd><p>Samples an orbit of a random representation in a given ambient space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group.params.group"></span><strong>group</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group.params.group">¶</a> (<em>str</em>) – The group type, e.g., ‘torus’, ‘SU(2)’, or ‘SO(3)’.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group.params.ambient_dim"></span><strong>ambient_dim</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group.params.ambient_dim">¶</a> (<em>int</em>) – Dimension of the ambient space.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group.params.nb_points"></span><strong>nb_points</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group.params.nb_points">¶</a> (<em>int</em>) – Number of points to sample on the orbit.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group.params.frequency_max"></span><strong>frequency_max</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group.params.frequency_max">¶</a> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Maximal frequency for torus representations.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group.params.group_dim"></span><strong>group_dim</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group.params.group_dim">¶</a> (<em>Optional</em><em>[</em><em>int</em><em>]</em>) – Dimension of the group (for torus).</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group.params.conjugate_algebra"></span><strong>conjugate_algebra</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group.params.conjugate_algebra">¶</a> (<em>bool</em>) – Whether to conjugate the algebra by a random orthogonal matrix.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group.params.right_multiply_algebra"></span><strong>right_multiply_algebra</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group.params.right_multiply_algebra">¶</a> (<em>bool</em>) – Whether to right-multiply the algebra by a random orthogonal matrix.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group.params.translate_orbit"></span><strong>translate_orbit</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group.params.translate_orbit">¶</a> (<em>bool</em>) – Whether to translate the sampled orbit by a random orthogonal transformation.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group.params.method"></span><strong>method</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group.params.method">¶</a> (<em>str</em>) – Sampling method, ‘random’ or ‘uniform’.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group.params.span_ambient_space"></span><strong>span_ambient_space</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group.params.span_ambient_space">¶</a> (<em>bool</em>) – Whether to only consider representations whose orbits span the ambient space.
+Only implemented for the circle or the non-Abelian groups.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group.params.verbose"></span><strong>verbose</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group.params.verbose">¶</a> (<em>bool</em>) – Whether to print information about the sampled orbit.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The sampled orbit (array of shape</dt><dd><p>(nb_points, ambient_dim)) and representation type.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[np.ndarray, tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
 <p>The representation type can be explicitly given.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.datasets.linear_orbits</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_from_lie_group_rep</span>
 
@@ -632,6 +666,37 @@ representation orbit of the specified Lie group.</p>
  <span class="n">gen_points</span> <span class="o">=</span> <span class="n">sample_from_lie_group_rep</span><span class="p">(</span><span class="n">group</span> <span class="o">=</span> <span class="s2">"torus"</span><span class="p">,</span> <span class="n">rep_type</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),),</span> <span class="n">nb_points</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
 </pre></div>
 </div>
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.datasets.linear_orbits.sample_from_lie_group_rep">
+<span class="sig-prename descclassname"><span class="pre">gudhi.datasets.linear_orbits.</span></span><span class="sig-name descname"><span class="pre">sample_from_lie_group_rep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rep_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conjugate_algebra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_multiply_algebra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">translate_orbit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/datasets/linear_orbits.html#sample_from_lie_group_rep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.datasets.linear_orbits.sample_from_lie_group_rep" title="Link to this definition">#</a></dt>
+<dd><p>Samples points on the orbit of a compact Lie group representation, given its representation type. We suppose that
+the algebra is isomorphic to the canonical algebra indicated in rep_type. This allows us to compute the periods,
+which are, otherwise, not stably computable from the algebra alone.</p>
+<p>Note that the output orbit, in the uniform case, may not contain exactly nb_points points (this only happens if
+the parameter nb_points is a perfect power of the group dimension). In the random case, it will contain exactly
+nb_points points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.group"></span><strong>group</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.group">¶</a> (<em>str</em>) – The group type, e.g., ‘torus’ or ‘SU(2)’.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.rep_type"></span><strong>rep_type</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.rep_type">¶</a> (<em>tuple</em>) – Representation type parameters (e.g., weights or partition).</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.nb_points"></span><strong>nb_points</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.nb_points">¶</a> (<em>int</em>) – Number of points to sample.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.conjugate_algebra"></span><strong>conjugate_algebra</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.conjugate_algebra">¶</a> (<em>bool</em>) – Whether to conjugate the algebra by a random orthogonal matrix.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.right_multiply_algebra"></span><strong>right_multiply_algebra</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.right_multiply_algebra">¶</a> (<em>bool</em>) – Whether to right-multiply the algebra by a random orthogonal matrix.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.translate_orbit"></span><strong>translate_orbit</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.translate_orbit">¶</a> (<em>bool</em>) – Whether to translate the sampled orbit by a random orthogonal transformation.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.method"></span><strong>method</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.method">¶</a> (<em>str</em>) – Sampling method, ‘uniform’ or ‘random’. Defaults to ‘uniform’.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.verbose"></span><strong>verbose</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_group_rep.params.verbose">¶</a> (<em>bool</em>) – Whether to print information about the sampled orbit.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Array of sampled points on the orbit.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
 <p>The last method allows for sampling from a specific representation orbit of the specified Lie group.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.datasets.linear_orbits</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_from_lie_algebra</span>
  <span class="n">alg</span> <span class="o">=</span> <span class="p">[</span>
@@ -644,6 +709,33 @@ representation orbit of the specified Lie group.</p>
 <span class="n">gen_points</span> <span class="o">=</span> <span class="n">sample_from_lie_algebra</span><span class="p">(</span><span class="n">group</span> <span class="o">=</span> <span class="s2">"torus"</span><span class="p">,</span> <span class="n">rep_type</span> <span class="o">=</span>  <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),),</span> <span class="n">algebra</span> <span class="o">=</span> <span class="n">alg</span><span class="p">,</span> <span class="n">nb_points</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
 </pre></div>
 </div>
+<dl class="py function">
+<dt class="sig sig-object py" id="gudhi.datasets.linear_orbits.sample_from_lie_algebra">
+<span class="sig-prename descclassname"><span class="pre">gudhi.datasets.linear_orbits.</span></span><span class="sig-name descname"><span class="pre">sample_from_lie_algebra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rep_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algebra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/datasets/linear_orbits.html#sample_from_lie_algebra"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.datasets.linear_orbits.sample_from_lie_algebra" title="Link to this definition">#</a></dt>
+<dd><p>Samples points on the orbit of a compact Lie group representation, given its Lie algebra generators. We suppose
+that the algebra is isomorphic to the canonical algebra indicated in rep_type. This allows us to compute the
+periods, which are, otherwise, not stably computable from the algebra alone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.group"></span><strong>group</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.group">¶</a> (<em>str</em>) – The group type, e.g., ‘torus’ or ‘SU(2)’.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.rep_type"></span><strong>rep_type</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.rep_type">¶</a> (<em>tuple</em>) – Representation type parameters (e.g., weights or partition).</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.algebra"></span><strong>algebra</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.algebra">¶</a> (<em>list</em><em>[</em><em>np.ndarray</em><em>]</em>) – List of Lie algebra generators as matrices.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.x"></span><strong>x</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.x">¶</a> (<em>np.ndarray</em>) – Initial vector to act on.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.nb_points"></span><strong>nb_points</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.nb_points">¶</a> (<em>int</em>) – Number of points to sample.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.method"></span><strong>method</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.method">¶</a> (<em>str</em>) – Sampling method, ‘uniform’ or ‘random’. Defaults to ‘uniform’. Only works for the torus.</p></li>
+<li><p><span class="target" id="gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.verbose"></span><strong>verbose</strong><a class="paramlink headerlink reference internal" href="#gudhi.datasets.linear_orbits.sample_from_lie_algebra.params.verbose">¶</a> (<em>bool</em>) – Whether to print information about the sampled orbit.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Array of sampled points on the orbit.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
@@ -677,7 +769,12 @@ representation orbit of the specified Lie group.</p>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definitions">Definitions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uses">Uses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uses">Uses</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.datasets.linear_orbits.sample_from_lie_group"><code class="docutils literal notranslate"><span class="pre">sample_from_lie_group()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.datasets.linear_orbits.sample_from_lie_group_rep"><code class="docutils literal notranslate"><span class="pre">sample_from_lie_group_rep()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.datasets.linear_orbits.sample_from_lie_algebra"><code class="docutils literal notranslate"><span class="pre">sample_from_lie_algebra()</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

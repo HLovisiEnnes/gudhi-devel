@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gudhi.datasets.remote &#8212; gudhi v3.11.0 documentation</title>
+    <title>gudhi.datasets.remote &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -30,8 +30,8 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -47,7 +47,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -57,7 +57,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -603,9 +603,12 @@
 <span class="c1"># Copyright (C) 2021 Inria</span>
 <span class="c1">#</span>
 <span class="c1"># Modification(s):</span>
-<span class="c1">#   - YYYY/MM Author: Description of the modification</span>
 <span class="c1">#   - 2022/09 Vincent Rouvreau: factorize _fetch_remote_license</span>
 <span class="c1">#                               fetch activities dataset</span>
+<span class="c1">#   - YYYY/MM Author: Description of the modification</span>
+
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
+
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">os.path</span><span class="w"> </span><span class="kn">import</span> <span class="n">join</span><span class="p">,</span> <span class="n">split</span><span class="p">,</span> <span class="n">exists</span><span class="p">,</span> <span class="n">expanduser</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">makedirs</span><span class="p">,</span> <span class="n">remove</span><span class="p">,</span> <span class="n">environ</span>
@@ -616,6 +619,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_get_data_home</span><span class="p">(</span><span class="n">data_home</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -721,11 +725,15 @@
             <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
                 <span class="s2">"</span><span class="si">{}</span><span class="s2"> has a SHA256 checksum : </span><span class="si">{}</span><span class="s2">, "</span>
                 <span class="s2">"different from expected : </span><span class="si">{}</span><span class="s2">."</span>
-                <span class="s2">"The file may be corrupted or the given url may be wrong !"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">checksum</span><span class="p">,</span> <span class="n">file_checksum</span><span class="p">)</span>
+                <span class="s2">"The file may be corrupted or the given url may be wrong !"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">file_path</span><span class="p">,</span> <span class="n">checksum</span><span class="p">,</span> <span class="n">file_checksum</span>
+                <span class="p">)</span>
             <span class="p">)</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">_fetch_remote_license</span><span class="p">(</span><span class="n">license_url</span><span class="p">,</span> <span class="n">license_path</span><span class="p">,</span> <span class="n">license_checksum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">accept_license</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_fetch_remote_license</span><span class="p">(</span>
+    <span class="n">license_url</span><span class="p">,</span> <span class="n">license_path</span><span class="p">,</span> <span class="n">license_checksum</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">accept_license</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Fetch the wanted license from the given url and save it in file_path.</span>
 
@@ -850,7 +858,9 @@
 
     <span class="n">file_url</span> <span class="o">=</span> <span class="s2">"https://raw.githubusercontent.com/GUDHI/gudhi-data/main/points/bunny/bunny.npy"</span>
     <span class="n">file_checksum</span> <span class="o">=</span> <span class="s2">"f382482fd89df8d6444152dc8fd454444fe597581b193fd139725a85af4a6c6e"</span>
-    <span class="n">license_url</span> <span class="o">=</span> <span class="s2">"https://raw.githubusercontent.com/GUDHI/gudhi-data/main/points/bunny/bunny.LICENSE"</span>
+    <span class="n">license_url</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"https://raw.githubusercontent.com/GUDHI/gudhi-data/main/points/bunny/bunny.LICENSE"</span>
+    <span class="p">)</span>
     <span class="n">license_checksum</span> <span class="o">=</span> <span class="s2">"b763dbe1b2fc6015d05cbf7bcc686412a2eb100a1f2220296e3b4a644c69633a"</span>
 
     <span class="n">archive_path</span> <span class="o">=</span> <span class="n">_get_archive_path</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">"points/bunny/bunny.npy"</span><span class="p">)</span>
@@ -923,17 +933,19 @@
 
     <span class="n">file_url</span> <span class="o">=</span> <span class="s2">"https://raw.githubusercontent.com/GUDHI/gudhi-data/main/points/activities/activities_p1_left_leg.npy"</span>
     <span class="n">file_checksum</span> <span class="o">=</span> <span class="s2">"ff813f717dbd3c8f8a95e59a7d8496d0b43c440e85a4db1f2b338cbfa9c02f25"</span>
-    <span class="n">activities_license_url</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">"https://raw.githubusercontent.com/GUDHI/gudhi-data/main/points/activities/activities.LICENSE"</span>
+    <span class="n">activities_license_url</span> <span class="o">=</span> <span class="s2">"https://raw.githubusercontent.com/GUDHI/gudhi-data/main/points/activities/activities.LICENSE"</span>
+    <span class="n">activities_license_checksum</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">"f5ce6749fa9d5359d7b0c4c37d0b61e5d9520f9494cd53be94295d3967ee4023"</span>
     <span class="p">)</span>
-    <span class="n">activities_license_checksum</span> <span class="o">=</span> <span class="s2">"f5ce6749fa9d5359d7b0c4c37d0b61e5d9520f9494cd53be94295d3967ee4023"</span>
     <span class="n">gudhi_data_set_path</span> <span class="o">=</span> <span class="s2">"points/activities/activities_p1_left_leg.npy"</span>
 
     <span class="n">archive_path</span> <span class="o">=</span> <span class="n">_get_archive_path</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">gudhi_data_set_path</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">exists</span><span class="p">(</span><span class="n">archive_path</span><span class="p">):</span>
         <span class="n">_fetch_remote</span><span class="p">(</span><span class="n">file_url</span><span class="p">,</span> <span class="n">archive_path</span><span class="p">,</span> <span class="n">file_checksum</span><span class="p">)</span>
         <span class="n">license_path</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="n">split</span><span class="p">(</span><span class="n">archive_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">"activities.LICENSE"</span><span class="p">)</span>
-        <span class="n">_fetch_remote_license</span><span class="p">(</span><span class="n">activities_license_url</span><span class="p">,</span> <span class="n">license_path</span><span class="p">,</span> <span class="n">activities_license_checksum</span><span class="p">,</span> <span class="n">accept_license</span><span class="p">)</span>
+        <span class="n">_fetch_remote_license</span><span class="p">(</span>
+            <span class="n">activities_license_url</span><span class="p">,</span> <span class="n">license_path</span><span class="p">,</span> <span class="n">activities_license_checksum</span><span class="p">,</span> <span class="n">accept_license</span>
+        <span class="p">)</span>
 
     <span class="n">ds</span> <span class="o">=</span> <span class="n">_load_and_cache_activity</span><span class="p">(</span><span class="n">archive_path</span><span class="p">)</span>
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Installation &#8212; gudhi v3.11.0 documentation</title>
+    <title>Installation &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -31,8 +31,8 @@
 <link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -49,7 +49,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -59,7 +59,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -629,7 +629,7 @@ different, and in particular the <cite>python/</cite> subdirectory is actually <
 there.</p>
 <p>The library uses c++17 and requires <a class="reference external" href="https://www.boost.org/">Boost</a> <span class="math notranslate nohighlight">\(\geq\)</span> 1.71.0,
 <a class="reference external" href="https://www.cmake.org/">CMake</a> <span class="math notranslate nohighlight">\(\geq\)</span> 3.15,
-Python <span class="math notranslate nohighlight">\(\geq\)</span> 3.9, <a class="reference external" href="http://numpy.org">NumPy</a> <span class="math notranslate nohighlight">\(\geq\)</span> 1.15.0,
+Python <span class="math notranslate nohighlight">\(\geq\)</span> 3.10, <a class="reference external" href="http://numpy.org">NumPy</a> <span class="math notranslate nohighlight">\(\geq\)</span> 1.21.6,
 <a class="reference external" href="https://scikit-build-core.readthedocs.io">scikit-build-core</a> <span class="math notranslate nohighlight">\(\geq\)</span> 0.4.3
 <a class="reference external" href="https://nanobind.readthedocs.io">nanobind</a> <span class="math notranslate nohighlight">\(\geq\)</span> 1.3.2 to compile the GUDHI Python module.
 It is a multi-platform library and compiles on Linux, Mac OSX and Visual Studio 2017 or later.</p>
@@ -840,7 +840,7 @@ PyTorch, TensorFlow and JAX in a common interface.</p>
 <p><a class="reference external" href="https://joblib.readthedocs.io/">Joblib</a> is used both as a dependency of
 <a href="#id32"><span class="problematic" id="id33">`Scikit-learn`_</span></a>, and directly for parallelism in some modules
 (<a class="reference internal" href="point_cloud.html#gudhi.point_cloud.knn.KNearestNeighbors" title="gudhi.point_cloud.knn.KNearestNeighbors"><code class="xref py py-class docutils literal notranslate"><span class="pre">KNearestNeighbors</span></code></a>,
-<code class="xref py py-func docutils literal notranslate"><span class="pre">pairwise_persistence_diagram_distances()</span></code>).</p>
+<a class="reference internal" href="representations.html#gudhi.representations.metrics.pairwise_persistence_diagram_distances" title="gudhi.representations.metrics.pairwise_persistence_diagram_distances"><code class="xref py py-func docutils literal notranslate"><span class="pre">pairwise_persistence_diagram_distances()</span></code></a>).</p>
 </section>
 <section id="hnswlib">
 <h4>Hnswlib<a class="headerlink" href="#hnswlib" title="Link to this heading">#</a></h4>
@@ -892,8 +892,8 @@ formats and interactive environments across platforms.</p>
 </section>
 <section id="networkx">
 <h4>NetworkX<a class="headerlink" href="#networkx" title="Link to this heading">#</a></h4>
-<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">GraphInducedComplex</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MapperComplex</span></code> and
-<code class="xref py py-class docutils literal notranslate"><span class="pre">NerveComplex</span></code> <cite>get_networkx</cite> methods require <a class="reference external" href="https://networkx.org/">NetworkX</a>,
+<p>The <a class="reference internal" href="cover_complex_sklearn_isk_ref.html#gudhi.cover_complex.GraphInducedComplex" title="gudhi.cover_complex.GraphInducedComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphInducedComplex</span></code></a>, <a class="reference internal" href="cover_complex_sklearn_isk_ref.html#gudhi.cover_complex.MapperComplex" title="gudhi.cover_complex.MapperComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapperComplex</span></code></a> and
+<a class="reference internal" href="cover_complex_sklearn_isk_ref.html#gudhi.cover_complex.NerveComplex" title="gudhi.cover_complex.NerveComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">NerveComplex</span></code></a> <cite>get_networkx</cite> methods require <a class="reference external" href="https://networkx.org/">NetworkX</a>,
 a Python library for studying and visualizing graphs and networks.</p>
 </section>
 <section id="pandas">

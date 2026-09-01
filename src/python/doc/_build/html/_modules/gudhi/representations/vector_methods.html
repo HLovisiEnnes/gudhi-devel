@@ -1,0 +1,1911 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gudhi.representations.vector_methods &#8212; gudhi v3.14.0a0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css?v=dd72e65a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/python_gudhi.css?v=ff7d7c73" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
+
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/gudhi/representations/vector_methods';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="3.14.0a0" />
+  
+    
+    <script src="../../../_static/searchtools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../searchindex.js"></script>
+  
+    <!-- Matomo -->
+    <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://piwik.inria.fr/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '105']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item"><a class="navbar-brand logo" href="/">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-light" alt="Home">
+    <img src="https://gudhi.inria.fr/assets/img/home.png" class="logo__image only-dark" alt="Home">
+    <p class="title logo__title">GUDHI</p>
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+      
+        <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item"><ul id="bd-navbar-elements" class="navbar-nav">
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PROJECT
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/people/">
+              PEOPLE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/keepintouch/">
+              KEEP IN TOUCH
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/partners/">
+              PARTNERS AND FUNDING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/relatedprojects/">
+              RELATED PROJECTS
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/theyaretalkingaboutus/">
+              THEY ARE TALKING ABOUT US
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/inaction/">
+              GUDHI IN ACTION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/etymology/">
+              ETYMOLOGY
+            </a>
+          </li>
+          
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOWNLOAD
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/licensing/">
+              LICENSING
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://github.com/GUDHI/gudhi-devel/releases/latest">
+              GET THE LATEST SOURCES
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/conda/">
+              CONDA PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="https://pypi.org/project/gudhi/">
+              PIP PACKAGE
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/dockerfile/">
+              DOCKERFILE
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <div class="nav-item dropdown">
+        <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            DOCUMENTATION
+        </button>
+        <div class="dropdown-menu">
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/introduction/">
+              INTRODUCTION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/installation.html">
+              C++ INSTALLATION MANUAL
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/doc/latest/">
+              C++ DOCUMENTATION
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/installation.html">
+              PYTHON INSTALLATION MANUAL
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/python/latest/">
+              PYTHON DOCUMENTATION
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/utils/">
+              UTILITIES
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link nav-internal" href="/tutorials/">
+              TUTORIALS
+            </a>
+          </li>
+        
+        </div>
+    </div>
+    
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/interfaces/">
+          INTERFACES
+        </a>
+    </li>
+
+</ul></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul id="navbar-main-elements" class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link nav-internal" href="/contact/">CONTACT</a>
+    </li>
+
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        <div class="sidebar-primary-item"><div>
+<ul>
+<li><a class="reference internal" href="index.html">Modules</a></li>
+<li><a class="reference internal" href="installation.html">Installation</a></li>
+<li><a class="reference internal" href="examples.html">Examples</a></li>
+<li><a class="reference internal" href="citation.html">Acknowledging</a></li>
+<li><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div></div>
+        <div class="sidebar-primary-item"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <!-- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span> -->
+</form></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">gudhi.representations.vector_methods</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for gudhi.representations.vector_methods</h1><div class="highlight"><pre>
+<span></span><span class="c1"># This file is part of the Gudhi Library - https://gudhi.inria.fr/ - which is released under MIT.</span>
+<span class="c1"># See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license details.</span>
+<span class="c1"># Author(s):       Mathieu Carrière, Martin Royer, Gard Spreemann</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2018 Inria</span>
+<span class="c1">#</span>
+<span class="c1"># Modification(s):</span>
+<span class="c1">#   - 2020/06 Martin: ATOL integration</span>
+<span class="c1">#   - 2020/12 Gard: A more flexible Betti curve class capable of computing exact curves.</span>
+<span class="c1">#   - 2021/11 Vincent Rouvreau: factorize _automatic_sample_range</span>
+
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
+
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">cdist</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">NotFittedError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span><span class="p">,</span> <span class="n">MaxAbsScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">pairwise</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># New location since 1.0</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">DistanceMetric</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1"># Will be removed in 1.3</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">DistanceMetric</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiagramScaler</span><span class="p">,</span> <span class="n">BirthPersistenceTransform</span><span class="p">,</span> <span class="n">_maybe_fit_transform</span>
+
+
+<span class="c1">#############################################</span>
+<span class="c1"># Finite Vectorization methods ##############</span>
+<span class="c1">#############################################</span>
+
+
+<div class="viewcode-block" id="PersistenceImage">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.PersistenceImage">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PersistenceImage</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for computing persistence images from a list of persistence diagrams. A persistence image is a 2D function computed from a persistence diagram by convolving the diagram points with a weighted Gaussian kernel. The plane is then discretized into an image with pixels, which is flattened and returned as a vector. See http://jmlr.org/papers/v18/16-337.html for more details.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="PersistenceImage.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.PersistenceImage.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">bandwidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">weight</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">resolution</span><span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+        <span class="n">im_range</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the PersistenceImage class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            bandwidth (double): bandwidth of the Gaussian kernel (default 1.).</span>
+<span class="sd">            weight (function): weight function for the persistence diagram points (default constant function, ie lambda x: 1). This function must be defined on 2D points, ie lists or numpy arrays of the form [p_x,p_y].</span>
+<span class="sd">            resolution ([int,int]): size (in pixels) of the persistence image (default [20,20]).</span>
+<span class="sd">            im_range ([double,double,double,double]): minimum and maximum of each axis of the persistence image, of the form [x_min, x_max, y_min, y_max] (default [numpy.nan, numpy.nan, numpy.nan, numpyp.nan]). If one of the values is numpy.nan, it can be computed from the persistence diagrams with the fit() method.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">bandwidth</span><span class="p">,</span> <span class="n">weight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">im_range</span> <span class="o">=</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">im_range</span></div>
+
+
+<div class="viewcode-block" id="PersistenceImage.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.PersistenceImage.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the PersistenceImage class on a list of persistence diagrams: if any of the values in **im_range** is numpy.nan, replace it with the corresponding value computed on the given list of persistence diagrams.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">im_range</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">X</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">im_range_fixed_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">im_range</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_X</span> <span class="o">=</span> <span class="n">BirthPersistenceTransform</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+                <span class="n">pre</span> <span class="o">=</span> <span class="n">DiagramScaler</span><span class="p">(</span>
+                    <span class="n">use</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scalers</span><span class="o">=</span><span class="p">[([</span><span class="mi">0</span><span class="p">],</span> <span class="n">MinMaxScaler</span><span class="p">()),</span> <span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="n">MinMaxScaler</span><span class="p">())]</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">new_X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+                <span class="p">[</span><span class="n">mx</span><span class="p">,</span> <span class="n">my</span><span class="p">],</span> <span class="p">[</span><span class="n">Mx</span><span class="p">,</span> <span class="n">My</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">pre</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data_min_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="n">pre</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data_min_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="p">],</span> <span class="p">[</span><span class="n">pre</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data_max_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pre</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data_max_</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">im_range_fixed_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">im_range</span><span class="p">)),</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">mx</span><span class="p">,</span> <span class="n">Mx</span><span class="p">,</span> <span class="n">my</span><span class="p">,</span> <span class="n">My</span><span class="p">]),</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">im_range</span><span class="p">),</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">im_range_fixed_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">im_range</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="PersistenceImage.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.PersistenceImage.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the persistence image for each persistence diagram individually and store the results in a single numpy array.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (number of diagrams) x (number of pixels = **resolution[0]** x **resolution[1]**): output persistence images.</span>
+<span class="sd">        """</span>
+        <span class="n">num_diag</span><span class="p">,</span> <span class="n">Xfit</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="p">[]</span>
+        <span class="n">new_X</span> <span class="o">=</span> <span class="n">BirthPersistenceTransform</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_diag</span><span class="p">):</span>
+
+            <span class="n">diagram</span><span class="p">,</span> <span class="n">num_pts_in_diag</span> <span class="o">=</span> <span class="n">new_X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">num_pts_in_diag</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_pts_in_diag</span><span class="p">):</span>
+                <span class="n">w</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">diagram</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:])</span>
+
+            <span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">im_range_fixed_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">im_range_fixed_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">im_range_fixed_</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">im_range_fixed_</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">Xs</span><span class="p">,</span> <span class="n">Ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="n">diagram</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+                    <span class="o">-</span> <span class="n">x_values</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+                <span class="p">),</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span>
+                <span class="n">diagram</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_values</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span>
+                <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+            <span class="p">)</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tensordot</span><span class="p">(</span>
+                <span class="n">w</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Ys</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">)))</span>
+                <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bandwidth</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span>
+                <span class="mi">1</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">Xfit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+        <span class="n">Xfit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">Xfit</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Xfit</span></div>
+
+
+<div class="viewcode-block" id="PersistenceImage.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.PersistenceImage.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply PersistenceImage on a single persistence diagram and outputs the result.</span>
+<span class="sd">        If :func:`fit` hasn't been run, this uses `fit_transform` on a clone of the object and thus does not affect later calls.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (number of pixels = **resolution[0]** x **resolution[1]**):: output persistence image.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">_maybe_fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"im_range_fixed_"</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_automatic_sample_range</span><span class="p">(</span><span class="n">sample_range</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute and returns sample range from the persistence diagrams if one of the sample_range values is numpy.nan.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        sample_range (a numpy array of 2 float): minimum and maximum of all piecewise-linear function domains, of</span>
+<span class="sd">            the form [x_min, x_max].</span>
+<span class="sd">        X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+<span class="sd">        y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">    """</span>
+    <span class="n">nan_in_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">sample_range</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nan_in_range</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">pre</span> <span class="o">=</span> <span class="n">DiagramScaler</span><span class="p">(</span>
+                <span class="n">use</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">scalers</span><span class="o">=</span><span class="p">[([</span><span class="mi">0</span><span class="p">],</span> <span class="n">MinMaxScaler</span><span class="p">()),</span> <span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="n">MinMaxScaler</span><span class="p">())]</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="p">[</span><span class="n">mx</span><span class="p">,</span> <span class="n">my</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pre</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data_min_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pre</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data_min_</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="p">[</span><span class="n">Mx</span><span class="p">,</span> <span class="n">My</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pre</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data_max_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pre</span><span class="o">.</span><span class="n">scalers</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data_max_</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">nan_in_range</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">mx</span><span class="p">,</span> <span class="n">My</span><span class="p">]),</span> <span class="n">sample_range</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">([</span><span class="n">sample_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sample_range</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Empty list or empty diagrams: sample range is [</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">sample_range</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_trim_endpoints</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">are_endpoints_nan</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">are_endpoints_nan</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="k">if</span> <span class="n">are_endpoints_nan</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_grid_from_sample_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="n">sample_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_range</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nan_in_range_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">sample_range</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">new_resolution_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_endpoints</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_resolution_</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nan_in_range_</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sample_range_fixed_</span> <span class="o">=</span> <span class="n">_automatic_sample_range</span><span class="p">(</span><span class="n">sample_range</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_range_fixed_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_range_fixed_</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sample_range_fixed_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_range_fixed_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_resolution_</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">"First value and second value in range are the same: grid is made of resolution copies of this value"</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span>
+            <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">new_resolution_</span><span class="p">],</span> <span class="n">fill_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sample_range_fixed_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_endpoints</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span> <span class="o">=</span> <span class="n">_trim_endpoints</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nan_in_range_</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Landscape">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Landscape">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Landscape</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for computing persistence landscapes from a list of persistence diagrams. A persistence landscape is a collection of 1D piecewise-linear functions computed from the rank function associated to the persistence diagram. These piecewise-linear functions are then sampled evenly on a given range and the corresponding vectors of samples are concatenated and returned. See http://jmlr.org/papers/v16/bubenik15a.html for more details.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        grid_ (1d array): The grid on which the landscapes are computed.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="Landscape.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Landscape.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">num_landscapes</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">resolution</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">sample_range</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">keep_endpoints</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the Landscape class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            num_landscapes (int): number of piecewise-linear functions to output (default 5).</span>
+<span class="sd">            resolution (int): number of sample for all piecewise-linear functions (default 100).</span>
+<span class="sd">            sample_range ([double, double]): minimum and maximum of all piecewise-linear function domains, of the form [x_min, x_max] (default [numpy.nan, numpy.nan]). It is the interval on which samples will be drawn evenly. If one of the values is numpy.nan, it can be computed from the persistence diagrams with the fit() method.</span>
+<span class="sd">            keep_endpoints (bool): when computing `sample_range`, use the exact extremities (where the value is always 0). This is mostly useful for plotting, the default is to use a slightly smaller range.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_landscapes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_range</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">num_landscapes</span><span class="p">,</span>
+            <span class="n">resolution</span><span class="p">,</span>
+            <span class="n">sample_range</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keep_endpoints</span> <span class="o">=</span> <span class="n">keep_endpoints</span></div>
+
+
+<div class="viewcode-block" id="Landscape.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Landscape.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the Landscape class on a list of persistence diagrams: if any of the values in **sample_range** is numpy.nan, replace it with the corresponding value computed on the given list of persistence diagrams.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="n">_grid_from_sample_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Landscape.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Landscape.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the persistence landscape for each persistence diagram individually and concatenate the results.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (number of diagrams) x (number of samples = **num_landscapes** x **resolution**): output persistence landscapes.</span>
+<span class="sd">        """</span>
+
+        <span class="n">Xfit</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">x_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span>
+        <span class="k">for</span> <span class="n">diag</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+            <span class="n">midpoints</span><span class="p">,</span> <span class="n">heights</span> <span class="o">=</span> <span class="p">(</span><span class="n">diag</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">diag</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="p">(</span>
+                <span class="n">diag</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">diag</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+            <span class="n">tent_functions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span>
+                <span class="n">heights</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_values</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">midpoints</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]),</span> <span class="mi">0</span>
+            <span class="p">)</span>
+            <span class="n">n_points</span> <span class="o">=</span> <span class="n">diag</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c1"># Complete the array with zeros to get the right number of landscapes</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_landscapes</span> <span class="o">&gt;</span> <span class="n">n_points</span><span class="p">:</span>
+                <span class="n">tent_functions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">tent_functions</span><span class="p">,</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">tent_functions</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_landscapes</span> <span class="o">-</span> <span class="n">n_points</span><span class="p">)),</span>
+                    <span class="p">],</span>
+                    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="n">tent_functions</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">tent_functions</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_landscapes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">landscapes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">tent_functions</span><span class="p">[:,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">num_landscapes</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+
+            <span class="n">landscapes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">landscapes</span><span class="p">)</span>
+            <span class="n">Xfit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">landscapes</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">Xfit</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Landscape.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Landscape.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply Landscape on a single persistence diagram and outputs the result.</span>
+<span class="sd">        If :func:`fit` hasn't been run, this uses `fit_transform` on a clone of the object and thus does not affect later calls.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (number of samples = **num_landscapes** x **resolution**): output persistence landscape.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">_maybe_fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"grid_"</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Silhouette">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Silhouette">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Silhouette</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for computing persistence silhouettes from a list of persistence diagrams. A persistence silhouette is computed by taking a weighted average of the collection of 1D piecewise-linear functions given by the persistence landscapes, and then by evenly sampling this average on a given range. Finally, the corresponding vector of samples is returned. See https://arxiv.org/abs/1312.0308 for more details.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        grid_ (1d array): The grid on which the silhouette is computed.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="Silhouette.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Silhouette.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">weight</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">resolution</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">sample_range</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">keep_endpoints</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the Silhouette class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            weight (function): weight function for the persistence diagram points (default constant function, ie lambda x: 1). This function must be defined on 2D points, ie on lists or numpy arrays of the form [p_x,p_y].</span>
+<span class="sd">            resolution (int): number of samples for the weighted average (default 100).</span>
+<span class="sd">            sample_range ([double, double]): minimum and maximum for the weighted average domain, of the form [x_min, x_max] (default [numpy.nan, numpy.nan]). It is the interval on which samples will be drawn evenly. If one of the values is numpy.nan, it can be computed from the persistence diagrams with the fit() method.</span>
+<span class="sd">            keep_endpoints (bool): when computing `sample_range`, use the exact extremities (where the value is always 0). This is mostly useful for plotting, the default is to use a slightly smaller range.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_range</span> <span class="o">=</span> <span class="n">weight</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">sample_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keep_endpoints</span> <span class="o">=</span> <span class="n">keep_endpoints</span></div>
+
+
+<div class="viewcode-block" id="Silhouette.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Silhouette.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the Silhouette class on a list of persistence diagrams: if any of the values in **sample_range** is numpy.nan, replace it with the corresponding value computed on the given list of persistence diagrams.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="n">_grid_from_sample_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Silhouette.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Silhouette.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the persistence silhouette for each persistence diagram individually and concatenate the results.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (number of diagrams) x (**resolution**): output persistence silhouettes.</span>
+<span class="sd">        """</span>
+        <span class="n">Xfit</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">x_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span>
+
+        <span class="k">for</span> <span class="n">diag</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+            <span class="n">midpoints</span><span class="p">,</span> <span class="n">heights</span> <span class="o">=</span> <span class="p">(</span><span class="n">diag</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">diag</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">,</span> <span class="p">(</span>
+                <span class="n">diag</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">diag</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span> <span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">diag</span><span class="p">])</span>
+            <span class="n">total_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+
+            <span class="n">tent_functions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span>
+                <span class="n">heights</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x_values</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">midpoints</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]),</span> <span class="mi">0</span>
+            <span class="p">)</span>
+            <span class="n">silhouette</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">total_weight</span> <span class="o">*</span> <span class="n">tent_functions</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">Xfit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">silhouette</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">Xfit</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Silhouette.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Silhouette.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply Silhouette on a single persistence diagram and outputs the result.</span>
+<span class="sd">        If :func:`fit` hasn't been run, this uses `fit_transform` on a clone of the object and thus does not affect later calls.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (**resolution**): output persistence silhouette.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">_maybe_fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"grid_"</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BettiCurve">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.BettiCurve">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BettiCurve</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Compute Betti curves from persistence diagrams. There are several modes of operation: with a given resolution (with or without a sample_range), with a predefined grid, and with none of the previous. With a predefined grid, the class computes the Betti numbers at those grid points. Without a predefined grid, if the resolution is set to None, it can be fit to a list of persistence diagrams and produce a grid that consists of (at least) the filtration values at which at least one of those persistence diagrams changes Betti numbers, and then compute the Betti numbers at those grid points. In the latter mode, the exact Betti curve is computed for the entire real line. Otherwise, if the resolution is given, the Betti curve is obtained by sampling evenly using either the given sample_range or based on the persistence diagrams.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    If pd is a persistence diagram and xs is a nonempty grid of finite values such that xs[0] &gt;= pd.min(), then the results of:</span>
+
+<span class="sd">    &gt;&gt;&gt; bc = BettiCurve(predefined_grid=xs) # doctest: +SKIP</span>
+<span class="sd">    &gt;&gt;&gt; result = bc(pd) # doctest: +SKIP</span>
+
+<span class="sd">    and</span>
+
+<span class="sd">    &gt;&gt;&gt; from scipy.interpolate import interp1d # doctest: +SKIP</span>
+<span class="sd">    &gt;&gt;&gt; bc = BettiCurve(resolution=None, predefined_grid=None) # doctest: +SKIP</span>
+<span class="sd">    &gt;&gt;&gt; bettis = bc.fit_transform([pd]) # doctest: +SKIP</span>
+<span class="sd">    &gt;&gt;&gt; interp = interp1d(bc.grid_, bettis[0, :], kind="previous", fill_value="extrapolate") # doctest: +SKIP</span>
+<span class="sd">    &gt;&gt;&gt; result = np.array(interp(xs), dtype=int) # doctest: +SKIP</span>
+
+<span class="sd">    are the same.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grid_ : 1d array</span>
+<span class="sd">        The grid on which the Betti numbers are computed. If predefined_grid was specified, `grid_` will always be that grid, independently of data. If not and resolution is None, the grid is fitted to capture all filtration values at which the Betti numbers change.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="BettiCurve.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.BettiCurve.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">resolution</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">sample_range</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
+        <span class="n">predefined_grid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">keep_endpoints</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the BettiCurve class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            resolution (int): number of samples for the piecewise-constant function (default 100), or None for the exact curve.</span>
+<span class="sd">            sample_range ([double, double]): minimum and maximum of the piecewise-constant function domain, of the form [x_min, x_max] (default [numpy.nan, numpy.nan]). It is the interval on which samples will be drawn evenly. If one of the values is numpy.nan, it can be computed from the persistence diagrams with the fit() method.</span>
+<span class="sd">            predefined_grid (1d array or None, default=None): Predefined filtration grid points at which to compute the Betti curves. Must be strictly ordered. Infinities are ok. If None (default), and resolution is given, the grid will be uniform from x_min to x_max in 'resolution' steps, otherwise a grid will be computed that captures all changes in Betti numbers in the provided data.</span>
+<span class="sd">            keep_endpoints (bool): when computing `sample_range` (fixed `resolution`, no `predefined_grid`), use the exact extremities. This is mostly useful for plotting, the default is to use a slightly smaller range.</span>
+<span class="sd">        """</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">predefined_grid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">predefined_grid</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Expected predefined_grid as array or None."</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">predefined_grid</span> <span class="o">=</span> <span class="n">predefined_grid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span> <span class="o">=</span> <span class="n">resolution</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sample_range</span> <span class="o">=</span> <span class="n">sample_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keep_endpoints</span> <span class="o">=</span> <span class="n">keep_endpoints</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"grid_"</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BettiCurve.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.BettiCurve.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the BettiCurve class on a list of persistence diagrams: if any of the values in **sample_range** is numpy.nan, replace it with the corresponding value computed on the given list of persistence diagrams. When no predefined grid is provided and resolution set to None, compute a filtration grid that captures all changes in Betti numbers for all the given persistence diagrams.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of 2d arrays): Persistence diagrams.</span>
+<span class="sd">            y (None): Ignored.</span>
+<span class="sd">        """</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">predefined_grid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Flexible/exact version</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="k">for</span> <span class="n">pd</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span> <span class="o">+</span> <span class="p">[[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">_grid_from_sample_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predefined_grid</span>  <span class="c1"># Get the predefined grid from user</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="BettiCurve.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.BettiCurve.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute Betti curves.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of 2d arrays): Persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            `len(X).len(self.grid_)` array of ints: Betti numbers of the given persistence diagrams at the grid points given in `self.grid_`</span>
+<span class="sd">        """</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">NotFittedError</span><span class="p">(</span><span class="s2">"Not fitted."</span><span class="p">)</span>
+
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">N</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Empty list: output has shape [0, len(grid)]"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_</span><span class="p">)))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">events</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">"F"</span><span class="p">)</span> <span class="k">for</span> <span class="n">pd</span> <span class="ow">in</span> <span class="n">X</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">sorting</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+            <span class="n">offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+                <span class="n">offsets</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">starts</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">]</span>
+            <span class="n">ends</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[</span><span class="mi">1</span> <span class="p">:</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="n">bettis</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">)]</span>
+
+            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sorting</span><span class="p">)</span> <span class="ow">and</span> <span class="n">events</span><span class="p">[</span><span class="n">sorting</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="p">:</span>
+                    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">ends</span><span class="p">,</span> <span class="n">sorting</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                    <span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">sorting</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">starts</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+                    <span class="n">bettis</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">delta</span>
+                    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+                    <span class="n">bettis</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bettis</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bettis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="BettiCurve.fit_transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.BettiCurve.fit_transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        The result is the same as fit(X) followed by transform(X), but potentially faster.</span>
+<span class="sd">        """</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">predefined_grid</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">"Empty list or empty diagrams: evaluation grid only contains -infinity and output contains only zeros"</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">])</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="n">events</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">pd</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">"F"</span><span class="p">)</span> <span class="k">for</span> <span class="n">pd</span> <span class="ow">in</span> <span class="n">X</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">sorting</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+                <span class="n">offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">N</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+                    <span class="n">offsets</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">starts</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">]</span>
+                <span class="n">ends</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[</span><span class="mi">1</span> <span class="p">:</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+
+                <span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span>
+                <span class="n">bettis</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">)]</span>
+
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sorting</span><span class="p">:</span>
+                    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">ends</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+                    <span class="n">delta</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="o">-</span> <span class="n">starts</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">events</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">xs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                        <span class="n">bettis</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">delta</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">xs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">events</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+                            <span class="n">bettis</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bettis</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                        <span class="n">bettis</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bettis</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+                            <span class="n">bettis</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bettis</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bettis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BettiCurve.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.BettiCurve.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Shorthand for transform on a single persistence diagram.</span>
+<span class="sd">        If :func:`fit` hasn't been run, this uses `fit_transform` on a clone of the object and thus does not affect later calls.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">_maybe_fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"grid_"</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Entropy">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Entropy">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Entropy</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for computing persistence entropy. Persistence entropy is a statistic for persistence diagrams inspired from Shannon entropy. This statistic can also be used to compute a feature vector, called the entropy summary function. See https://arxiv.org/pdf/1803.08304.pdf for more details. Note that a previous implementation was contributed by Manuel Soriano-Trigueros.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        grid_ (1d array): In vector mode, the grid on which the entropy summary function is computed.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="Entropy.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Entropy.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">"scalar"</span><span class="p">,</span>
+        <span class="n">normalized</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">resolution</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">sample_range</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">keep_endpoints</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the Entropy class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            mode (string): what entropy to compute: either "scalar" for computing the entropy statistics, or "vector" for computing the entropy summary functions (default "scalar").</span>
+<span class="sd">            normalized (bool): whether to normalize the entropy summary function (default True). Used only if **mode** = "vector".</span>
+<span class="sd">            resolution (int): number of sample for the entropy summary function (default 100). Used only if **mode** = "vector".</span>
+<span class="sd">            sample_range ([double, double]): minimum and maximum of the entropy summary function domain, of the form [x_min, x_max] (default [numpy.nan, numpy.nan]). It is the interval on which samples will be drawn evenly. If one of the values is numpy.nan, it can be computed from the persistence diagrams with the fit() method. Used only if **mode** = "vector".</span>
+<span class="sd">            keep_endpoints (bool): when computing `sample_range`, use the exact extremities. This is mostly useful for plotting, the default is to use a slightly smaller range.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalized</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_range</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">mode</span><span class="p">,</span>
+            <span class="n">normalized</span><span class="p">,</span>
+            <span class="n">resolution</span><span class="p">,</span>
+            <span class="n">sample_range</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keep_endpoints</span> <span class="o">=</span> <span class="n">keep_endpoints</span></div>
+
+
+<div class="viewcode-block" id="Entropy.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Entropy.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the Entropy class on a list of persistence diagrams.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">"vector"</span><span class="p">:</span>
+            <span class="n">_grid_from_sample_range</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_range_fixed_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_range_fixed_</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">step_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">step_</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Entropy.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Entropy.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the entropy for each persistence diagram individually and concatenate the results.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (number of diagrams) x (1 if **mode** = "scalar" else **resolution**): output entropy.</span>
+<span class="sd">        """</span>
+        <span class="n">num_diag</span><span class="p">,</span> <span class="n">Xfit</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="p">[]</span>
+        <span class="n">new_X</span> <span class="o">=</span> <span class="n">BirthPersistenceTransform</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_diag</span><span class="p">):</span>
+            <span class="n">orig_diagram</span><span class="p">,</span> <span class="n">new_diagram</span><span class="p">,</span> <span class="n">num_pts_in_diag</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">new_X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="n">p</span> <span class="o">=</span> <span class="n">new_diagram</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">"scalar"</span><span class="p">:</span>
+                <span class="n">ent</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+                <span class="n">Xfit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">ent</span><span class="p">]]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ent</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_pts_in_diag</span><span class="p">):</span>
+                    <span class="p">[</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">]</span> <span class="o">=</span> <span class="n">orig_diagram</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+                    <span class="n">min_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">px</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_range_fixed_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+                        <span class="mi">0</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="n">max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">py</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_range_fixed_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+                        <span class="mi">0</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">resolution</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="n">ent</span><span class="p">[</span><span class="n">min_idx</span><span class="p">:</span><span class="n">max_idx</span><span class="p">]</span> <span class="o">-=</span> <span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalized</span><span class="p">:</span>
+                    <span class="n">ent</span> <span class="o">=</span> <span class="n">ent</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">ent</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">Xfit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">ent</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="n">Xfit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">Xfit</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Xfit</span></div>
+
+
+<div class="viewcode-block" id="Entropy.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Entropy.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply Entropy on a single persistence diagram and outputs the result.</span>
+<span class="sd">        If :func:`fit` hasn't been run, this uses `fit_transform` on a clone of the object and thus does not affect later calls.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (1 if **mode** = "scalar" else **resolution**): output entropy.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">_maybe_fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"grid_"</span><span class="p">,</span> <span class="n">diag</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="TopologicalVector">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.TopologicalVector">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TopologicalVector</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for computing topological vectors from a list of persistence diagrams. The topological vector associated to a persistence diagram is the sorted vector of a slight modification of the pairwise distances between the persistence diagram points. See https://diglib.eg.org/handle/10.1111/cgf12692 for more details.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="TopologicalVector.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.TopologicalVector.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the TopologicalVector class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            threshold (int): number of distances to keep (default 10). This is the dimension of the topological vector. If -1, this threshold is computed from the list of persistence diagrams by considering the one with the largest number of points and using the dimension of its corresponding topological vector as threshold.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span></div>
+
+
+<div class="viewcode-block" id="TopologicalVector.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.TopologicalVector.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the TopologicalVector class on a list of persistence diagrams (this function actually does nothing but is useful when TopologicalVector is included in a scikit-learn Pipeline).</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 or n x 1 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="TopologicalVector.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.TopologicalVector.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the topological vector for each persistence diagram individually and concatenate the results.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (number of diagrams) x (**threshold**): output topological vectors.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))])</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">thresh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
+
+        <span class="n">num_diag</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">Xfit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">num_diag</span><span class="p">,</span> <span class="n">thresh</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_diag</span><span class="p">):</span>
+
+            <span class="n">diagram</span><span class="p">,</span> <span class="n">num_pts_in_diag</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">pers</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">diagram</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">diagram</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">min_pers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">pers</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">pers</span><span class="p">))</span>
+            <span class="c1"># Works fine with sklearn 1.0, but an ValueError exception is thrown on past versions</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">distances</span> <span class="o">=</span> <span class="n">DistanceMetric</span><span class="o">.</span><span class="n">get_metric</span><span class="p">(</span><span class="s2">"chebyshev"</span><span class="p">)</span><span class="o">.</span><span class="n">pairwise</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="c1"># Empty persistence diagram case - https://github.com/GUDHI/gudhi-devel/issues/507</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">diagram</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                        <span class="s2">"DistanceMetric.get_metric('chebyshev').pairwise(diagram) raised a ValueError"</span>
+                        <span class="s2">" even though the input diagram is not empty"</span>
+                    <span class="p">)</span>
+                <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">vect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">min_pers</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vect</span><span class="p">),</span> <span class="n">thresh</span><span class="p">)</span>
+            <span class="n">Xfit</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">vect</span><span class="p">[:</span><span class="n">dim</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">Xfit</span></div>
+
+
+<div class="viewcode-block" id="TopologicalVector.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.TopologicalVector.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply TopologicalVector on a single persistence diagram and outputs the result.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (**threshold**): output topological vector.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">diag</span><span class="p">])[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ComplexPolynomial">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.ComplexPolynomial">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ComplexPolynomial</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class for computing complex polynomials from a list of persistence diagrams. The persistence diagram points are seen as the roots of some complex polynomial, whose coefficients are returned in a complex vector. See https://link.springer.com/chapter/10.1007%2F978-3-319-23231-7_27 for more details.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="ComplexPolynomial.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.ComplexPolynomial.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">polynomial_type</span><span class="o">=</span><span class="s2">"R"</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the ComplexPolynomial class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">           polynomial_type (char): either "R", "S" or "T" (default "R"). Type of complex polynomial that is going to be computed (explained in https://link.springer.com/chapter/10.1007%2F978-3-319-23231-7_27).</span>
+<span class="sd">           threshold (int): number of coefficients (default 10). This is the dimension of the complex vector of coefficients, i.e. the number of coefficients corresponding to the largest degree terms of the polynomial. If -1, this threshold is computed from the list of persistence diagrams by considering the one with the largest number of points and using the dimension of its corresponding complex vector of coefficients as threshold.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">polynomial_type</span> <span class="o">=</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">polynomial_type</span></div>
+
+
+<div class="viewcode-block" id="ComplexPolynomial.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.ComplexPolynomial.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the ComplexPolynomial class on a list of persistence diagrams (this function actually does nothing but is useful when ComplexPolynomial is included in a scikit-learn Pipeline).</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 or n x 1 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (n x 1 array): persistence diagram labels (unused).</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="ComplexPolynomial.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.ComplexPolynomial.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the complex vector of coefficients for each persistence diagram individually and concatenate the results.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (number of diagrams) x (**threshold**): output complex vectors of coefficients.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">thresh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">))])</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">thresh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
+
+        <span class="n">Xfit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">thresh</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">thresh</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+            <span class="n">D</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">d</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">polynomial_type</span> <span class="o">==</span> <span class="s2">"R"</span><span class="p">:</span>
+                <span class="n">roots</span> <span class="o">=</span> <span class="n">D</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">D</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">polynomial_type</span> <span class="o">==</span> <span class="s2">"S"</span><span class="p">:</span>
+                <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">alpha</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">),</span> <span class="n">alpha</span><span class="p">)</span>
+                <span class="n">roots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">((</span><span class="n">D</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">D</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">D</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">D</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])),</span>
+                    <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">),</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">polynomial_type</span> <span class="o">==</span> <span class="s2">"T"</span><span class="p">:</span>
+                <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">roots</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span>
+                    <span class="p">(</span><span class="n">D</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">D</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)),</span>
+                <span class="p">)</span>
+            <span class="n">coeff</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">coeff</span><span class="p">[</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+                    <span class="n">coeff</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">roots</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">coeff</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">coeff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coeff</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="n">Xfit</span><span class="p">[</span><span class="n">d</span><span class="p">,</span> <span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">thresh</span><span class="p">,</span> <span class="n">coeff</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="n">coeff</span><span class="p">[:</span> <span class="nb">min</span><span class="p">(</span><span class="n">thresh</span><span class="p">,</span> <span class="n">coeff</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+        <span class="k">return</span> <span class="n">Xfit</span></div>
+
+
+<div class="viewcode-block" id="ComplexPolynomial.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.ComplexPolynomial.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply ComplexPolynomial on a single persistence diagram and outputs the result.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (**threshold**): output complex vector of coefficients.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">diag</span><span class="p">])[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span></div>
+</div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_lapl_contrast</span><span class="p">(</span><span class="n">measure</span><span class="p">,</span> <span class="n">centers</span><span class="p">,</span> <span class="n">inertias</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""contrast function for vectorising `measure` in ATOL</span>
+<span class="sd">    we use cdist so as to accept 'inf' values instead of raising ValueError with sklearn.pairwise</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">cdist</span><span class="p">(</span><span class="n">XA</span><span class="o">=</span><span class="n">measure</span><span class="p">,</span> <span class="n">XB</span><span class="o">=</span><span class="n">centers</span><span class="p">)</span> <span class="o">/</span> <span class="n">inertias</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_gaus_contrast</span><span class="p">(</span><span class="n">measure</span><span class="p">,</span> <span class="n">centers</span><span class="p">,</span> <span class="n">inertias</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""contrast function for vectorising `measure` in ATOL</span>
+<span class="sd">    we use cdist so as to accept 'inf' values instead of raising ValueError with sklearn.pairwise</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">cdist</span><span class="p">(</span><span class="n">XA</span><span class="o">=</span><span class="n">measure</span><span class="p">,</span> <span class="n">XB</span><span class="o">=</span><span class="n">centers</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"sqeuclidean"</span><span class="p">)</span> <span class="o">/</span> <span class="n">inertias</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_indicator_contrast</span><span class="p">(</span><span class="n">diags</span><span class="p">,</span> <span class="n">centers</span><span class="p">,</span> <span class="n">inertias</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""contrast function for vectorising `measure` in ATOL</span>
+<span class="sd">    we use cdist so as to accept 'inf' values instead of raising ValueError with sklearn.pairwise</span>
+<span class="sd">    """</span>
+    <span class="n">robe_curve</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">cdist</span><span class="p">(</span><span class="n">XA</span><span class="o">=</span><span class="n">diags</span><span class="p">,</span> <span class="n">XB</span><span class="o">=</span><span class="n">centers</span><span class="p">)</span> <span class="o">/</span> <span class="n">inertias</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">robe_curve</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_cloud_weighting</span><span class="p">(</span><span class="n">measure</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""automatic uniform weighting with mass 1 for `measure` in ATOL"""</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">measure</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_iidproba_weighting</span><span class="p">(</span><span class="n">measure</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""automatic uniform weighting with mass 1/N for `measure` in ATOL"""</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">measure</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">measure</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Atol">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Atol">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Atol</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This class allows to vectorise measures (e.g. point clouds, persistence diagrams, etc) after a quantisation step.</span>
+
+<span class="sd">    ATOL paper: :cite:`royer2019atol`</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.cluster import KMeans</span>
+<span class="sd">    &gt;&gt;&gt; from gudhi.representations.vector_methods import Atol</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; a = np.array([[1, 2, 4], [1, 4, 0], [1, 0, 4]])</span>
+<span class="sd">    &gt;&gt;&gt; b = np.array([[4, 2, 0], [4, 4, 0], [4, 0, 2]])</span>
+<span class="sd">    &gt;&gt;&gt; c = np.array([[3, 2, -1], [1, 2, -1]])</span>
+<span class="sd">    &gt;&gt;&gt; atol_vectoriser = Atol(quantiser=KMeans(n_clusters=2, random_state=202006, n_init=10))</span>
+<span class="sd">    &gt;&gt;&gt; atol_vectoriser.fit(X=[a, b, c]).centers</span>
+<span class="sd">    array([[ 2.6       ,  2.8       , -0.4       ],</span>
+<span class="sd">           [ 2.        ,  0.66666667,  3.33333333]])</span>
+<span class="sd">    &gt;&gt;&gt; atol_vectoriser(a)</span>
+<span class="sd">    array([0.42375966, 1.18168665])</span>
+<span class="sd">    &gt;&gt;&gt; atol_vectoriser(c)</span>
+<span class="sd">    array([1.25157463, 0.02062512])</span>
+<span class="sd">    &gt;&gt;&gt; atol_vectoriser.transform(X=[a, b, c])</span>
+<span class="sd">    array([[0.42375966, 1.18168665],</span>
+<span class="sd">           [1.06330156, 0.29861028],</span>
+<span class="sd">           [1.25157463, 0.02062512]])</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># Note the example above must be up to date with the one in tests called test_atol_doc</span>
+<div class="viewcode-block" id="Atol.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Atol.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">quantiser</span><span class="o">=</span><span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">),</span>
+        <span class="n">weighting_method</span><span class="o">=</span><span class="s2">"cloud"</span><span class="p">,</span>
+        <span class="n">contrast</span><span class="o">=</span><span class="s2">"gaussian"</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the Atol measure vectorisation class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            quantiser (Object): Object with `fit` (sklearn API consistent) and `cluster_centers` and `n_clusters`</span>
+<span class="sd">                attributes, e.g. `sklearn.cluster.KMeans`. It will be fitted when the Atol object function `fit` is</span>
+<span class="sd">                called. Users are encouraged to provide their own quantiser, and in particular increase the number</span>
+<span class="sd">                of clusters.</span>
+<span class="sd">            weighting_method (string): constant generic function for weighting the measure points</span>
+<span class="sd">                choose from {"cloud", "iidproba"}</span>
+<span class="sd">                (default: constant function, i.e. the measure is seen as a point cloud by default).</span>
+<span class="sd">                This will have no impact if weights are provided along with measures all the way: `fit` and `transform`.</span>
+<span class="sd">            contrast (string): constant function for evaluating proximity of a measure with respect to centers</span>
+<span class="sd">                choose from {"gaussian", "laplacian", "indicator"}</span>
+<span class="sd">                (default: gaussian contrast function, see page 3 in the ATOL paper).</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quantiser</span> <span class="o">=</span> <span class="n">quantiser</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contrast</span> <span class="o">=</span> <span class="n">contrast</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weighting_method</span> <span class="o">=</span> <span class="n">weighting_method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_running_transform_names</span> <span class="o">=</span> <span class="s2">""</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_contrast</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"gaussian"</span><span class="p">:</span> <span class="n">_gaus_contrast</span><span class="p">,</span>
+            <span class="s2">"laplacian"</span><span class="p">:</span> <span class="n">_lapl_contrast</span><span class="p">,</span>
+            <span class="s2">"indicator"</span><span class="p">:</span> <span class="n">_indicator_contrast</span><span class="p">,</span>
+        <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contrast</span><span class="p">,</span> <span class="n">_gaus_contrast</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_weighting_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">"cloud"</span><span class="p">:</span> <span class="n">_cloud_weighting</span><span class="p">,</span>
+            <span class="s2">"iidproba"</span><span class="p">:</span> <span class="n">_iidproba_weighting</span><span class="p">,</span>
+        <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weighting_method</span><span class="p">,</span> <span class="n">_cloud_weighting</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Atol.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Atol.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Calibration step: fit centers to the target sample measures and derive inertias between centers. If the target</span>
+<span class="sd">        does not contain enough points for creating the intended number of centers, we fill in with bogus centers.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list N x d numpy arrays): input measures in R^d from which to learn center locations and inertias</span>
+<span class="sd">                (measures can have different N).</span>
+<span class="sd">            y: Ignored, present for API consistency by convention.</span>
+<span class="sd">            sample_weight (list of numpy arrays): weights for each measure point in X, optional.</span>
+<span class="sd">                If None, the object's weighting_method will be used.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            self</span>
+<span class="sd">        """</span>
+        <span class="n">n_clusters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantiser</span><span class="o">.</span><span class="n">n_clusters</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Cannot fit Atol on empty target."</span><span class="p">)</span>
+        <span class="n">measures_concat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_weighting_method</span><span class="p">()(</span><span class="n">measure</span><span class="p">)</span> <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
+        <span class="n">weights_concat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">)</span>
+
+        <span class="c1"># In fitting we remove infinite birth/death time points so that every center is finite. We do not care about duplicates.</span>
+        <span class="n">filtered_measures_concat</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">measures_concat</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">measures_concat</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="p">:]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measures_concat</span><span class="p">)</span>
+            <span class="k">else</span> <span class="n">measures_concat</span>
+        <span class="p">)</span>
+        <span class="n">filtered_weights_concat</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">weights_concat</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">measures_concat</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">measures_concat</span><span class="p">)</span>
+            <span class="k">else</span> <span class="n">weights_concat</span>
+        <span class="p">)</span>
+
+        <span class="n">n_points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">filtered_measures_concat</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n_points</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Cannot fit Atol on measure with infinite components only."</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n_points</span> <span class="o">&lt;</span> <span class="n">n_clusters</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">quantiser</span><span class="o">.</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="n">n_points</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">quantiser</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">filtered_measures_concat</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">filtered_weights_concat</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">centers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantiser</span><span class="o">.</span><span class="n">cluster_centers_</span>
+
+        <span class="c1"># Hack, but some people are unhappy if the order depends on the version of sklearn</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">centers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">lexsort</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="o">.</span><span class="n">T</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">quantiser</span><span class="o">.</span><span class="n">n_clusters</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">dist_centers</span> <span class="o">=</span> <span class="n">pairwise</span><span class="o">.</span><span class="n">pairwise_distances</span><span class="p">(</span><span class="n">filtered_measures_concat</span><span class="p">)</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">dist_centers</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">best_inertia</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dist_centers</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dist_centers</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inertias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">best_inertia</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dist_centers</span> <span class="o">=</span> <span class="n">pairwise</span><span class="o">.</span><span class="n">pairwise_distances</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">)</span>
+            <span class="n">dist_centers</span><span class="p">[</span><span class="n">dist_centers</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inertias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dist_centers</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="k">if</span> <span class="n">n_points</span> <span class="o">&lt;</span> <span class="n">n_clusters</span><span class="p">:</span>
+            <span class="c1"># There weren't enough points to fit n_clusters, so we arbitrarily put centers as [-np.inf]^measure_dim.</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"[Atol] after filtering had only </span><span class="si">{</span><span class="n">n_points</span><span class="si">=}</span><span class="s2"> to fit </span><span class="si">{</span><span class="n">n_clusters</span><span class="si">=}</span><span class="s2">, adding meaningless centers."</span>
+            <span class="p">)</span>
+            <span class="n">fill_center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">repeats</span><span class="o">=</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">fill_inertia</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">centers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">([</span><span class="n">fill_center</span><span class="p">],</span> <span class="n">repeats</span><span class="o">=</span><span class="n">n_clusters</span> <span class="o">-</span> <span class="n">n_points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inertias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">inertias</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">fill_inertia</span><span class="p">,</span> <span class="n">repeats</span><span class="o">=</span><span class="n">n_clusters</span> <span class="o">-</span> <span class="n">n_points</span><span class="p">)]</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">quantiser</span><span class="o">.</span><span class="n">n_clusters</span> <span class="o">=</span> <span class="n">n_clusters</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Atol.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Atol.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">measure</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply measure vectorisation on a single measure. Only available after `fit` has been called.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            measure (n x d numpy array): input measure in R^d.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array in R^self.quantiser.n_clusters.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_weighting_method</span><span class="p">()(</span><span class="n">measure</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
+            <span class="n">sample_weight</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_contrast</span><span class="p">()(</span><span class="n">measure</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">centers</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">inertias</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+            <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Atol.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.Atol.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply measure vectorisation on a list of measures.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list N x d numpy arrays): input measures in R^d to be vectorized,</span>
+<span class="sd">                (measures can have different N).</span>
+<span class="sd">            sample_weight (list of numpy arrays): weights for each measure point in X, optional.</span>
+<span class="sd">                If None, the object's weighting_method will be used.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (number of measures) x (self.quantiser.n_clusters).</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">get_weighting_method</span><span class="p">()(</span><span class="n">measure</span><span class="p">)</span> <span class="k">for</span> <span class="n">measure</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_running_transform_names</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">"Atol Center </span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">quantiser</span><span class="o">.</span><span class="n">n_clusters</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="p">(</span><span class="n">measure</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">weight</span><span class="p">)</span> <span class="k">for</span> <span class="n">measure</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)]</span>
+        <span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_feature_names_out</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_transform_names</span></div>
+
+
+
+<div class="viewcode-block" id="PersistenceLengths">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.PersistenceLengths">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PersistenceLengths</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    This is a class that returns the sorted N-longest persistence lengths. If the input does not contain enough values,</span>
+<span class="sd">    the output will be filled with zeros.</span>
+<span class="sd">    """</span>
+
+<div class="viewcode-block" id="PersistenceLengths.__init__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.PersistenceLengths.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_lengths</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Constructor for the PersistenceLengths class.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            num_lengths (int): number of persistence lengths to return (default 5).</span>
+
+<span class="sd">        :raises ValueError: If num_lengths is lower or equal to 0.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">num_lengths</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"num_lengths must be greater than 0."</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_lengths</span> <span class="o">=</span> <span class="n">num_lengths</span></div>
+
+
+<div class="viewcode-block" id="PersistenceLengths.fit">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.PersistenceLengths.fit">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Fit the PersistenceLengths class on a list of persistence diagrams (this function actually does nothing but is</span>
+<span class="sd">        useful when PersistenceLengths is included in a scikit-learn Pipeline).</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+<span class="sd">            y (None): Ignored.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="PersistenceLengths.transform">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.PersistenceLengths.transform">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Compute the persistence lengths for each persistence diagram individually.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            X (list of n x 2 numpy arrays): input persistence diagrams.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy array with shape (number of diagrams) x (num_lengths): output persistence lengths.</span>
+<span class="sd">        """</span>
+        <span class="n">pers_length_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_lengths</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">pd</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="n">pl</span> <span class="o">=</span> <span class="n">pd</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pd</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pl</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_lengths</span><span class="p">:</span>
+                <span class="c1"># Select the num_lengths biggest persistence bars length</span>
+                <span class="n">pl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">pl</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">num_lengths</span><span class="p">)[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">num_lengths</span> <span class="p">:]</span>
+
+            <span class="c1"># Sort in reverse order persistence lengths (where length = death - birth)</span>
+            <span class="n">pl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">pl</span><span class="p">))</span>
+            <span class="c1"># Filled with zeros if not enough values</span>
+            <span class="n">pers_length_array</span><span class="p">[</span><span class="n">idx</span><span class="p">][:</span> <span class="nb">len</span><span class="p">(</span><span class="n">pl</span><span class="p">)]</span> <span class="o">=</span> <span class="n">pl</span>
+
+        <span class="k">return</span> <span class="n">pers_length_array</span></div>
+
+
+<div class="viewcode-block" id="PersistenceLengths.__call__">
+<a class="viewcode-back" href="../../../representations.html#gudhi.representations.vector_methods.PersistenceLengths.__call__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">diag</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Apply PersistenceLengths on a single persistence diagram and outputs the result.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            diag (n x 2 numpy array): input persistence diagram.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy 1d array of length num_lengths: output persistence lengths.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">diag</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

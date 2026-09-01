@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Wasserstein distance user manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>Wasserstein distance user manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -49,7 +49,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -59,7 +59,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -663,46 +663,6 @@ are measured in norm p, for <span class="math notranslate nohighlight">\(1 \leq 
 <p>This first implementation uses the <a class="reference external" href="installation.html#python-optimal-transport">Python Optimal Transport</a>
 library and is based on ideas from “Large Scale Computation of Means and Cluster for Persistence
 Diagrams via Optimal Transport” <span class="bibtex-citation" id="id2">[]</span>.</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="gudhi.wasserstein.wasserstein_distance">
-<span class="sig-prename descclassname"><span class="pre">gudhi.wasserstein.</span></span><span class="sig-name descname"><span class="pre">wasserstein_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_autodiff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_essential_parts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/wasserstein/wasserstein.html#wasserstein_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.wasserstein.wasserstein_distance" title="Link to this definition">#</a></dt>
-<dd><p>Compute the Wasserstein distance between persistence diagram using Python Optimal Transport backend.
-Diagrams can contain points with infinity coordinates (essential parts).
-Points with (-inf,-inf) and (+inf,+inf) coordinates are considered as belonging to the diagonal.
-If the distance between two diagrams is +inf (which happens if the cardinalities of essential
-parts differ) and optimal matching is required, it will be set to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.X">¶</a> (<em>n x 2 numpy.array</em>) – The first diagram.</p></li>
-<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.Y"></span><strong>Y</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.Y">¶</a> (<em>m x 2 numpy.array</em>) – The second diagram.</p></li>
-<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.matching"></span><strong>matching</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.matching">¶</a> – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, computes and returns the optimal matching between X and Y, encoded as
-a (n x 2) np.array  […[i,j]…], meaning the i-th point in X is matched to
-the j-th point in Y, with the convention that (-1) represents the diagonal.</p></li>
-<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.order"></span><strong>order</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.order">¶</a> (<em>float</em>) – Wasserstein exponent q (1 &lt;= q &lt; infinity).</p></li>
-<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.internal_p"></span><strong>internal_p</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.internal_p">¶</a> (<em>float</em>) – Ground metric on the (upper-half) plane (i.e. norm L^p in R^2).</p></li>
-<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.enable_autodiff"></span><strong>enable_autodiff</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.enable_autodiff">¶</a> (<em>bool</em>) – <p>If X and Y are <code class="docutils literal notranslate"><span class="pre">torch.tensor</span></code> or <code class="docutils literal notranslate"><span class="pre">tensorflow.Tensor</span></code>, make the computation
-transparent to automatic differentiation. This requires the package EagerPy and is currently incompatible
-with <code class="docutils literal notranslate"><span class="pre">matching=True</span></code> and with <code class="docutils literal notranslate"><span class="pre">keep_essential_parts=True</span></code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This considers the function defined on the coordinates of the off-diagonal finite points of X and Y
-and lets the various frameworks compute its gradient. It never pulls new points from the diagonal.</p>
-</div>
-</p></li>
-<li><p><span class="target" id="gudhi.wasserstein.wasserstein_distance.params.keep_essential_parts"></span><strong>keep_essential_parts</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.wasserstein_distance.params.keep_essential_parts">¶</a> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">False</span></code>, only considers the finite points in the diagrams.
-Otherwise, include essential parts in cost and matching computation.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The Wasserstein distance of order q (1 &lt;= q &lt; infinity) between persistence diagrams with
-respect to the internal_p-norm as ground metric.
-If matching is set to True, also returns the optimal matching between X and Y.
-If cost is +inf, any matching is optimal and thus it returns <cite>None</cite> instead.</p>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 <section id="hera">
 <h3>Hera<a class="headerlink" href="#hera" title="Link to this heading">#</a></h3>
@@ -712,7 +672,7 @@ based on “Geometry Helps to Compare Persistence Diagrams”
 Morozov, and Arnur Nigmetov.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="gudhi.hera.wasserstein_distance">
-<span class="sig-prename descclassname"><span class="pre">gudhi.hera.</span></span><span class="sig-name descname"><span class="pre">wasserstein_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.float64</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matching</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="headerlink" href="#gudhi.hera.wasserstein_distance" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">gudhi.hera.</span></span><span class="sig-name descname"><span class="pre">wasserstein_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matching</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/hera.html#wasserstein_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.hera.wasserstein_distance" title="Link to this definition">#</a></dt>
 <dd><p>Compute the Wasserstein distance between two diagrams.
 Points at infinity are supported.</p>
 <dl class="field-list simple">
@@ -723,11 +683,25 @@ Points at infinity are supported.</p>
 <li><p><span class="target" id="gudhi.hera.wasserstein_distance.params.order"></span><strong>order</strong><a class="paramlink headerlink reference internal" href="#gudhi.hera.wasserstein_distance.params.order">¶</a> (<em>float</em>) – Wasserstein exponent W_q</p></li>
 <li><p><span class="target" id="gudhi.hera.wasserstein_distance.params.internal_p"></span><strong>internal_p</strong><a class="paramlink headerlink reference internal" href="#gudhi.hera.wasserstein_distance.params.internal_p">¶</a> (<em>float</em>) – Internal Minkowski norm L^p in R^2</p></li>
 <li><p><span class="target" id="gudhi.hera.wasserstein_distance.params.delta"></span><strong>delta</strong><a class="paramlink headerlink reference internal" href="#gudhi.hera.wasserstein_distance.params.delta">¶</a> (<em>float</em>) – Relative error 1+delta</p></li>
-<li><p><span class="target" id="gudhi.hera.wasserstein_distance.params.matching"></span><strong>matching</strong><a class="paramlink headerlink reference internal" href="#gudhi.hera.wasserstein_distance.params.matching">¶</a> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, computes and returns the optimal matching between X and Y, encoded as a (n x 2) np.array […[i,j]…], meaning the i-th point in X is matched to the j-th point in Y, with the convention that (-1) represents the diagonal. If the distance between two diagrams is +inf (which happens if the cardinalities of essential parts differ) and the matching is requested, it will be set to <code class="docutils literal notranslate"><span class="pre">None</span></code> (any matching is optimal).</p></li>
+<li><p><span class="target" id="gudhi.hera.wasserstein_distance.params.matching"></span><strong>matching</strong><a class="paramlink headerlink reference internal" href="#gudhi.hera.wasserstein_distance.params.matching">¶</a> (<em>bool</em>) – <p>if <code class="docutils literal notranslate"><span class="pre">True</span></code>, computes and returns the optimal matching between X and Y, encoded as a
+(n x 2) np.array […[i,j]…], meaning the i-th point in X is matched to the j-th point in Y, with the
+convention that (-1) represents the diagonal. If the distance between two diagrams is +inf (which happens
+if the cardinalities of essential parts differ) and the matching is requested, it will be set to <code class="docutils literal notranslate"><span class="pre">None</span></code>
+(any matching is optimal).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For matching request, please consider using <code class="xref py py-func docutils literal notranslate"><span class="pre">wasserstein_distance()</span></code> (POT
+version) instead. This version with <code class="docutils literal notranslate"><span class="pre">matching=True</span></code> is known to have bugs.</p>
+</div>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Approximate Wasserstein distance W_q(X,Y), and optionally the corresponding matching</p>
+<dd class="field-even"><p><dl class="simple">
+<dt>Approximate Wasserstein distance W_q(X,Y), and optionally the</dt><dd><p>corresponding matching</p>
+</dd>
+</dl>
+</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float|Tuple[float,numpy.array|None]</p>
@@ -842,40 +816,6 @@ per diagram).</p>
 diagrams.</span><a class="headerlink" href="#id9" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<dl class="py function">
-<dt class="sig sig-object py" id="gudhi.wasserstein.barycenter.lagrangian_barycenter">
-<span class="sig-prename descclassname"><span class="pre">gudhi.wasserstein.barycenter.</span></span><span class="sig-name descname"><span class="pre">lagrangian_barycenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdiagset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/wasserstein/barycenter.html#lagrangian_barycenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.wasserstein.barycenter.lagrangian_barycenter" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gudhi.wasserstein.barycenter.lagrangian_barycenter.params.pdiagset"></span><strong>pdiagset</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.barycenter.lagrangian_barycenter.params.pdiagset">¶</a> – a list of <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> of shape <cite>(n x 2)</cite> (<cite>n</cite> can variate), encoding a set of persistence
-diagrams with only finite coordinates.</p></li>
-<li><p><span class="target" id="gudhi.wasserstein.barycenter.lagrangian_barycenter.params.init"></span><strong>init</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.barycenter.lagrangian_barycenter.params.init">¶</a> (<code class="docutils literal notranslate"><span class="pre">int</span></code>, or (n x 2) <code class="docutils literal notranslate"><span class="pre">np.array</span></code>) – The initial value for barycenter estimate.
-If <code class="docutils literal notranslate"><span class="pre">None</span></code>, init is made on a random diagram from the dataset.
-Otherwise, it can be an <code class="docutils literal notranslate"><span class="pre">int</span></code> (then initialization is made on <code class="docutils literal notranslate"><span class="pre">pdiagset[init]</span></code>)
-or a <cite>(n x 2)</cite> <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> encoding a persistence diagram with <cite>n</cite> points.</p></li>
-<li><p><span class="target" id="gudhi.wasserstein.barycenter.lagrangian_barycenter.params.verbose"></span><strong>verbose</strong><a class="paramlink headerlink reference internal" href="#gudhi.wasserstein.barycenter.lagrangian_barycenter.params.verbose">¶</a> (<em>boolean</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, returns additional information about the barycenter.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p>If not verbose (default), a <code class="docutils literal notranslate"><span class="pre">numpy.array</span></code> encoding the barycenter estimate of pdiagset
-(local minimum of the energy function).
-If <code class="docutils literal notranslate"><span class="pre">pdiagset</span></code> is empty, returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.
-If verbose, returns a couple <code class="docutils literal notranslate"><span class="pre">(Y,</span> <span class="pre">log)</span></code> where <code class="docutils literal notranslate"><span class="pre">Y</span></code> is the barycenter estimate,
-and <code class="docutils literal notranslate"><span class="pre">log</span></code> is a <code class="docutils literal notranslate"><span class="pre">dict</span></code> that contains additional information:</p>
-<ul class="simple">
-<li><p><cite>”groupings”</cite>, a list of list of pairs <code class="docutils literal notranslate"><span class="pre">(i,j)</span></code>. Namely, <code class="docutils literal notranslate"><span class="pre">G[k]</span> <span class="pre">=</span> <span class="pre">[...(i,</span> <span class="pre">j)...]</span></code>, where <code class="docutils literal notranslate"><span class="pre">(i,j)</span></code>
-indicates that <cite>pdiagset[k][i]</cite> is matched to <code class="docutils literal notranslate"><span class="pre">Y[j]</span></code> if <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">-1</span></code> or <code class="docutils literal notranslate"><span class="pre">j</span> <span class="pre">=</span> <span class="pre">-1</span></code>, it means they represent
-the diagonal.</p></li>
-<li><p><cite>”energy”</cite>, <code class="docutils literal notranslate"><span class="pre">float</span></code> representing the Frechet energy value obtained. It is the mean of squared distances of
-observations to the output.</p></li>
-<li><p><cite>”nb_iter”</cite>, <code class="docutils literal notranslate"><span class="pre">int</span></code> number of iterations performed before convergence of the algorithm.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
 <section id="id8">
 <h3>Basic example<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <p>This example estimates the Frechet mean (aka Wasserstein barycenter) between
@@ -914,7 +854,7 @@ Note that persistence diagrams must be submitted as
 <section id="tutorial">
 <h3>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading">#</a></h3>
 <p>This
-<a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/Tuto-GUDHI-Barycenters-of-persistence-diagrams.ipynb">notebook</a>
+<a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/tutorials/Tuto-GUDHI-Barycenters-of-persistence-diagrams.ipynb">notebook</a>
 presents the concept of barycenter, or Fréchet mean, of a family of persistence diagrams.</p>
 </section>
 </section>
@@ -951,10 +891,7 @@ presents the concept of barycenter, or Fréchet mean, of a family of persistence
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distance-functions">Distance Functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-transport">Optimal Transport</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.wasserstein.wasserstein_distance"><code class="docutils literal notranslate"><span class="pre">wasserstein_distance()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-transport">Optimal Transport</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hera">Hera</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.hera.wasserstein_distance"><code class="docutils literal notranslate"><span class="pre">wasserstein_distance()</span></code></a></li>
 </ul>
@@ -963,7 +900,6 @@ presents the concept of barycenter, or Fréchet mean, of a family of persistence
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#barycenters">Barycenters</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.wasserstein.barycenter.lagrangian_barycenter"><code class="docutils literal notranslate"><span class="pre">lagrangian_barycenter()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Basic example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial">Tutorial</a></li>
 </ul>

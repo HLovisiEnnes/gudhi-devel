@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Orthonomalizer reference manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>Orthonomalizer reference manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -48,7 +48,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -58,7 +58,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -311,6 +311,10 @@
   
   
 
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
   
 </div>
 
@@ -595,6 +599,135 @@
                   
   <section id="orthonomalizer-reference-manual">
 <h1>Orthonomalizer reference manual<a class="headerlink" href="#orthonomalizer-reference-manual" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="gudhi.liedetect.Orthonormalize">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.liedetect.</span></span><span class="sig-name descname"><span class="pre">Orthonormalize</span></span><a class="reference internal" href="_modules/gudhi/liedetect/liepca.html#Orthonormalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.Orthonormalize" title="Link to this definition">#</a></dt>
+<dd><p>Orthonormalizes a point cloud by centering, homogenizing and normalizing it. This is Step 1 of LieDetect.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.liedetect.Orthonormalize.params.pts"></span><strong>pts</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.Orthonormalize.params.pts">¶</a> (<em>np.ndarray</em>) – Point cloud.</p>
+</dd>
+</dl>
+<dl>
+<dt>Public attributes:</dt><dd><p>points (np.ndarray): (Training) point cloud.
+cov (np.ndarray): Covariance matrix of the (training) data points.
+mean (float): The mean of the (training) data points.
+is_fitted (bool): Indicates whether ‘fit’ or ‘fit_transform’ has been called.
+orth_points (np.ndarray): The orthogonalized points. Only defined after running ‘fit’ or ‘fit_transform’.
+orthonormal_transf (np.ndarray): The matrix for the linear projection onto orthonormalization.</p>
+<blockquote>
+<div><p>Only defined after running ‘fit’ or ‘fit_transform’.</p>
+</div></blockquote>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.liedetect.Orthonormalize.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/liepca.html#Orthonormalize.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.Orthonormalize.__init__" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.liedetect.Orthonormalize.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/liepca.html#Orthonormalize.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.Orthonormalize.fit" title="Link to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Only fits the orthonormalization to the points and creates new attributes:</dt><dd><ul class="simple">
+<li><p>orth_points: Orthonormalized points.</p></li>
+<li><dl class="simple">
+<dt>orthonormal_transf: The matrix for the linear</dt><dd><p>projection onto orthonormalization.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.liedetect.Orthonormalize.fit_transform">
+<span class="sig-name descname"><span class="pre">fit_transform</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/liepca.html#Orthonormalize.fit_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.Orthonormalize.fit_transform" title="Link to this definition">#</a></dt>
+<dd><p>Fits the orthonormalization to the points and returns the orthonormalized points.</p>
+<dl class="simple">
+<dt>Creates new attributes:</dt><dd><ul class="simple">
+<li><p>orth_points: Orthonormalized points.</p></li>
+<li><p>orthonormal_transf: Matrix for the linear projection onto the orthonormal basis.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Orthonormalized points.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pts_orth (np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.liedetect.Orthonormalize.inverse_transform">
+<span class="sig-name descname"><span class="pre">inverse_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_place</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/liepca.html#Orthonormalize.inverse_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.Orthonormalize.inverse_transform" title="Link to this definition">#</a></dt>
+<dd><p>Inverses the orthonormalization. Naturally assumes that either ‘fit’ or ‘fit_transform’ has been previously
+called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.liedetect.Orthonormalize.inverse_transform.params.pts"></span><strong>pts</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.Orthonormalize.inverse_transform.params.pts">¶</a> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Point cloud to apply the inverse
+transform. If None, applies to the training set. Defaults
+to None.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.Orthonormalize.inverse_transform.params.add_mean"></span><strong>add_mean</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.Orthonormalize.inverse_transform.params.add_mean">¶</a> (<em>bool</em>) – If True, adds the training mean to the inverse
+transformation. Defaults to True.</p></li>
+<li><p><span class="target" id="gudhi.liedetect.Orthonormalize.inverse_transform.params.in_place"></span><strong>in_place</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.Orthonormalize.inverse_transform.params.in_place">¶</a> (<em>bool</em>) – If True, makes the object’s points the inversed
+transformed points. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Inversed transformed points.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>inversed_points (np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.liedetect.Orthonormalize.print_norms">
+<span class="sig-name descname"><span class="pre">print_norms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/liepca.html#Orthonormalize.print_norms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.Orthonormalize.print_norms" title="Link to this definition">#</a></dt>
+<dd><p>Prints the mean and standard deviation of the norms of the points. Useful to check normalization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gudhi.liedetect.Orthonormalize.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/liedetect/liepca.html#Orthonormalize.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.liedetect.Orthonormalize.transform" title="Link to this definition">#</a></dt>
+<dd><p>Applies the same orthonormalization transformation to a new set of points. Naturally assumes that either
+‘fit’ or ‘fit_transform’ has been previously called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="target" id="gudhi.liedetect.Orthonormalize.transform.params.pts"></span><strong>pts</strong><a class="paramlink headerlink reference internal" href="#gudhi.liedetect.Orthonormalize.transform.params.pts">¶</a> (<em>np.ndarray</em>) – Point cloud.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Point cloud projected by the same orthogonal</dt><dd><p>transformation.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(np.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -613,6 +746,32 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.Orthonormalize"><code class="docutils literal notranslate"><span class="pre">Orthonormalize</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.Orthonormalize.__init__"><code class="docutils literal notranslate"><span class="pre">Orthonormalize.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.Orthonormalize.fit"><code class="docutils literal notranslate"><span class="pre">Orthonormalize.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.Orthonormalize.fit_transform"><code class="docutils literal notranslate"><span class="pre">Orthonormalize.fit_transform()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.Orthonormalize.inverse_transform"><code class="docutils literal notranslate"><span class="pre">Orthonormalize.inverse_transform()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.Orthonormalize.print_norms"><code class="docutils literal notranslate"><span class="pre">Orthonormalize.print_norms()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.liedetect.Orthonormalize.transform"><code class="docutils literal notranslate"><span class="pre">Orthonormalize.transform()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

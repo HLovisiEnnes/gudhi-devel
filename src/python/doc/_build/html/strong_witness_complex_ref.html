@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Strong witness complex reference manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>Strong witness complex reference manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -31,8 +31,8 @@
 <link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -48,7 +48,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -58,7 +58,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -606,7 +606,7 @@
 landmarks with respect to witnesses.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.StrongWitnessComplex.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.StrongWitnessComplex.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nearest_landmark_table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.StrongWitnessComplex.__init__" title="Link to this definition">#</a></dt>
 <dd><p>StrongWitnessComplex constructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -618,17 +618,16 @@ witness w, and d is the (squared) distance between l and w.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="gudhi.StrongWitnessComplex.__new__">
-<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.StrongWitnessComplex.__new__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="gudhi.StrongWitnessComplex.create_simplex_tree">
 <span class="sig-name descname"><span class="pre">create_simplex_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_alpha_square</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_dimension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.StrongWitnessComplex.create_simplex_tree" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="target" id="gudhi.StrongWitnessComplex.create_simplex_tree.params.max_alpha_square"></span><strong>max_alpha_square</strong><a class="paramlink headerlink reference internal" href="#gudhi.StrongWitnessComplex.create_simplex_tree.params.max_alpha_square">¶</a> (<em>float</em>) – The maximum relaxation parameter.
-Default is set to infinity.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="gudhi.StrongWitnessComplex.create_simplex_tree.params.max_alpha_square"></span><strong>max_alpha_square</strong><a class="paramlink headerlink reference internal" href="#gudhi.StrongWitnessComplex.create_simplex_tree.params.max_alpha_square">¶</a> (<em>float</em>) – The maximum relaxation parameter.
+Default is set to infinity.</p></li>
+<li><p><span class="target" id="gudhi.StrongWitnessComplex.create_simplex_tree.params.limit_dimension"></span><strong>limit_dimension</strong><a class="paramlink headerlink reference internal" href="#gudhi.StrongWitnessComplex.create_simplex_tree.params.limit_dimension">¶</a> (<em>int</em>) – Represents the maximal dimension of the simplicial complex.
+Default value (-1) means no limit.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A simplex tree created from the Delaunay Triangulation.</p>
@@ -674,7 +673,6 @@ Default is set to infinity.</p>
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.StrongWitnessComplex"><code class="docutils literal notranslate"><span class="pre">StrongWitnessComplex</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.StrongWitnessComplex.__init__"><code class="docutils literal notranslate"><span class="pre">StrongWitnessComplex.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.StrongWitnessComplex.__new__"><code class="docutils literal notranslate"><span class="pre">StrongWitnessComplex.__new__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gudhi.StrongWitnessComplex.create_simplex_tree"><code class="docutils literal notranslate"><span class="pre">StrongWitnessComplex.create_simplex_tree()</span></code></a></li>
 </ul>
 </li>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Delaunay complex reference manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>Delaunay complex reference manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -31,8 +31,8 @@
 <link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -48,7 +48,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -58,7 +58,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -611,12 +611,12 @@
 </ul>
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.DelaunayComplex.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.DelaunayComplex.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'safe'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.DelaunayComplex.__init__" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gudhi.DelaunayComplex.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.params.points">¶</a> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A list of points in d-Dimension.</p></li>
-<li><p><span class="target" id="gudhi.DelaunayComplex.params.weights"></span><strong>weights</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.params.weights">¶</a> (<em>Optional</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A list of weights. If set, the number of weights must correspond to
+<li><p><span class="target" id="gudhi.DelaunayComplex.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.params.points">¶</a> (<em>Sequence</em><em>[</em><em>Sequence</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A list of points in d-Dimension.</p></li>
+<li><p><span class="target" id="gudhi.DelaunayComplex.params.weights"></span><strong>weights</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.params.weights">¶</a> (<em>Optional</em><em>[</em><em>Sequence</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A list of weights. If set, the number of weights must correspond to
 the number of points.</p></li>
 <li><p><span class="target" id="gudhi.DelaunayComplex.params.precision"></span><strong>precision</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.params.precision">¶</a> (<em>str</em>) – Complex precision can be <cite>‘fast’</cite>, <cite>‘safe’</cite> or <cite>‘exact’</cite>. Default is <cite>‘safe’</cite>.</p></li>
 </ul>
@@ -633,12 +633,12 @@ the number of points.</p></li>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gudhi.DelaunayComplex.create_simplex_tree.params.max_alpha_square"></span><strong>max_alpha_square</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.create_simplex_tree.params.max_alpha_square">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The maximum alpha square threshold the simplices shall not exceed. Default is set to
-infinity, and there is very little point using anything else since it does not save time.</p></li>
-<li><p><span class="target" id="gudhi.DelaunayComplex.create_simplex_tree.params.filtration"></span><strong>filtration</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.create_simplex_tree.params.filtration">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'alpha'</span></code>, <code class="docutils literal notranslate"><span class="pre">'cech'</span></code>] | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – Set this value to <cite>None</cite> (default value) if filtration values are not needed to be computed
-(will be set to <cite>NaN</cite>). Set it to <cite>alpha</cite> to compute the filtration values with the Alpha complex, or
-to <cite>cech</cite> to compute the Delaunay Cech complex.</p></li>
-<li><p><span class="target" id="gudhi.DelaunayComplex.create_simplex_tree.params.output_squared_values"></span><strong>output_squared_values</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.create_simplex_tree.params.output_squared_values">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Square filtration values when <cite>True</cite>. Default is <cite>True</cite>.</p></li>
+<li><p><span class="target" id="gudhi.DelaunayComplex.create_simplex_tree.params.max_alpha_square"></span><strong>max_alpha_square</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.create_simplex_tree.params.max_alpha_square">¶</a> (<em>float</em>) – The maximum alpha square threshold the simplices shall not exceed. Default is set
+to infinity, and there is very little point using anything else since it does not save time.</p></li>
+<li><p><span class="target" id="gudhi.DelaunayComplex.create_simplex_tree.params.filtration"></span><strong>filtration</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.create_simplex_tree.params.filtration">¶</a> (<em>Literal</em>) – Set this value to <cite>None</cite> (default value) if filtration values are not needed to be
+computed (will be set to <cite>NaN</cite>). Set it to <cite>alpha</cite> to compute the filtration values with the Alpha
+complex, or to <cite>cech</cite> to compute the Delaunay Cech complex.</p></li>
+<li><p><span class="target" id="gudhi.DelaunayComplex.create_simplex_tree.params.output_squared_values"></span><strong>output_squared_values</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.create_simplex_tree.params.output_squared_values">¶</a> (<em>bool</em>) – Square filtration values when <cite>True</cite>. Default is <cite>True</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -661,26 +661,26 @@ triangulation (duplicate points, weighted hidden point, …).</p>
 <h2>Static methods<a class="headerlink" href="#static-methods" title="Link to this heading">#</a></h2>
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.DelaunayComplex.get_float_relative_precision">
-<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DelaunayComplex.</span></span><span class="sig-name descname"><span class="pre">get_float_relative_precision</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.DelaunayComplex.get_float_relative_precision" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The float relative precision of filtration values computation when constructing with
-<code class="code docutils literal notranslate"><span class="pre">precision</span> <span class="pre">=</span> <span class="pre">'safe'</span></code> (the default).</p>
+<span class="sig-prename descclassname"><span class="pre">DelaunayComplex.</span></span><span class="sig-name descname"><span class="pre">get_float_relative_precision</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#gudhi.DelaunayComplex.get_float_relative_precision" title="Link to this definition">#</a></dt>
+<dd><p>Get the float relative precision of filtration values computation when constructing with <code class="code docutils literal notranslate"><span class="pre">precision</span> <span class="pre">=</span> <span class="pre">'safe'</span></code>
+(the default).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The float relative precision.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.DelaunayComplex.set_float_relative_precision">
-<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DelaunayComplex.</span></span><span class="sig-name descname"><span class="pre">set_float_relative_precision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">precision</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.DelaunayComplex.set_float_relative_precision" title="Link to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<span class="sig-prename descclassname"><span class="pre">DelaunayComplex.</span></span><span class="sig-name descname"><span class="pre">set_float_relative_precision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gudhi.DelaunayComplex.set_float_relative_precision" title="Link to this definition">#</a></dt>
+<dd><p>Set the float relative precision of filtration values computation when constructing with <code class="code docutils literal notranslate"><span class="pre">precision</span> <span class="pre">=</span> <span class="pre">'safe'</span></code>
+(the default).</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="target" id="gudhi.DelaunayComplex.set_float_relative_precision.params.precision"></span><strong>precision</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.set_float_relative_precision.params.precision">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – When constructing <code class="xref py py-func docutils literal notranslate"><span class="pre">delaunay_cech_complex()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">alpha_complex()</span></code>, or
-<code class="xref py py-func docutils literal notranslate"><span class="pre">weighted_alpha_complex()</span></code> with <code class="code docutils literal notranslate"><span class="pre">precision</span> <span class="pre">=</span> <span class="pre">'safe'</span></code> (the default), one can
-set the float relative precision of filtration values computed. Default is <code class="code docutils literal notranslate"><span class="pre">1e-5</span></code> (cf.
+<dd class="field-odd"><p><span class="target" id="gudhi.DelaunayComplex.set_float_relative_precision.params.precision"></span><strong>precision</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayComplex.set_float_relative_precision.params.precision">¶</a> – When constructing <a class="reference internal" href="#gudhi.AlphaComplex" title="gudhi.AlphaComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">AlphaComplex</span></code></a>, <a class="reference internal" href="#gudhi.DelaunayCechComplex" title="gudhi.DelaunayCechComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelaunayCechComplex</span></code></a>, or
+<a class="reference internal" href="#gudhi.DelaunayComplex" title="gudhi.DelaunayComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelaunayComplex</span></code></a> with <code class="code docutils literal notranslate"><span class="pre">precision</span> <span class="pre">=</span> <span class="pre">'safe'</span></code> (the default), one can set the float relative
+precision of filtration values computed. Default is <code class="code docutils literal notranslate"><span class="pre">1e-5</span></code> (cf.
 <a class="reference internal" href="#gudhi.DelaunayComplex.get_float_relative_precision" title="gudhi.DelaunayComplex.get_float_relative_precision"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_float_relative_precision()</span></code></a>). For more details, please refer to
 <a class="reference external" href="https://doc.cgal.org/latest/Number_types/classCGAL_1_1Lazy__exact__nt.html">CGAL::Lazy_exact_nt&lt;NT&gt;::set_relative_precision_of_to_double</a></p>
 </dd>
@@ -707,16 +707,16 @@ the complex.</p>
 <a class="reference external" href="https://gudhi.inria.fr/doc/latest/group__alpha__complex.html">Alpha complex C++ documentation</a></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When Alpha Complex is constructed with an infinite value of alpha, the complex is a Delaunay complex.</p>
+<p>When DelaunayComplex is constructed with an infinite value of alpha, the complex is a Delaunay complex.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.AlphaComplex.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.AlphaComplex.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'safe'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.AlphaComplex.__init__" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gudhi.AlphaComplex.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.params.points">¶</a> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A list of points in d-Dimension.</p></li>
-<li><p><span class="target" id="gudhi.AlphaComplex.params.weights"></span><strong>weights</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.params.weights">¶</a> (<em>Optional</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A list of weights. If set, the number of weights must correspond to
+<li><p><span class="target" id="gudhi.AlphaComplex.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.params.points">¶</a> (<em>Sequence</em><em>[</em><em>Sequence</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A list of points in d-Dimension.</p></li>
+<li><p><span class="target" id="gudhi.AlphaComplex.params.weights"></span><strong>weights</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.params.weights">¶</a> (<em>Optional</em><em>[</em><em>Sequence</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A list of weights. If set, the number of weights must correspond to
 the number of points.</p></li>
 <li><p><span class="target" id="gudhi.AlphaComplex.params.precision"></span><strong>precision</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.params.precision">¶</a> (<em>str</em>) – Complex precision can be <cite>‘fast’</cite>, <cite>‘safe’</cite> or <cite>‘exact’</cite>. Default is <cite>‘safe’</cite>.</p></li>
 </ul>
@@ -733,13 +733,13 @@ the number of points.</p></li>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gudhi.AlphaComplex.create_simplex_tree.params.max_alpha_square"></span><strong>max_alpha_square</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.create_simplex_tree.params.max_alpha_square">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The maximum alpha square threshold the simplices shall not exceed. Default is set to
-infinity, and there is very little point using anything else since it does not save time.</p></li>
-<li><p><span class="target" id="gudhi.AlphaComplex.create_simplex_tree.params.default_filtration_value"></span><strong>default_filtration_value</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.create_simplex_tree.params.default_filtration_value">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Default value is <cite>False</cite> (which means compute the filtration values). Set this
-value to <cite>True</cite> if filtration values are not needed to be computed (will be set to <cite>NaN</cite>), but please
-consider constructing a <a class="reference internal" href="#gudhi.DelaunayComplex" title="gudhi.DelaunayComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelaunayComplex</span></code></a> instead.</p></li>
-<li><p><span class="target" id="gudhi.AlphaComplex.create_simplex_tree.params.output_squared_values"></span><strong>output_squared_values</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.create_simplex_tree.params.output_squared_values">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Square filtration values when <cite>True</cite>. Default is <cite>True</cite> to keep backward</p></li>
-<li><p><span class="target" id="gudhi.AlphaComplex.create_simplex_tree.params.compatibility."></span><strong>compatibility.</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.create_simplex_tree.params.compatibility.">¶</a></p></li>
+<li><p><span class="target" id="gudhi.AlphaComplex.create_simplex_tree.params.max_alpha_square"></span><strong>max_alpha_square</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.create_simplex_tree.params.max_alpha_square">¶</a> (<em>float</em>) – The maximum alpha square threshold the simplices shall not exceed. Default is set
+to infinity, and there is very little point using anything else since it does not save time.</p></li>
+<li><p><span class="target" id="gudhi.AlphaComplex.create_simplex_tree.params.default_filtration_value"></span><strong>default_filtration_value</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.create_simplex_tree.params.default_filtration_value">¶</a> (<em>bool</em>) – Default value is <cite>False</cite> (which means compute the filtration values). Set
+this value to <cite>True</cite> if filtration values are not needed to be computed (will be set to <cite>NaN</cite>), but
+please consider constructing a <a class="reference internal" href="#gudhi.DelaunayComplex" title="gudhi.DelaunayComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DelaunayComplex</span></code></a> instead.</p></li>
+<li><p><span class="target" id="gudhi.AlphaComplex.create_simplex_tree.params.output_squared_values"></span><strong>output_squared_values</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.create_simplex_tree.params.output_squared_values">¶</a> (<em>bool</em>) – Square filtration values when <cite>True</cite>. Default is <cite>True</cite> to keep backward
+compatibility.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -758,21 +758,18 @@ triangulation (duplicate points, weighted hidden point, …).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.AlphaComplex.get_point">
-<span class="sig-name descname"><span class="pre">get_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.AlphaComplex.get_point" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#gudhi.AlphaComplex.get_point" title="Link to this definition">#</a></dt>
 <dd><p>This function returns the point corresponding to a given vertex from the <a class="reference internal" href="simplex_tree_ref.html#gudhi.SimplexTree" title="gudhi.SimplexTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimplexTree</span></code></a> (the
 same as the k-th input point, where <cite>k=vertex</cite>)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="target" id="gudhi.AlphaComplex.get_point.params.vertex"></span><strong>vertex</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.get_point.params.vertex">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The vertex.</p>
+<dd class="field-odd"><p><span class="target" id="gudhi.AlphaComplex.get_point.params.vertex"></span><strong>vertex</strong><a class="paramlink headerlink reference internal" href="#gudhi.AlphaComplex.get_point.params.vertex">¶</a> – The vertex.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the point.</p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the point.</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>IndexError</strong> – In case the point has no associated vertex in the diagram (because of weights or because it
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>IndexError</strong> – In case the point has no associated vertex in the diagram (because of weights or because it
 is a duplicate).</p>
 </dd>
 </dl>
@@ -797,11 +794,11 @@ the complex.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="gudhi.DelaunayCechComplex.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.DelaunayCechComplex.__init__" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'safe'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gudhi.DelaunayCechComplex.__init__" title="Link to this definition">#</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gudhi.DelaunayCechComplex.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayCechComplex.params.points">¶</a> (<em>Iterable</em><em>[</em><em>Iterable</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A list of points in d-Dimension.</p></li>
+<li><p><span class="target" id="gudhi.DelaunayCechComplex.params.points"></span><strong>points</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayCechComplex.params.points">¶</a> (<em>Sequence</em><em>[</em><em>Sequence</em><em>[</em><em>float</em><em>]</em><em>]</em>) – A list of points in d-Dimension.</p></li>
 <li><p><span class="target" id="gudhi.DelaunayCechComplex.params.precision"></span><strong>precision</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayCechComplex.params.precision">¶</a> (<em>str</em>) – Complex precision can be <cite>‘fast’</cite>, <cite>‘safe’</cite> or <cite>‘exact’</cite>. Default is <cite>‘safe’</cite>.</p></li>
 </ul>
 </dd>
@@ -814,15 +811,18 @@ the complex.</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gudhi.DelaunayCechComplex.create_simplex_tree.params.max_alpha_square"></span><strong>max_alpha_square</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayCechComplex.create_simplex_tree.params.max_alpha_square">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The maximum alpha square threshold the simplices shall not exceed. Default is set to
-infinity, and there is very little point using anything else since it does not save time.</p></li>
-<li><p><span class="target" id="gudhi.DelaunayCechComplex.create_simplex_tree.params.output_squared_values"></span><strong>output_squared_values</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayCechComplex.create_simplex_tree.params.output_squared_values">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Square filtration values when <cite>True</cite>. Default is <cite>True</cite>.</p></li>
+<li><p><span class="target" id="gudhi.DelaunayCechComplex.create_simplex_tree.params.max_alpha_square"></span><strong>max_alpha_square</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayCechComplex.create_simplex_tree.params.max_alpha_square">¶</a> (<em>float</em>) – The maximum alpha square threshold the simplices shall not exceed. Default is set
+to infinity, and there is very little point using anything else since it does not save time.</p></li>
+<li><p><span class="target" id="gudhi.DelaunayCechComplex.create_simplex_tree.params.output_squared_values"></span><strong>output_squared_values</strong><a class="paramlink headerlink reference internal" href="#gudhi.DelaunayCechComplex.create_simplex_tree.params.output_squared_values">¶</a> (<em>bool</em>) – Square filtration values when <cite>True</cite>. Default is <cite>True</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A simplex tree created from the Delaunay Čech Triangulation. The vertex <cite>k</cite> corresponds to the
-k-th input point. The vertices may not be numbered contiguously as some points may be discarded in the
+<dd class="field-even"><p><dl class="simple">
+<dt>A simplex tree created from the Delaunay Čech Triangulation. The vertex <cite>k</cite> corresponds to the</dt><dd><p>k-th input point. The vertices may not be numbered contiguously as some points may be discarded in the
 triangulation(duplicate points, …).</p>
+</dd>
+</dl>
+</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="simplex_tree_ref.html#gudhi.SimplexTree" title="gudhi.SimplexTree">SimplexTree</a></p>

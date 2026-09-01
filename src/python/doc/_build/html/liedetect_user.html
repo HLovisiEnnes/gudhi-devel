@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LieDetect user manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>LieDetect user manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -31,8 +31,8 @@
 <link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -49,7 +49,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -59,7 +59,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -664,7 +664,7 @@ detailed in <span class="bibtex-citation" id="id2">[]</span>.</p>
 <p>Every representation of a compact Lie group can be made orthogonal. That is,
 there exists a change of basis of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> for which the orbit lies
 on the unit sphere. The first step of LieDetect estimates such a change of basis.
-This step is implemented by the <code class="xref py py-class docutils literal notranslate"><span class="pre">Orthonormalize</span></code> class.</p>
+This step is implemented by the <a class="reference internal" href="liedetect_orthonormalize_ref.html#gudhi.liedetect.Orthonormalize" title="gudhi.liedetect.Orthonormalize"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orthonormalize</span></code></a> class.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.liedetect</span><span class="w"> </span><span class="kn">import</span> <span class="n">Orthonormalize</span>
 <span class="n">ortho</span> <span class="o">=</span> <span class="n">Orthonormalize</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
 <span class="n">pts</span> <span class="o">=</span> <span class="n">ortho</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
@@ -678,7 +678,7 @@ obtained by normalization.</p>
 <p>The second step uses the LiePCA algorithm of <span class="bibtex-citation" id="id3">[]</span>. Tangent information along
 the orbit is used to compute an operator approximating the infinitesimal action
 of the representation (i.e., the associated Lie algebra representation).
-This functionality is provided by the <code class="xref py py-class docutils literal notranslate"><span class="pre">OrbitFitter</span></code> class.</p>
+This functionality is provided by the <a class="reference internal" href="liedetect_orbit_fitter_ref.html#gudhi.liedetect.OrbitFitter" title="gudhi.liedetect.OrbitFitter"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrbitFitter</span></code></a> class.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">orbit_fitter</span> <span class="o">=</span> <span class="n">OrbitFitter</span><span class="p">(</span><span class="n">pts</span><span class="o">=</span><span class="n">pts</span><span class="p">)</span>
 <span class="n">lie_pca</span> <span class="o">=</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">lie_pca</span><span class="p">(</span><span class="n">nb_neighbors</span><span class="o">=</span><span class="n">nb_neighbors</span><span class="p">,</span> <span class="n">orbit_dim</span><span class="o">=</span><span class="n">orbit_dim</span><span class="p">)</span>
 </pre></div>

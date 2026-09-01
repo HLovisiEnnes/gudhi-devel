@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gudhi.clustering.tomato &#8212; gudhi v3.11.0 documentation</title>
+    <title>gudhi.clustering.tomato &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -30,8 +30,8 @@
 <link href="../../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -47,7 +47,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -57,7 +57,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="../../../_static/searchtools.js"></script>
@@ -605,14 +605,17 @@
 <span class="c1"># Modification(s):</span>
 <span class="c1">#   - YYYY/MM Author: Description of the modification</span>
 
+<span class="n">__license__</span> <span class="o">=</span> <span class="s2">"MIT"</span>
+
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+
 <span class="kn">from</span><span class="w"> </span><span class="nn">..point_cloud.knn</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNearestNeighbors</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..point_cloud.dtm</span><span class="w"> </span><span class="kn">import</span> <span class="n">DTMDensity</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">._tomato</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._tomato_ext</span><span class="w"> </span><span class="kn">import</span> <span class="n">_hierarchy</span><span class="p">,</span> <span class="n">_merge</span>
+
 
 <span class="c1"># The fit/predict interface is not so well suited...</span>
-
-
 <div class="viewcode-block" id="Tomato">
 <a class="viewcode-back" href="../../../clustering.html#gudhi.clustering.tomato.Tomato">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Tomato</span><span class="p">:</span>
@@ -661,7 +664,7 @@
         <span class="n">merge_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="c1">#       eliminate_threshold=None,</span>
         <span class="c1">#           eliminate_threshold (float): minimum max weight of a cluster so it doesn't get eliminated</span>
-        <span class="o">**</span><span class="n">params</span>
+        <span class="o">**</span><span class="n">params</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Args:</span>
@@ -681,8 +684,10 @@
 <span class="sd">            n_clusters (int): number of clusters requested. Defaults to None, i.e. no merging occurs and we get</span>
 <span class="sd">                the maximal number of clusters.</span>
 <span class="sd">            merge_threshold (float): minimum prominence of a cluster so it doesn't get merged.</span>
-<span class="sd">            symmetrize_graph (bool): whether we should add edges to make the neighborhood graph symmetric.</span>
-<span class="sd">                This can be useful with k-NN for small k. Defaults to false.</span>
+<span class="sd">            symmetrize_graph (bool): whether we should add neighbors to make the neighborhood graph symmetric.</span>
+<span class="sd">                For each point, Tomato only looks at its neighbors with a larger weight, so the actual graph used</span>
+<span class="sd">                depends on the weights for non-symmetric input graphs. This is usually not a problem, but the option</span>
+<span class="sd">                can be useful with k-NN for small k. Defaults to false.</span>
 <span class="sd">            p (float): norm L^p on input points. Defaults to 2.</span>
 <span class="sd">            q (float): order used to compute the distance to measure. Defaults to dim.</span>
 <span class="sd">            dim (float): final exponent in DTM density estimation, representing the dimension. Defaults to the</span>
@@ -725,12 +730,14 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">density_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">density_type_</span>
             <span class="k">if</span> <span class="n">density_type</span> <span class="o">==</span> <span class="s2">"manual"</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"If density_type is 'manual', you must provide weights to fit()"</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"If density_type is 'manual', you must provide weights to fit()"</span>
+                <span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_type_</span> <span class="o">==</span> <span class="s2">"manual"</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span> <span class="o">=</span> <span class="n">X</span>
-            <span class="c1"># FIXME: uniformize "message 'option'" vs 'message "option"'</span>
-            <span class="k">assert</span> <span class="n">density_type</span> <span class="o">==</span> <span class="s2">"manual"</span><span class="p">,</span> <span class="s1">'If graph_type is "manual", density_type must be as well'</span>
+            <span class="k">if</span> <span class="n">density_type</span> <span class="o">!=</span> <span class="s2">"manual"</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"If graph_type is 'manual', density_type must be as well"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"metric"</span><span class="p">,</span> <span class="s2">"minkowski"</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">metric</span> <span class="o">!=</span> <span class="s2">"precomputed"</span><span class="p">:</span>
@@ -760,9 +767,9 @@
         <span class="k">if</span> <span class="n">need_knn</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">knn_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="p">)</span>
             <span class="n">knn_args</span><span class="p">[</span><span class="s2">"k"</span><span class="p">]</span> <span class="o">=</span> <span class="n">need_knn</span>
-            <span class="n">knn</span> <span class="o">=</span> <span class="n">KNearestNeighbors</span><span class="p">(</span><span class="n">return_index</span><span class="o">=</span><span class="n">need_knn_ngb</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="n">need_knn_dist</span><span class="p">,</span> <span class="o">**</span><span class="n">knn_args</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span>
-                <span class="n">X</span>
-            <span class="p">)</span>
+            <span class="n">knn</span> <span class="o">=</span> <span class="n">KNearestNeighbors</span><span class="p">(</span>
+                <span class="n">return_index</span><span class="o">=</span><span class="n">need_knn_ngb</span><span class="p">,</span> <span class="n">return_distance</span><span class="o">=</span><span class="n">need_knn_dist</span><span class="p">,</span> <span class="o">**</span><span class="n">knn_args</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">need_knn_ngb</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">need_knn_dist</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span> <span class="o">=</span> <span class="n">knn</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">:</span><span class="n">k_graph</span><span class="p">]</span>
@@ -776,7 +783,9 @@
             <span class="k">if</span> <span class="n">dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">dim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">metric</span> <span class="o">!=</span> <span class="s2">"precomputed"</span> <span class="k">else</span> <span class="mi">2</span>
             <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"q"</span><span class="p">,</span> <span class="n">dim</span><span class="p">)</span>
-            <span class="n">weights</span> <span class="o">=</span> <span class="n">DTMDensity</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k_DTM</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"neighbors"</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">knn_dist</span><span class="p">)</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">DTMDensity</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k_DTM</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">"neighbors"</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="n">dim</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span>
+                <span class="n">knn_dist</span>
+            <span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">density_type_</span> <span class="o">==</span> <span class="s2">"logDTM"</span><span class="p">:</span>
                 <span class="n">weights</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
 
@@ -788,13 +797,22 @@
                 <span class="c1"># TODO: handle "l1" and "l2" aliases?</span>
                 <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"p"</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"euclidean"</span><span class="p">:</span>
-                    <span class="k">assert</span> <span class="n">p</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"p="</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" is not consistent with metric='euclidean'"</span>
+                    <span class="k">if</span> <span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">p</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="s2">"p="</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" is not consistent with metric='euclidean'"</span>
+                        <span class="p">)</span>
                     <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span>
                 <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"manhattan"</span><span class="p">:</span>
-                    <span class="k">assert</span> <span class="n">p</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"p="</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" is not consistent with metric='manhattan'"</span>
+                    <span class="k">if</span> <span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">p</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="s2">"p="</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" is not consistent with metric='manhattan'"</span>
+                        <span class="p">)</span>
                     <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span>
                 <span class="k">elif</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"chebyshev"</span><span class="p">:</span>
-                    <span class="k">assert</span> <span class="n">p</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">p</span> <span class="o">==</span> <span class="n">numpy</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="s2">"p="</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" is not consistent with metric='chebyshev'"</span>
+                    <span class="k">if</span> <span class="n">p</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">p</span> <span class="o">!=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                            <span class="s2">"p="</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" is not consistent with metric='chebyshev'"</span>
+                        <span class="p">)</span>
                     <span class="n">p</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">inf</span>
                 <span class="k">elif</span> <span class="n">p</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># the default</span>
@@ -817,9 +835,8 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">density_type_</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"KDE"</span><span class="p">,</span> <span class="s2">"logKDE"</span><span class="p">}:</span>
             <span class="c1"># Slow...</span>
-            <span class="k">assert</span> <span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">graph_type_</span> <span class="o">!=</span> <span class="s2">"manual"</span> <span class="ow">and</span> <span class="n">metric</span> <span class="o">!=</span> <span class="s2">"precomputed"</span>
-            <span class="p">),</span> <span class="s2">"Scikit-learn's KernelDensity requires point coordinates"</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph_type_</span> <span class="o">==</span> <span class="s2">"manual"</span> <span class="ow">or</span> <span class="n">metric</span> <span class="o">==</span> <span class="s2">"precomputed"</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Scikit-learn's KernelDensity requires point coordinates"</span><span class="p">)</span>
             <span class="n">kde_params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"kde_params"</span><span class="p">,</span> <span class="nb">dict</span><span class="p">()))</span>
             <span class="n">kde_params</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">"metric"</span><span class="p">,</span> <span class="n">metric</span><span class="p">)</span>
             <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"r"</span><span class="p">)</span>
@@ -844,18 +861,25 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">weights_</span> <span class="o">=</span> <span class="n">weights</span>
         <span class="c1"># This is where the main computation happens</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">leaf_labels_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leaf_labels_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span> <span class="o">=</span> <span class="n">_hierarchy</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">neighbors_</span><span class="p">,</span> <span class="n">weights</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_leaves_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">)</span>
-        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">leaf_labels_</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">leaf_labels_</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="s2">"Internal consistency check: Wrong values were calculated for leaf_labels_, max_weight_per_cc_ and children_"</span>
+            <span class="p">)</span>
         <span class="c1"># TODO: deduplicate this code with the setters below</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span><span class="p">:</span>
+                <span class="c1"># should not happen if nothing got broken, as the constructor ensures it</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Internal consistency check: __n_clusters should be 0"</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span>
             <span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span><span class="p">:</span>
             <span class="c1"># TODO: set corresponding merge_threshold?</span>
-            <span class="n">renaming</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_leaves_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span><span class="p">)</span>
+            <span class="n">renaming</span> <span class="o">=</span> <span class="n">_merge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_leaves_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">labels_</span> <span class="o">=</span> <span class="n">renaming</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">leaf_labels_</span><span class="p">]</span>
             <span class="c1"># In case the user asked for something impossible.</span>
             <span class="c1"># TODO: check for impossible situations before calling merge.</span>
@@ -880,6 +904,7 @@
 <a class="viewcode-back" href="../../../clustering.html#gudhi.clustering.tomato.Tomato.plot_diagram">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">plot_diagram</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        :Requires: `Matplotlib &lt;installation.html#matplotlib&gt;`_</span>
 <span class="sd">        """</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
@@ -898,7 +923,10 @@
                 <span class="n">l</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">],</span> <span class="p">[</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">])</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">l</span> <span class="o">-</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">r</span><span class="p">),</span> <span class="s2">"o"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"green"</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="p">,</span>
+            <span class="n">numpy</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="n">l</span> <span class="o">-</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">r</span><span class="p">),</span>
+            <span class="s2">"o"</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">"green"</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
 
@@ -915,7 +943,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span> <span class="o">=</span> <span class="n">n_clusters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"leaf_labels_"</span><span class="p">):</span>
-            <span class="n">renaming</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_leaves_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span><span class="p">)</span>
+            <span class="n">renaming</span> <span class="o">=</span> <span class="n">_merge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children_</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_leaves_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">labels_</span> <span class="o">=</span> <span class="n">renaming</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">leaf_labels_</span><span class="p">]</span>
             <span class="c1"># In case the user asked for something impossible</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">labels_</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
@@ -929,9 +957,9 @@
         <span class="k">if</span> <span class="n">merge_threshold</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"leaf_labels_"</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">n_clusters_</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">merge_threshold</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span>
-            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_clusters_</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">diagram_</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">merge_threshold</span>
+            <span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_weight_per_cc_</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__n_clusters</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__merge_threshold</span> <span class="o">=</span> <span class="n">merge_threshold</span></div>

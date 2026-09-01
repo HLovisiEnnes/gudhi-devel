@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Rips complex user manual &#8212; gudhi v3.11.0 documentation</title>
+    <title>Rips complex user manual &#8212; gudhi v3.14.0a0 documentation</title>
   
   
   
@@ -49,7 +49,7 @@
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.21.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://gudhi.inria.fr/switcher.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.11.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '3.14.0a0';
         DOCUMENTATION_OPTIONS.show_version_warning_banner =
             false;
         </script>
@@ -59,7 +59,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="3.11.0" />
+  <meta name="docsearch:version" content="3.14.0a0" />
   
     
     <script src="_static/searchtools.js"></script>
@@ -682,7 +682,7 @@ when required. The expansion can be stopped at dimension <cite>max_dimension</ci
 set with <span class="math notranslate nohighlight">\(max(filtration(4,5), filtration(4,6), filtration(5,6))\)</span>. And so on for simplex (0,1,2,3).</p>
 <p>A Rips complex can easily become huge, even if we limit the length of the edges
 and the dimension of the simplices. One easy trick, before building a Rips
-complex on a point cloud, is to call <code class="xref py py-func docutils literal notranslate"><span class="pre">sparsify_point_set()</span></code> which removes points
+complex on a point cloud, is to call <a class="reference internal" href="point_cloud.html#gudhi.subsampling.sparsify_point_set" title="gudhi.subsampling.sparsify_point_set"><code class="xref py py-func docutils literal notranslate"><span class="pre">sparsify_point_set()</span></code></a> which removes points
 that are too close to each other. This does not change its persistence diagram
 by more than the length used to define “too close”.</p>
 <p>A more general technique is to use a sparse approximation of the Rips
@@ -703,7 +703,7 @@ sometimes even 1), is to build the Rips complex only up to dimension 1 (a graph)
 trick gives the same persistence diagram as one would get with a plain use of <cite>RipsComplex</cite>, with a complex that is
 often significantly smaller and thus faster to process.</p>
 <p>Finally, if you are only interested in the persistence diagram of a Rips complex, you should consider using
-<code class="xref py py-class docutils literal notranslate"><span class="pre">RipsPersistence</span></code> instead, which directly returns the diagram and can be faster
+<a class="reference internal" href="rips_complex_sklearn_itf_ref.html#gudhi.sklearn.RipsPersistence" title="gudhi.sklearn.RipsPersistence"><code class="xref py py-class docutils literal notranslate"><span class="pre">RipsPersistence</span></code></a> instead, which directly returns the diagram and can be faster
 than explicitly building the complex before computing its persistence.</p>
 </section>
 <section id="point-cloud">
@@ -840,7 +840,9 @@ until dimension 1 - one skeleton graph in other words), the output is:</p>
 [3, 6] -&gt; 11.00
 </pre></div>
 </div>
-<p>In case this lower triangular matrix is stored in a CSV file, like <cite>data/distance_matrix/full_square_distance_matrix.csv</cite> in the Gudhi distribution, you can read it with <a class="reference internal" href="point_cloud.html#gudhi.read_lower_triangular_matrix_from_csv_file" title="gudhi.read_lower_triangular_matrix_from_csv_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_lower_triangular_matrix_from_csv_file()</span></code></a>.</p>
+<p>In case this lower triangular matrix is stored in a CSV file, like
+<cite>data/distance_matrix/full_square_distance_matrix.csv</cite> in the Gudhi distribution, you can read it with
+<a class="reference internal" href="point_cloud.html#gudhi.read_lower_triangular_matrix_from_csv_file" title="gudhi.read_lower_triangular_matrix_from_csv_file"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_lower_triangular_matrix_from_csv_file()</span></code></a>.</p>
 </section>
 </section>
 <section id="correlation-matrix">
@@ -911,7 +913,8 @@ this is a known issue.</p>
 </section>
 <section id="weighted-rips-complex">
 <h2>Weighted Rips Complex<a class="headerlink" href="#weighted-rips-complex" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="rips_complex_ref.html#weighted-rips-complex-reference-manual">WeightedRipsComplex</a> builds a simplicial complex from a distance matrix and weights on vertices.</p>
+<p><a class="reference external" href="rips_complex_ref.html#weighted-rips-complex-reference-manual">WeightedRipsComplex</a> builds a simplicial complex from
+a distance matrix and weights on vertices.</p>
 <section id="example-from-a-distance-matrix-and-weights">
 <h3>Example from a distance matrix and weights<a class="headerlink" href="#example-from-a-distance-matrix-and-weights" title="Link to this heading">#</a></h3>
 <p>The following example computes the weighted Rips filtration associated with a distance matrix and weights on vertices.</p>
@@ -930,7 +933,8 @@ this is a known issue.</p>
 </section>
 <section id="example-from-a-point-cloud-combined-with-distancetomeasure">
 <h3>Example from a point cloud combined with DistanceToMeasure<a class="headerlink" href="#example-from-a-point-cloud-combined-with-distancetomeasure" title="Link to this heading">#</a></h3>
-<p>Combining with DistanceToMeasure, one can compute the DTM-filtration of a point set, as in <a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/Tuto-GUDHI-DTM-filtrations.ipynb">this notebook</a>.
+<p>Combining with DistanceToMeasure, one can compute the DTM-filtration of a point set, as in
+<a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/tutorials/Tuto-GUDHI-DTM-filtrations.ipynb">this notebook</a>.
 Remark that <a class="reference external" href="rips_complex_user.html#dtm-rips-complex">DTMRipsComplex</a> class provides exactly this function.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">cdist</span>
@@ -953,8 +957,12 @@ Remark that <a class="reference external" href="rips_complex_user.html#dtm-rips-
 </section>
 <section id="dtm-rips-complex">
 <h2>DTM Rips Complex<a class="headerlink" href="#dtm-rips-complex" title="Link to this heading">#</a></h2>
-<p><a class="reference internal" href="rips_complex_ref.html#gudhi.dtm_rips_complex.DTMRipsComplex" title="gudhi.dtm_rips_complex.DTMRipsComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DTMRipsComplex</span></code></a> builds a simplicial complex from a point set or a full distance matrix (in the form of ndarray), as described in the above example.
-This class constructs a weighted Rips complex giving larger weights to outliers, which reduces their impact on the persistence diagram. See <a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/Tuto-GUDHI-DTM-filtrations.ipynb">this notebook</a> for some experiments.</p>
+<p><a class="reference internal" href="rips_complex_ref.html#gudhi.dtm_rips_complex.DTMRipsComplex" title="gudhi.dtm_rips_complex.DTMRipsComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DTMRipsComplex</span></code></a> builds a simplicial complex from a point set or a full distance matrix
+(in the form of ndarray), as described in the above example.
+This class constructs a weighted Rips complex giving larger weights to outliers, which reduces their impact on the
+persistence diagram.
+See <a class="reference external" href="https://github.com/GUDHI/TDA-tutorial/blob/master/tutorials/Tuto-GUDHI-DTM-filtrations.ipynb">this notebook</a>
+for some experiments.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.dtm_rips_complex</span><span class="w"> </span><span class="kn">import</span> <span class="n">DTMRipsComplex</span>
 <span class="n">pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>

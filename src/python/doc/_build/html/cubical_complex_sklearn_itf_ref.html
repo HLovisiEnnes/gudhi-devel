@@ -723,63 +723,6 @@ weighted avg       0.96      0.96      0.96     28000
 </section>
 <section id="cubical-complex-persistence-scikit-learn-like-interface-reference">
 <h2>Cubical complex persistence scikit-learn like interface reference<a class="headerlink" href="#cubical-complex-persistence-scikit-learn-like-interface-reference" title="Link to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="gudhi.sklearn.CubicalPersistence">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.sklearn.</span></span><span class="sig-name descname"><span class="pre">CubicalPersistence</span></span><a class="reference internal" href="_modules/gudhi/sklearn/cubical_persistence.html#CubicalPersistence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.CubicalPersistence" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerMixin</span></code></p>
-<p>This is a class for computing the persistence diagrams from a cubical complex.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="gudhi.sklearn.CubicalPersistence.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">homology_dimensions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'top_dimensional_cells'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">homology_coeff_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_persistence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/cubical_persistence.html#CubicalPersistence.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.CubicalPersistence.__init__" title="Link to this definition">#</a></dt>
-<dd><p>Constructor for the CubicalPersistence class.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gudhi.sklearn.CubicalPersistence.params.homology_dimensions"></span><strong>homology_dimensions</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CubicalPersistence.params.homology_dimensions">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">_Buffer</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">_SupportsArray</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]] | <code class="xref py py-class docutils literal notranslate"><span class="pre">_NestedSequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">_SupportsArray</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]]] | <code class="xref py py-class docutils literal notranslate"><span class="pre">complex</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">_NestedSequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">complex</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – The returned persistence diagrams dimension(s).
-Short circuit the use of <a class="reference internal" href="representations.html#gudhi.representations.preprocessing.DimensionSelector" title="gudhi.representations.preprocessing.DimensionSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">DimensionSelector</span></code></a> when only one
-dimension matters (in other words, when <cite>homology_dimensions</cite> is an int).</p></li>
-<li><p><span class="target" id="gudhi.sklearn.CubicalPersistence.params.input_type"></span><strong>input_type</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CubicalPersistence.params.input_type">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'top_dimensional_cells'</span></code>, <code class="docutils literal notranslate"><span class="pre">'vertices'</span></code>]</span>) – ‘top_dimensional_cells’ if the filtration values passed to <cite>transform()</cite> are those of the
-top-dimensional cells, ‘vertices’ if they correspond to the vertices.</p></li>
-<li><p><span class="target" id="gudhi.sklearn.CubicalPersistence.params.homology_coeff_field"></span><strong>homology_coeff_field</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CubicalPersistence.params.homology_coeff_field">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The homology coefficient field. Must be a prime number. Default value is 11.</p></li>
-<li><p><span class="target" id="gudhi.sklearn.CubicalPersistence.params.min_persistence"></span><strong>min_persistence</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CubicalPersistence.params.min_persistence">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The minimum persistence value to take into account (strictly greater than
-<cite>min_persistence</cite>). Default value is <cite>0.0</cite>. Set <cite>min_persistence</cite> to <cite>-1.0</cite> to see all values.</p></li>
-<li><p><span class="target" id="gudhi.sklearn.CubicalPersistence.params.n_jobs"></span><strong>n_jobs</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CubicalPersistence.params.n_jobs">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – cf. <a class="reference external" href="https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html">https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html</a></p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gudhi.sklearn.CubicalPersistence.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/cubical_persistence.html#CubicalPersistence.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.CubicalPersistence.fit" title="Link to this definition">#</a></dt>
-<dd><p>Fit the <cite>CubicalPersistence</cite> class in function of <cite>homology_dimensions</cite> type.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gudhi.sklearn.CubicalPersistence.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/cubical_persistence.html#CubicalPersistence.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.CubicalPersistence.transform" title="Link to this definition">#</a></dt>
-<dd><p>Compute all the cubical complexes and their associated persistence diagrams.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="target" id="gudhi.sklearn.CubicalPersistence.transform.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.CubicalPersistence.transform.params.X">¶</a> (<em>list</em><em> of </em><em>array-like</em>) – Filtration values of the top-dimensional cells or vertices for each complex.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p>Persistence diagrams in the format:</p>
-<ul class="simple">
-<li><p>If <cite>homology_dimensions</cite> was set to <cite>n</cite>: <cite>[array( Hn(X[0]) ), array( Hn(X[1]) ), …]</cite></p></li>
-<li><p>If <cite>homology_dimensions</cite> was set to <cite>[i, j]</cite>:
-<cite>[[array( Hi(X[0]) ), array( Hj(X[0]) )], [array( Hi(X[1]) ), array( Hj(X[1]) )], …]</cite></p></li>
-</ul>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of (,2) array_like or list of list of (,2) array_like</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This class uses specialized fast code for the following cases</p>

@@ -721,89 +721,15 @@ activities performed while wearing only magnetic sensor unit on the left leg.</p
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<figure class="align-center align-default" id="id4">
+<figure class="align-center align-default" id="id3">
 <img alt="_images/rips_persistence_sklearn_itf.png" src="_images/rips_persistence_sklearn_itf.png" />
 <figcaption>
-<p><span class="caption-text">Average Landscapes of 4 different activities.</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+<p><span class="caption-text">Average Landscapes of 4 different activities.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="rips-complex-persistence-scikit-learn-like-interface-reference">
 <h2>Rips complex persistence scikit-learn like interface reference<a class="headerlink" href="#rips-complex-persistence-scikit-learn-like-interface-reference" title="Link to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="gudhi.sklearn.RipsPersistence">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">gudhi.sklearn.</span></span><span class="sig-name descname"><span class="pre">RipsPersistence</span></span><a class="reference internal" href="_modules/gudhi/sklearn/rips_persistence.html#RipsPersistence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.RipsPersistence" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerMixin</span></code></p>
-<p>This is a class for constructing Vietoris-Rips filtrations (possibly implicitly) and computing their persistence
-diagrams.  It does not always use <a class="reference internal" href="rips_complex_ref.html#gudhi.RipsComplex" title="gudhi.RipsComplex"><code class="xref py py-class docutils literal notranslate"><span class="pre">RipsComplex</span></code></a> or <a class="reference internal" href="simplex_tree_ref.html#gudhi.SimplexTree" title="gudhi.SimplexTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimplexTree</span></code></a>, or not naively, it may
-also use <a class="reference internal" href="edge_collapse.html#gudhi.flag_filtration.edge_collapse.reduce_graph" title="gudhi.flag_filtration.edge_collapse.reduce_graph"><code class="xref py py-func docutils literal notranslate"><span class="pre">reduce_graph()</span></code></a> and a fork of Ripser <span class="bibtex-citation" id="id3">[]</span> and can be
-significantly faster.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="gudhi.sklearn.RipsPersistence.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">homology_dimensions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'point</span> <span class="pre">cloud'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_collapses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">homology_coeff_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/rips_persistence.html#RipsPersistence.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.RipsPersistence.__init__" title="Link to this definition">#</a></dt>
-<dd><p>Constructor for the RipsPersistence class.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="gudhi.sklearn.RipsPersistence.params.homology_dimensions"></span><strong>homology_dimensions</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.RipsPersistence.params.homology_dimensions">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">_Buffer</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">_SupportsArray</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]] | <code class="xref py py-class docutils literal notranslate"><span class="pre">_NestedSequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">_SupportsArray</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">dtype</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]]] | <code class="xref py py-class docutils literal notranslate"><span class="pre">complex</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">_NestedSequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">complex</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – The returned persistence diagrams dimension(s).
-Short circuit the use of <a class="reference internal" href="representations.html#gudhi.representations.preprocessing.DimensionSelector" title="gudhi.representations.preprocessing.DimensionSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">DimensionSelector</span></code></a> when only one
-dimension matters (in other words, when <cite>homology_dimensions</cite> is an int).</p></li>
-<li><p><span class="target" id="gudhi.sklearn.RipsPersistence.params.threshold"></span><strong>threshold</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.RipsPersistence.params.threshold">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – Rips maximal edge length value. Default is +Inf. Ignored if input_type is
-‘distance coo_matrix’.</p></li>
-<li><p><span class="target" id="gudhi.sklearn.RipsPersistence.params.input_type"></span><strong>input_type</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.RipsPersistence.params.input_type">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'point</span> <span class="pre">cloud'</span></code>, <code class="docutils literal notranslate"><span class="pre">'full</span> <span class="pre">distance</span> <span class="pre">matrix'</span></code>, <code class="docutils literal notranslate"><span class="pre">'lower</span> <span class="pre">distance</span> <span class="pre">matrix'</span></code>, <code class="docutils literal notranslate"><span class="pre">'distance</span> <span class="pre">coo_matrix'</span></code>]</span>) – Can be ‘point cloud’ when inputs are point clouds, ‘full distance matrix’,
-‘lower distance matrix’ when inputs are lower triangular distance matrix (can be full square,
-but the upper part will not be considered), or ‘distance coo_matrix’ for a distance matrix in SciPy’s
-sparse format, which should contain each edge at most once (avoid the symmetric) and no diagonal entry.
-Default is ‘point cloud’.</p></li>
-<li><p><span class="target" id="gudhi.sklearn.RipsPersistence.params.num_collapses"></span><strong>num_collapses</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.RipsPersistence.params.num_collapses">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>[<code class="docutils literal notranslate"><span class="pre">'auto'</span></code>]</span>) – Specify the number of iterations of
-<a class="reference internal" href="edge_collapse.html#gudhi.flag_filtration.edge_collapse.reduce_graph" title="gudhi.flag_filtration.edge_collapse.reduce_graph"><code class="xref py py-func docutils literal notranslate"><span class="pre">reduce_graph()</span></code></a> (edge collapse) to perform on the graph.
-Default value is ‘auto’.</p></li>
-<li><p><span class="target" id="gudhi.sklearn.RipsPersistence.params.homology_coeff_field"></span><strong>homology_coeff_field</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.RipsPersistence.params.homology_coeff_field">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The homology coefficient field. Must be a prime number. Default value is 11.</p></li>
-<li><p><span class="target" id="gudhi.sklearn.RipsPersistence.params.n_jobs"></span><strong>n_jobs</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.RipsPersistence.params.n_jobs">¶</a> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – Number of jobs to run in parallel. <cite>None</cite> (default value) means <cite>n_jobs = 1</cite> unless in a
-joblib.parallel_backend context. <cite>-1</cite> means using all processors. cf.
-<a class="reference external" href="https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html">https://joblib.readthedocs.io/en/latest/generated/joblib.Parallel.html</a> for more details.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gudhi.sklearn.RipsPersistence.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/rips_persistence.html#RipsPersistence.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.RipsPersistence.fit" title="Link to this definition">#</a></dt>
-<dd><p>Fit the <cite>RipsPersistence</cite> class in function of <cite>homology_dimensions</cite> type.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gudhi.sklearn.RipsPersistence.get_feature_names_out">
-<span class="sig-name descname"><span class="pre">get_feature_names_out</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/rips_persistence.html#RipsPersistence.get_feature_names_out"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.RipsPersistence.get_feature_names_out" title="Link to this definition">#</a></dt>
-<dd><p>Provide column names for implementing sklearn’s set_output API.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="gudhi.sklearn.RipsPersistence.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/sklearn/rips_persistence.html#RipsPersistence.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.sklearn.RipsPersistence.transform" title="Link to this definition">#</a></dt>
-<dd><p>Compute all the Vietoris-Rips complexes and their associated persistence diagrams.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="target" id="gudhi.sklearn.RipsPersistence.transform.params.X"></span><strong>X</strong><a class="paramlink headerlink reference internal" href="#gudhi.sklearn.RipsPersistence.transform.params.X">¶</a> (<em>list</em><em> of </em><em>list</em><em> of </em><em>float OR list</em><em> of </em><em>numpy.ndarray</em>) – list of point clouds as Euclidean coordinates or distance matrices.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><p>Persistence diagrams in the format:</p>
-<ul class="simple">
-<li><p>If <cite>homology_dimensions</cite> was set to <cite>n</cite>: <cite>[array( Hn(X[0]) ), array( Hn(X[1]) ), …]</cite></p></li>
-<li><p>If <cite>homology_dimensions</cite> was set to <cite>[i, j]</cite>:
-<cite>[[array( Hi(X[0]) ), array( Hj(X[0]) )], [array( Hi(X[1]) ), array( Hj(X[1]) )], …]</cite></p></li>
-</ul>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of numpy ndarray of shape (,2) or list of list of numpy ndarray of shape (,2)</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 </section>
 

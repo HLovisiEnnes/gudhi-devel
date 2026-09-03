@@ -601,7 +601,7 @@
 <h1>Diagram readers reference manual<a class="headerlink" href="#diagram-readers-reference-manual" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="gudhi.read_persistence_intervals_grouped_by_dimension">
-<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">read_persistence_intervals_grouped_by_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">persistence_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/reader_utils.html#read_persistence_intervals_grouped_by_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.read_persistence_intervals_grouped_by_dimension" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">read_persistence_intervals_grouped_by_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">persistence_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/reader_utils.html#read_persistence_intervals_grouped_by_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.read_persistence_intervals_grouped_by_dimension" title="Link to this definition">#</a></dt>
 <dd><p>Reads a file containing persistence intervals.
 Each line might contain 2, 3 or 4 values: [[field] dimension] birth death
 The return value is a <cite>dict(dim, list(tuple(birth, death)))</cite>
@@ -617,15 +617,12 @@ Note: the function does not check that birth &lt;= death.</p>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Dict[int, List[Tuple[float, float]]]</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>FileNotFoundError</strong> – If the file cannot be opened.</p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="gudhi.read_persistence_intervals_in_dimension">
-<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">read_persistence_intervals_in_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">persistence_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_this_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/reader_utils.html#read_persistence_intervals_in_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.read_persistence_intervals_in_dimension" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">gudhi.</span></span><span class="sig-name descname"><span class="pre">read_persistence_intervals_in_dimension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">persistence_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_this_dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gudhi/reader_utils.html#read_persistence_intervals_in_dimension"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gudhi.read_persistence_intervals_in_dimension" title="Link to this definition">#</a></dt>
 <dd><p>Reads a file containing persistence intervals.
 Each line of persistence_file might contain 2, 3 or 4 values:
 [[field] dimension] birth death
@@ -645,9 +642,6 @@ If <cite>only_this_dim</cite> is &gt;= 0, only the lines where dimension =
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>numpy array of dimension 2</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>FileNotFoundError</strong> – If the file cannot be opened.</p>
 </dd>
 </dl>
 </dd></dl>

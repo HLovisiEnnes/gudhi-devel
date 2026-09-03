@@ -31,8 +31,8 @@
 <link href="_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css?v=dd72e65a" />
     <link rel="stylesheet" type="text/css" href="_static/python_gudhi.css?v=ff7d7c73" />
   
   <!-- So that users can add custom icons -->
@@ -643,29 +643,34 @@
 </table>
 </div>
 <p>A representation of a Lie group <span class="math notranslate nohighlight">\(G\)</span> on <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> is a group homomorphism
-<span class="math notranslate nohighlight">\(\rho:G\to GL(n,\mathbb{R})\)</span> mapping each group element to a <span class="math notranslate nohighlight">\(n\times n\)</span> real matrix.
-Given a point <span class="math notranslate nohighlight">\(x_0\in\mathbb{R}^n\)</span>, its orbit under the representation is the set of points
-<span class="math notranslate nohighlight">\(x\)</span> such that <span class="math notranslate nohighlight">\(\rho(g)\cdot x_0 = x\)</span> for some <span class="math notranslate nohighlight">\(g\in G\)</span>.
-The representation is called irreducible if <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> has no non-trivial subspaces invariant
+<span class="math notranslate nohighlight">\(\rho:G\to GL(n,\mathbb{R})\)</span> mapping each group element to a <span class="math notranslate nohighlight">\(n\times n\)</span> real matrix.</p>
+<p>Given a point <span class="math notranslate nohighlight">\(x_0\in\mathbb{R}^n\)</span>, its orbit under the representation is the set of points
+<span class="math notranslate nohighlight">\(x\)</span> such that <span class="math notranslate nohighlight">\(\rho(g)\cdot x_0 = x\)</span> for some <span class="math notranslate nohighlight">\(g\in G\)</span>.</p>
+<p>The representation is called irreducible if <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> has no non-trivial subspaces invariant
 under the representation. If <span class="math notranslate nohighlight">\(G\)</span> is a compact Lie group, any finite-dimensional representation
 can be decomposed as a direct sum of irreducible representations. The multiset of parameters
 characterizing this decomposition is called the representation type of <span class="math notranslate nohighlight">\(\rho\)</span>.</p>
 <p>Given a point cloud <span class="math notranslate nohighlight">\(\{x_i\}\)</span> lying on or close to an orbit of a representation
 <span class="math notranslate nohighlight">\(\rho(g)\)</span> of the compact Lie groups <span class="math notranslate nohighlight">\(SO(2)\)</span>, <span class="math notranslate nohighlight">\(T^d\)</span>, <span class="math notranslate nohighlight">\(SO(3)\)</span>,
-or <span class="math notranslate nohighlight">\(SU(2)\)</span>, LieDetect <a class="reference external" href="https://link.springer.com/article/10.1007/s10208-025-09728-4">[Ennes and Tinarrage, 2025]</a> estimates the representation <span class="math notranslate nohighlight">\(\rho(g)\)</span>
-in terms of its representation type. This estimate allows reconstruction of the
+or <span class="math notranslate nohighlight">\(SU(2)\)</span>, <a class="reference external" href="https://link.springer.com/article/10.1007/s10208-025-09728-4">LieDetect [Ennes and Tinarrage, 2025]</a> estimates the representation
+<span class="math notranslate nohighlight">\(\rho(g)\)</span> in terms of its representation type. This estimate allows reconstruction of the
 representation orbit. The algorithm consists of four steps, described below and
 detailed in the paper.</p>
-<figure class="align-default">
-<img alt="_images/liedetect.png" src="_images/liedetect.png" />
+<figure class="align-center align-default" id="id2">
+<img alt="SO(2) orbit and samples" src="_images/liedetect.png" />
+<figcaption>
+<p><span class="caption-text">Samples along a <span class="math notranslate nohighlight">\(SO(2)\)</span> representation orbit in <span class="math notranslate nohighlight">\(\mathbb{R}^4\)</span>,
+projected to <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> for visualization.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
 </figure>
 <section id="step-1-orthonormalization">
 <h2>Step 1: Orthonormalization<a class="headerlink" href="#step-1-orthonormalization" title="Link to this heading">#</a></h2>
 <p>Every representation of a compact Lie group can be made orthogonal. That is,
 there exists a change of basis of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> for which the orbit lies
-on the unit sphere. The first step of LieDetect estimates such a change of basis.
-This step is implemented by the <a class="reference internal" href="liedetect_orthonormalize_ref.html#gudhi.liedetect.Orthonormalize" title="gudhi.liedetect.Orthonormalize"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orthonormalize</span></code></a> class.</p>
+on the unit sphere. The first step of LieDetect estimates such a change of basis.</p>
+<p>This step is implemented by the <a class="reference internal" href="liedetect_orthonormalize_ref.html#gudhi.liedetect.Orthonormalize" title="gudhi.liedetect.Orthonormalize"><code class="xref py py-class docutils literal notranslate"><span class="pre">Orthonormalize</span></code></a> class.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.liedetect</span><span class="w"> </span><span class="kn">import</span> <span class="n">Orthonormalize</span>
+
 <span class="n">ortho</span> <span class="o">=</span> <span class="n">Orthonormalize</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
 <span class="n">pts</span> <span class="o">=</span> <span class="n">ortho</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
 </pre></div>
@@ -677,15 +682,18 @@ obtained by normalization.</p>
 <h2>Step 2: LiePCA<a class="headerlink" href="#step-2-liepca" title="Link to this heading">#</a></h2>
 <p>The second step uses the LiePCA algorithm of <span class="bibtex-citation" id="id1">[]</span>. Tangent information along
 the orbit is used to compute an operator approximating the infinitesimal action
-of the representation (i.e., the associated Lie algebra representation).
-This functionality is provided by the <a class="reference internal" href="liedetect_orbit_fitter_ref.html#gudhi.liedetect.OrbitFitter" title="gudhi.liedetect.OrbitFitter"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrbitFitter</span></code></a> class.</p>
+of the representation (i.e., the associated Lie algebra representation).</p>
+<p>This functionality is provided by the <a class="reference internal" href="liedetect_orbit_fitter_ref.html#gudhi.liedetect.OrbitFitter" title="gudhi.liedetect.OrbitFitter"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrbitFitter</span></code></a> class.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">orbit_fitter</span> <span class="o">=</span> <span class="n">OrbitFitter</span><span class="p">(</span><span class="n">pts</span><span class="o">=</span><span class="n">pts</span><span class="p">)</span>
-<span class="n">lie_pca</span> <span class="o">=</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">lie_pca</span><span class="p">(</span><span class="n">nb_neighbors</span><span class="o">=</span><span class="n">nb_neighbors</span><span class="p">,</span> <span class="n">orbit_dim</span><span class="o">=</span><span class="n">orbit_dim</span><span class="p">)</span>
+<span class="n">lie_pca</span> <span class="o">=</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">lie_pca</span><span class="p">(</span>
+    <span class="n">nb_neighbors</span><span class="o">=</span><span class="n">nb_neighbors</span><span class="p">,</span>
+    <span class="n">orbit_dim</span><span class="o">=</span><span class="n">orbit_dim</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>The number of eigenvalues of the LiePCA operator that are close to zero
-roughly corresponds to the dimension of the Lie group generating the orbit.
-They can be displayed with</p>
+roughly corresponds to the dimension of the Lie group generating the orbit.</p>
+<p>They can be displayed with</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">orbit_fitter</span><span class="o">.</span><span class="n">print_lie_pca_eigenvalues</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -694,23 +702,33 @@ They can be displayed with</p>
 </pre></div>
 </div>
 <p>the orbit is likely generated by a Lie group of dimension 1.</p>
-<figure class="align-default">
-<img alt="_images/eigenvalues_liedetect.png" src="_images/eigenvalues_liedetect.png" />
+<figure class="align-center align-default" id="id3">
+<img alt="LiePCA eigenvalues for groups of dimension 1, 2, and 3, respectively" src="_images/eigenvalues_liedetect.png" />
+<figcaption>
+<p><span class="caption-text">LiePCA eigenvalues for groups of dimension 1, 2, and 3, respectively.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
 </figure>
 </section>
 <section id="step-3-optimization">
 <h2>Step 3: Optimization<a class="headerlink" href="#step-3-optimization" title="Link to this heading">#</a></h2>
 <p>In this step, the estimated infinitesimal representation is projected onto the
 closest algebra compatible with a valid representation type.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">closest_algebra</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span> <span class="n">group_dim</span><span class="o">=</span><span class="n">group_dim</span><span class="p">,</span>
-                                    <span class="n">frequency_max</span><span class="o">=</span><span class="n">frequency_max</span><span class="p">,</span>
-                                    <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">closest_algebra</span><span class="p">(</span>
+    <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+    <span class="n">group_dim</span><span class="o">=</span><span class="n">group_dim</span><span class="p">,</span>
+    <span class="n">frequency_max</span><span class="o">=</span><span class="n">frequency_max</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>The decomposition of a representation into representation types may not be unique.
 The following function checks whether two representation types are equivalent.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">are_representations_equivalent</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">groundtruth_rep</span><span class="p">,</span>
-                               <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">representation_type_</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">are_representations_equivalent</span><span class="p">(</span>
+    <span class="n">group</span><span class="p">,</span>
+    <span class="n">groundtruth_rep</span><span class="p">,</span>
+    <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">representation_type_</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -731,19 +749,31 @@ input point cloud often provide a useful indicator of convergence.</p>
 <h2>Generate synthetic data<a class="headerlink" href="#generate-synthetic-data" title="Link to this heading">#</a></h2>
 <p>LieDetect also provides functions to generate synthetic data near orbits of
 representations.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.datasets.linear_orbits</span><span class="w"> </span><span class="kn">import</span>  <span class="n">sample_orbit_from_group</span><span class="p">,</span> <span class="n">sample_orbit_from_rep</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.datasets.linear_orbits</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">sample_orbit_from_group</span><span class="p">,</span>
+    <span class="n">sample_orbit_from_rep</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="c1"># Choose the Lie group</span>
-<span class="n">pts</span> <span class="o">=</span> <span class="n">sample_orbit_from_group</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s2">"torus"</span><span class="p">,</span> <span class="n">ambient_dim</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                              <span class="n">nb_points</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">group_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="n">sample_orbit_from_group</span><span class="p">(</span>
+    <span class="n">group</span><span class="o">=</span><span class="s2">"torus"</span><span class="p">,</span>
+    <span class="n">ambient_dim</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">nb_points</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">group_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="c1"># Choose the representation type</span>
-<span class="n">pts</span> <span class="o">=</span> <span class="n">sample_orbit_from_rep</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s2">"torus"</span><span class="p">,</span> <span class="n">rep_type</span><span class="o">=</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),),</span>
-                            <span class="n">nb_points</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">)</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="n">sample_orbit_from_rep</span><span class="p">(</span>
+    <span class="n">group</span><span class="o">=</span><span class="s2">"torus"</span><span class="p">,</span>
+    <span class="n">rep_type</span><span class="o">=</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),),</span>
+    <span class="n">nb_points</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
+</section>
 <section id="simple-example">
-<h3>Simple example<a class="headerlink" href="#simple-example" title="Link to this heading">#</a></h3>
+<h2>Simple example<a class="headerlink" href="#simple-example" title="Link to this heading">#</a></h2>
 <p>The example below illustrates a typical use of LieDetect. Points are sampled
 near an orbit of a representation of <span class="math notranslate nohighlight">\(SO(3)\)</span>, and the four steps of the
 algorithm are applied to recover the representation type.</p>
@@ -751,8 +781,12 @@ algorithm are applied to recover the representation type.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.datasets.linear_orbits</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_orbit_from_group</span>
 
 <span class="c1"># Input</span>
-<span class="n">pts</span> <span class="o">=</span> <span class="n">sample_orbit_from_group</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s2">"SO(3)"</span><span class="p">,</span> <span class="n">ambient_dim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-                              <span class="n">nb_points</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">group_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="n">sample_orbit_from_group</span><span class="p">(</span>
+    <span class="n">group</span><span class="o">=</span><span class="s2">"SO(3)"</span><span class="p">,</span>
+    <span class="n">ambient_dim</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">nb_points</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span>
+    <span class="n">group_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="c1"># Step 1: Orthonormalization</span>
 <span class="n">ortho</span> <span class="o">=</span> <span class="n">Orthonormalize</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
@@ -760,18 +794,27 @@ algorithm are applied to recover the representation type.</p>
 
 <span class="c1"># Step 2: Lie PCA</span>
 <span class="n">orbit_fitter</span> <span class="o">=</span> <span class="n">OrbitFitter</span><span class="p">(</span><span class="n">pts</span><span class="o">=</span><span class="n">pts</span><span class="p">)</span>
-<span class="n">lie_pca</span> <span class="o">=</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">lie_pca</span><span class="p">(</span><span class="n">nb_neighbors</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">orbit_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">lie_pca</span> <span class="o">=</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">lie_pca</span><span class="p">(</span>
+    <span class="n">nb_neighbors</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">orbit_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="c1"># Step 3: Optimization</span>
-<span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">closest_algebra</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="s2">"SO(3)"</span><span class="p">,</span> <span class="n">group_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                                    <span class="n">method</span><span class="o">=</span><span class="s2">"bottom_lie_pca"</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">closest_algebra</span><span class="p">(</span>
+    <span class="n">group</span><span class="o">=</span><span class="s2">"SO(3)"</span><span class="p">,</span>
+    <span class="n">group_dim</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">"bottom_lie_pca"</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="c1"># Step 4: Reconstruct orbit and compute Hausdorff distances</span>
-<span class="n">orbit</span> <span class="o">=</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">sample_orbit</span><span class="p">(</span><span class="n">nb_points</span><span class="o">=</span><span class="mi">30</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"uniform"</span><span class="p">)</span>
+<span class="n">orbit</span> <span class="o">=</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">sample_orbit</span><span class="p">(</span>
+    <span class="n">nb_points</span><span class="o">=</span><span class="mi">30</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">"uniform"</span><span class="p">,</span>
+<span class="p">)</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Hausdorff distances:"</span><span class="p">,</span> <span class="n">orbit_fitter</span><span class="o">.</span><span class="n">hausdorff_distances_</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </section>
 </section>
 
@@ -808,10 +851,8 @@ algorithm are applied to recover the representation type.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-liepca">Step 2: LiePCA</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-optimization">Step 3: Optimization</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-generate-orbit-and-compute-hausdorff-distances">Step 4: Generate orbit and compute Hausdorff distances</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-synthetic-data">Generate synthetic data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example">Simple example</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-synthetic-data">Generate synthetic data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example">Simple example</a></li>
 </ul>
   </nav></div>
 

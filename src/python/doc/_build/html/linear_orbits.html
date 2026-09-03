@@ -600,28 +600,30 @@
                   
   <section id="linear-orbits">
 <h1>Linear orbits<a class="headerlink" href="#linear-orbits" title="Link to this heading">#</a></h1>
-<p>The module <strong>linear_orbits</strong> generates points in orbits of representations of <span class="math notranslate nohighlight">\(SO(2)\)</span>, <span class="math notranslate nohighlight">\(T^{d}\)</span>, <span class="math notranslate nohighlight">\(SO(3)\)</span>,
+<p>The module <strong>linear_orbits</strong> generates points on orbits of representations of <span class="math notranslate nohighlight">\(SO(2)\)</span>, <span class="math notranslate nohighlight">\(T^{d}\)</span>, <span class="math notranslate nohighlight">\(SO(3)\)</span>,
 and <span class="math notranslate nohighlight">\(SU(2)\)</span> in real, finite-dimensional vector spaces.</p>
 <section id="definitions">
 <h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">#</a></h2>
-<p>A Lie group <span class="math notranslate nohighlight">\(G\)</span> corresponds to a group with a smooth manifold structure, compatible with the group’s product. Here, we will
+<p>A Lie group <span class="math notranslate nohighlight">\(G\)</span> is a group with a smooth manifold structure compatible with the group operation. Here, we will
 assume that <span class="math notranslate nohighlight">\(G\)</span> is either <span class="math notranslate nohighlight">\(SO(2)\)</span>, <span class="math notranslate nohighlight">\(T^{d}\)</span>, for <span class="math notranslate nohighlight">\(d&gt;0\)</span>, <span class="math notranslate nohighlight">\(SO(3)\)</span>, or <span class="math notranslate nohighlight">\(SU(2)\)</span>. Notice that the
-group <span class="math notranslate nohighlight">\(T^{1}\)</span> is actually equal to <span class="math notranslate nohighlight">\(SO(2)\)</span>, and, for this reason, we shall call it a torus group as well.</p>
-<p>A representation or linear action is a smooth group morphism <span class="math notranslate nohighlight">\(\rho: G \to GL(\mathbb{R}, n)\)</span>, where <span class="math notranslate nohighlight">\(GL(\mathbb{R}, n)\)</span> corresponds to the
-group of <span class="math notranslate nohighlight">\(n \times n\)</span> invertible real matrices.</p>
-<p>Given a non-zero point <span class="math notranslate nohighlight">\(x\in \mathbb{R}^{n}\)</span>, the orbit of <span class="math notranslate nohighlight">\(x\)</span> under <span class="math notranslate nohighlight">\(\rho\)</span> is <span class="math notranslate nohighlight">\(O_x=\{\rho(g)\cdot x| g \in G\}\)</span>.
-Orbits of <span class="math notranslate nohighlight">\(T^d\)</span> are dimension <span class="math notranslate nohighlight">\(d\)</span> submanifolds of <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>, whereas orbits of <span class="math notranslate nohighlight">\(SO(3)\)</span>, and <span class="math notranslate nohighlight">\(SU(2)\)</span>
-are both of dimension <span class="math notranslate nohighlight">\(3\)</span>. The <strong>linear_orbits</strong> generates a point cloud close to or exactly in an orbit of the families
-of Lie groups considered.</p>
+group <span class="math notranslate nohighlight">\(T^{1}\)</span> is equal to <span class="math notranslate nohighlight">\(SO(2)\)</span>, and, for this reason, we shall call it a torus group as well.</p>
+<p>A representation, or linear action, is a smooth group morphism <span class="math notranslate nohighlight">\(\rho: G \to GL(\mathbb{R}, n)\)</span>, where
+<span class="math notranslate nohighlight">\(GL(\mathbb{R}, n)\)</span> denotes the group of <span class="math notranslate nohighlight">\(n \times n\)</span> invertible real matrices.</p>
+<p>Given a non-zero point <span class="math notranslate nohighlight">\(x\in \mathbb{R}^{n}\)</span>, the orbit of <span class="math notranslate nohighlight">\(x\)</span> under <span class="math notranslate nohighlight">\(\rho\)</span> is
+<span class="math notranslate nohighlight">\(O_x=\{\rho(g)\cdot x \mid g \in G\}\)</span>.</p>
+<p>Orbits of <span class="math notranslate nohighlight">\(T^d\)</span> are dimension-<span class="math notranslate nohighlight">\(d\)</span> submanifolds of <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>, whereas orbits of <span class="math notranslate nohighlight">\(SO(3)\)</span> and
+<span class="math notranslate nohighlight">\(SU(2)\)</span> are both of dimension <span class="math notranslate nohighlight">\(3\)</span>. The <strong>linear_orbits</strong> module generates a point cloud close to or exactly on
+an orbit of the families of Lie groups considered.</p>
 </section>
 <section id="uses">
 <h2>Uses<a class="headerlink" href="#uses" title="Link to this heading">#</a></h2>
-<p>Three main functions are provided to generate the orbits. The first method allows for sampling from a randomly chosen type
-representation orbit of the specified Lie group.</p>
+<p>Three main functions are provided to generate the orbits. The first method allows sampling from an orbit of a randomly chosen
+representation type of the specified Lie group.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.datasets.linear_orbits</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_from_lie_group</span>
 
-<span class="c1"># Generates 500 uniformly spaces points from a SO(2) representation orbit in R^4</span>
+<span class="c1"># Generates 500 uniformly spaced points from an SO(2) representation orbit in R^4</span>
 <span class="c1"># This is equivalent to a linearly embedded torus knot in R^4</span>
+
 <span class="n">gen_points</span> <span class="o">=</span> <span class="n">sample_from_lie_group</span><span class="p">(</span><span class="n">group</span> <span class="o">=</span> <span class="s2">"torus"</span><span class="p">,</span> <span class="n">ambient_dim</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">nb_points</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -667,8 +669,9 @@ space. Defaults to False. Only implemented for the circle or the non-Abelian gro
 <p>The representation type can be explicitly given.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.datasets.linear_orbits</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_from_lie_group_rep</span>
 
- <span class="c1"># Generates 500 uniformly spaces points from the orbit of a SO(2) representation of type (1,2)</span>
- <span class="n">gen_points</span> <span class="o">=</span> <span class="n">sample_from_lie_group_rep</span><span class="p">(</span><span class="n">group</span> <span class="o">=</span> <span class="s2">"torus"</span><span class="p">,</span> <span class="n">rep_type</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),),</span> <span class="n">nb_points</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
+<span class="c1"># Generates 500 uniformly spaced points from the orbit of an SO(2) representation of type (1,2)</span>
+
+<span class="n">gen_points</span> <span class="o">=</span> <span class="n">sample_from_lie_group_rep</span><span class="p">(</span><span class="n">group</span> <span class="o">=</span> <span class="s2">"torus"</span><span class="p">,</span> <span class="n">rep_type</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),),</span> <span class="n">nb_points</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="py function">
@@ -704,16 +707,19 @@ Defaults to False.</p></li>
 </dl>
 </dd></dl>
 
-<p>The last method allows for sampling from a specific representation orbit of the specified Lie group.</p>
+<p>The last method allows sampling from a specific representation orbit of the specified Lie group.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gudhi.datasets.linear_orbits</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_from_lie_algebra</span>
- <span class="n">alg</span> <span class="o">=</span> <span class="p">[</span>
-     <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-               <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
- <span class="p">]</span>
- <span class="c1"># Generates 500 uniformly spaces points from the orbit of a SO(2) representation of type (1,2) with given algebra</span>
-<span class="n">gen_points</span> <span class="o">=</span> <span class="n">sample_from_lie_algebra</span><span class="p">(</span><span class="n">group</span> <span class="o">=</span> <span class="s2">"torus"</span><span class="p">,</span> <span class="n">rep_type</span> <span class="o">=</span>  <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),),</span> <span class="n">algebra</span> <span class="o">=</span> <span class="n">alg</span><span class="p">,</span> <span class="n">nb_points</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="n">alg</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="p">]</span>
+
+<span class="c1"># Generates 500 uniformly spaced points from the orbit of an SO(2) representation of type (1,2) with the given algebra</span>
+
+<span class="n">gen_points</span> <span class="o">=</span> <span class="n">sample_from_lie_algebra</span><span class="p">(</span><span class="n">group</span> <span class="o">=</span> <span class="s2">"torus"</span><span class="p">,</span> <span class="n">rep_type</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),),</span> <span class="n">algebra</span> <span class="o">=</span> <span class="n">alg</span><span class="p">,</span> <span class="n">nb_points</span> <span class="o">=</span> <span class="mi">500</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="py function">

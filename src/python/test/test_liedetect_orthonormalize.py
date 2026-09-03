@@ -27,7 +27,7 @@ def fix_fit_pts():
 def fix_transform_pts(fix_fit_pts):
     """
     Builds data set to apply orthonormalizer.
-    Simly the twice expansion of the original set.
+    Simply the twice expansion of the original set.
     """
     return 2 * fix_fit_pts
 

@@ -5,13 +5,16 @@ Author(s):       Henrique Ennes & Raphaël Tinarrage
 Copyright (C) 2016 Inria
 """
 
-import numpy as np
 import pytest
-from gudhi.liedetect import OrbitFitter, are_representations_equivalent
+from gudhi import liedetect
+from gudhi.datasets import linear_orbits
+from gudhi.liedetect import OrbitFitter
 
 """
 Fixes data set.
 """
+
+rep_type = ((3),)
 
 
 @pytest.fixture
@@ -19,14 +22,15 @@ def fix_pts():
     """
     Builds orbit of weights 3 in R^3.
     """
-    thetas = np.linspace(0, 2 * np.pi, 100)
-    phis = np.linspace(0, np.pi, 100)
-    return np.array(
-        [
-            (np.cos(theta) * np.sin(phi), np.sin(theta) * np.sin(phi), np.cos(phi))
-            for theta in thetas
-            for phi in phis
-        ]
+    group = "SO(3)"
+    seed = 42
+    nb_points = 10000
+
+    return linear_orbits.sample_from_lie_group_rep(
+        group=group,
+        rep_type=rep_type,
+        nb_points=nb_points,
+        seed=seed,
     )
 
 
@@ -38,7 +42,7 @@ Test functions
 def test_lie_pca(fix_pts):
     orbit_fitter = OrbitFitter(fix_pts)
     nb_neighbors = 100
-    orbit_dim = 2
+    orbit_dim = 3
 
     _ = orbit_fitter.lie_pca(
         nb_neighbors=nb_neighbors, orbit_dim=orbit_dim, verbose=False
@@ -55,7 +59,7 @@ def test_lie_pca(fix_pts):
 def test_project_lie_algebra(fix_pts):
     orbit_fitter = OrbitFitter(fix_pts)
     nb_neighbors = 100
-    orbit_dim = 2
+    orbit_dim = 3
 
     _ = orbit_fitter.lie_pca(
         nb_neighbors=nb_neighbors, orbit_dim=orbit_dim, method="PCA", verbose=False
@@ -65,21 +69,19 @@ def test_project_lie_algebra(fix_pts):
     la, _ = orbit_fitter.closest_algebra(
         group="SO(3)", group_dim=1, method=method, verbose=False
     )
-    assert are_representations_equivalent("SO(3)", la, (3,))
+    assert liedetect.are_representations_equivalent("SO(3)", la, (3,))
 
 
 def test_sample_orbit(fix_pts):
     orbit_fitter = OrbitFitter(fix_pts)
     nb_neighbors = 100
-    orbit_dim = 2
+    orbit_dim = 3
 
     _ = orbit_fitter.lie_pca(
         nb_neighbors=nb_neighbors, orbit_dim=orbit_dim, method="PCA", verbose=False
     )
     method = "bottom_lie_pca"
-    la, _ = orbit_fitter.closest_algebra(
-        group="SO(3)", group_dim=1, method=method, verbose=False
-    )
+    la, _ = orbit_fitter.closest_algebra(group="SO(3)", method=method, verbose=False)
 
     _ = orbit_fitter.sample_orbit(nb_points=10000)
 

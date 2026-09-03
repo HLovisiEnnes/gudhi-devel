@@ -5,13 +5,15 @@ Author(s):       Henrique Ennes & Raphaël Tinarrage
 Copyright (C) 2016 Inria
 """
 
-import numpy as np
 import pytest
-from gudhi.liedetect import OrbitFitter, are_representations_equivalent
+from gudhi import liedetect
+from gudhi.datasets import linear_orbits
+from gudhi.liedetect import OrbitFitter
 
 """
 Fixes data set.
 """
+rep_type = ((1, 2),)
 
 
 @pytest.fixture
@@ -19,12 +21,15 @@ def fix_pts():
     """
     Builds orbit of weights (1,2) in R^4.
     """
-    thetas = np.linspace(0, 2 * np.pi, 100)
-    return np.array(
-        [
-            (np.cos(theta), np.sin(theta), np.cos(2 * theta), np.sin(2 * theta))
-            for theta in thetas
-        ]
+    group = "torus"
+    seed = 42
+    nb_points = 500
+
+    return linear_orbits.sample_from_lie_group_rep(
+        group=group,
+        rep_type=rep_type,
+        nb_points=nb_points,
+        seed=seed,
     )
 
 
@@ -34,6 +39,8 @@ Test functions
 
 
 def test_lie_pca(fix_pts):
+    # Test PCA method for lie_pca
+    # As group dim is 1, only one eigenvalue should be small, the others should be large
     orbit_fitter = OrbitFitter(fix_pts)
     nb_neighbors = 10
     orbit_dim = 1
@@ -65,6 +72,7 @@ def test_lie_pca(fix_pts):
 
 
 def test_project_lie_algebra(fix_pts):
+    # Test if we found the right rep type
     orbit_fitter = OrbitFitter(fix_pts)
     nb_neighbors = 10
     orbit_dim = 1
@@ -84,7 +92,7 @@ def test_project_lie_algebra(fix_pts):
         verbose=False,
     )
 
-    assert are_representations_equivalent("torus", la, ((1, 2),))
+    assert liedetect.are_representations_equivalent("torus", la, ((1, 2),))
 
     method = "bottom_lie_pca"
     la, _ = orbit_fitter.closest_algebra(
@@ -94,7 +102,7 @@ def test_project_lie_algebra(fix_pts):
         method=method,
         verbose=False,
     )
-    assert are_representations_equivalent("torus", la, ((1, 2),))
+    assert liedetect.are_representations_equivalent("torus", la, ((1, 2),))
 
     method = "full_lie_pca"
     la, _ = orbit_fitter.closest_algebra(
@@ -104,10 +112,11 @@ def test_project_lie_algebra(fix_pts):
         method=method,
         verbose=False,
     )
-    assert are_representations_equivalent("torus", la, ((1, 2),))
+    assert liedetect.are_representations_equivalent("torus", la, ((1, 2),))
 
 
 def test_sample_orbit(fix_pts):
+    # Test if we reconstructed an orbit close to the true one
     orbit_fitter = OrbitFitter(fix_pts)
     nb_neighbors = 10
     orbit_dim = 1

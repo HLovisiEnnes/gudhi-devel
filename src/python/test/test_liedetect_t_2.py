@@ -76,7 +76,7 @@ def test_lie_pca(fix_pts):
 
 
 def test_project_lie_algebra(fix_pts):
-    # Teste if we found the right rep type
+    # Test if we found the right rep type
     orbit_fitter = OrbitFitter(fix_pts)
     nb_neighbors = 30
     orbit_dim = 2

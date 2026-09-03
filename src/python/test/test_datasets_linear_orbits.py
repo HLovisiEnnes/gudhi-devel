@@ -8,12 +8,12 @@ Copyright (C) 2016 Inria
 import numpy as np
 from gudhi import liedetect
 from gudhi.datasets.linear_orbits import (
+    get_canonical_pushforward_algebra,
     sample_from_lie_algebra,
     sample_from_lie_group,
     sample_from_lie_group_rep,
-    sample_orbit_from_algebra_su2,
-    get_canonical_pushforward_algebra,
 )
+from gudhi.liedetect.utils import sample_orbit_from_algebra_su2
 
 
 def test_sampling():
@@ -72,22 +72,47 @@ def test_sampling():
 
 def test_reproducible():
     # Seed on SU(2), sample orbit from lie group
-    orbit_1, rep_type_1 = sample_from_lie_group(group="SU(2)", ambient_dim=7, nb_points=20, seed=123, )
-    orbit_2, rep_type_2 = sample_from_lie_group(group="SU(2)", ambient_dim=7, nb_points=20, seed=123, )
+    orbit_1, rep_type_1 = sample_from_lie_group(
+        group="SU(2)",
+        ambient_dim=7,
+        nb_points=20,
+        seed=123,
+    )
+    orbit_2, rep_type_2 = sample_from_lie_group(
+        group="SU(2)",
+        ambient_dim=7,
+        nb_points=20,
+        seed=123,
+    )
 
     assert rep_type_1 == rep_type_2
     np.testing.assert_allclose(orbit_1, orbit_2)
 
     # Seed on SU(2), "random_uniform" sample from lie algebra
     rep_type = (3,)
-    algebra = get_canonical_pushforward_algebra(group="SU(2)", rep_type=rep_type, )
+    algebra = get_canonical_pushforward_algebra(
+        group="SU(2)",
+        rep_type=rep_type,
+    )
     x = np.ones(3)
     x /= np.linalg.norm(x)
 
-    orbit_1 = sample_orbit_from_algebra_su2(rep_type=rep_type, algebra=algebra, x=x, nb_points=20,
-                                            method="random_uniform", seed=123, )
-    orbit_2 = sample_orbit_from_algebra_su2(rep_type=rep_type, algebra=algebra, x=x, nb_points=20,
-                                            method="random_uniform", seed=123, )
+    orbit_1 = sample_orbit_from_algebra_su2(
+        rep_type=rep_type,
+        algebra=algebra,
+        x=x,
+        nb_points=20,
+        method="random_uniform",
+        seed=123,
+    )
+    orbit_2 = sample_orbit_from_algebra_su2(
+        rep_type=rep_type,
+        algebra=algebra,
+        x=x,
+        nb_points=20,
+        method="random_uniform",
+        seed=123,
+    )
 
     np.testing.assert_allclose(orbit_1, orbit_2)
 

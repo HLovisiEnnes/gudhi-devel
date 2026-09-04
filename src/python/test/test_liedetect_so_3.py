@@ -2,7 +2,7 @@
 See file LICENSE or go to https://gudhi.inria.fr/licensing/ for full license details.
 Author(s):       Henrique Ennes & Raphaël Tinarrage
 
-Copyright (C) 2016 Inria
+Copyright (C) 2016 Inria & Institute of Science and Technology Austria
 """
 
 import pytest

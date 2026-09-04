@@ -19,12 +19,10 @@ from typing import Literal
 import numpy as np
 import scipy
 
-# GUDHI imports.
-from gudhi.datasets.linear_orbits import sample_from_lie_algebra
-
 # Local imports.
 from .liepca import get_lie_pca_operator
 from .optimization import find_closest_algebra
+from .utils import sample_from_lie_algebra
 
 
 def print_hausdorff_distance(

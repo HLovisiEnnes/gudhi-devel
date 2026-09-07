@@ -134,8 +134,7 @@ def find_closest_algebra(
     ambient_dim = int(np.sqrt(lie_pca.shape[0]))
 
     if verbose:
-        sys.stdout.write(f"""----> Optimization problem via \x1b[34m{method}
-                \x1b[0m method for {group}  <----\n""")
+        sys.stdout.write(f"""----> Optimization problem via \x1b[34m{method}\x1b[0m method for {group}  <----\n""")
 
     # Gets representations to test.
     if reps_to_test is None:
@@ -152,7 +151,7 @@ def find_closest_algebra(
                 frequency_max=frequency_max,
                 method="orbit-equivalence",
                 span_ambient_space=span_ambient_space,
-                verbose=False,
+                verbose=verbose,
             )
         elif group in ["SU(2)", "SO(3)"]:
             reps_to_test = get_constrained_partitions(
@@ -224,8 +223,7 @@ def find_closest_algebra(
         )
 
     if verbose:
-        print(f"""The optimal rep found is \x1b[1;31m{optimal_rep}
-                \x1b[0m with cost {min(costs.values()):.3e}.""")
+        print(f"""The optimal rep found is \x1b[1;31m{optimal_rep}\x1b[0m with cost {min(costs.values()):.3e}.""")
 
     if verbose_top_scores:
         nb_scores_to_print = 10

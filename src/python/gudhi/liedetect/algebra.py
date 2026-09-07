@@ -35,6 +35,7 @@ Canonical bases of representations:
 """
 
 # Standard imports.
+import sys
 import itertools
 from math import gcd
 from typing import Literal
@@ -299,7 +300,7 @@ def get_random_lattice(
 
 def invariant_of_lattices(
     lattice: tuple[tuple[int, ...], ...],
-    method: Literal["span-equivalence", "equivalence"] = "span-equivalence",
+    method: Literal["span-equivalence", "orbit-equivalence"] = "span-equivalence",
     decimals_accuracy: int = 5,
 ) -> tuple:
     """
@@ -341,7 +342,7 @@ def get_lattices(
     lattice_rank: int,
     ambient_rank: int,
     frequency_max: int,
-    method: Literal["span-equivalence", "equivalence"] = "span-equivalence",
+    method: Literal["span-equivalence", "orbit-equivalence"] = "span-equivalence",
     span_ambient_space: bool = True,
     verbose: bool = False,
 ) -> list[tuple[tuple[int, ...], ...]]:
@@ -373,6 +374,9 @@ def get_lattices(
     if not lattice_rank <= ambient_rank:
         raise ValueError("Rank of ambient lattice is too small.")
 
+    if verbose:
+        sys.stdout.write(f"""Generate lattices up to frequency {frequency_max}... """)
+
     # Gets irreps of T^lattice_rank with frequencies in
     # [0, frequency_max] (tuples of length lattice_dim)
     irreps = list(itertools.product(range(frequency_max + 1), repeat=lattice_rank))
@@ -400,7 +404,7 @@ def get_lattices(
     ]
 
     if verbose:
-        print(f"Full-rank lattices: {len(lattices)}")
+        sys.stdout.write(f"Full-rank lattices: {len(lattices)}... ")
 
     # Discards lattices that span the same vector subspace
     span_equivalence_classes = dict()
@@ -411,7 +415,8 @@ def get_lattices(
     lattices = list(span_equivalence_classes.values())
 
     if verbose:
-        print(f"Span-equivalence classes: {len(lattices)}")
+        sys.stdout.write(f"Span-equivalence classes: {len(lattices)}"
+                         f"{'... ' if method == 'orbit-equivalence' else '. '}")
 
     # If required, returns lattices obtained
     if method == "span-equivalence" or lattice_rank == 1:
@@ -430,7 +435,7 @@ def get_lattices(
         lattices = list(orbit_equivalence_classes.values())
 
         if verbose:
-            print(f"Orbit-equivalence classes: {len(lattices)}")
+            sys.stdout.write(f"Orbit-equivalence classes: {len(lattices)}.\n")
         return lattices
 
     else:
